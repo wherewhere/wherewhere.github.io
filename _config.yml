@@ -8,7 +8,7 @@ subtitle: ''
 description: '铺路尚未成功，同志仍需努力！'
 keywords:
 author: wherewhere
-language: zh-Hans
+language: zh-CN
 timezone: ''
 
 # URL
@@ -105,4 +105,4 @@ deploy:
   type: git
   repo: https://github.com/wherewhere/wherewhere.github.io.git
   # example, https://github.com/hexojs/hexojs.github.io
-  branch: main
+  branch: static
