@@ -6,7 +6,7 @@
 title: wherewhere的博客
 subtitle: ''
 description: '铺路尚未成功，同志仍需努力！'
-keywords:
+keywords: [博客, 开发, where, 薇ㄦ, whercate]
 author: wherewhere
 language: zh-CN
 timezone: 'Asia/Shanghai'
@@ -33,6 +33,7 @@ skip_render:
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
+auto_spacing: true
 titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
