@@ -1,0 +1,158 @@
+# ===============================================================
+# It's recommended to use Alternate Theme Config to configure NexT
+# Modifying this file may result in merge conflict
+# See: https://theme-next.js.org/docs/getting-started/configuration
+# ===============================================================
+
+# ---------------------------------------------------------------
+# Theme Core Configuration Settings
+# See: https://theme-next.js.org/docs/theme-settings/
+# ---------------------------------------------------------------
+
+# Remove unnecessary files after hexo generate.
+minify: true
+
+
+# ---------------------------------------------------------------
+# Scheme Settings
+# ---------------------------------------------------------------
+
+# Schemes
+#scheme: Muse
+#scheme: Mist
+scheme: Pisces
+#scheme: Gemini
+
+# Dark Mode
+darkmode: true
+
+
+# ---------------------------------------------------------------
+# Menu Settings
+# ---------------------------------------------------------------
+
+# Usage: `Key: /link/ || icon`
+# Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-sensitive.
+# Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
+# External url should start with http:// or https://
+menu:
+  home: / || fa fa-home
+  about: https://wherewhere.github.io/wherewhere/ || fa fa-user
+  tags: /tags/ || fa fa-tags
+  categories: /categories/ || fa fa-th
+  archives: /archives/ || fa fa-archive
+
+
+# ---------------------------------------------------------------
+# Sidebar Settings
+# See: https://theme-next.js.org/docs/theme-settings/sidebar
+# ---------------------------------------------------------------
+
+# Social Links
+# Usage: `Key: permalink || icon`
+# Key is the link label showing to end users.
+# Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
+social:
+  GitHub: https://github.com/wherewhere || fab fa-github
+  E-Mail: mailto:wherewhere7@outlook.com || fa fa-envelope
+  Weibo: https://weibo.com/u/3648720581 || fab fa-weibo
+  Twitter: https://twitter.com/wherewhere7 || fab fa-twitter
+  #FB Page: https://www.facebook.com/profile.php?id=100004860766507 || fab fa-facebook
+  StackOverflow: https://stackoverflow.com/users/18044681/where-where || fab fa-stack-overflow
+  YouTube: https://youtube.com/@wherewhere7 || fab fa-youtube
+  Instagram: https://instagram.com/wherewhere7 || fab fa-instagram
+  Skype: skype:qq2518766683?call|chat || fab fa-skype
+
+social_icons:
+  icons_only: true
+  transition: true
+
+
+# ---------------------------------------------------------------
+# Footer Settings
+# See: https://theme-next.js.org/docs/theme-settings/footer
+# ---------------------------------------------------------------
+
+# Show multilingual switcher in footer.
+language_switcher: true
+
+footer:
+  # Specify the year when the site was setup. If not defined, current year will be used.
+  since: 2017
+
+  # Icon between year and copyright info.
+  icon:
+    # If you want to animate the icon, set it to true.
+    animated: true
+
+
+# ---------------------------------------------------------------
+# Post Settings
+# See: https://theme-next.js.org/docs/theme-settings/posts
+# ---------------------------------------------------------------
+
+# Donate (Sponsor) settings
+# Front-matter variable (nonsupport animation).
+reward_settings:
+  # If true, a donate button will be displayed in every article by default.
+  #enable: true
+  animation: true
+
+reward:
+  #wechatpay: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/04d07d8d-fecc-469e-a5da-fd427858a829
+  #alipay: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/a3b76735-469c-4d74-8c6a-f311df65e4b0
+  #paypal: /images/paypal.png
+  bitcoin: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/14448ea4-2f41-4f72-b9f0-e85c603cfbcb
+
+# Subscribe through Telegram Channel, Twitter, etc.
+# Usage: `Key: permalink || icon` (Font Awesome)
+follow_me:
+  Twitter: https://twitter.com/wherewhere7 || fab fa-twitter
+  Telegram: https://t.me/wherewhere || fab fa-telegram
+
+
+# ---------------------------------------------------------------
+# Misc Theme Settings
+# See: https://theme-next.js.org/docs/theme-settings/miscellaneous
+# ---------------------------------------------------------------
+
+# Reduce padding / margin indents on devices with narrow width.
+mobile_layout_economy: true
+
+codeblock:
+  # Add copy button on codeblock
+  copy_button:
+    enable: true
+  # Fold code block
+  fold:
+    enable: true
+
+# `Follow me on GitHub` banner in the top-right corner.
+github_banner:
+  enable: true
+  permalink: https://github.com/wherewhere
+
+
+# ---------------------------------------------------------------
+# Animation Settings
+# ---------------------------------------------------------------
+
+# Use Animate.css to animate everything.
+# For more information: https://animate.style
+motion:
+  async: true
+
+
+# ---------------------------------------------------------------
+# Search Services
+# See: https://theme-next.js.org/docs/third-party-services/search-services
+# ---------------------------------------------------------------
+
+# Local Search
+# Dependencies: https://github.com/next-theme/hexo-generator-searchdb
+local_search:
+  enable: true
+  # Unescape html strings to the readable one.
+  unescape: true
+  # Preload the search data when the page loads.
+  preload: true
