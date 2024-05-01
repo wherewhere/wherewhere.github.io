@@ -1,2 +1,2 @@
-# wherewhere.github.io
-我的个人博客
+# 魔法薇ㄦ的书馆
+wherewhere的个人博客

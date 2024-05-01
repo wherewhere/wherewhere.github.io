@@ -71,4 +71,4 @@ Fusion App发布已经有很长时间了，这期间也出现了很多优秀的�
 
 最后感谢[@寒歌](https://www.coolapk.com/u/寒歌)为我们带来了Fusion App，[@pandecheng](https://www.coolapk.com/u/pandecheng)顺道感谢一下吧/滑稽
 
-> [Fusion App 工程提取教程](https://www.coolapk.com/feed/6170506?shareKey=MzQzMzNiNDgxOWRkNjYzMTI0MWU) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2018年04月15日 发表于酷安，转载请注明出处
+> [Fusion App 工程提取教程](https://www.coolapk.com/feed/6170506?shareKey=MzQzMzNiNDgxOWRkNjYzMTI0MWU) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2018年04月15日 发表于 [酷安](https://www.coolapk.com)，转载请注明出处
