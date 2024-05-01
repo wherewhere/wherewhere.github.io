@@ -48,6 +48,15 @@ menu:
 # See: https://theme-next.js.org/docs/theme-settings/sidebar
 # ---------------------------------------------------------------
 
+# Sidebar Avatar
+avatar:
+  # Replace the default image and set the url here.
+  url: https://avatars.githubusercontent.com/u/27689196?v=4
+  # If true, the avatar will be displayed in circle.
+  rounded: true
+  # If true, the avatar will be rotated with the cursor.
+  rotated: true
+
 # Social Links
 # Usage: `Key: permalink || icon`
 # Key is the link label showing to end users.
@@ -57,11 +66,12 @@ social:
   E-Mail: mailto:wherewhere7@outlook.com || fa fa-envelope
   Weibo: https://weibo.com/u/3648720581 || fab fa-weibo
   Twitter: https://twitter.com/wherewhere7 || fab fa-twitter
+  Telegram: https://t.me/wherewhere || fab fa-telegram
   #FB Page: https://www.facebook.com/profile.php?id=100004860766507 || fab fa-facebook
-  StackOverflow: https://stackoverflow.com/users/18044681/where-where || fab fa-stack-overflow
+  #StackOverflow: https://stackoverflow.com/users/18044681/where-where || fab fa-stack-overflow
   YouTube: https://youtube.com/@wherewhere7 || fab fa-youtube
-  Instagram: https://instagram.com/wherewhere7 || fab fa-instagram
-  Skype: skype:qq2518766683?call|chat || fab fa-skype
+  #Instagram: https://instagram.com/wherewhere7 || fab fa-instagram
+  #Skype: skype:qq2518766683?call|chat || fab fa-skype
 
 social_icons:
   icons_only: true
@@ -91,6 +101,14 @@ footer:
 # See: https://theme-next.js.org/docs/theme-settings/posts
 # ---------------------------------------------------------------
 
+# Post wordcount display settings
+# Dependencies: https://github.com/next-theme/hexo-word-counter
+symbols_count_time:
+  item_text_total: true
+
+# Use icon instead of the symbol # to indicate the tag at the bottom of the post
+tag_icon: true
+
 # Donate (Sponsor) settings
 # Front-matter variable (nonsupport animation).
 reward_settings:
@@ -108,7 +126,10 @@ reward:
 # Usage: `Key: permalink || icon` (Font Awesome)
 follow_me:
   Twitter: https://twitter.com/wherewhere7 || fab fa-twitter
-  Telegram: https://t.me/wherewhere || fab fa-telegram
+  Telegram: https://t.me/whernel || fab fa-telegram
+  Weibo: https://weibo.com/u/3648720581 || fab fa-weibo
+  YouTube: https://youtube.com/@wherewhere7 || fab fa-youtube
+  #RSS: /atom.xml || fa fa-rss
 
 
 # ---------------------------------------------------------------
@@ -127,10 +148,41 @@ codeblock:
   fold:
     enable: true
 
+back2top:
+  # Scroll percent label in b2t button.
+  scrollpercent: true
+
+# Bookmark Support
+bookmark:
+  enable: true
+
 # `Follow me on GitHub` banner in the top-right corner.
 github_banner:
   enable: true
   permalink: https://github.com/wherewhere
+
+
+# ---------------------------------------------------------------
+# External Libraries
+# See: https://theme-next.js.org/docs/third-party-services/external-libraries
+# ---------------------------------------------------------------
+
+# Easily enable fast Ajax navigation on your website.
+# For more information: https://github.com/next-theme/pjax
+pjax: true
+
+# FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
+# For more information: https://fancyapps.com/fancybox/
+fancybox: true
+
+# Vanilla JavaScript plugin for lazyloading images.
+# For more information: https://apoorv.pro/lozad.js/demo/
+lazyload: true
+
+# Automatically insert whitespace between CJK and half-width characters.
+# For more information: https://github.com/vinta/pangu.js
+# Server-side plugin: https://github.com/next-theme/hexo-pangu
+#pangu: true
 
 
 # ---------------------------------------------------------------
@@ -141,6 +193,25 @@ github_banner:
 # For more information: https://animate.style
 motion:
   async: true
+
+# Progress bar in the top during page loading.
+# For more information: https://github.com/CodeByZach/pace
+pace:
+  enable: true
+
+# ---------------------------------------------------------------
+# Post Widgets & Content Sharing Services
+# See: https://theme-next.js.org/docs/third-party-services/post-widgets
+# ---------------------------------------------------------------
+
+# AddToAny Share. See: https://www.addtoany.com
+addtoany:
+  enable: true
+  buttons:
+    - facebook
+    - twitter
+    - wechat
+    - douban
 
 
 # ---------------------------------------------------------------

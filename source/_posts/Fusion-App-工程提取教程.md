@@ -1,10 +1,12 @@
 ---
 title: Fusion App 工程提取教程
 date: 2018-04-15 21:45:35
-tags: [Lua, Fusion App, 开发, 教程]
+tags: [Lua, Fusion App, 开发, 逆向, 教程]
 categories: 开发
 banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/c6591bdc-d19c-442b-8dce-285965051026
 ---
+![Fusion App 工程提取教程](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/c6591bdc-d19c-442b-8dce-285965051026)
+
 [#酷安夜话#](https://www.coolapk.com/t/酷安夜话) [#FusionApp#](https://www.coolapk.com/t/FusionApp) [#玩机技巧#](https://www.coolapk.com/t/玩机技巧)
 
 第一次写图文，欢迎大家指正，也期望大家能够关注我[@wherewhere](https://www.coolapk.com/u/wherewhere)，这里提供一个tg群人/滑稽（[https://t.me/FusionApp](https://t.me/FusionApp)）
@@ -13,7 +15,7 @@ Fusion App是什么我在这里就不重复了，实际上这篇教程我很早�
 
 废话不多说，正文开始/流汗滑稽。
 
-Fusion App发布已经有很长时间了，这期间也出现了很多优秀的作品，有些作者在发布的时候一到把工程文件发了出来，也有些作者没有，但如何取得工程文件呢？有些酷友肯定会直接找作者要源码，实际上不需要这么复杂，还有可能会被拒绝/流汗滑稽，实际上只需要拿到他发的apk安装包就行了/doge原谅ta。
+Fusion App发布已经有很长时间了，这期间也出现了很多优秀的作品，有些作者在发布的时候一到把工程文件发了出来，也有些作者没有，但如何取得工程文件呢？有些酷友肯定会直接找作者要源码，实际上不需要这么复杂，还有可能会被拒绝/流汗滑稽，实际上只需要拿到他发的apk安装包就行了/doge原谅ta。<!--more-->
 
 <figure>
   <img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/9ed46191-15f3-49dd-bcd3-cedcf3e4c419" alt="有人找我要代码，可是我是抄的哇！😕"/>
@@ -69,4 +71,4 @@ Fusion App发布已经有很长时间了，这期间也出现了很多优秀的�
 
 最后感谢[@寒歌](https://www.coolapk.com/u/寒歌)为我们带来了Fusion App，[@pandecheng](https://www.coolapk.com/u/pandecheng)顺道感谢一下吧/滑稽
 
-> [Fusion App 工程提取教程](https://www.coolapk.com/feed/6170506?shareKey=MzQzMzNiNDgxOWRkNjYzMTI0MWU)作者[@wherewhere](https://www.coolapk.com/u/wherewhere)在2018年04月15日发表于酷安，转载请注明出处
+> [Fusion App 工程提取教程](https://www.coolapk.com/feed/6170506?shareKey=MzQzMzNiNDgxOWRkNjYzMTI0MWU) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2018年04月15日 发表于酷安，转载请注明出处
