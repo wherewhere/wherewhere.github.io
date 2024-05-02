@@ -1,7 +1,7 @@
 ---
 title: 【搬运】适用于 Windows 10 Mobile 的修改版 Microsoft 应用程序
 date: 2018-07-19 11:39:27
-tags: [UWP, APPX, 资源, 转载, Win10M, WP]
+tags: [UWP, APPX, Win10M, WP, 资源, 转载]
 categories: 资源
 banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 ---
@@ -20,9 +20,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 **警告:** 本教程不适用于小白。我们不为你的行为的后果负责。
 
 - [卸载要安装的内置应用程序](https://wp-seven.ru/instruktsii/system/windows-mobile-system/kak-pochinit-zhivy-e-plitki-pochty-i-kalendarya-outlook.html)。
-
 - 下载所需的应用安装包。
-
 - [安装下载的 AppxBundle 文件](https://wp-seven.ru/instruktsii/system/windows-mobile-system/kak-ustanovit-appx-ili-appxbundle-fajl-na-windows-10-mobile.html)。
 
 请注意, 有时您需要等待大约一天, 安装的应用程序才能正常工作。我们不知道这到底是怎么回事, 但有很多信息表明, 随着使用天数的增加应用程序工作会明显增快。
@@ -50,9 +48,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 由于重写了应用程序的内核, 修改版明显快于原版本。缩放已更改-现在相应的控件位于屏幕的左侧。此外, 出于某种原因, 删除了对某些智能手机上的物理按钮的支持, 以及对动态照片的支持。您可以阅读[相应文章](https://wp-seven.ru/stat-i/novosti/microsoft-vypustila-krupnoe-obnovlenie-windows-camera.html)找到其他的更改。我们只是注意到, 这个程序仍然在积极的发展, 这可能导致不稳定和各种问题。
 
 - 下载 (2018.309.60.0): [Облако Mail.ru](https://cloud.mail.ru/public/JzPd/C767h3VNE) | [MEGA](https://mega.nz/#!plJiCTDA!D-dl5Senb2PCrgJ-dlgANW1BTvxH9_OSnKauFv9Cqc4).
-
 - 下载 (2018.426.70.0): [Облако Mail.ru](https://cloud.mail.ru/public/JA8P/mK9aeSbTD) | [MEGA](https://mega.nz/#!kook1Y7B!BnTzJmGQlymSsM7om6fFYEX2UilISvSrWeAamuZocOc).
-
 - 下载 (2018.825.100.0): [Облако Mail.ru](https://cloud.mail.ru/public/FMn6/kWpewaVVa) | [MEGA](https://mega.nz/#!14xCRSxR!9aZUazGnzWd0EMzCNSy1ykl7_g50WIenUZpeAlKpYV4).
 
 #### 人脉
@@ -67,7 +63,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 
 #### 消息
 
-<!-- ![mod-apps-messaging](https://wp-seven.ru/wp-content/uploads/2018/02/mod-apps-messaging-800x474.png) -->
+![mod-apps-messaging](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/6b3d06bc-2f71-4b3c-aab8-10cdaefb6247)
 
 新设计的修改版不同于原版本: 对话框中的照片和联系人的姓名等以不同的方式显示。即使在低端智能手机上, 它也能以足够快的速度工作。
 
@@ -84,16 +80,11 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 注:由于采用了流畅设计，大部分手机在运行版本号为**2018.x**及以上版本时会比较卡顿，如果想变得和原版一样流畅，请打开节电模式。
 
 - 下载 (2017.39071.14510.0): [Облако Mail.ru](https://cloud.mail.ru/public/38GP/k7SUSnncD) | [MEGA](https://mega.nz/#!Y5RG3R4S!o4DP-LuDRQvRQxYh1mpMQ-t3aJs5PkPp8sFqcireZX4).
-
 - 下载[意外发布微软官方更新](https://wp-seven.ru/stat-i/novosti/prilozhenie-fotografii-poluchilo-ogromnoe-obnovlenie-na-windows-10-mobile.html) (2018.18011.13438.0): [Облако Mail.ru](https://cloud.mail.ru/public/Awt9/fgjXXLAMm) | [MEGA](https://mega.nz/#!olxSDSyB!hDEslkg7yTlNSeCBGhJHyoRCgkNuZvEZ-GlHu_rI6sQ).
-可以在 Windows 商店中自动 “更新“ 到原版本。
-
-- 下载 (2018.18022.15810.0): Облако Mail.ru | MEGA.
-
+可以在 Windows 商店中自动 “更新” 到原版本。
+- 下载 (2018.18022.15810.0): [Облако Mail.ru](https://cloud.mail.ru/public/L9ZA/X8JoVZt9S) | [MEGA](https://mega.nz/#!UpJQzQgR!noBoAci2c-OYYlP6uNlRYao78vMxbcyCPRQl0pT6Ymg).
 - 下载 (2018.18041.15530.0): [Облако Mail.ru](https://cloud.mail.ru/public/KgCE/ejHRTtBam) | [MEGA](https://mega.nz/#!85ISzKrL!tWF30PnhshQdoP1VYaF5Khn4y_tXq2ock_2_d-qMnJw).
-
 - 下载 (2018.18071.15310.0): [Облако Mail.ru](https://cloud.mail.ru/public/MP7w/9WbLwm4Bv) | [MEGA](https://mega.nz/#!50o1XBJK!aWAhMoHSkAd32MlZw525I_16_KPl4kPnemvKYdb0cV0).
-
 - 下载 (2018.18112.15750.0): [Облако Mail.ru](https://cloud.mail.ru/public/LpzV/YRqj5mPFY) | [MEGA](https://mega.nz/#!cwwyDCDR!aZjMPy5Rkqfke0EqG5wuXdFNk39760GVpPgxaUJwYEY).
 
 不会有新的更新。
@@ -105,7 +96,6 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 该应用程序没有针对小屏幕进行优化, 也需要大量的资源用于正常操作。所以尝试安装在旗舰智能手机上, 如果在其它的普通设备上, 它肯定是不能用的。
 
 - 下载 (4.1803.16027.0): [Облако Mail.ru](https://cloud.mail.ru/public/647x/kCn7vJqze) | [MEGA](https://mega.nz/#!gwYxSYTK!utnmSI-w-0lqUb0Jyx0ir9whcohLC_MS6l87GwpthE0).
-
 - 下载 (4.1805.15037.0): [Облако Mail.ru](https://cloud.mail.ru/public/MR2Z/KStmn1V9j) | [MEGA](https://mega.nz/#!455WySLK!WgcsAJ7Wa2Z3ElE3R93Qf3c5TysHIteNlZWN0cGJyQI).
 
 不会有新的更新。
