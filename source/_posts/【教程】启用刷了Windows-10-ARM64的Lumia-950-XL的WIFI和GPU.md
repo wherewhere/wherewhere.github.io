@@ -43,4 +43,4 @@ categories: 玩机
 
 [百度网盘](https://web.archive.org/web/20201001144212/https://pan.baidu.com/s/1hydYf9iiLUBzMXqPaoD7fg) 提取码: gb4j
 
-> [【教程】启用刷了Windows 10 ARM64的Lumia 950 XL的WIFI和GPU](http://bbs.wfun.com/thread-1020694-1-1.html) 作者 [@wherewhere](https://bbs.wfun.com/u/2850357) 2018年07月19日 发表于 [智机社区](https://bbs.wfun.com)，转载请注明出处
+> [【教程】启用刷了Windows 10 ARM64的Lumia 950 XL的WIFI和GPU](http://bbs.wfun.com/thread-1020694-1-1.html) 作者 [@wherewhere](https://bbs.wfun.com/u/2850357) 2019年1月19日 发表于 [智机社区](https://bbs.wfun.com)，转载请注明出处
