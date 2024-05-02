@@ -152,10 +152,6 @@ back2top:
   # Scroll percent label in b2t button.
   scrollpercent: true
 
-# Bookmark Support
-bookmark:
-  enable: true
-
 # `Follow me on GitHub` banner in the top-right corner.
 github_banner:
   enable: true
