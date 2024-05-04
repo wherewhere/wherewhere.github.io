@@ -286,6 +286,6 @@ public abstract class WithTest
 }
 ```
 
-当然，这种操作仅限娱乐，经测试 .NET Framework 和 .NET Core App 都会卡在约束，所以 .NET 是别想有随意的约束了，不过 C# 题案 ["Roles and extensions"](https://github.com/dotnet/csharplang/discussions/5496) 倒是给出了曲线实现方案
+当然，这种操作仅限娱乐，经测试 .NET Framework 和 .NET Core App 都会卡在约束，所以 .NET 是别想有随意的约束了，不过 C# 题案 ["Roles and extensions"](https://github.com/dotnet/csharplang/discussions/5496 "[Proposal]: Roles and extensions") 倒是给出了曲线实现方案
 
 > [【.NET】利用 IL 魔法实现随心随意的泛型约束](https://www.cnblogs.com/wherewhere/p/18140783) 作者 [@where-where](https://home.cnblogs.com/u/wherewhere) 2024年4月17日 发表于 [CNBlogs](https://home.cnblogs.com)，转载请注明出处
