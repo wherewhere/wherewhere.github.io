@@ -110,4 +110,4 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 > 最新人脉，相机应用，PC功能的照片应用（感谢[@软粉175](https://web.archive.org/web/20180721022523/http://bbs.wfun.com/home.php?mod=space&uid=2874994)转存）
 > [百度网盘](https://web.archive.org/web/20180721022523/https://pan.baidu.com/s/1pM0MGC7)
 
-> [【搬运】适用于 Windows 10 Mobile 的修改版 Microsoft 应用程序](https://bbs.wfun.com/thread-1013847-1-1.html) 转载者 [@wherewhere](https://bbs.wfun.com/u/2850357) 2018年7月19日 转载于 [智机社区](https://bbs.wfun.com)
+> [【搬运】适用于 Windows 10 Mobile 的修改版 Microsoft 应用程序](https://bbs.wfun.com/thread-1013847-1-1.html) 转载者 [@wherewhere](https://bbs.wfun.com/u/2850357) 2018年7月19日 转载于 [智机社区](https://bbs.wfun.com "WFun")

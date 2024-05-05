@@ -76,4 +76,4 @@ public static bool IsTypePresent(string AssemblyName, string TypeName)
 
 哦对了，记得把函数放在要用的项目里，不要问我怎么知道的。。。 
 
-> [【UWP】开发小技巧――判断类是否存在](https://www.coolapk.com/feed/32229068?shareKey=ZTc3NmI0NTc1OGI4NjYzM2UxMTI) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2021年12月19日 发表于 [酷安](https://www.coolapk.com)，转载请注明出处
+> [【UWP】开发小技巧――判断类是否存在](https://www.coolapk.com/feed/32229068?shareKey=ZTc3NmI0NTc1OGI4NjYzM2UxMTI) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2021年12月19日 发表于 [酷安](https://www.coolapk.com "Coolapk")，转载请注明出处

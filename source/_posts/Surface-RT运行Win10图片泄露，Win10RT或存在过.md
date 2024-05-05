@@ -49,4 +49,4 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/59730
 <img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/837fc8c4-abfe-452d-a5fc-4a7ffcb901d0" alt="推文"/>
 <figcaption>推文</figcaption>
 
-> [Surface RT运行Win10图片泄露，Win10RT或存在过](https://www.coolapk.com/feed/12814291?shareKey=OTlkM2YxYzEwMjcxNjYzNWQ4MGM) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2019年7月19日 发表于 [酷安](https://www.coolapk.com)，转载请注明出处
+> [Surface RT运行Win10图片泄露，Win10RT或存在过](https://www.coolapk.com/feed/12814291?shareKey=OTlkM2YxYzEwMjcxNjYzNWQ4MGM) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2019年7月19日 发表于 [酷安](https://www.coolapk.com "Coolapk")，转载请注明出处

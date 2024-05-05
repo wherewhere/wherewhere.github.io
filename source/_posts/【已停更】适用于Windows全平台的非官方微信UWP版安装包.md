@@ -59,4 +59,4 @@ categories: 资源
 欢迎加群讨论
 ![wp_ss_20181205_0001](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/dceebe8f-b39f-4891-8f8e-4c100469d02c)
 
-> [【已停更】适用于Windows全平台的非官方微信UWP版安装包](http://bbs.wfun.com/thread-1019515-1-1.html) 作者 [@wherewhere](https://bbs.wfun.com/u/2850357) 2018年12月2日 发表于 [智机社区](https://bbs.wfun.com)
+> [【已停更】适用于Windows全平台的非官方微信UWP版安装包](https://bbs.wfun.com/thread-1019515-1-1.html) 作者 [@wherewhere](https://bbs.wfun.com/u/2850357) 2018年12月2日 发表于 [智机社区](https://bbs.wfun.com "WFun")
