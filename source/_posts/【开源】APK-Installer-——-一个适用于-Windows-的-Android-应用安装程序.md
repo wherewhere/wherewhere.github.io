@@ -18,7 +18,7 @@ categories: 资源
 
 ## 下载链接
 
-[![APK 安装程序 - WinUI 3](https://img.shields.io/badge/download-%e4%b8%8b%e8%bd%bd-magenta.svg?label=APK%20%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F%20-%20WinUI%203&logo=Microsoft&style=for-the-badge&color=11a2f8)](https://www.microsoft.com/store/apps/9P2JFQ43FPPG "APK 安装程序 - WinUI 3") [![APK 安装程序 - WPF](https://img.shields.io/badge/download-%e4%b8%8b%e8%bd%bd-magenta.svg?label=APK%20%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F%20-%20WPF&logo=Microsoft&style=for-the-badge&color=11a2f8)](https://www.microsoft.com/store/apps/9N3HJLJP8V15 "APK 安装程序 - WPF")<!--more-->
+[![APK 安装程序 - WinUI 3](https://img.shields.io/badge/download-%e4%b8%8b%e8%bd%bd-magenta.svg?label=APK%20%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F%20-%20WinUI%203&logo=Microsoft&style=for-the-badge&color=11a2f8)](https://www.microsoft.com/store/apps/9P2JFQ43FPPG "APK 安装程序 - WinUI 3") [![APK 安装程序 - WPF](https://img.shields.io/badge/download-%e4%b8%8b%e8%bd%bd-magenta.svg?label=APK%20%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F%20-%20WPF&logo=Microsoft&style=for-the-badge&color=11a2f8)](https://www.microsoft.com/store/apps/9N3HJLJP8V15 "APK 安装程序 - WPF")
 
 ## 如何安装应用
 
@@ -28,7 +28,7 @@ categories: 资源
 - 设备需支持ARM64/x86/x64
 - 至少400MB的空余储存空间(用于储存安装包与安装应用)
 
-### 使用应用安装脚本安装应用
+### 使用应用安装脚本安装应用<!--more-->
 
 - 下载并解压最新的[安装包`(APKInstaller (Package)_x.x.x.0_Test.rar)`](https://github.com/Tangent-90/Coolapk-UWP/releases/latest "下载安装包")
 - 如果没有应用安装脚本，下载[`Install.ps1`](Install.ps1)到目标目录  

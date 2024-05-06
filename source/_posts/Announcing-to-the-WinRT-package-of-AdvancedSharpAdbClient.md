@@ -31,7 +31,7 @@ There are two way to reference it.
     </ProjectReference>
     ```
 
-- Reference to the nuget package
+- Reference to the nuget package<!--more-->
 
   Download [AdvancedSharpAdbClient.WinRT.zip](https://github.com/yungd1plomat/AdvancedSharpAdbClient/files/12092217/AdvancedSharpAdbClient.WinRT.0.0.1.zip).
 
