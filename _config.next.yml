@@ -41,6 +41,7 @@ menu:
   tags: /tags/ || fa fa-tags
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
+  sitemap: /sitemap.xml || fa fa-sitemap
 
 
 # ---------------------------------------------------------------
@@ -157,6 +158,31 @@ github_banner:
   enable: true
   permalink: https://github.com/wherewhere
 
+
+# ---------------------------------------------------------------
+# SEO Settings
+# See: https://theme-next.js.org/docs/theme-settings/seo
+# ---------------------------------------------------------------
+
+# If true, site-subtitle will be added to the title of index page.
+# Remember to set up your site-subtitle in Hexo `_config.yml` (e.g. subtitle: Subtitle)
+index_with_subtitle: true
+
+# Google Webmaster tools verification.
+# See: https://developers.google.com/search
+google_site_verification: TPDbPzhpaqYCFwTabtkmyHbwnULZEHrAihJNMsmpsks
+
+# Bing Webmaster tools verification.
+# See: https://www.bing.com/webmasters
+bing_site_verification: C979E9108FB600BD7D5A68A70678F7AD
+
+# Yandex Webmaster tools verification.
+# See: https://webmaster.yandex.ru
+yandex_site_verification: e15f6a5a8ad325cd
+
+# Baidu Webmaster tools verification.
+# See: https://ziyuan.baidu.com/site
+baidu_site_verification:
 
 # ---------------------------------------------------------------
 # External Libraries

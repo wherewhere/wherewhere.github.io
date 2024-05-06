@@ -2,6 +2,7 @@
 title: 这是一个不存在的页面
 comments: false
 sitemap: false
+permalink: /404.html
 ---
 对不起，您所访问的页面不存在或者已删除。
 
