@@ -28,6 +28,19 @@ darkmode: true
 
 
 # ---------------------------------------------------------------
+# Site Information Settings
+# ---------------------------------------------------------------
+
+# Creative Commons 4.0 International License.
+# See: https://creativecommons.org/about/cclicenses/
+creative_commons:
+  # Available values: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | cc-zero
+  license: by-nc-sa
+  sidebar: true
+  post: true
+
+
+# ---------------------------------------------------------------
 # Menu Settings
 # ---------------------------------------------------------------
 
@@ -180,9 +193,6 @@ bing_site_verification: C979E9108FB600BD7D5A68A70678F7AD
 # See: https://webmaster.yandex.ru
 yandex_site_verification: e15f6a5a8ad325cd
 
-# Baidu Webmaster tools verification.
-# See: https://ziyuan.baidu.com/site
-baidu_site_verification:
 
 # ---------------------------------------------------------------
 # External Libraries
@@ -221,6 +231,7 @@ motion:
 pace:
   enable: true
 
+
 # ---------------------------------------------------------------
 # Post Widgets & Content Sharing Services
 # See: https://theme-next.js.org/docs/third-party-services/post-widgets
@@ -234,6 +245,30 @@ addtoany:
     - twitter
     - wechat
     - douban
+
+
+# ---------------------------------------------------------------
+# Statistics and Analytics
+# See: https://theme-next.js.org/docs/third-party-services/statistics-and-analytics
+# ---------------------------------------------------------------
+
+# Google Analytics
+# See: https://analytics.google.com
+google_analytics:
+  tracking_id: G-6FDQ56LCDG
+
+# Baidu Analytics
+# See: https://tongji.baidu.com
+baidu_analytics: 271f5d3abe652ce0122880579c66289e
+
+# Microsoft Clarity Analytics
+# See: https://clarity.microsoft.com/
+clarity_analytics: m7ua7korsz
+
+# Show Views / Visitors of the website / page with busuanzi.
+# For more information: http://ibruce.info/2015/04/04/busuanzi/
+busuanzi_count:
+  enable: true
 
 
 # ---------------------------------------------------------------
