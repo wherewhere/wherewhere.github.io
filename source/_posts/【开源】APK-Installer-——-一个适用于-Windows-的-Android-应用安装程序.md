@@ -2,7 +2,7 @@
 title: 【开源】APK Installer —— 一个适用于 Windows 的 Android 应用安装程序
 date: 2022-01-05 14:50:37
 updated: 2022-02-13 14:43:29
-tags: [WAS, WPF, WOA, Win11, APK, 资源]
+tags: [WAS, WPF, WSA, Win11, APK, 资源]
 categories: 资源
 ---
 # APK Installer

@@ -25,7 +25,7 @@ permalink: /404.html
       document.getElementById('timeout').remove();
       return;
     }
-    setTimeout(() => { count(); }, 1000);
+    setTimeout(() => count(), 1000);
   }
 
   count();
