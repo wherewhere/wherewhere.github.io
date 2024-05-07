@@ -1,8 +1,4 @@
 User-agent: *
 Allow: /
-Allow: /about/
-Allow: /tags/
-Allow: /categories/
-Allow: /archives/
 
 Sitemap: https://wherewhere.github.io/sitemap.xml

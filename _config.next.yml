@@ -31,6 +31,13 @@ darkmode: true
 # Site Information Settings
 # ---------------------------------------------------------------
 
+favicon:
+  small: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/293d7da4-a94c-444f-aee9-a7fc65851fb4
+  medium: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/a6bc6ed3-e820-4409-a743-a2891c577158
+  apple_touch_icon: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/041251be-1720-4428-a0da-02af7fedc4d7
+  safari_pinned_tab: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/cdb36b7f-318f-4c27-b302-17ace91cf67d
+  #android_manifest: /manifest.json
+
 # Creative Commons 4.0 International License.
 # See: https://creativecommons.org/about/cclicenses/
 creative_commons:
@@ -159,6 +166,10 @@ related_posts:
 # Misc Theme Settings
 # See: https://theme-next.js.org/docs/theme-settings/miscellaneous
 # ---------------------------------------------------------------
+
+# Preload styles and preconnect CDN for fonts and plugins.
+# For more information: https://www.w3.org/TR/resource-hints/#preconnect
+preconnect: true
 
 # Set the text alignment in posts / pages.
 text_align:
