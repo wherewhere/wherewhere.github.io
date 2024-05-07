@@ -12,7 +12,6 @@ permalink: /404.html
 
 <script>
   var countTime = 5;
-
   function count() {
     if (--countTime > 0) {
       document.getElementById('timeout').textContent = "预计将在约 " + countTime + " 秒后返回首页。";
@@ -27,6 +26,5 @@ permalink: /404.html
     }
     setTimeout(() => count(), 1000);
   }
-
   count();
 </script>

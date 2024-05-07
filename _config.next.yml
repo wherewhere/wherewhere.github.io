@@ -145,16 +145,36 @@ follow_me:
   YouTube: https://youtube.com/@wherewhere7 || fab fa-youtube
   #RSS: /atom.xml || fa fa-rss
 
+# Related popular posts
+# Dependencies: https://github.com/sergeyzwezdin/hexo-related-posts
+related_posts:
+  enable: true
+  stemmers:
+    - zh
+    - en
+    - ru
+
 
 # ---------------------------------------------------------------
 # Misc Theme Settings
 # See: https://theme-next.js.org/docs/theme-settings/miscellaneous
 # ---------------------------------------------------------------
 
+# Set the text alignment in posts / pages.
+text_align:
+  # Available values: start | end | left | right | center | justify | justify-all | match-parent
+  desktop: justify-all
+  mobile: justify-all
+
 # Reduce padding / margin indents on devices with narrow width.
 mobile_layout_economy: true
 
 codeblock:
+  # Code Highlight theme
+  # All available themes: https://theme-next.js.org/highlight/
+  theme:
+    light: vs
+    dark: vs2015
   # Add copy button on codeblock
   copy_button:
     enable: true
