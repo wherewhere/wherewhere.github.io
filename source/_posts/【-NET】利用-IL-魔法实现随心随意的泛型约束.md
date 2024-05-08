@@ -92,7 +92,7 @@ public class Test
 这段代码是无法运行的，在 .NET Framework 会直接无返回，而在 Mono 会报错
 
 > [ERROR] FATAL UNHANDLED EXCEPTION: System.MissingMethodException: Method not found: string .T_REF.Test()
->     at Test.Main () [0x00005] in <ddf64a5d94ef4722be4197eb692d9478>:0
+>     at Test.Main () [0x00005] in &lt;ddf64a5d94ef4722be4197eb692d9478&gt;:0
 
 于是我就当这是 .NET 泛型的局限性了，后来有群友提醒我说约束会影响运行时，于是我就尝试加上约束
 

@@ -234,9 +234,10 @@ yandex_site_verification: e15f6a5a8ad325cd
 # For more information: https://github.com/next-theme/pjax
 pjax: true
 
-# FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
-# For more information: https://fancyapps.com/fancybox/
-fancybox: true
+# Medium Zoom is a JavaScript library for zooming images like Medium.
+# Warning: Do not enable both `fancybox` and `mediumzoom`.
+# For more information: https://medium-zoom.francoischalifour.com
+mediumzoom: true
 
 # Vanilla JavaScript plugin for lazyloading images.
 # For more information: https://apoorv.pro/lozad.js/demo/
