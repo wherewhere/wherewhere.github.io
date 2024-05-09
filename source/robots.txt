@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://wherewhere.github.io/sitemap.xml
