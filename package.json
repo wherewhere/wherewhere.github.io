@@ -21,6 +21,7 @@
     "hexo-generator-searchdb": "^1.0.0",
     "hexo-generator-sitemap": "^3.0.0",
     "hexo-generator-tag": "^2.0.0",
+    "hexo-info-api": "^0.2.0",
     "hexo-related-posts": "^1.0.0",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-marked": "^6.0.0",

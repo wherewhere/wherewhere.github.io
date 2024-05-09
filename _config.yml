@@ -120,3 +120,21 @@ robotstxt:
   allow:
     - /
   sitemap: https://wherewhere.github.io/sitemap.xml
+
+# API
+hexo_info_api:
+  allowOrigin: "*" # Set to "*" to allow all origins (Access-Control-Allow-Origin)
+  enable: # enable what api u need
+    - getInfo
+    - getPostCount
+    - getPosts
+   #- getPostsByCategory
+   #- getPostsByCategoryId
+   #- getPostsByTag
+   #- getPostsByTagId
+    - getPostByPath
+    - getPostById
+   #- getCategories
+   #- getTags
+    - getLatestPost
+    - getLatest5Posts
