@@ -123,6 +123,17 @@ robotstxt:
 
 # API Generator
 restful_xapi:
+  categories:
+    category_generator:
+      per_page: 0
+  tags:
+    tag_generator:
+      per_page: 0
   posts:
     archive_generator:
       per_page: 0
+  openApi:
+    info:
+      contact:
+        url: https://github.com/wherewhere
+      version: '0.0.1'
