@@ -123,6 +123,20 @@ robotstxt:
 
 # API Generator
 restful_xapi:
+  site: [
+      "title",
+      "subtitle",
+      "description",
+      "author",
+      "language",
+      "timezone",
+      "url",
+      "keywords",
+      "favicon",
+      "social",
+      "reward",
+      "follow_me"
+    ]
   categories:
     category_generator:
       per_page: 0
@@ -132,7 +146,7 @@ restful_xapi:
   posts:
     archive_generator:
       per_page: 0
-  openApi:
+  openapi:
     info:
       contact:
         url: https://github.com/wherewhere
