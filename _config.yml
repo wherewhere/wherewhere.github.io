@@ -101,7 +101,8 @@ theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-deploy: ''
+deploy:
+  - type: indexnow_url_submitter
 
 # Feed Atom
 feed:
@@ -120,6 +121,13 @@ robotstxt:
   allow:
     - /
   sitemap: https://wherewhere.github.io/sitemap.xml
+
+# IndexNow
+hexo_indexnow:
+  count: 3
+  txt_name: indexnow.txt
+  apikey: aea5924d06874a7fb5cf48c09271bd49
+  server: bing
 
 # API Generator
 restful_xapi:
