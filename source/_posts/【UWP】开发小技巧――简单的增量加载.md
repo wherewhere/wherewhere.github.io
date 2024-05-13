@@ -15,7 +15,7 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/85655
 
 首先附上代码(已经被我修改过了)：[查看链接](https://github.com/Coolapk-UWP/Coolapk-Lite/tree/master/CoolapkLite/CoolapkLite.Core/Helpers/DataSource)
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/1530f06c-0be9-4f1e-b915-b0b2175cfaea" alt="部分代码"/>
+<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/1530f06c-0be9-4f1e-b915-b0b2175cfaea" alt="部分代码" />
 <figcaption>部分代码</figcaption>
 
 引用时不要忘了附上出处(不是我这，是CNBlogs<!--more-->
@@ -26,7 +26,7 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/85655
 /// Clone from <see cref="cnblogs UAP" href="https://github.com/MS-UAP/cnblogs-UAP" />.
 /// </summary>
 ```
-<figcaption style="font-size: 0.875em; font-weight: bold; color: gray; text-align: center; margin-top: -20px;">引用</figcaption>
+<figcaption class="figure">引用</figcaption>
 
 接下来就是如何调用增量加载了(同样的，不解释代码
 
@@ -99,11 +99,11 @@ public sealed partial class BlankPage : Page
     }
 }
 ```
-<figcaption style="font-size: 0.875em; font-weight: bold; color: gray; text-align: center; margin-top: -20px;">绑定集合</figcaption>
+<figcaption class="figure">绑定集合</figcaption>
 
 我们来跑一跑看看
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/e7ac2f2a-334c-4e5e-ba84-5c606ca427b3" alt="运行"/>
+<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/e7ac2f2a-334c-4e5e-ba84-5c606ca427b3" alt="运行" />
 <figcaption>运行</figcaption>
 
 如果真的要用在非 `ListView` 控件上或者自动加载不生效，可以通过 `LoadMoreItemsAsync` 方法手动来让它加载，所以一般刷新方法会写成这样，第一次加载时 `Refresh(-2)`，之后只要检测到滑到底了就执行一次 `Refresh` (不要问我为什么用数字，要问去问 Tan
@@ -121,7 +121,7 @@ public async Task Refresh(int p = -1)
     }
 }
 ```
-<figcaption style="font-size: 0.875em; font-weight: bold; color: gray; text-align: center; margin-top: -20px;">Tan 祖传的刷新方法</figcaption>
+<figcaption class="figure">Tan 祖传的刷新方法</figcaption>
 
 这里的 `Reset` 方法在 CNBlogs UAP 里叫 `Refresh`，内容是清空集合并初始化，我为了不和 Tan 祖传的 `Refresh` 方法冲突就给改掉了，如果直接使用我给的代码的话就不用管了。
 
@@ -130,3 +130,14 @@ public async Task Refresh(int p = -1)
 好了，本次教程就先说这么多了，更多内容等我下次再说
 
 > [【UWP】开发小技巧――简单的增量加载](https://www.coolapk.com/feed/33071083?shareKey=MGUwNzc1MzBlZGViNjYzZmNhZDA) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2022年1月24日 发表于 [酷安](https://www.coolapk.com "Coolapk")，转载请注明出处
+
+<style>
+  figcaption.figure {
+    color: #999;
+    font-size: 0.875em;
+    font-weight: bold;
+    line-height: 1;
+    margin: -15px auto 15px;
+    text-align: center;
+  }
+</style>

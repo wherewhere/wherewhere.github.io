@@ -21,7 +21,7 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/a8a39
 
 然后说未来可能会是这样Courier
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/26945887-e9fe-467c-9998-1cb7bac03784" alt="Surface Phone"/>
+<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/26945887-e9fe-467c-9998-1cb7bac03784" alt="Surface Phone" />
 <figcaption>Surface Phone ？！！</figcaption><!--more-->
 
 Fluent Degisn的菜单会是这样的
