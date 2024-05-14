@@ -11,7 +11,7 @@ categories: 资源
 
 一个适用于 WIndows 的 Android 应用安装程序
 
-<a href="https://crowdin.com/project/APKInstaller"><img src="https://badges.crowdin.net/APKInstaller/localized.svg" alt="Crowdin" style="margin-bottom: unset; display: unset;"></a> <a href="https://crowdin.com/project/APK-Installer-Classic"><img src="https://badges.crowdin.net/APK-Installer-Classic/localized.svg" alt="Crowdin" style="margin-bottom: unset; display: unset;"></a>
+<a href="https://crowdin.com/project/APKInstaller"><img class="badge" src="https://badges.crowdin.net/APKInstaller/localized.svg" alt="Crowdin"></a> <a href="https://crowdin.com/project/APK-Installer-Classic"><img class="badge" src="https://badges.crowdin.net/APK-Installer-Classic/localized.svg" alt="Crowdin"></a>
 
 ## 注意
 
@@ -20,7 +20,7 @@ categories: 资源
 
 ## 下载链接
 
-<p><a href="https://www.microsoft.com/store/apps/9P2JFQ43FPPG" title="APK 安装程序 - WinUI 3"><img src="https://img.shields.io/badge/download-下载-magenta.svg?label=APK 安装程序 - WinUI 3&logo=Microsoft&style=for-the-badge&color=11a2f8" alt="APK 安装程序 - WinUI 3" style="margin-bottom: unset; display: unset;"></a> <a href="https://www.microsoft.com/store/apps/9N3HJLJP8V15" title="APK 安装程序 - WPF"><img src="https://img.shields.io/badge/download-下载-magenta.svg?label=APK 安装程序 - WPF&logo=Microsoft&style=for-the-badge&color=11a2f8" alt="APK 安装程序 - WPF" style="margin-bottom: unset; display: unset;"></a></p>
+<p><a href="https://www.microsoft.com/store/apps/9P2JFQ43FPPG" title="APK 安装程序 - WinUI 3"><img class="badge" src="https://img.shields.io/badge/download-下载-magenta.svg?label=APK 安装程序 - WinUI 3&logo=Microsoft&style=for-the-badge&color=11a2f8" alt="APK 安装程序 - WinUI 3"></a> <a href="https://www.microsoft.com/store/apps/9N3HJLJP8V15" title="APK 安装程序 - WPF"><img class="badge" src="https://img.shields.io/badge/download-下载-magenta.svg?label=APK 安装程序 - WPF&logo=Microsoft&style=for-the-badge&color=11a2f8" alt="APK 安装程序 - WPF"></a></p>
 
 ## 如何安装应用
 
@@ -74,3 +74,10 @@ categories: 资源
 - [Windows Community Toolkit](https://github.com/CommunityToolkit/WindowsCommunityToolkit "Windows Community Toolkit")
 
 > [【开源】APK Installer —— 一个适用于 Windows 的 Android 应用安装程序](https://www.52pojie.cn/thread-1571754-1-1.html) 作者 [@wherewhere](https://www.52pojie.cn/home.php?mod=space&uid=1092941) 2022年1月5日 发表于 [吾爱破解](https://www.52pojie.cn)，转载请注明出处
+
+<style>
+  img.badge {
+    margin-bottom: unset !important;
+    display: unset;
+  }
+</style>
