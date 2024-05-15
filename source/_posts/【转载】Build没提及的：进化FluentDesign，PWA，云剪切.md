@@ -7,9 +7,9 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/50e24
 ---
 ![【转载】Build没提及的：进化FluentDesign，PWA，云剪切](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/50e248e6-ee91-402b-83da-9c3c294a52eb)
 
-<a class="feed-link-tag" href="https://www.coolapk.com/t/酷安夜话?type=0">#酷安夜话#</a> <a class="feed-link-tag" href="https://www.coolapk.com/t/Build2018?type=0">#Build2018#</a> <a class="feed-link-tag" href="https://www.coolapk.com/t/电脑玩家?type=0">#电脑玩家#</a>
+[#酷安夜话#](https://www.coolapk.com/t/酷安夜话) [#Build2018#](https://www.coolapk.com/t/Build2018) [#电脑玩家#](https://www.coolapk.com/t/电脑玩家)
 
-原帖地址：<a class="feed-link-url" href="https://quan.ithome.com/0/260/927.htm" title="https://quan.ithome.com/0/260/927.htm" target="_blank" rel="nofollow">查看链接»</a>
+原帖地址：[查看链接»](https://quan.ithome.com/0/260/927.htm)
 
 首先PPT讲到这个courageou design（大胆设计？），大胆在哪里呢？
 

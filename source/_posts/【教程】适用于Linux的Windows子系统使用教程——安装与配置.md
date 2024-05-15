@@ -17,9 +17,9 @@ categories: 玩机
 
      ![批注 2020-02-28 172223](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/15513f05-5911-4e2c-b5d3-593605f45287)
 
-   - 使用PowerShell打开
+   - 使用`PowerShell`打开
 
-     管理员权限运行PowerShell并运行下面的命令：
+     管理员权限运行`PowerShell`并运行下面的命令：
 
      ```ps1
      Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
@@ -31,7 +31,7 @@ categories: 玩机
 
    对于**Windows 10.0.18917**及以上的版本，微软新增了WSL2，具体有什么优势这里就不指出了
 
-   管理员权限运行PowerShell并运行下面的命令：<!--more-->
+   管理员权限运行`PowerShell`并运行下面的命令：<!--more-->
 
    ```ps1
    Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform

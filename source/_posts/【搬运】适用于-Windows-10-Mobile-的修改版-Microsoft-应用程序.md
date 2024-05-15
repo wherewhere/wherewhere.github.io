@@ -3,21 +3,23 @@ title: 【搬运】适用于 Windows 10 Mobile 的修改版 Microsoft 应用程�
 date: 2018-07-19 11:39:27
 <!-- 更新时间精确到: 分 -->
 updated: 2018-12-29 22:25:00
-tags: [UWP, APPX, Win10M, WP, 资源, 转载]
+tags: [UWP, APPX, Win10M, WP, 资源, 转载, 翻译]
 categories: 资源
 banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 ---
+[#玩机技巧#](https://www.coolapk.com/t/玩机技巧) [#酷安夜话#](https://www.coolapk.com/t/酷安夜话) [#电脑好软#](https://www.coolapk.com/t/电脑好软) [铺路根据地](https://www.coolapk.com/dyh/1480)
+
 [Модификации приложений Microsoft для Windows 10 Mobile](https://wp-seven.ru/instruktsii/system/windows-mobile-system/modifikatsii-prilozhenij-microsoft-dlya-windows-10-mobile.html)
 
 ![Lumia 650](https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg)
 
 ### 全文翻译：
 
-在 2017年, 微软放弃了自己的移动系统的开发, 这使得其拥有者在 Windows 10 手机上的体验并不令人愉快。平台逐渐不再受第三方应用程序开发人员以及 Microsoft 的支持。虽然一些程序如 Office、Skype 和 Groove 仍在更新, 但许多其他应用程序在2017年上半年收到了最后的更新。虽然开发人员继续更新它们, 但新版本只适用于计算机。幸运的是, 我们成功地运行了更新后的 PC 应用程序 (那些在 Windows 10 手机上没有出现的更新)。在本文中, 您将找到适当的安装文件, 您可以在您的智能手机上使用。
+在 2017年，微软放弃了自己的移动系统的开发，这使得其拥有者在 Windows 10 手机上的体验并不令人愉快。平台逐渐不再受第三方应用程序开发人员以及 Microsoft 的支持。虽然一些程序如 Office、Skype 和 Groove 仍在更新，但许多其他应用程序在2017年上半年收到了最后的更新。虽然开发人员继续更新它们，但新版本只适用于计算机。幸运的是，我们成功地运行了更新后的 PC 应用程序 (那些在 Windows 10 手机上没有出现的更新)。在本文中，您将找到适当的安装文件，您可以在您的智能手机上使用。
 
 #### 如何在智能手机上安装修改后的应用程序
 
-这些应用程序至少包含英文、俄文、白俄罗斯语、乌克兰文和乌兹别克斯坦语言包, 以及正确的必要文件。但不保证对其他语言的支持。要正常安装程序, 需要 Windows 10 Mobile **1703** 或 **1709** (即 Build **15063** 及以上)。<!--more-->
+这些应用程序至少包含英文、俄文、白俄罗斯语、乌克兰文和乌兹别克斯坦语言包，以及正确的必要文件。但不保证对其他语言的支持。要正常安装程序，需要 Windows 10 Mobile **1703** 或 **1709** (即 Build **15063** 及以上)。<!--more-->
 
 **警告:** 本教程不适用于小白。我们不为你的行为的后果负责。
 
@@ -25,13 +27,13 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 - 下载所需的应用安装包。
 - [安装下载的 AppxBundle 文件](https://wp-seven.ru/instruktsii/system/windows-mobile-system/kak-ustanovit-appx-ili-appxbundle-fajl-na-windows-10-mobile.html)。
 
-请注意, 有时您需要等待大约一天, 安装的应用程序才能正常工作。我们不知道这到底是怎么回事, 但有很多信息表明, 随着使用天数的增加应用程序工作会明显增快。
+请注意，有时您需要等待大约一天，安装的应用程序才能正常工作。我们不知道这到底是怎么回事，但有很多信息表明，随着使用天数的增加应用程序工作会明显增快。
 
-如果要返回程序的常规版本, 只需删除已安装的修改版本 (可以直接在应用程序列表中执行), 然后从 Microsoft 商店下载该程序。
+如果要返回程序的常规版本，只需删除已安装的修改版本 (可以直接在应用程序列表中执行)，然后从 Microsoft 商店下载该程序。
 
 #### 修改将通过 Microsoft 商店进行更新吗？
 
-不, 他们不会的。如果想更新您必须在本文中查找 AppxBundle 文件, 您需要手动安装它们 (可能会删除旧版本)。顺便说一下, 我们不保证将来会发布任何更新。如果它们确实存在, 我们将更新本文。
+不，他们不会的。如果想更新您必须在本文中查找 AppxBundle 文件，您需要手动安装它们 (可能会删除旧版本)。顺便说一下，我们不保证将来会发布任何更新。如果它们确实存在，我们将更新本文。
 
 #### 计算器
 
@@ -47,7 +49,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 
 ![mod-apps-camera](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/195e4c11-249a-49bf-9a11-ebad469e5dc1)
 
-由于重写了应用程序的内核, 修改版明显快于原版本。缩放已更改-现在相应的控件位于屏幕的左侧。此外, 出于某种原因, 删除了对某些智能手机上的物理按钮的支持, 以及对动态照片的支持。您可以阅读[相应文章](https://wp-seven.ru/stat-i/novosti/microsoft-vypustila-krupnoe-obnovlenie-windows-camera.html)找到其他的更改。我们只是注意到, 这个程序仍然在积极的发展, 这可能导致不稳定和各种问题。
+由于重写了应用程序的内核，修改版明显快于原版本。缩放已更改-现在相应的控件位于屏幕的左侧。此外，出于某种原因，删除了对某些智能手机上的物理按钮的支持，以及对动态照片的支持。您可以阅读[相应文章](https://wp-seven.ru/stat-i/novosti/microsoft-vypustila-krupnoe-obnovlenie-windows-camera.html)找到其他的更改。我们只是注意到，这个程序仍然在积极的发展，这可能导致不稳定和各种问题。
 
 - 下载 (2018.309.60.0): [Облако Mail.ru](https://cloud.mail.ru/public/JzPd/C767h3VNE) | [MEGA](https://mega.nz/#!plJiCTDA!D-dl5Senb2PCrgJ-dlgANW1BTvxH9_OSnKauFv9Cqc4).
 - 下载 (2018.426.70.0): [Облако Mail.ru](https://cloud.mail.ru/public/JA8P/mK9aeSbTD) | [MEGA](https://mega.nz/#!kook1Y7B!BnTzJmGQlymSsM7om6fFYEX2UilISvSrWeAamuZocOc).
@@ -57,7 +59,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 
 ![mod-apps-people](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/5f2e8ecf-8b52-451e-978a-e4145abeeb58)
 
-修改版和原版本的设计有点不同。它不是很稳定, 所以如果没什么必要的话请不要安装。
+修改版和原版本的设计有点不同。它不是很稳定，所以如果没什么必要的话请不要安装。
 
 - 下载 (2017.823.2207.0): [Облако Mail.ru](https://cloud.mail.ru/public/Lwzp/A2TP1jGeW) | [MEGA](https://mega.nz/#!MlBQSIIZ!CwlRy4izhXTPFAC5N1Zekts5gcne6GRk1guz_Vp9Zf4).
 
@@ -67,9 +69,9 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 
 ![mod-apps-messaging](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/6b3d06bc-2f71-4b3c-aab8-10cdaefb6247)
 
-新设计的修改版不同于原版本: 对话框中的照片和联系人的姓名等以不同的方式显示。即使在低端智能手机上, 它也能以足够快的速度工作。
+新设计的修改版不同于原版本: 对话框中的照片和联系人的姓名等以不同的方式显示。即使在低端智能手机上，它也能以足够快的速度工作。
 
-注意: 在最新版本的应用程序中, 没有消息同步设置, 您只能登录到您的帐户。同步应该仍然有效, 但如果您的邮件对您很重要, 我们建议您使用适当的程序对其进行备份。
+注意: 在最新版本的应用程序中，没有消息同步设置，您只能登录到您的帐户。同步应该仍然有效，但如果您的邮件对您很重要，我们建议您使用适当的程序对其进行备份。
 
 - 下载 (2018.1114.1821.0 / 4.1811.3181.0): [Облако Mail.ru](https://cloud.mail.ru/public/212H/MAiPAig5r) | [MEGA](https://mega.nz/#!EoJiAQhA!Izkh5_mklg30_NyNxniIVdSoCRnWEin5OsAmsGYVEnM). 
 
@@ -77,7 +79,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 
 ![mod-apps-photos](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/cebefb00-c816-452f-9d86-767bcad46d6b)
 
-新版本包含许多新功能-高级图像编辑工具, 使用 Windows 墨迹、其他功能区显示模板以及更多的功能来绘制它们。足够稳定可以日常使用。
+新版本包含许多新功能-高级图像编辑工具，使用 Windows 墨迹、其他功能区显示模板以及更多的功能来绘制它们。足够稳定可以日常使用。
 
 注:由于采用了流畅设计，大部分手机在运行版本号为**2018.x**及以上版本时会比较卡顿，如果想变得和原版一样流畅，请打开节电模式。
 
@@ -95,7 +97,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 
 ![mod-apps-paint3d](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/3f7dd00a-4bc4-4413-8c7d-eaf96a537900)
 
-该应用程序没有针对小屏幕进行优化, 也需要大量的资源用于正常操作。所以尝试安装在旗舰智能手机上, 如果在其它的普通设备上, 它肯定是不能用的。
+该应用程序没有针对小屏幕进行优化，也需要大量的资源用于正常操作。所以尝试安装在旗舰智能手机上，如果在其它的普通设备上，它肯定是不能用的。
 
 - 下载 (4.1803.16027.0): [Облако Mail.ru](https://cloud.mail.ru/public/647x/kCn7vJqze) | [MEGA](https://mega.nz/#!gwYxSYTK!utnmSI-w-0lqUb0Jyx0ir9whcohLC_MS6l87GwpthE0).
 - 下载 (4.1805.15037.0): [Облако Mail.ru](https://cloud.mail.ru/public/MR2Z/KStmn1V9j) | [MEGA](https://mega.nz/#!455WySLK!WgcsAJ7Wa2Z3ElE3R93Qf3c5TysHIteNlZWN0cGJyQI).

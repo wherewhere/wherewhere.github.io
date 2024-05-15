@@ -7,7 +7,7 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/127af
 ---
 ![【转载】适用于RX-130的ARM64底层以及Win10 ARM64](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/127aff91-65a0-463b-b2ea-54d88eaffb35)
 
-<a class="feed-link-tag" href="/t/酷安夜话?type=0">#酷安夜话#</a> <a class="feed-link-tag" href="/t/玩机技巧?type=0">#玩机技巧#</a> <a class="feed-link-tag" href="/t/ROM杂谈?type=0">#ROM杂谈#</a>
+[#酷安夜话#](https://www.coolapk.com/t/酷安夜话) [#玩机技巧#](https://www.coolapk.com/t/玩机技巧) [#ROM杂谈#](https://www.coolapk.com/t/ROM杂谈)
 
 #### 原帖地址:
 
@@ -22,7 +22,7 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/127af
 
 1. 注意！本版本仅仅适用于**RX-130**原型机，在**950XL**上面刷入将导致显示芯片损毁！
 
-2. 一旦您刷入ARM64，您将很有可能无法回到ARM32版本的原始系统，目前我们正在加紧研究在不拆换eMMC的情况下刷回ARM32版本的Win10M的方法。
+2. 一旦您刷入**ARM64**，您将很有可能无法回到**ARM32**版本的原始系统，目前我们正在加紧研究在不拆换eMMC的情况下刷回ARM32版本的Win10M的方法。
 
 3. 由于ARM64底层自身的问题，BDS菜单中的`UEFI Mass Storage`选项不可用。
 

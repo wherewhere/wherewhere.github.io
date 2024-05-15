@@ -51,7 +51,7 @@ categories: 资源
 打开开发人员模式
 ![wp_ss_20181114_0007](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/88737c50-d4b1-41cc-80ca-fd4031578e61)
 
-下载并安顺序安装图中选中文件以及文件夹内部文件( Dependencies文件夹内文件请按需下载，即手机以及其他ARM设备下载ARM文件夹内文件，大部分电脑以及其他x86设备请下载x86/x64文件夹内文件 )
+下载并安顺序安装图中选中文件以及文件夹内部文件(`Dependencies`文件夹内文件请按需下载，即手机以及其他ARM设备下载ARM文件夹内文件，大部分电脑以及其他x86设备请下载x86/x64文件夹内文件)
 ![wp_ss_20181209_0002](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/fab579a9-bee9-4fd2-8320-257337d231ac)
 
 等待一段时间后即可在所有应用中找到微信UWP

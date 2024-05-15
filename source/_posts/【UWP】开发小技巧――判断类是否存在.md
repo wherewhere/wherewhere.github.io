@@ -15,11 +15,11 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/85655
 
 ![示例](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/e522a212-019a-48f3-a67c-a5552390a0de)
 
-不过判断是否存在不需要这么复杂，C# 有专门的 GetType 方法来找类，所以事情就简单了，直接 Type.GetType("类名") 就行了，不过真的是这样吗？<!--more-->
+不过判断是否存在不需要这么复杂，C# 有专门的 `GetType` 方法来找类，所以事情就简单了，直接 `Type.GetType("类名")` 就行了，不过真的是这样吗？<!--more-->
 
 ![Type.GetType()](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/4b294780-7097-44cc-8df4-aff24c3c66ce)
 
-经过调试，并没有成功找到这个类型，不过不止 Type 有 GetType ，在 C# 中 Assembly 也有 GetType ，我直接找到要找的类的程序集再找类应该就能找到了吧。
+经过调试，并没有成功找到这个类型，不过不止 `Type` 有 `GetType` ，在 C# 中 `Assembly` 也有 `GetType` ，我直接找到要找的类的程序集再找类应该就能找到了吧。
 
 ![Assembly.GetType()](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/3be76a6a-550b-46d3-9e52-1d9ce08559cc)
 
@@ -70,7 +70,7 @@ public static bool IsTypePresent(string AssemblyName, string TypeName)
 
 终于正常了。。。
 
-判断 API 是否存在就不要用这个方法了，官方有 ApiInformation，肯定比这个好用
+判断 API 是否存在就不要用这个方法了，官方有 `ApiInformation`，肯定比这个好用
 
 ![ApiInformation](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/dcdcfd17-2c17-4d27-8857-8ec2ccd7075b)
 
