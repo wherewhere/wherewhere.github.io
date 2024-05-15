@@ -33,7 +33,7 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/59730
   <a href="https://twitter.com/never_released/status/1151612876962041861">https://twitter.com/never_released/status/1151612876962041861</a>
 </figcaption>
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/4c8fff52-8153-4297-adea-98b19983b5a1" alt="截图" />
+<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/d35c0fb5-a139-4ede-850e-ee70ce9a4462" alt="截图" />
 <figcaption>截图显示这是一台arm设备</figcaption>
 
 <img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/b69c8911-b6a1-4933-9562-dbcbc1150eb9" alt="Win7游戏" />

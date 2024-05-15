@@ -3,9 +3,9 @@ title: 【转载】Build没提及的：进化FluentDesign，PWA，云剪切
 date: 2018-05-13 13:49:36
 tags: [Win10, 发布会, 快讯, 新闻, 转载]
 categories: 快讯
-banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/a8a39054-ade6-4a2f-992e-119e855bff2f
+banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/50e248e6-ee91-402b-83da-9c3c294a52eb
 ---
-![【转载】Build没提及的：进化FluentDesign，PWA，云剪切](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/a8a39054-ade6-4a2f-992e-119e855bff2f)
+![【转载】Build没提及的：进化FluentDesign，PWA，云剪切](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/50e248e6-ee91-402b-83da-9c3c294a52eb)
 
 <a class="feed-link-tag" href="https://www.coolapk.com/t/酷安夜话?type=0">#酷安夜话#</a> <a class="feed-link-tag" href="https://www.coolapk.com/t/Build2018?type=0">#Build2018#</a> <a class="feed-link-tag" href="https://www.coolapk.com/t/电脑玩家?type=0">#电脑玩家#</a>
 
