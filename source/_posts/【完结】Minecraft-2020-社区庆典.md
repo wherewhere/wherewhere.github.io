@@ -2,15 +2,15 @@
 title: 【完结】Minecraft 2020 社区庆典
 date: 2020-12-10 14:50:07
 updated: 2020-12-29 18:37:55
-tags: [MC, 资源, 快讯, 游戏]
+tags: [MC, BE, JE, 资源, 快讯, 游戏]
 categories: 游戏
 banner: https://www.minecraft.net/content/dam/games/minecraft/key-art/Community-Celebration_Landscape-Hero-2700x900.jpg
 ---
 ![【完结】Minecraft 2020 社区庆典](https://www.minecraft.net/content/dam/games/minecraft/key-art/Community-Celebration_Landscape-Hero-2700x900.jpg)
 
-[#我的世界#](https://www.coolapk.com/t/t/我的世界) [#Minecraft#](https://www.coolapk.com/t/t/Minecraft)
+[#我的世界#](https://www.coolapk.com/t/我的世界) [#Minecraft#](https://www.coolapk.com/t/Minecraft)
 
-Minecraft 2020 社区庆典已于12月14日开始，接下来我将会为大家分享庆典白嫖礼包直链，大家可以通过以下方法来获取过期的内容：[查看链接](https://www.coolapk.com/feed/19422552)
+Minecraft 2020 社区庆典已于12月14日开始，接下来我将会为大家分享庆典白嫖礼包直链，大家可以通过以下方法来获取过期的内容：[查看链接](/2020/06/09/Minecraft-官方绝版皮肤集合)
 
 每日签到获取礼包，过期应该就领不了了
 
@@ -63,4 +63,4 @@ Java版：[查看链接](https://www.minecraft.net/zh-hans/minecraft-java-commun
 
 基岩版：[查看链接](https://www.minecraft.net/zh-hans/minecraft-community-celebration)
 
-> [【12月29日更新】Minecraft 2020 社区庆典 ](https://www.coolapk.com/feed/23474635?shareKey=Y2MxOWZhYWU3MWM3NjY0NGY2MzY) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2020年12月10日 发表于 [酷安](https://www.coolapk.com "Coolapk")，转载请注明出处
+> [【12月29日更新】Minecraft 2020 社区庆典](https://www.coolapk.com/feed/23474635?shareKey=Y2MxOWZhYWU3MWM3NjY0NGY2MzY) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2020年12月10日 发表于 [酷安](https://www.coolapk.com "Coolapk")，转载请注明出处
