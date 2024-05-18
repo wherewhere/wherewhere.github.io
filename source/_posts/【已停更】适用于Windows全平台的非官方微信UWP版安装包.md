@@ -11,7 +11,7 @@ categories: 资源
 
 #### 长期更新链接
 
-[百度网盘](https://pan.baidu.com/s/18RQTp0YwvW_bu8RXfKZ6WA) 提取码: 97ji
+[百度网盘](https://pan.baidu.com/s/18RQTp0YwvW_bu8RXfKZ6WA) 提取码：`97ji`
 
 #### 简介
 

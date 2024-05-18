@@ -6,7 +6,7 @@ categories: 资源
 ---
 ![image](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/53d39383-02e9-4af5-936e-dd0efcb6848d)
 MD.Wechat
-[百度网盘](http://pan.baidu.com/share/link?shareid=3246682077&uk=2316494213) 密码：6666
+[百度网盘](http://pan.baidu.com/share/link?shareid=3246682077&uk=2316494213) 密码：`6666`
 1. 仅供交流学习使用，禁止转载，其他任何出处与作者无关
 2. 版本号最后是更新日期，建议下载最近更新的版本
 3. 因修改加入安卓5.0新特性，所以只支持5.0以上系统使用

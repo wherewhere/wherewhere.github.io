@@ -21,10 +21,12 @@ title: API 文档
 <div id="swagger-ui">如果这里什么也没有，请<a href="javascript:loadSwaggerUI();">刷新</a>页面</div>
 <script>loadSwaggerUI();</script>
 <style>
-  td {
-    background: white;
-  }
   pre.version {
     background: unset;
+  }
+  @media (prefers-color-scheme: dark) {
+    td:not(.col_header) {
+      background: white;
+    }
   }
 </style>

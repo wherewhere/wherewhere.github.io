@@ -28,7 +28,7 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/127af
 
 4. 目前Windows 10 ARM for **MSM8994**大量驱动不完善，您尚无法在系统中使用触摸功能能以及任何USB设备
 
-#### 内容:
+#### 内容:<!--more-->
 
 这一底层备份来自于于微软一款代号为`Hapanero`的实验性工程机的一台ARM64测试机。
 对于Lumia 950XL，由于其同样使用高通骁龙**MSM8994SoC**，虽然底层由于显示驱动不匹配会招致烧毁屏幕上的芯片的不良后果，但其仍可运行。
@@ -40,13 +40,13 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/127af
 
 下载地址：
 - 底层备份本体（带有Build **14822**的ARM64架构W10M）：
-  链接：[网盘链接](https://pan.baidu.com/s/1d6UktLuIYuPk2qeq2eL3QA) 密码：ylcg
+  链接：[网盘链接](https://pan.baidu.com/s/1d6UktLuIYuPk2qeq2eL3QA) 密码：`ylcg`
 - 已安装由imbushuo提供证书的系统整合包（后续驱动据计划也将以该证书提供）：
-  链接：[网盘链接](https://pan.baidu.com/s/1EQ7OC9h3xSvVT8WzvUzdyA) 密码：96gk
+  链接：[网盘链接](https://pan.baidu.com/s/1EQ7OC9h3xSvVT8WzvUzdyA) 密码：`96gk`
 - SD卡启动（ARM64）：
-  链接：[网盘链接](https://pan.baidu.com/s/17DqccVMqJmLgAtMnlcXjrw) 密码：kgo8
+  链接：[网盘链接](https://pan.baidu.com/s/17DqccVMqJmLgAtMnlcXjrw) 密码：`kgo8`
 - 打包转存：
-  [网盘链接](https://pan.baidu.com/s/1x9mSjDlXVIgbL-5sJmUSmw") 密码：dbzz
+  [网盘链接](https://pan.baidu.com/s/1x9mSjDlXVIgbL-5sJmUSmw") 密码：`dbzz`
 
 感谢imbushuo、JerryYin、五块二等人对于完善这一方式所作出的贡献。
 若有后续发现及研究成果，将在本吧进行发布。欢迎各位对其进行测试及研究，希望能有更多人加入到适配的行列中来。
@@ -72,9 +72,9 @@ If you need to enter the `Mass Storage` mode, download the provided file into th
 After testing, due to the particularity of RX-130, it has no bricks at all, expect flash the android bootloader (how to unbrick the device in 9008 mode will public later).
 
 Download link:
-- (with Windows10 Mobile with build **14822** in ARM64)Bootloader backup image: [Link](https://pan.baidu.com/s/1d6UktLuIYuPk2qeq2eL3QA) PASSWORD: ylcg
-- Full system backup image(with certificate provided by imbushuo): [Link](https://pan.baidu.com/s/1EQ7OC9h3xSvVT8WzvUzdyA) PASSWORD: 96gk
-- SD card boot file(ARM64): [Link](https://pan.baidu.com/s/17DqccVMqJmLgAtMnlcXjrw) PASSWORD：kgo8
+- (with Windows10 Mobile with build **14822** in ARM64)Bootloader backup image: [Link](https://pan.baidu.com/s/1d6UktLuIYuPk2qeq2eL3QA) PASSWORD: `ylcg`
+- Full system backup image(with certificate provided by imbushuo): [Link](https://pan.baidu.com/s/1EQ7OC9h3xSvVT8WzvUzdyA) PASSWORD: `96gk`
+- SD card boot file(ARM64): [Link](https://pan.baidu.com/s/17DqccVMqJmLgAtMnlcXjrw) PASSWORD：`kgo8`
 
 Thanks to imbushuo, JerryYin and other people make contribute to this project.
 We will keep this project updated once we got any breakthrough
