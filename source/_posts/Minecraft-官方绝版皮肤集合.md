@@ -24,7 +24,7 @@ MINECON 2016 皮肤包：[查看链接](https://marketplace.minecraft.net/en-us/
 <img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/fc01d800-3247-436c-828c-be87a4ca092c" alt="MINECON 2016 皮肤包" />
 <figcaption>MINECON 2016 皮肤包</figcaption>
 
-MINECON Earth 2017 皮肤包：[查看链接](https://marketplace.minecraft.net/en-us/pdp?id=d0f9abcb-4915-4008-9837-ff7946f4a115)
+MINECON Earth 2017 皮肤包：[查看链接](https://marketplace.minecraft.net/en-us/pdp?id=d0f9abcb-4915-4008-9837-ff7946f4a115)<!--more-->
 
 <img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/e5e511f3-f6b1-40bc-9e98-624f5fc0aa50" alt="MINECON Earth 2017 皮肤包" />
 <figcaption>MINECON Earth 2017 皮肤包</figcaption>
