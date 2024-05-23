@@ -4,7 +4,11 @@ title: API 文档
 <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css" />
 <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" crossorigin></script>
 <script>
+  var isLoading = false;
   function loadSwaggerUI() {
+    if (isLoading) {
+      return;
+    }
     const definitionURL = "https://wherewhere.github.io/api/openapi.json";
     window.ui = SwaggerUIBundle({
       url: definitionURL,
@@ -21,10 +25,21 @@ title: API 文档
 <div id="swagger-ui">如果这里什么也没有，请<a href="javascript:loadSwaggerUI();">刷新</a>页面</div>
 <script>loadSwaggerUI();</script>
 <style>
+  a.link {
+    border-bottom: unset;
+  }
   pre.version {
     background: unset;
   }
+  @media (min-width: 1200px) {
+    hgroup.main {
+      width: auto;
+    }
+  }
   @media (prefers-color-scheme: dark) {
+    input[type="text"] {
+      color: black;
+    }
     td:not(.col_header) {
       background: white;
     }

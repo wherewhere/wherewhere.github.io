@@ -64,6 +64,7 @@ Fusion App发布已经有很长时间了，这期间也出现了很多优秀的�
 <style>
   img.emoji {
     height: 20px;
+    width: 20px;
     margin-bottom: -4px !important;
     display: unset;
   }

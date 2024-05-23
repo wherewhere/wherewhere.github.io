@@ -107,10 +107,10 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 > wherewhere 评论于 2018年7月19日 11:45:41
 >
 > 下载地址：
-> [Mega 网盘](https://web.archive.org/web/20180721022523/https://mega.nz/#!d2QwwZDa!eujUJWgKM-PhWAUUHyXp5wiuF7OJQUnLNKy0nzSs7tc)
-> [百度网盘](https://web.archive.org/web/20180721022523/https://pan.baidu.com/s/1ywrr4rUAq1nVfdHxjML6Sw) 密码：`apps`
+> [Mega 网盘](https://mega.nz/#!d2QwwZDa!eujUJWgKM-PhWAUUHyXp5wiuF7OJQUnLNKy0nzSs7tc)
+> [百度网盘](https://pan.baidu.com/s/1ywrr4rUAq1nVfdHxjML6Sw) 密码：`apps`
 >
-> 最新人脉，相机应用，PC功能的照片应用（感谢[@软粉175](https://web.archive.org/web/20180721022523/http://bbs.wfun.com/home.php?mod=space&uid=2874994)转存）
-> [百度网盘](https://web.archive.org/web/20180721022523/https://pan.baidu.com/s/1pM0MGC7)
+> 最新人脉，相机应用，PC功能的照片应用（感谢[@软粉175](http://bbs.wfun.com/home.php?mod=space&uid=2874994)转存）
+> [百度网盘](https://pan.baidu.com/s/1pM0MGC7)
 
 > [【搬运】适用于 Windows 10 Mobile 的修改版 Microsoft 应用程序](https://bbs.wfun.com/thread-1013847-1-1.html) 转载者 [@wherewhere](https://bbs.wfun.com/u/2850357) 2018年7月19日 转载于 [智机社区](https://bbs.wfun.com "WFun")
