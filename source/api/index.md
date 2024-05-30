@@ -3,7 +3,9 @@ title: API 文档
 ---
 <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css" />
 <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" crossorigin></script>
+
 <script>
+  var swaggerDiv;
   var isLoading = false;
   function loadSwaggerUI() {
     if (isLoading) {
@@ -21,9 +23,25 @@ title: API 文档
     elements = document.getElementsByClassName("post-title");
     Array.prototype.forEach.call(elements, element => element.style.color = "#555");
   }
+  class LoadSwaggerUI extends HTMLElement {
+    constructor() {
+      super();
+    }
+    connectedCallback() {
+      swaggerDiv = document.createElement("div");
+      swaggerDiv.setAttribute("id", "swagger-ui");
+      swaggerDiv.innerHTML = "如果这里什么也没有，请<a href=\"javascript:loadSwaggerUI();\">刷新</a>页面";
+      this.append(swaggerDiv);
+      loadSwaggerUI();
+    }
+  }
+  if (!customElements.get("load-swagger-ui")) {
+    customElements.define("load-swagger-ui", LoadSwaggerUI);
+  }
 </script>
-<div id="swagger-ui">如果这里什么也没有，请<a href="javascript:loadSwaggerUI();">刷新</a>页面</div>
-<script>loadSwaggerUI();</script>
+
+<load-swagger-ui></load-swagger-ui>
+
 <style>
   a.link {
     border-bottom: unset;
