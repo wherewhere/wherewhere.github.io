@@ -7,6 +7,15 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/c6591
 ---
 ![Fusion App 工程提取教程](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/c6591bdc-d19c-442b-8dce-285965051026)
 
+<style>
+  img.emoji {
+    height: 20px;
+    width: 20px;
+    margin-bottom: -4px !important;
+    display: unset;
+  }
+</style>
+
 [#酷安夜话#](https://www.coolapk.com/t/酷安夜话) [#FusionApp#](https://www.coolapk.com/t/FusionApp) [#玩机技巧#](https://www.coolapk.com/t/玩机技巧)
 
 第一次写图文，欢迎大家指正，也期望大家能够关注我[@wherewhere](https://www.coolapk.com/u/wherewhere)，这里提供一个tg群人<img class="emoji" src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/a41c4103-50a4-4619-a2ca-19dcb8c3d784" alt="滑稽" />（[https://t.me/FusionApp](https://t.me/FusionApp)）
@@ -60,12 +69,3 @@ Fusion App发布已经有很长时间了，这期间也出现了很多优秀的�
 最后感谢[@寒歌](https://www.coolapk.com/u/寒歌)为我们带来了Fusion App，[@pandecheng](https://www.coolapk.com/u/pandecheng)顺道感谢一下吧/滑稽
 
 > [Fusion App 工程提取教程](https://www.coolapk.com/feed/6170506?shareKey=MzQzMzNiNDgxOWRkNjYzMTI0MWU) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2018年4月15日 发表于 [酷安](https://www.coolapk.com "Coolapk")，转载请注明出处
-
-<style>
-  img.emoji {
-    height: 20px;
-    width: 20px;
-    margin-bottom: -4px !important;
-    display: unset;
-  }
-</style>

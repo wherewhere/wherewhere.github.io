@@ -5,7 +5,7 @@ tags: [Surface, Win10, WOA, 快讯, 新闻, 玩机]
 categories: 快讯
 banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/5973083d-1616-4b76-ba3e-26fb9654a27b
 ---
-![d1255bd81c778ee0015ff1493f174cc9.jpeg](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/5973083d-1616-4b76-ba3e-26fb9654a27b)
+![Surface RT运行Win10图片泄露，Win10RT或存在过](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/5973083d-1616-4b76-ba3e-26fb9654a27b)
 
 [#电脑玩家#](https://www.coolapk.com/t/电脑玩家) [#ROM杂谈#](https://www.coolapk.com/t/ROM杂谈) [#Windows10#](https://www.coolapk.com/t/Windows10) [铺路根据地](https://www.coolapk.com/dyh/1480)
 

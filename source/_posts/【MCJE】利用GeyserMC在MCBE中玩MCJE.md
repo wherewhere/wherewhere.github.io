@@ -158,7 +158,7 @@ java -jar Geyser.jar
 CheckNetIsolation LoopbackExempt -a -n="Microsoft.MinecraftUWP_8wekyb3d8bbwe"
 ```
 
-![Screenshot_20201116-235303.jpg](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/053f23f6-c831-4df2-b540-28987caf3c64)
+![Screenshot_20201116-235303](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/053f23f6-c831-4df2-b540-28987caf3c64)
 
 进入Minecraft，打开好友栏，其中将会出现Geyser
 

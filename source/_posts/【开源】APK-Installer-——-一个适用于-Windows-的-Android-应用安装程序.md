@@ -9,6 +9,13 @@ categories: 资源
 ---
 <img alt="APK Installer LOGO" src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/5ebcccb0-c607-41d3-8ffc-8481cfe3dba2" width="200px" style="display: unset;" />
 
+<style>
+  img.badge {
+    margin-bottom: unset !important;
+    display: unset;
+  }
+</style>
+
 # APK Installer
 
 一个适用于 WIndows 的 Android 应用安装程序
@@ -76,10 +83,3 @@ categories: 资源
 - [Windows Community Toolkit](https://github.com/CommunityToolkit/WindowsCommunityToolkit "Windows Community Toolkit")
 
 > [【开源】APK Installer —— 一个适用于 Windows 的 Android 应用安装程序](https://www.52pojie.cn/thread-1571754-1-1.html) 作者 [@wherewhere](https://www.52pojie.cn/home.php?mod=space&uid=1092941) 2022年1月5日 发表于 [吾爱破解](https://www.52pojie.cn)，转载请注明出处
-
-<style>
-  img.badge {
-    margin-bottom: unset !important;
-    display: unset;
-  }
-</style>
