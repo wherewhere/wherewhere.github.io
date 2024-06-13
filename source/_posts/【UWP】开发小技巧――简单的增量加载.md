@@ -65,7 +65,7 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/85655
 internal class NewDS : DataSourceBase<string>
 {
     private int _loadnum = 0;
-    
+
     protected async override Task<IList<string>> LoadItemsAsync(uint count)
     {
         List<string> items = new List<string>();

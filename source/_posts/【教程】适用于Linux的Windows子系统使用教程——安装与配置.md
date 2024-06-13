@@ -101,7 +101,7 @@ categories: 玩机
       ![批注 2020-02-28 173252](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/aa43e5ab-0eff-49b2-90ff-611c919d9293)
 
     - 对于WSL2，Windows是没有权限修改WSL的系统文件的，所以只能在WSL中修改
-      
+
       在终端输入
 
       ```sh
@@ -109,7 +109,7 @@ categories: 玩机
       ```
 
       将内容修改为上文
-      
+
       ![批注 2020-02-28 173356](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/e9ad4c87-1560-4c73-a191-f69d5fa7c845)
 
     - 在终端输入
@@ -126,7 +126,7 @@ categories: 玩机
 
     - 请坐和放宽
 
-1. 更改语言为中文
+3. 更改语言为中文
 
    输入
 

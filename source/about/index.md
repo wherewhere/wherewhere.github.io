@@ -4,8 +4,8 @@ title: 关于
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <script>
-  var message, readme;
-  var isLoading = false;
+  let message, readme;
+  let isLoading = false;
   function decodeBase64(base64) {
     const text = atob(base64);
     const length = text.length;

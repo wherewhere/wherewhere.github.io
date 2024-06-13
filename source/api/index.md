@@ -5,8 +5,8 @@ title: API 文档
 <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" crossorigin></script>
 
 <script>
-  var swaggerDiv;
-  var isLoading = false;
+  let swaggerDiv;
+  let isLoading = false;
   function loadSwaggerUI() {
     if (isLoading) {
       return;
@@ -18,7 +18,7 @@ title: API 文档
       deepLinking: true,
       queryConfigEnabled: true
     });
-    var elements = document.getElementsByClassName("main-inner");
+    let elements = document.getElementsByClassName("main-inner");
     Array.prototype.forEach.call(elements, element => element.style.background = "white");
     elements = document.getElementsByClassName("post-title");
     Array.prototype.forEach.call(elements, element => element.style.color = "#555");
@@ -29,7 +29,7 @@ title: API 文档
     }
     connectedCallback() {
       swaggerDiv = document.createElement("div");
-      swaggerDiv.setAttribute("id", "swagger-ui");
+      swaggerDiv.id = "swagger-ui";
       swaggerDiv.innerHTML = "如果这里什么也没有，请<a href=\"javascript:loadSwaggerUI();\">刷新</a>页面";
       this.append(swaggerDiv);
       loadSwaggerUI();
