@@ -6,32 +6,32 @@ permalink: /404.html
 ---
 对不起，您所访问的页面不存在或者已删除。
 
-<script>
-  class NotFoundCounter extends HTMLElement {
-    countTime = 5;
-    constructor() {
-      super();
-      const timeout = document.createElement("span");
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      shadowRoot.appendChild(timeout);
-      this.count(timeout);
-    }
-    count(timeout) {
-      if (--this.countTime > 0) {
-        timeout.textContent = "预计将在约 " + this.countTime + " 秒后返回首页。";
-      }
-      else if (this.countTime === 0) {
-        timeout.textContent = "即将跳转到首页。";
-        location.href = '/';
-      }
-      else if (this.countTime < 0) {
-        timeout.remove();
-        return;
-      }
-      setTimeout(() => this.count(timeout), 1000);
-    }
-  }
+<script data-pjax>
   if (!customElements.get("not-found-counter")) {
+    class NotFoundCounter extends HTMLElement {
+      constructor() {
+        super();
+        this.countTime = 5;
+        const timeout = document.createElement("span");
+        const shadowRoot = this.attachShadow({ mode: 'open' });
+        shadowRoot.appendChild(timeout);
+        this.count(timeout);
+      }
+      count(timeout) {
+        if (--this.countTime > 0) {
+          timeout.textContent = "预计将在约 " + this.countTime + " 秒后返回首页。";
+        }
+        else if (this.countTime === 0) {
+          timeout.textContent = "即将跳转到首页。";
+          location.href = '/';
+        }
+        else if (this.countTime < 0) {
+          timeout.remove();
+          return;
+        }
+        setTimeout(() => this.count(timeout), 1000);
+      }
+    }
     customElements.define("not-found-counter", NotFoundCounter);
   }
 </script>

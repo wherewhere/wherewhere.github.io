@@ -1,64 +1,85 @@
 ---
 title: API 文档
 ---
-<link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css" />
-<script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" crossorigin></script>
+<script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui-bundle.js" data-pjax></script>
 
-<script>
-  let swaggerDiv;
-  let isLoading = false;
-  function loadSwaggerUI() {
-    if (isLoading) {
-      return;
-    }
-    const definitionURL = "https://wherewhere.github.io/api/openapi.json";
-    window.ui = SwaggerUIBundle({
-      url: definitionURL,
-      "dom_id": "#swagger-ui",
-      deepLinking: true,
-      queryConfigEnabled: true
-    });
-    let elements = document.getElementsByClassName("main-inner");
-    Array.prototype.forEach.call(elements, element => element.style.background = "white");
-    elements = document.getElementsByClassName("post-title");
-    Array.prototype.forEach.call(elements, element => element.style.color = "#555");
-  }
-  class LoadSwaggerUI extends HTMLElement {
-    constructor() {
-      super();
-    }
-    connectedCallback() {
-      swaggerDiv = document.createElement("div");
-      swaggerDiv.id = "swagger-ui";
-      swaggerDiv.innerHTML = "如果这里什么也没有，请<a href=\"javascript:loadSwaggerUI();\">刷新</a>页面";
-      this.append(swaggerDiv);
-      loadSwaggerUI();
-    }
-  }
+<script data-pjax>
   if (!customElements.get("load-swagger-ui")) {
+    class LoadSwaggerUI extends HTMLElement {
+      constructor() {
+        super();
+        this.isLoading = false;
+      }
+      get dom_id() {
+        return this.getAttribute("dom_id") || "swagger-ui";
+      }
+      connectedCallback() {
+        const swaggerDiv = document.createElement("div");
+        swaggerDiv.id = this.dom_id;
+        swaggerDiv.textContent = "如果这里什么也没有，请";
+        const link = document.createElement("a");
+        link.click = () => this.loadSwaggerUI();
+        link.textContent = "刷新";
+        swaggerDiv.appendChild(link);
+        swaggerDiv.append("页面");
+        this.append(swaggerDiv);
+        this.loadSwaggerUI();
+      }
+      loadSwaggerUI() {
+        if (this.isLoading) {
+          return;
+        }
+        try {
+          this.isLoading = true;
+          const definitionURL = "https://wherewhere.github.io/api/openapi.json";
+          window.ui = SwaggerUIBundle({
+            url: definitionURL,
+            dom_id: `#${this.dom_id}`,
+            deepLinking: true,
+            queryConfigEnabled: true
+          });
+          let elements = document.getElementsByClassName("main-inner");
+          Array.prototype.forEach.call(elements, element => element.style.background = "white");
+          elements = document.getElementsByClassName("post-title");
+          Array.prototype.forEach.call(elements, element => element.style.color = "#555");
+        }
+        catch (error) {
+          console.error(error);
+        }
+        finally {
+          this.isLoading = false;
+        }
+      }
+    }
     customElements.define("load-swagger-ui", LoadSwaggerUI);
   }
 </script>
 
-<load-swagger-ui></load-swagger-ui>
+<load-swagger-ui class="load-swagger-ui"></load-swagger-ui>
 
 <style>
-  a.link {
+  @import 'https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui.css';
+
+  .load-swagger-ui a.link {
     border-bottom: unset;
   }
-  pre.version {
+
+  .load-swagger-ui pre.version {
     background: unset;
   }
+
   @media (min-width: 1200px) {
-    hgroup.main {
+    .load-swagger-ui hgroup.main {
       width: auto;
     }
   }
+
   @media (prefers-color-scheme: dark) {
-    input[type="text"] {
+    .load-swagger-ui input[type="text"] {
       color: black;
     }
-    td:not(.col_header) {
+
+    .load-swagger-ui td:not(.col_header) {
       background: white;
     }
   }
