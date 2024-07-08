@@ -1,0 +1,85 @@
+{
+  "lang": "zh-CN",
+  "name": "魔法薇ㄦ的书馆",
+  "short_name": "wherlog",
+  "description": "铺路尚未成功，同志仍需努力！",
+  "categories": [
+    "blogs",
+    "news",
+    "tools"
+  ],
+  "id": "./",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#222222",
+  "icons": [
+    {
+      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/b66057ec-daeb-4dbe-8a26-04b510c7b2b3",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/2ecc7072-a4c4-40e4-9cd3-43299538b436",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/8469e1db-78b3-4f5b-a962-767d2f73b7ad",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/fab8ce15-fcf0-4e4a-95d9-27b8b4906dc0",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/cdb36b7f-318f-4c27-b302-17ace91cf67d",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/d1923d74-f33a-4858-83cf-dcea9aa95a2a",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/fc94a772-b4e6-4706-b3c1-d541f0c43ae2",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/769b1b2c-6e57-4b26-864b-9dd5633a28e8",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/ecef883b-eecd-4c68-bf28-c6cb852c8ec2",
+      "sizes": "2736x1824",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "首页"
+    },
+    {
+      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/18391ebc-2b3e-4439-aceb-79ab2f4cd45a",
+      "sizes": "2736x1824",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "关于"
+    },
+    {
+      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/7c1b9911-d06c-4fe3-b638-2fd1be87a443",
+      "sizes": "1080x2160",
+      "type": "image/png",
+      "label": "文章"
+    }
+  ]
+}

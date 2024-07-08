@@ -18,6 +18,7 @@ title: API 文档
         swaggerDiv.id = this.dom_id;
         swaggerDiv.textContent = "如果这里什么也没有，请";
         const link = document.createElement("a");
+        link.href = "javascript:void(0)";
         link.click = () => this.loadSwaggerUI();
         link.textContent = "刷新";
         swaggerDiv.appendChild(link);

@@ -47,7 +47,7 @@ future: true
 syntax_highligher: highlight.js
 highlight:
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace: ''
   wrap: true
   hljs: false
@@ -55,6 +55,8 @@ prismjs:
   preprocess: true
   line_number: true
   tab_replace: ''
+marked:
+  smartypants: false
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
