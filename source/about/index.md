@@ -1,11 +1,9 @@
 ---
 title: 关于
 ---
-<script src="https://cdn.jsdelivr.net/npm/marked" data-pjax></script>
-
-<script data-pjax>
-  (() => {
-    if (customElements.get("about-content")) { return; }
+<script type="module" data-pjax>
+  import { marked } from "https://cdn.jsdelivr.net/npm/marked/+esm";
+  if (!customElements.get("about-content")) {
     function decodeBase64(base64) {
       const text = atob(base64);
       const length = text.length;
@@ -73,7 +71,7 @@ title: 关于
       }
     }
     customElements.define("about-content", AboutContent);
-  })();
+  }
 </script>
 
 <about-content class="about-content"></about-content>

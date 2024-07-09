@@ -2,8 +2,29 @@
 title: 小工具
 sitemap: false
 ---
-<script type="module">
-  import { baseLayerLuminance, StandardLuminance } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/dist/web-components.min.js";
+<script type="module" data-pjax>
+  import {
+    provideFluentDesignSystem,
+    fluentAccordion,
+    fluentAccordionItem,
+    fluentButton,
+    fluentCard,
+    fluentNumberField,
+    fluentSwitch,
+    fluentTextField,
+    baseLayerLuminance,
+    StandardLuminance
+  } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  provideFluentDesignSystem()
+    .register(
+      fluentAccordion(),
+      fluentAccordionItem(),
+      fluentButton(),
+      fluentCard(),
+      fluentNumberField(),
+      fluentSwitch(),
+      fluentTextField()
+    );
   if (typeof matchMedia === "function") {
     const scheme = window.matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
@@ -17,41 +38,60 @@ sitemap: false
 
 {% raw %}
 <div id="vue-app">
-  <fluent-accordion>
-    <fluent-accordion-item>
-      <div slot="heading">
-        <settings-presenter style="padding: var(--settings-expander-header-padding);">
-          <template #icon>
-            <svg-host
-              src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/calendar_date_20_regular.svg"></svg-host>
-          </template>
-          <template #header>
-            <h4 class="unset">时间戳转换</h4>
-          </template>
-          <template #description>
-            转换 Unix 时间戳与时间字符串。
-          </template>
-        </settings-presenter>
-      </div>
-      <div class="setting-expander-content-grid">
-        <div class="stack-vertical">
-          <h4 class="unset" style="margin: 0 0 0 2px; font-size: var(--type-ramp-base-font-size);">时间戳转换</h4>
-          <div class="stack-horizontal">
-            <fluent-number-field v-model="timeStamp" style="flex: 1;"></fluent-number-field>
-            <fluent-button @click="convertTimeStamp">转换时间戳</fluent-button>
-          </div>
-          <div class="stack-horizontal">
-            <fluent-text-field v-model="timeString" style="flex: 1;"></fluent-text-field>
-            <fluent-button @click="convertTimeString">转换时间</fluent-button>
-          </div>
-          <div class="stack-horizontal" style="justify-content: space-between;">
-            <fluent-button @click="setDateTimeNow">当前时间</fluent-button>
-            <fluent-switch ref="isMillisecond">时间戳是否为毫秒</fluent-switch>
+  <div class="stack-vertical" style="row-gap: 0.3rem;">
+    <fluent-accordion style="width: 100%;">
+      <fluent-accordion-item>
+        <div slot="heading">
+          <settings-presenter style="padding: var(--settings-expander-header-padding);">
+            <template #icon>
+              <svg-host
+                src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/calendar_date_20_regular.svg"></svg-host>
+            </template>
+            <template #header>
+              <h4 class="unset">时间戳转换</h4>
+            </template>
+            <template #description>
+              转换 Unix 时间戳与时间字符串。
+            </template>
+          </settings-presenter>
+        </div>
+        <div class="setting-expander-content-grid">
+          <div class="stack-vertical">
+            <div class="stack-horizontal">
+              <fluent-number-field v-model="timeStamp" style="flex: 1;"></fluent-number-field>
+              <fluent-button @click="convertTimeStamp">转换时间戳</fluent-button>
+            </div>
+            <div class="stack-horizontal">
+              <fluent-text-field v-model="timeString" style="flex: 1;"></fluent-text-field>
+              <fluent-button @click="convertTimeString">转换时间</fluent-button>
+            </div>
+            <div class="stack-horizontal" style="justify-content: space-between;">
+              <fluent-button @click="setDateTimeNow">当前时间</fluent-button>
+              <fluent-switch ref="isMillisecond">时间戳是否为毫秒</fluent-switch>
+            </div>
           </div>
         </div>
+      </fluent-accordion-item>
+    </fluent-accordion>
+    <fluent-card class="settings-button" @click="() => navigate('./markdown')" style="cursor: pointer;">
+      <div class="content-grid">
+        <settings-presenter style="padding: var(--settings-button-padding);">
+          <template #icon>
+            <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/markdown_20_regular.svg"></svg-host>
+          </template>
+          <template #header>
+            <h4 class="unset">Markdown 预览</h4>
+          </template>
+          <template #description>
+            使用 Marked.JS 解析并预览 Markdown 文本。
+          </template>
+        </settings-presenter>
+        <div class="action-icon-holder">
+          <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+        </div>
       </div>
-    </fluent-accordion-item>
-  </fluent-accordion>
+    </fluent-card>
+  </div>
 </div>
 
 <template id="settings-presenter-template">
@@ -76,7 +116,7 @@ sitemap: false
 </template>
 {% endraw %}
 
-<script type="module">
+<script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   createApp({
     data() {
@@ -86,6 +126,9 @@ sitemap: false
       }
     },
     methods: {
+      navigate(src) {
+        location.href = src;
+      },
       convertTimeStamp() {
         const isMillisecond = this.$refs.isMillisecond.checked;
         const time = Math.floor(isMillisecond ? +this.timeStamp : this.timeStamp * 1000);
@@ -154,8 +197,16 @@ sitemap: false
 </script>
 
 <style>
+  #vue-app {
+    font-family: "Segoe UI Variable", "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+  }
+
   #vue-app * {
     --settings-card-padding: 16px;
+    --settings-button-padding: 16px 0 16px 16px;
     --settings-expander-header-padding: 4px 0px 4px 8px;
     --settings-expander-item-padding: 0px 36px 0px 50px;
   }
@@ -281,6 +332,26 @@ sitemap: false
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
     }
+  }
+
+  .settings-button {
+    cursor: pointer;
+  }
+
+  .settings-button div.content-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .settings-button div.action-icon-holder {
+    width: 32px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 8px;
+    fill: currentColor;
   }
 
   div.setting-expander-content-grid {
