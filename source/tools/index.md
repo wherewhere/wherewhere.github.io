@@ -61,7 +61,9 @@ sitemap: false
           </div>
           <div class="stack-horizontal" style="justify-content: space-between;">
             <fluent-button @click="setDateTimeNow">当前时间</fluent-button>
-            <fluent-switch ref="isMillisecond">时间戳是否为毫秒</fluent-switch>
+            <value-change-host v-model="isMillisecond" value-name="current-checked">
+              <fluent-switch>时间戳是否为毫秒</fluent-switch>
+            </value-change-host>
           </div>
         </div>
       </div>
@@ -82,6 +84,10 @@ sitemap: false
     </settings-button>
   </div>
 </div>
+
+<template id="value-change-host-template">
+  <slot></slot>
+</template>
 
 <template id="settings-presenter-template">
   <div class="settings-presenter">
@@ -154,33 +160,94 @@ sitemap: false
   createApp({
     data() {
       return {
+        isMillisecond: false,
         timeStamp: Math.floor(Date.now() / 1000),
         timeString: new Date().toISOString()
       }
     },
+    watch: {
+      isMillisecond(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          this.timeStamp = Math.floor(oldValue ? this.timeStamp / 1000 : this.timeStamp * 1000);
+        }
+      }
+    },
     methods: {
+      log(x) {
+        console.log(x);
+      },
       navigate(src) {
         location.href = src;
       },
       convertTimeStamp() {
-        const isMillisecond = this.$refs.isMillisecond.checked;
+        const isMillisecond = this.isMillisecond;
         const time = Math.floor(isMillisecond ? +this.timeStamp : this.timeStamp * 1000);
         this.timeString = new Date(time).toISOString();
       },
       convertTimeString() {
-        const isMillisecond = this.$refs.isMillisecond.checked;
+        const isMillisecond = this.isMillisecond;
         const time = new Date(this.timeString);
         this.timeStamp = isMillisecond ? time.getTime() : Math.floor(time.getTime() / 1000);
       },
       setDateTimeNow() {
         const time = new Date();
-        const isMillisecond = this.$refs.isMillisecond.checked;
+        const isMillisecond = this.isMillisecond;
         this.timeStamp = isMillisecond ? time.getTime() : Math.floor(time.getTime() / 1000);
         this.timeString = new Date().toISOString();
       },
       valueChanged(oldValue, newValue) {
         console.log(oldValue, newValue);
       }
+    }
+  }).component("value-change-host", {
+    template: "#value-change-host-template",
+    props: {
+      modelValue: null,
+      valueName: String
+    },
+    emits: ['update:modelValue'],
+    watch: {
+      valueName(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          if (typeof this.mutation !== "undefined") {
+            this.mutation.disconnect();
+            this.mutation = undefined;
+            if (newValue) {
+              this.registerObserver(newValue);
+            }
+          }
+        }
+      }
+    },
+    methods: {
+      registerObserver(valueName) {
+        const element = this.$el.nextElementSibling;
+        if (element instanceof HTMLElement) {
+          element.setAttribute(valueName, this.modelValue);
+          this.mutation = new MutationObserver((mutationsList, observer) => {
+            for (const mutation of mutationsList) {
+              if (mutation.type === "attributes" && mutation.attributeName === valueName) {
+                const target = mutation.target;
+                if (target instanceof HTMLElement) {
+                  const value = target.getAttribute(valueName) === "true";
+                  this.$emit('update:modelValue', value);
+                }
+              }
+            }
+          }).observe(
+            element,
+            {
+              attributes: true,
+              attributeFilter: [this.valueName]
+            }
+          );
+        }
+      }
+    },
+    mounted() {
+      const valueName = this.valueName;
+      if (!valueName) { return; }
+      this.registerObserver(valueName);
     }
   }).component("settings-presenter", {
     template: "#settings-presenter-template"
