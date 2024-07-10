@@ -4,7 +4,7 @@ sitemap: false
 ---
 <div class="split-view">
   <div id="container"></div>
-  <fluent-card class="perview-card markdown-body">
+  <fluent-card class="perview-card markdown-body monaco-component">
     <div id="perview"></div>
   </fluent-card>
 </div>
@@ -43,9 +43,9 @@ sitemap: false
   if (typeof matchMedia === "function") {
     const scheme = window.matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
-      scheme.addListener(e =>{
-         monaco.editor.setTheme(e.matches ? "vs-dark" : "vs");
-         baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode)
+      scheme.addListener(e => {
+        monaco.editor.setTheme(e.matches ? "vs-dark" : "vs");
+        baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode)
       });
       if (scheme.matches) {
         monaco.editor.setTheme("vs-dark");
@@ -95,6 +95,7 @@ sitemap: false
     flex: 1;
     height: auto;
     padding: 16px;
+    background: var(--vscode-editor-background);
   }
 
   @media (max-width: 767px) {

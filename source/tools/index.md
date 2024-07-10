@@ -39,58 +39,47 @@ sitemap: false
 {% raw %}
 <div id="vue-app">
   <div class="stack-vertical" style="row-gap: 0.3rem;">
-    <fluent-accordion style="width: 100%;">
-      <fluent-accordion-item>
-        <div slot="heading">
-          <settings-presenter style="padding: var(--settings-expander-header-padding);">
-            <template #icon>
-              <svg-host
-                src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/calendar_date_20_regular.svg"></svg-host>
-            </template>
-            <template #header>
-              <h4 class="unset">时间戳转换</h4>
-            </template>
-            <template #description>
-              转换 Unix 时间戳与时间字符串。
-            </template>
-          </settings-presenter>
-        </div>
-        <div class="setting-expander-content-grid">
-          <div class="stack-vertical">
-            <div class="stack-horizontal">
-              <fluent-number-field v-model="timeStamp" style="flex: 1;"></fluent-number-field>
-              <fluent-button @click="convertTimeStamp">转换时间戳</fluent-button>
-            </div>
-            <div class="stack-horizontal">
-              <fluent-text-field v-model="timeString" style="flex: 1;"></fluent-text-field>
-              <fluent-button @click="convertTimeString">转换时间</fluent-button>
-            </div>
-            <div class="stack-horizontal" style="justify-content: space-between;">
-              <fluent-button @click="setDateTimeNow">当前时间</fluent-button>
-              <fluent-switch ref="isMillisecond">时间戳是否为毫秒</fluent-switch>
-            </div>
+    <settings-expander>
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/calendar_date_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 class="unset">时间戳转换</h4>
+      </template>
+      <template #description>
+        转换 Unix 时间戳与时间字符串。
+      </template>
+      <div class="setting-expander-content-grid">
+        <div class="stack-vertical">
+          <div class="stack-horizontal">
+            <fluent-number-field v-model="timeStamp" style="flex: 1;"></fluent-number-field>
+            <fluent-button @click="convertTimeStamp">转换时间戳</fluent-button>
+          </div>
+          <div class="stack-horizontal">
+            <fluent-text-field v-model="timeString" style="flex: 1;"></fluent-text-field>
+            <fluent-button @click="convertTimeString">转换时间</fluent-button>
+          </div>
+          <div class="stack-horizontal" style="justify-content: space-between;">
+            <fluent-button @click="setDateTimeNow">当前时间</fluent-button>
+            <fluent-switch ref="isMillisecond">时间戳是否为毫秒</fluent-switch>
           </div>
         </div>
-      </fluent-accordion-item>
-    </fluent-accordion>
-    <fluent-card class="settings-button" @click="() => navigate('./markdown')" style="cursor: pointer;">
-      <div class="content-grid">
-        <settings-presenter style="padding: var(--settings-button-padding);">
-          <template #icon>
-            <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/markdown_20_regular.svg"></svg-host>
-          </template>
-          <template #header>
-            <h4 class="unset">Markdown 预览</h4>
-          </template>
-          <template #description>
-            使用 Marked.JS 解析并预览 Markdown 文本。
-          </template>
-        </settings-presenter>
-        <div class="action-icon-holder">
-          <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
-        </div>
       </div>
-    </fluent-card>
+    </settings-expander>
+    <settings-button @click="() => navigate('./markdown')">
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/markdown_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 class="unset">Markdown 预览</h4>
+      </template>
+      <template #description>
+        使用 Marked.JS 解析并预览 Markdown 文本。
+      </template>
+      <template #action-icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+      </template>
+    </settings-button>
   </div>
 </div>
 
@@ -113,6 +102,50 @@ sitemap: false
       <slot></slot>
     </div>
   </div>
+</template>
+
+<template id="settings-button-template">
+  <fluent-card class="settings-button" style="cursor: pointer;">
+    <div class="content-grid">
+      <settings-presenter style="padding: var(--settings-button-padding);">
+        <template #icon>
+          <slot name="icon"></slot>
+        </template>
+        <template #header>
+          <slot name="header"></slot>
+        </template>
+        <template #description>
+          <slot name="description"></slot>
+        </template>
+        <slot></slot>
+      </settings-presenter>
+      <div class="action-icon-holder">
+        <slot name="action-icon"></slot>
+      </div>
+    </div>
+  </fluent-card>
+</template>
+
+<template id="settings-expander-template">
+  <fluent-accordion class="settings-expander" style="width: 100%;">
+    <fluent-accordion-item>
+      <div slot="heading">
+        <settings-presenter style="padding: var(--settings-expander-header-padding);">
+          <template #icon>
+            <slot name="icon"></slot>
+          </template>
+          <template #header>
+            <slot name="header"></slot>
+          </template>
+          <template #description>
+            <slot name="description"></slot>
+          </template>
+          <slot name="action-content"></slot>
+        </settings-presenter>
+      </div>
+      <slot></slot>
+    </fluent-accordion-item>
+  </fluent-accordion>
 </template>
 {% endraw %}
 
@@ -151,6 +184,10 @@ sitemap: false
     }
   }).component("settings-presenter", {
     template: "#settings-presenter-template"
+  }).component("settings-button", {
+    template: "#settings-button-template"
+  }).component("settings-expander", {
+    template: "#settings-expander-template"
   }).mount("#vue-app");
   if (!customElements.get("svg-host")) {
     async function getSVG(src) {
@@ -213,19 +250,6 @@ sitemap: false
 
   #vue-app div.root {
     display: flex;
-  }
-
-  #vue-app .card {
-    display: block;
-    contain: content;
-    height: var(--card-height, 100%);
-    width: var(--card-width, 100%);
-    box-sizing: border-box;
-    background: var(--fill-color);
-    color: var(--neutral-foreground-rest);
-    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
-    border-radius: calc(var(--layer-corner-radius)* 1px);
-    box-shadow: var(--elevation-shadow-card-rest);
   }
 
   #vue-app .stack-vertical {
@@ -354,7 +378,7 @@ sitemap: false
     fill: currentColor;
   }
 
-  div.setting-expander-content-grid {
+  .settings-expander div.setting-expander-content-grid {
     padding: var(--settings-expander-item-padding);
   }
 </style>
