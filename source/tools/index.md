@@ -85,8 +85,14 @@ sitemap: false
   </div>
 </div>
 
-<template id="value-change-host-template">
-  <slot></slot>
+<template id="empty-slot-template">
+  <div>
+    <slot></slot>
+  </div>
+</template>
+
+<template id="svg-host-template">
+  <div v-html="innerHTML"></div>
 </template>
 
 <template id="settings-presenter-template">
@@ -160,7 +166,7 @@ sitemap: false
   createApp({
     data() {
       return {
-        isMillisecond: false,
+        isMillisecond: "false",
         timeStamp: Math.floor(Date.now() / 1000),
         timeString: new Date().toISOString()
       }
@@ -168,42 +174,39 @@ sitemap: false
     watch: {
       isMillisecond(newValue, oldValue) {
         if (newValue !== oldValue) {
-          this.timeStamp = Math.floor(oldValue ? this.timeStamp / 1000 : this.timeStamp * 1000);
+          this.timeStamp = Math.floor(oldValue === "true" ? this.timeStamp / 1000 : this.timeStamp * 1000);
         }
       }
     },
     methods: {
-      log(x) {
-        console.log(x);
-      },
       navigate(src) {
         location.href = src;
       },
+      isMillisecond() {
+        this.isMillisecond === "true";
+      },
       convertTimeStamp() {
-        const isMillisecond = this.isMillisecond;
+        const isMillisecond = this.isMillisecond();
         const time = Math.floor(isMillisecond ? +this.timeStamp : this.timeStamp * 1000);
         this.timeString = new Date(time).toISOString();
       },
       convertTimeString() {
-        const isMillisecond = this.isMillisecond;
+        const isMillisecond = this.isMillisecond();
         const time = new Date(this.timeString);
         this.timeStamp = isMillisecond ? time.getTime() : Math.floor(time.getTime() / 1000);
       },
       setDateTimeNow() {
         const time = new Date();
-        const isMillisecond = this.isMillisecond;
+        const isMillisecond = this.isMillisecond();
         this.timeStamp = isMillisecond ? time.getTime() : Math.floor(time.getTime() / 1000);
         this.timeString = new Date().toISOString();
-      },
-      valueChanged(oldValue, newValue) {
-        console.log(oldValue, newValue);
       }
     }
   }).component("value-change-host", {
-    template: "#value-change-host-template",
+    template: "#empty-slot-template",
     props: {
-      modelValue: null,
-      valueName: String
+      valueName: String,
+      modelValue: String
     },
     emits: ['update:modelValue'],
     watch: {
@@ -217,37 +220,89 @@ sitemap: false
             }
           }
         }
+      },
+      modelValue(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          const valueName = this.valueName;
+          if (valueName) {
+            const $el = this.$el;
+            if ($el instanceof HTMLElement) {
+              const element = $el.children[0];
+              if (element instanceof HTMLElement) {
+                element.setAttribute(valueName, newValue);
+              }
+            }
+          }
+        }
       }
     },
     methods: {
       registerObserver(valueName) {
-        const element = this.$el.nextElementSibling;
-        if (element instanceof HTMLElement) {
-          element.setAttribute(valueName, this.modelValue);
-          this.mutation = new MutationObserver((mutationsList, observer) => {
-            for (const mutation of mutationsList) {
-              if (mutation.type === "attributes" && mutation.attributeName === valueName) {
-                const target = mutation.target;
-                if (target instanceof HTMLElement) {
-                  const value = target.getAttribute(valueName) === "true";
-                  this.$emit('update:modelValue', value);
+        const $el = this.$el;
+        if ($el instanceof HTMLElement) {
+          const element = $el.children[0];
+          if (element instanceof HTMLElement) {
+            element.setAttribute(valueName, this.modelValue);
+            this.mutation = new MutationObserver((mutationsList, observer) => {
+              for (const mutation of mutationsList) {
+                if (mutation.type === "attributes" && mutation.attributeName === valueName) {
+                  const target = mutation.target;
+                  if (target instanceof HTMLElement) {
+                    const value = target.getAttribute(valueName);
+                    this.$emit('update:modelValue', value);
+                  }
                 }
               }
-            }
-          }).observe(
-            element,
-            {
-              attributes: true,
-              attributeFilter: [this.valueName]
-            }
-          );
+            }).observe(
+              element,
+              {
+                attributes: true,
+                attributeFilter: [this.valueName]
+              }
+            );
+          }
         }
       }
     },
     mounted() {
       const valueName = this.valueName;
-      if (!valueName) { return; }
-      this.registerObserver(valueName);
+      if (valueName) {
+        this.registerObserver(valueName);
+      }
+    }
+  }).component("svg-host", {
+    template: "#svg-host-template",
+    props: {
+      src: String
+    },
+    data() {
+      return {
+        innerHTML: null
+      }
+    },
+    watch: {
+      src(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          this.getSVGAsync(newValue).then(svg => this.innerHTML = svg);
+        }
+      }
+    },
+    methods: {
+      async getSVGAsync(src) {
+        if (src) {
+          try {
+            return await fetch(src)
+              .then(response => response.text());
+          }
+          catch (ex) {
+            console.error(ex);
+          }
+        }
+        return '';
+      }
+    },
+    mounted() {
+      this.getSVGAsync(this.src).then(svg => this.innerHTML = svg);
     }
   }).component("settings-presenter", {
     template: "#settings-presenter-template"
@@ -256,48 +311,6 @@ sitemap: false
   }).component("settings-expander", {
     template: "#settings-expander-template"
   }).mount("#vue-app");
-  if (!customElements.get("svg-host")) {
-    async function getSVG(src) {
-      if (src) {
-        try {
-          return await fetch(src)
-            .then(response => response.text());
-        }
-        catch (ex) {
-          console.error(ex);
-        }
-      }
-      return '';
-    }
-    class svgHost extends HTMLElement {
-      static get observedAttributes() {
-        return ["src"];
-      }
-      constructor() {
-        super();
-        this.isLoaded = false;
-      }
-      get src() {
-        return this.getAttribute("src");
-      }
-      set src(value) {
-        this.setAttribute("src", value);
-      }
-      connectedCallback() {
-        getSVG(this.src).then(svg => this.innerHTML = svg);
-        this.isLoaded = true;
-      }
-      attributeChangedCallback(name, oldValue, newValue) {
-        if (!this.isLoaded || oldValue === newValue) { return; }
-        switch (name) {
-          case "src":
-            getSVG(newValue).then(svg => this.innerHTML = svg);
-            break;
-        }
-      }
-    }
-    customElements.define("svg-host", svgHost);
-  }
 </script>
 
 <style>

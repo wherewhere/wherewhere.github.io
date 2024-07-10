@@ -27,7 +27,7 @@ title: 关于
         readme.textContent = "如果这里什么也没有，请";
         let link = document.createElement("a");
         link.href = "javascript:void(0)";
-        link.onclick = () => this.loadReadme();
+        link.onclick = () => this.loadReadmeAsync();
         link.textContent = "刷新";
         readme.appendChild(link);
         readme.append("页面，或者前往这个");
@@ -38,9 +38,9 @@ title: 关于
         readme.append("查看");
         this.appendChild(this.message);
         this.appendChild(this.readme);
-        this.loadReadme();
+        this.loadReadmeAsync();
       }
-      async loadReadme() {
+      async loadReadmeAsync() {
         if (this.isLoading) {
           return;
         }
