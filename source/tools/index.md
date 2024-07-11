@@ -7,6 +7,7 @@ sitemap: false
     provideFluentDesignSystem,
     fluentAccordion,
     fluentAccordionItem,
+    fluentAnchor,
     fluentButton,
     fluentCard,
     fluentNumberField,
@@ -19,6 +20,7 @@ sitemap: false
     .register(
       fluentAccordion(),
       fluentAccordionItem(),
+      fluentAnchor(),
       fluentButton(),
       fluentCard(),
       fluentNumberField(),
@@ -76,7 +78,21 @@ sitemap: false
         <h4 class="unset">Markdown 预览</h4>
       </template>
       <template #description>
-        使用 Marked.JS 解析并预览 Markdown 文本。
+        使用 <fluent-anchor appearance="hypertext" href="https://github.com/markedjs/marked" target="_blank">Marked.JS</fluent-anchor> 解析并预览 Markdown 文本。
+      </template>
+      <template #action-icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+      </template>
+    </settings-button>
+    <settings-button @click="() => navigate('./bilibili-card')">
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/card_ui_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 class="unset">哔哩哔哩卡片</h4>
+      </template>
+      <template #description>
+        使用 <fluent-anchor appearance="hypertext" href="https://github.com/wherewhere/hexo-tag-bilibili-card" target="_blank">bilibili-card</fluent-anchor> 生成哔哩哔哩卡片。
       </template>
       <template #action-icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
