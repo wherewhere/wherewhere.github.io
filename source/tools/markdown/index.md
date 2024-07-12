@@ -4,14 +4,14 @@ sitemap: false
 ---
 <div class="split-view">
   <div id="container"></div>
-  <fluent-card class="perview-card markdown-body monaco-component">
+  <div class="perview-card markdown-body monaco-component">
     <div id="perview"></div>
-  </fluent-card>
+  </div>
 </div>
 
 <script type="module" data-pjax>
-  import { provideFluentDesignSystem, fluentCard, baseLayerLuminance, StandardLuminance } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
-  provideFluentDesignSystem().register(fluentCard());
+  import { provideFluentDesignSystem, baseLayerLuminance, StandardLuminance } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  provideFluentDesignSystem().register();
   import { Marked } from "https://cdn.jsdelivr.net/npm/marked/+esm";
   import { markedHighlight } from "https://cdn.jsdelivr.net/npm/marked-highlight/+esm";
   import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
@@ -80,12 +80,10 @@ sitemap: false
 
   div.split-view #container {
     display: block;
-    contain: content;
     width: 50%;
     min-height: 400px;
     box-sizing: border-box;
-    background: var(--fill-color);
-    color: var(--neutral-foreground-rest);
+    background: var(--vscode-editor-background);
     border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
     border-radius: calc(var(--layer-corner-radius)* 1px);
     box-shadow: var(--elevation-shadow-card-rest);
@@ -93,9 +91,15 @@ sitemap: false
 
   div.split-view .perview-card {
     flex: 1;
-    height: auto;
     padding: 16px;
+    display: block;
+    height: auto;
+    width: var(--card-width, 100%);
+    box-sizing: border-box;
     background: var(--vscode-editor-background);
+    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
+    border-radius: calc(var(--layer-corner-radius)* 1px);
+    box-shadow: var(--elevation-shadow-card-rest);
   }
 
   @media (max-width: 767px) {

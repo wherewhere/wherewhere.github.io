@@ -7,13 +7,12 @@ sitemap: false
 <script type="module" data-pjax>
   import {
     provideFluentDesignSystem,
+    fluentAccordion,
+    fluentAccordionItem,
     fluentAnchor,
     fluentButton,
     fluentCombobox,
     fluentOption,
-    fluentTab,
-    fluentTabPanel,
-    fluentTabs,
     fluentTextArea,
     fluentTextField,
     baseLayerLuminance,
@@ -21,13 +20,12 @@ sitemap: false
   } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
   provideFluentDesignSystem()
     .register(
+      fluentAccordion(),
+      fluentAccordionItem(),
       fluentAnchor(),
       fluentButton(),
       fluentCombobox(),
       fluentOption(),
-      fluentTab(),
-      fluentTabPanel(),
-      fluentTabs(),
       fluentTextArea(),
       fluentTextField()
     );
@@ -44,44 +42,90 @@ sitemap: false
 
 {% raw %}
 <div id="vue-app">
-  <div class="stack-vertical">
-    <fluent-tabs>
-      <fluent-tab id="auto">自动</fluent-tab>
-      <fluent-tab id="manual">手动</fluent-tab>
-      <fluent-tab-panel id="autoPanel">
-        <div class="stack-vertical">
-          <fluent-text-field v-model="id" placeholder="BV1y54y1a768">哔哩哔哩 ID</fluent-text-field>
-          <input-label label="卡片类型">
-            <value-change-host v-model="type" value-name="current-value">
-              <fluent-combobox placeholder="video" value="vedio" style="min-width: unset;">
-                <fluent-option v-for="type in types" :value="type">{{ type }}</fluent-option>
-              </fluent-combobox>
-            </value-change-host>
-          </input-label>
-          <fluent-text-field v-model="imageProxy" placeholder="https://images.weserv.nl/?url=">图片代理</fluent-text-field>
-          <fluent-text-field v-model="infoTypes" placeholder="views danmakus">显示信息类型</fluent-text-field>
-          <fluent-button @click="() => createExampleAsync(imageProxy, id, type, infoTypes)">生成卡片</fluent-button>
-        </div>
-      </fluent-tab-panel>
-      <fluent-tab-panel id="manualPanel">
-        <div class="stack-vertical">
-          <fluent-text-field v-model="id" placeholder="BV1y54y1a768">哔哩哔哩 ID</fluent-text-field>
-          <input-label label="卡片类型">
-            <value-change-host v-model="type" value-name="current-value">
-              <fluent-combobox placeholder="video" value="vedio" style="min-width: unset;">
-                <fluent-option v-for="type in types" :value="type">{{ type }}</fluent-option>
-              </fluent-combobox>
-            </value-change-host>
-          </input-label>
-          <fluent-anchor :href="getApiUrl()" target="_blank">获取 JSON</fluent-anchor>
-          <fluent-text-area v-model="json" resize="both">输入 JSON</fluent-text-area>
-          <fluent-text-field v-model="imageProxy" placeholder="https://images.weserv.nl/?url=">图片代理</fluent-text-field>
-          <fluent-text-field v-model="infoTypes" placeholder="views danmakus">显示信息类型</fluent-text-field>
+  <div class="stack-vertical" style="row-gap: 0.3rem;">
+    <settings-card>
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/card_ui_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 class="unset">卡片 ID</h4>
+      </template>
+      <template #description>
+        输入卡片所需的哔哩哔哩 {{ type }} ID。
+      </template>
+      <fluent-text-field v-model="id" placeholder="BV1y54y1a768"></fluent-text-field>
+    </settings-card>
+    <settings-card>
+      <template #icon>
+        <svg-host :src="getTypeIcon(type)"></svg-host>
+      </template>
+      <template #header>
+        <h4 class="unset">卡片类型</h4>
+      </template>
+      <template #description>
+        选择生成卡片的类型。
+      </template>
+      <value-change-host v-model="type" value-name="current-value">
+        <fluent-combobox placeholder="video" value="vedio" style="width: 100%; min-width: unset;">
+          <fluent-option v-for="type in types" :value="type">{{ type }}</fluent-option>
+        </fluent-combobox>
+      </value-change-host>
+    </settings-card>
+    <settings-expander expanded="true">
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/database_arrow_down_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 class="unset">获取数据</h4>
+      </template>
+      <template #description>
+        从哔哩哔哩获取 JSON 数据。(由于跨域限制无法自动获取信息，请手动在下方填入 JSON 数据)
+      </template>
+      <div class="setting-expander-content-grid">
+        <input-label label="输入 JSON">
+          <template #action>
+            <div class="stack-horizontal" style="width: unset; column-gap: 4px;">
+              <fluent-button @click="() => getApiAsync()">自动</fluent-button>
+              <fluent-anchor :href="getApiUrl()" target="_blank">手动</fluent-anchor>
+            </div>
+          </template>
+          <fluent-text-area v-model="json" resize="vertical" style="width: 100%;"></fluent-text-area>
+        </input-label>
+      </div>
+    </settings-expander>
+    <settings-card>
+      <template #icon>
+        <svg-host
+          src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/image_arrow_forward_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 class="unset">图片代理</h4>
+      </template>
+      <template #description>
+        设置封面图片的代理。
+      </template>
+      <fluent-text-field v-model="imageProxy" placeholder="https://images.weserv.nl/?url="></fluent-text-field>
+    </settings-card>
+    <settings-card>
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/tag_multiple_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 class="unset">信息类型</h4>
+      </template>
+      <template #description>
+        设置卡片显示信息的类型。
+      </template>
+      <fluent-text-field v-model="infoTypes" placeholder="views danmakus"></fluent-text-field>
+    </settings-card>
+    <div class="settings-card" style="padding: var(--settings-card-padding);">
+      <input-label label="预览">
+        <template #action>
           <fluent-button @click="() => createExample(json, imageProxy, id, type, infoTypes)">生成卡片</fluent-button>
-        </div>
-      </fluent-tab-panel>
-    </fluent-tabs>
-    <div ref="example" style="max-width: 100%;"></div>
+        </template>
+        <div ref="example" style="max-width: 100%;"></div>
+      </input-label>
+    </div>
   </div>
 </div>
 
@@ -91,13 +135,80 @@ sitemap: false
   </div>
 </template>
 
+<template id="svg-host-template">
+  <div v-html="innerHTML"></div>
+</template>
+
 <template id="input-label-template">
   <div class="input-label">
-    <label class="fluent-input-label">
-      {{ label }}
-    </label>
+    <div class="fluent-input-label">
+      <label>
+        {{ label }}
+      </label>
+      <slot name="action"></slot>
+    </div>
     <slot></slot>
   </div>
+</template>
+
+<template id="settings-presenter-template">
+  <div class="settings-presenter">
+    <div class="header-root">
+      <div class="icon-holder" v-show="showIcon">
+        <slot name="icon"></slot>
+      </div>
+      <div class="header-panel" v-show="showHeader && showDescription">
+        <span v-show="showHeader">
+          <slot name="header"></slot>
+        </span>
+        <span class="description" v-show="showDescription">
+          <slot name="description"></slot>
+        </span>
+      </div>
+    </div>
+    <div class="content-presenter" v-show="showContent">
+      <slot></slot>
+    </div>
+  </div>
+</template>
+
+<template id="settings-card-template">
+  <div class="settings-card">
+    <settings-presenter class="presenter">
+      <template #icon>
+        <slot name="icon"></slot>
+      </template>
+      <template #header>
+        <slot name="header"></slot>
+      </template>
+      <template #description>
+        <slot name="description"></slot>
+      </template>
+      <slot></slot>
+    </settings-presenter>
+  </div>
+</template>
+
+<template id="settings-expander-template">
+  <fluent-accordion class="settings-expander" style="width: 100%;">
+    <fluent-accordion-item class="expander" :expanded="expanded">
+      <div slot="heading">
+        <settings-presenter class="presenter">
+          <template #icon>
+            <slot name="icon"></slot>
+          </template>
+          <template #header>
+            <slot name="header"></slot>
+          </template>
+          <template #description>
+            <slot name="description"></slot>
+          </template>
+          <slot name="action-content"></slot>
+        </settings-presenter>
+      </div>
+      <slot></slot>
+    </fluent-accordion-item>
+  </fluent-accordion>
 </template>
 {% endraw %}
 
@@ -105,6 +216,26 @@ sitemap: false
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   import * as JSONBig from "https://cdn.jsdelivr.net/npm/json-bigint/+esm";
   import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
+  function checkSolt(solt) {
+    if (typeof solt === "function") {
+      let value = solt();
+      if (value instanceof Array) {
+        value = value[0];
+        if (typeof value === "object") {
+          if (typeof value.type === "object") {
+            return true;
+          }
+          else {
+            value = value.children;
+            if (value instanceof Array) {
+              return value.length > 0;
+            }
+          }
+        }
+      }
+    }
+    return false;
+  }
   createApp({
     data() {
       return {
@@ -122,8 +253,35 @@ sitemap: false
         if (!id) { return null; }
         else { return this.getApi(id, this.type); }
       },
-      createExampleAsync(imageProxy, id, type, infoTypes) {
-        return this.createCardAsync(imageProxy, id, type, infoTypes).then(x => this.updateExample(x));
+      async getApiAsync() {
+        if (!id) { return; }
+        json = await fetch(this.getApi(id, type))
+          .then(x => x.text())
+          .catch(ex => ex.toString());
+      },
+      getTypeIcon(type) {
+        switch (type) {
+          case "video":
+            return "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/video_clip_20_regular.svg";
+          case "article":
+            return "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/document_20_regular.svg";
+          case "user":
+            return "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/person_20_regular.svg";
+          case "live":
+            return "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/live_20_regular.svg";
+          case "bangumi":
+            return "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/movies_and_tv_20_regular.svg";
+          case "audio":
+            return "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/music_note_2_20_regular.svg";
+          case "dynamic":
+            return "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/feed_20_regular.svg";
+          case "favorite":
+            return "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/collections_20_regular.svg";
+          case "album":
+            return "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/album_20_regular.svg";
+          default:
+            return this.getTypeIcon("video");
+        }
       },
       createExample(json, imageProxy, id, type, infoTypes) {
         this.updateExample(this.createCard(JSONBig.parse(json), imageProxy, id, type, infoTypes));
@@ -138,7 +296,8 @@ sitemap: false
             example.innerHTML = element;
             const pre = document.createElement("pre");
             pre.className = "highlight html language-html";
-            pre.style.marginTop = "1rem";
+            pre.style.marginTop = "calc(var(--design-unit) * 1px)";
+            pre.style.marginBottom = "unset";
             pre.style.borderRadius = "6px";
             const code = document.createElement("code");
             code.innerText = element;
@@ -147,21 +306,6 @@ sitemap: false
             hljs.highlightElement(code);
           }
         }
-      },
-      async createCardAsync(imageProxy, id, type, infoTypes) {
-        if (!id) { return ''; }
-        const token = await fetch(this.getApi(id, type))
-          .then(x => x.text())
-          .then(x => JSONBig.parse(x))
-          .catch(ex => {
-            console.error(ex);
-            return {
-              vid: id,
-              type: type,
-              title: `出错了！${ex}`
-            };
-          });
-        return this.createCard(token, imageProxy, id, type, infoTypes);
       },
       createCard(token, imageProxy, id, type, infoTypes) {
         if (!token) { return ''; }
@@ -832,10 +976,76 @@ sitemap: false
         this.registerObserver(valueName);
       }
     }
+  }).component("svg-host", {
+    template: "#svg-host-template",
+    props: {
+      src: String
+    },
+    data() {
+      return {
+        innerHTML: null
+      }
+    },
+    watch: {
+      src(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          this.getSVGAsync(newValue).then(svg => this.innerHTML = svg);
+        }
+      }
+    },
+    methods: {
+      async getSVGAsync(src) {
+        if (src) {
+          try {
+            return await fetch(src)
+              .then(response => response.text());
+          }
+          catch (ex) {
+            console.error(ex);
+          }
+        }
+        return '';
+      }
+    },
+    mounted() {
+      this.getSVGAsync(this.src).then(svg => this.innerHTML = svg);
+    }
   }).component("input-label", {
     template: "#input-label-template",
     props: {
       label: String
+    }
+  }).component("settings-presenter", {
+    template: "#settings-presenter-template",
+    data() {
+      return {
+        showIcon: false,
+        showHeader: false,
+        showDescription: false,
+        showContent: false,
+      };
+    },
+    methods: {
+      setShowSlots() {
+        const slots = this.$slots;
+        this.showIcon = checkSolt(slots.icon);
+        this.showHeader = checkSolt(slots.header);
+        this.showDescription = checkSolt(slots.description);
+        this.showContent = checkSolt(slots.default);
+      }
+    },
+    created() {
+      this.setShowSlots();
+    },
+    beforeUpdate() {
+      this.setShowSlots();
+    }
+  }).component("settings-card", {
+    template: "#settings-card-template"
+  }).component("settings-expander", {
+    template: "#settings-expander-template",
+    props: {
+      expanded: String
     }
   }).mount("#vue-app");
 </script>
@@ -850,13 +1060,27 @@ sitemap: false
     font-weight: 400;
   }
 
+  #vue-app * {
+    --settings-card-padding: 16px;
+    --settings-expander-header-padding: 4px 0px 4px 8px;
+    --settings-expander-item-padding: 0px 36px 0px 50px;
+  }
+
   #vue-app .stack-vertical {
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: start;
-    column-gap: 10px;
-    row-gap: 10px;
+    gap: 10px;
+    width: 100%;
+  }
+
+  #vue-app .stack-horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
     width: 100%;
   }
 
@@ -872,5 +1096,118 @@ sitemap: false
     font-family: unset;
     font-size: unset;
     line-height: unset;
+  }
+
+  .input-label .fluent-input-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: unset;
+  }
+
+  .input-label .fluent-input-label label {
+    cursor: pointer;
+  }
+
+  .settings-presenter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .settings-presenter * {
+    --settings-card-description-font-size: 12px;
+    --settings-card-header-icon-max-size: 20px;
+    --settings-card-content-min-width: 240px;
+    --settings-card-header-icon-margin: 0px 20px 0px 2px;
+    --settings-card-vertical-header-content-spacing: 8px 0px 0px 0px;
+  }
+
+  .settings-presenter div.header-root {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  .settings-presenter div.icon-holder {
+    max-width: var(--settings-card-header-icon-max-size);
+    max-height: var(--settings-card-header-icon-max-size);
+    margin: var(--settings-card-header-icon-margin);
+    fill: currentColor;
+  }
+
+  .settings-presenter div.header-panel {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 24px 0px 0px;
+  }
+
+  .settings-presenter span.description {
+    font-size: var(--settings-card-description-font-size);
+    color: var(--neutral-fill-strong-hover);
+  }
+
+  .settings-presenter div.content-presenter {
+    display: grid;
+  }
+
+  .settings-presenter a.text-button {
+    font-weight: bold;
+    text-decoration: unset;
+  }
+
+  @media (max-width: 600px) {
+    .settings-presenter {
+      flex-flow: column;
+      justify-content: unset;
+      align-items: unset;
+    }
+
+    .settings-presenter * {
+      --settings-card-content-min-width: auto;
+    }
+
+    .settings-presenter div.header-panel {
+      margin: unset;
+    }
+
+    .settings-presenter div.content-presenter {
+      margin: var(--settings-card-vertical-header-content-spacing);
+    }
+  }
+
+  .settings-card {
+    display: block;
+    height: var(--card-height, 100%);
+    width: var(--card-width, 100%);
+    box-sizing: border-box;
+    background: var(--neutral-fill-input-rest);
+    color: var(--neutral-foreground-rest);
+    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
+    border-radius: calc(var(--layer-corner-radius)* 1px);
+    box-shadow: var(--elevation-shadow-card-rest);
+  }
+
+  .settings-card .presenter {
+    padding: var(--settings-card-padding);
+  }
+
+  .settings-card div.content-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .settings-expander fluent-accordion-item.expander {
+    box-sizing: border-box;
+    box-shadow: var(--elevation-shadow-card-rest);
+  }
+
+  .settings-expander .presenter {
+    padding: var(--settings-expander-header-padding);
+  }
+
+  .settings-expander div.setting-expander-content-grid {
+    padding: var(--settings-expander-item-padding);
   }
 </style>

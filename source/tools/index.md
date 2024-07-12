@@ -9,7 +9,6 @@ sitemap: false
     fluentAccordionItem,
     fluentAnchor,
     fluentButton,
-    fluentCard,
     fluentNumberField,
     fluentSwitch,
     fluentTextField,
@@ -22,7 +21,6 @@ sitemap: false
       fluentAccordionItem(),
       fluentAnchor(),
       fluentButton(),
-      fluentCard(),
       fluentNumberField(),
       fluentSwitch(),
       fluentTextField()
@@ -78,7 +76,8 @@ sitemap: false
         <h4 class="unset">Markdown 预览</h4>
       </template>
       <template #description>
-        使用 <fluent-anchor appearance="hypertext" href="https://github.com/markedjs/marked" target="_blank">Marked.JS</fluent-anchor> 解析并预览 Markdown 文本。
+        使用 <fluent-anchor appearance="hypertext" href="https://github.com/markedjs/marked"
+          target="_blank">Marked.JS</fluent-anchor> 解析并预览 Markdown 文本。
       </template>
       <template #action-icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
@@ -92,7 +91,8 @@ sitemap: false
         <h4 class="unset">哔哩哔哩卡片</h4>
       </template>
       <template #description>
-        使用 <fluent-anchor appearance="hypertext" href="https://github.com/wherewhere/hexo-tag-bilibili-card" target="_blank">bilibili-card</fluent-anchor> 生成哔哩哔哩卡片。
+        使用 <fluent-anchor appearance="hypertext" href="https://github.com/wherewhere/hexo-tag-bilibili-card"
+          target="_blank">bilibili-card</fluent-anchor> 生成哔哩哔哩卡片。
       </template>
       <template #action-icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
@@ -114,28 +114,28 @@ sitemap: false
 <template id="settings-presenter-template">
   <div class="settings-presenter">
     <div class="header-root">
-      <div class="icon-holder">
+      <div class="icon-holder" v-show="showIcon">
         <slot name="icon"></slot>
       </div>
-      <div class="header-panel">
-        <span>
+      <div class="header-panel" v-show="showHeader && showDescription">
+        <span v-show="showHeader">
           <slot name="header"></slot>
         </span>
-        <span class="description">
+        <span class="description" v-show="showDescription">
           <slot name="description"></slot>
         </span>
       </div>
     </div>
-    <div class="content-presenter">
+    <div class="content-presenter" v-show="showContent">
       <slot></slot>
     </div>
   </div>
 </template>
 
 <template id="settings-button-template">
-  <fluent-card class="settings-button" style="cursor: pointer;">
+  <div class="settings-button">
     <div class="content-grid">
-      <settings-presenter style="padding: var(--settings-button-padding);">
+      <settings-presenter class="presenter">
         <template #icon>
           <slot name="icon"></slot>
         </template>
@@ -147,18 +147,18 @@ sitemap: false
         </template>
         <slot></slot>
       </settings-presenter>
-      <div class="action-icon-holder">
+      <div class="action-icon-holder" v-show="showActionIcon">
         <slot name="action-icon"></slot>
       </div>
     </div>
-  </fluent-card>
+  </div>
 </template>
 
 <template id="settings-expander-template">
   <fluent-accordion class="settings-expander" style="width: 100%;">
-    <fluent-accordion-item>
+    <fluent-accordion-item class="expander">
       <div slot="heading">
-        <settings-presenter style="padding: var(--settings-expander-header-padding);">
+        <settings-presenter class="presenter">
           <template #icon>
             <slot name="icon"></slot>
           </template>
@@ -178,7 +178,27 @@ sitemap: false
 {% endraw %}
 
 <script type="module" data-pjax>
-  import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { createApp, useSlots } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  function checkSolt(solt) {
+    if (typeof solt === "function") {
+      let value = solt();
+      if (value instanceof Array) {
+        value = value[0];
+        if (typeof value === "object") {
+          if (typeof value.type === "object") {
+            return true;
+          }
+          else {
+            value = value.children;
+            if (value instanceof Array) {
+              return value.length > 0;
+            }
+          }
+        }
+      }
+    }
+    return false;
+  }
   createApp({
     data() {
       return {
@@ -198,22 +218,22 @@ sitemap: false
       navigate(src) {
         location.href = src;
       },
-      isMillisecond() {
+      getIsMillisecond() {
         this.isMillisecond === "true";
       },
       convertTimeStamp() {
-        const isMillisecond = this.isMillisecond();
+        const isMillisecond = this.getIsMillisecond();
         const time = Math.floor(isMillisecond ? +this.timeStamp : this.timeStamp * 1000);
         this.timeString = new Date(time).toISOString();
       },
       convertTimeString() {
-        const isMillisecond = this.isMillisecond();
+        const isMillisecond = this.getIsMillisecond();
         const time = new Date(this.timeString);
         this.timeStamp = isMillisecond ? time.getTime() : Math.floor(time.getTime() / 1000);
       },
       setDateTimeNow() {
         const time = new Date();
-        const isMillisecond = this.isMillisecond();
+        const isMillisecond = this.getIsMillisecond();
         this.timeStamp = isMillisecond ? time.getTime() : Math.floor(time.getTime() / 1000);
         this.timeString = new Date().toISOString();
       }
@@ -321,9 +341,49 @@ sitemap: false
       this.getSVGAsync(this.src).then(svg => this.innerHTML = svg);
     }
   }).component("settings-presenter", {
-    template: "#settings-presenter-template"
+    template: "#settings-presenter-template",
+    data() {
+      return {
+        showIcon: false,
+        showHeader: false,
+        showDescription: false,
+        showContent: false,
+      };
+    },
+    methods: {
+      setShowSlots() {
+        const slots = this.$slots;
+        this.showIcon = checkSolt(slots.icon);
+        this.showHeader = checkSolt(slots.header);
+        this.showDescription = checkSolt(slots.description);
+        this.showContent = checkSolt(slots.default);
+      }
+    },
+    created() {
+      this.setShowSlots();
+    },
+    beforeUpdate() {
+      this.setShowSlots();
+    }
   }).component("settings-button", {
-    template: "#settings-button-template"
+    template: "#settings-button-template",
+    data() {
+      return {
+        showActionIcon: false
+      };
+    },
+    methods: {
+      setShowSlots() {
+        const slots = this.$slots;
+        this.showActionIcon = checkSolt(slots["action-icon"]);
+      }
+    },
+    created() {
+      this.setShowSlots();
+    },
+    beforeUpdate() {
+      this.setShowSlots();
+    }
   }).component("settings-expander", {
     template: "#settings-expander-template"
   }).mount("#vue-app");
@@ -338,7 +398,6 @@ sitemap: false
   }
 
   #vue-app * {
-    --settings-card-padding: 16px;
     --settings-button-padding: 16px 0 16px 16px;
     --settings-expander-header-padding: 4px 0px 4px 8px;
     --settings-expander-item-padding: 0px 36px 0px 50px;
@@ -380,11 +439,6 @@ sitemap: false
     font-family: unset;
     font-size: unset;
     line-height: unset;
-  }
-
-  #vue-app fluent-accordion-item {
-    box-sizing: border-box;
-    box-shadow: var(--elevation-shadow-card-rest);
   }
 
   .settings-presenter {
@@ -435,14 +489,14 @@ sitemap: false
   }
 
   @media (max-width: 600px) {
-    .settings-presenter * {
-      --settings-card-content-min-width: auto;
-    }
-
-    .settings-presenter div.settings-presenter {
+    .settings-presenter {
       flex-flow: column;
       justify-content: unset;
       align-items: unset;
+    }
+
+    .settings-presenter * {
+      --settings-card-content-min-width: auto;
     }
 
     .settings-presenter div.header-panel {
@@ -456,6 +510,28 @@ sitemap: false
 
   .settings-button {
     cursor: pointer;
+    display: block;
+    height: var(--card-height, 100%);
+    width: var(--card-width, 100%);
+    box-sizing: border-box;
+    background: var(--neutral-fill-input-rest);
+    color: var(--neutral-foreground-rest);
+    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
+    border-radius: calc(var(--layer-corner-radius)* 1px);
+    box-shadow: var(--elevation-shadow-card-rest);
+  }
+
+  .settings-button:hover {
+    background: var(--neutral-fill-input-hover);
+  }
+
+  .settings-button:active {
+    background: var(--neutral-fill-input-active);
+  }
+
+  .settings-button .presenter {
+    padding: var(--settings-button-padding);
+    flex: 1;
   }
 
   .settings-button div.content-grid {
@@ -472,6 +548,15 @@ sitemap: false
     align-items: center;
     margin: 0 8px;
     fill: currentColor;
+  }
+
+  .settings-expander fluent-accordion-item.expander {
+    box-sizing: border-box;
+    box-shadow: var(--elevation-shadow-card-rest);
+  }
+
+  .settings-expander .presenter {
+    padding: var(--settings-expander-header-padding);
   }
 
   .settings-expander div.setting-expander-content-grid {
