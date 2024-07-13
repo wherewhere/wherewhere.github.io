@@ -11,8 +11,8 @@ sitemap: false
     fluentAccordionItem,
     fluentAnchor,
     fluentButton,
-    fluentCombobox,
     fluentOption,
+    fluentSelect,
     fluentTextArea,
     fluentTextField,
     baseLayerLuminance,
@@ -24,8 +24,8 @@ sitemap: false
       fluentAccordionItem(),
       fluentAnchor(),
       fluentButton(),
-      fluentCombobox(),
       fluentOption(),
+      fluentSelect(),
       fluentTextArea(),
       fluentTextField()
     );
@@ -45,35 +45,34 @@ sitemap: false
   <div class="stack-vertical" style="row-gap: 0.3rem;">
     <settings-card>
       <template #icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/card_ui_20_regular.svg"></svg-host>
-      </template>
-      <template #header>
-        <h4 class="unset">卡片 ID</h4>
-      </template>
-      <template #description>
-        输入卡片所需的哔哩哔哩 {{ type }} ID。
-      </template>
-      <fluent-text-field v-model="id" placeholder="BV1y54y1a768"></fluent-text-field>
-    </settings-card>
-    <settings-card>
-      <template #icon>
         <svg-host :src="getTypeIcon(type)"></svg-host>
       </template>
       <template #header>
         <h4 class="unset">卡片类型</h4>
       </template>
       <template #description>
-        选择生成卡片的类型。
+        选择卡片显示内容的类型。
       </template>
-      <value-change-host v-model="type" value-name="current-value">
-        <fluent-combobox placeholder="video" value="vedio" style="width: 100%; min-width: unset;">
-          <fluent-option v-for="type in types" :value="type">{{ type }}</fluent-option>
-        </fluent-combobox>
-      </value-change-host>
+      <fluent-select placeholder="video" v-model="type" style="min-width: unset;">
+        <fluent-option v-for="(value, key) in types" :value="key">{{ value }}</fluent-option>
+      </fluent-select>
+    </settings-card>
+    <settings-card>
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/card_ui_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 class="unset">卡片 ID</h4>
+      </template>
+      <template #description>
+        输入卡片显示的哔哩哔哩{{ types[type] }}的 ID。
+      </template>
+      <fluent-text-field v-model="id" :placeholder="getExampleID(type)"></fluent-text-field>
     </settings-card>
     <settings-expander expanded="true">
       <template #icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/database_arrow_down_20_regular.svg"></svg-host>
+        <svg-host
+          src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/database_arrow_down_20_regular.svg"></svg-host>
       </template>
       <template #header>
         <h4 class="unset">获取数据</h4>
@@ -85,7 +84,7 @@ sitemap: false
         <input-label label="输入 JSON">
           <template #action>
             <div class="stack-horizontal" style="width: unset; column-gap: 4px;">
-              <fluent-button @click="() => getApiAsync()">自动</fluent-button>
+              <fluent-button title="这个按钮并不能正常使用" :disabled="!id" @click="() => getApiAsync()">自动</fluent-button>
               <fluent-anchor :href="getApiUrl()" target="_blank">手动</fluent-anchor>
             </div>
           </template>
@@ -114,26 +113,24 @@ sitemap: false
         <h4 class="unset">信息类型</h4>
       </template>
       <template #description>
-        设置卡片显示信息的类型。
+        设置卡片显示信息的类型。(views, danmakus, comments, favorites, coins, likes)
       </template>
-      <fluent-text-field v-model="infoTypes" placeholder="views danmakus"></fluent-text-field>
+      <fluent-text-field v-model="infoTypes" :placeholder="getDefaultInfoTypes(type)"></fluent-text-field>
     </settings-card>
-    <div class="settings-card" style="padding: var(--settings-card-padding);">
+    <div class="settings-card"
+      :style="{ paddingTop: '16px', paddingRight: '16px', paddingBottom: example ? '16px' : 'calc(16px - var(--design-unit) * 1px)', paddingLeft: '16px' }">
       <input-label label="预览">
         <template #action>
-          <fluent-button @click="() => createExample(json, imageProxy, id, type, infoTypes)">生成卡片</fluent-button>
+          <div class="stack-horizontal" style="width: unset; column-gap: 4px;">
+            <fluent-button v-show="example" @click="(e) => onCopyClicked(e, example)">复制代码</fluent-button>
+            <fluent-button @click="() => createExample(json, imageProxy, id, type, infoTypes)">生成卡片</fluent-button>
+          </div>
         </template>
-        <div ref="example" style="max-width: 100%;"></div>
+        <div ref="example" v-show="example" style="max-width: 100%;"> </div>
       </input-label>
     </div>
   </div>
 </div>
-
-<template id="empty-slot-template">
-  <div>
-    <slot></slot>
-  </div>
-</template>
 
 <template id="svg-host-template">
   <div v-html="innerHTML"></div>
@@ -214,7 +211,6 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
-  import * as JSONBig from "https://cdn.jsdelivr.net/npm/json-bigint/+esm";
   import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
   function checkSolt(solt) {
     if (typeof solt === "function") {
@@ -244,7 +240,18 @@ sitemap: false
         json: null,
         imageProxy: null,
         infoTypes: null,
-        types: ["video", "article", "user", "live", "bangumi", "audio", "dynamic", "favorite", "album"]
+        types: {
+          video: "视频",
+          article: "专栏",
+          user: "用户",
+          live: "直播",
+          bangumi: "番剧",
+          audio: "音频",
+          dynamic: "动态",
+          favorite: "收藏夹",
+          album: "相簿"
+        },
+        example: null
       }
     },
     methods: {
@@ -280,20 +287,73 @@ sitemap: false
           case "album":
             return "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/album_20_regular.svg";
           default:
-            return this.getTypeIcon("video");
+            return "https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/presence_unknown_20_regular.svg";
         }
       },
+      getExampleID(type) {
+        switch (type) {
+          case "video":
+            return "BV1y54y1a768";
+          case "article":
+            return "cv8930865";
+          case "user":
+            return "266112738";
+          case "live":
+            return "1720863137";
+          case "bangumi":
+            return "md1689";
+          case "audio":
+            return "au13598";
+          case "dynamic":
+            return "501590001933778048";
+          case "favorite":
+            return "1026854530";
+          case "album":
+            return "99184721";
+        }
+      },
+      getDefaultInfoTypes(type) {
+        switch (type) {
+          case "video":
+            return "views, danmakus";
+          case "user":
+            return "views, likes";
+          case "live":
+            return "views";
+          case "bangumi":
+            return "favorites";
+          case "favorite":
+            return "views, favorites";
+          case "article":
+          case "audio":
+          case "dynamic":
+          case "album":
+          default:
+            return "views, comments";
+        }
+      },
+      onCopyClicked(event, text) {
+        const button = event.target;
+        navigator.clipboard.writeText(text)
+          .then(() => {
+            if (button instanceof HTMLElement) {
+              const content = button.innerHTML;
+              button.innerText = "已复制";
+              setTimeout(() => button.innerHTML = content, 1000)
+            }
+          })
+      },
       createExample(json, imageProxy, id, type, infoTypes) {
-        this.updateExample(this.createCard(JSONBig.parse(json), imageProxy, id, type, infoTypes));
+        this.updateExample(this.createCard(JSON.parse(json), imageProxy, id, type, infoTypes));
       },
       updateExample(element) {
         const example = this.$refs.example;
         if (example instanceof HTMLElement) {
           if (!element) {
-            example.innerHTML = '';
+            example.innerHTML = this.example = '';
           }
           else {
-            example.innerHTML = element;
+            example.innerHTML = this.example = element;
             const pre = document.createElement("pre");
             pre.className = "highlight html language-html";
             pre.style.marginTop = "calc(var(--design-unit) * 1px)";
@@ -339,7 +399,7 @@ sitemap: false
             message = this.getAlbumMessage(id, token);
             break;
           default:
-            const code = id.slice(0, 2).toLowerCase();
+            const code = id?.slice(0, 2).toLowerCase();
             switch (code) {
               case "cv":
                 return this.createCard(token, imageProxy, id, "article");
@@ -380,7 +440,7 @@ sitemap: false
           case "album":
             return `https://api.vc.bilibili.com/link_draw/v1/doc/detail?doc_id=${id}`;
           default:
-            const code = id.slice(0, 2).toLowerCase();
+            const code = id?.slice(0, 2).toLowerCase();
             switch (code) {
               case "cv":
                 return this.getApi(id, "article");
@@ -699,17 +759,48 @@ sitemap: false
           case 0:
             const data = token?.data;
             if (data) {
-              const card = JSON.parse(data.card?.card);
-              return {
-                vid: data.card?.desc?.dynamic_id,
+              const result = {
+                vid: data.card?.desc?.dynamic_id_str,
                 type: "dynamic",
-                title: card?.item?.description,
                 author: data.card?.desc?.user_profile?.info?.uname,
-                cover: card?.item?.pictures[0]?.img_src,
                 views: this.formatLargeNumber(data.card?.desc?.view),
                 comments: this.formatLargeNumber(data.card?.desc?.comment),
                 likes: this.formatLargeNumber(data.card?.desc?.like)
               };
+              const card = JSON.parse(data.card?.card);
+              switch (data.card?.desc?.type) {
+                case 1:
+                case 4:
+                  return {
+                    ...result,
+                    title: card?.item?.content,
+                    cover: card?.user?.face,
+                  }
+                case 2:
+                  return {
+                    ...result,
+                    title: card?.item?.description,
+                    cover: card?.item?.pictures?.[0]?.img_src,
+                  };
+                case 8:
+                  return {
+                    ...result,
+                    title: card?.dynamic,
+                    cover: card?.pic,
+                  }
+                case 64:
+                  return {
+                    ...result,
+                    title: card?.title,
+                    cover: card?.image_urls?.[0],
+                  }
+                default:
+                  return {
+                    ...result,
+                    title: `${data.card?.desc?.user_profile?.info?.uname} 的动态`,
+                    cover: data.card?.desc?.user_profile?.info?.face
+                  }
+              }
             }
             else {
               console.warn(`Failed to get bilibli dynamic ${id}`);
@@ -871,7 +962,7 @@ sitemap: false
         return `<${attributes.join(' ')}></bilibili-card>`;
       },
       getVid(id) {
-        const type = id.slice(0, 2).toUpperCase();
+        const type = id?.slice(0, 2).toUpperCase();
         if (type === "BV") {
           return { id: id, type: "bvid" };
         }
@@ -896,6 +987,7 @@ sitemap: false
             : num;
       },
       formatSecondsToTime(second) {
+        console.log(second);
         const sec = second % 60;
         const min = Math.floor(second / 60) % 60;
         const hour = Math.floor(second / 3600);
@@ -906,74 +998,6 @@ sitemap: false
         times.push(min);
         times.push(sec);
         return times.map(n => n.toString().padStart(2, 0)).join(':');
-      }
-    }
-  }).component("value-change-host", {
-    template: "#empty-slot-template",
-    props: {
-      valueName: String,
-      modelValue: String
-    },
-    emits: ['update:modelValue'],
-    watch: {
-      valueName(newValue, oldValue) {
-        if (newValue !== oldValue) {
-          if (typeof this.mutation !== "undefined") {
-            this.mutation.disconnect();
-            this.mutation = undefined;
-            if (newValue) {
-              this.registerObserver(newValue);
-            }
-          }
-        }
-      },
-      modelValue(newValue, oldValue) {
-        if (newValue !== oldValue) {
-          const valueName = this.valueName;
-          if (valueName) {
-            const $el = this.$el;
-            if ($el instanceof HTMLElement) {
-              const element = $el.children[0];
-              if (element instanceof HTMLElement) {
-                element.setAttribute(valueName, newValue);
-              }
-            }
-          }
-        }
-      }
-    },
-    methods: {
-      registerObserver(valueName) {
-        const $el = this.$el;
-        if ($el instanceof HTMLElement) {
-          const element = $el.children[0];
-          if (element instanceof HTMLElement) {
-            element.setAttribute(valueName, this.modelValue);
-            this.mutation = new MutationObserver((mutationsList, observer) => {
-              for (const mutation of mutationsList) {
-                if (mutation.type === "attributes" && mutation.attributeName === valueName) {
-                  const target = mutation.target;
-                  if (target instanceof HTMLElement) {
-                    const value = target.getAttribute(valueName);
-                    this.$emit('update:modelValue', value);
-                  }
-                }
-              }
-            }).observe(
-              element,
-              {
-                attributes: true,
-                attributeFilter: [this.valueName]
-              }
-            );
-          }
-        }
-      }
-    },
-    mounted() {
-      const valueName = this.valueName;
-      if (valueName) {
-        this.registerObserver(valueName);
       }
     }
   }).component("svg-host", {
