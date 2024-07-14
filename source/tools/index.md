@@ -44,7 +44,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/calendar_date_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 class="unset">时间戳转换</h4>
+        <h4 id="timestamp" class="unset">时间戳转换</h4>
       </template>
       <template #description>
         转换 Unix 时间戳与时间字符串。
@@ -73,7 +73,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/markdown_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 class="unset">Markdown 预览</h4>
+        <h4 id="markdown" class="unset">Markdown 预览</h4>
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/markedjs/marked"
@@ -88,11 +88,27 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/card_ui_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 class="unset">哔哩哔哩卡片</h4>
+        <h4 id="bilibili-card" class="unset">哔哩哔哩卡片</h4>
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/wherewhere/hexo-tag-bilibili-card"
           target="_blank">bilibili-card</fluent-anchor> 生成哔哩哔哩卡片。
+      </template>
+      <template #action-icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+      </template>
+    </settings-button>
+    <settings-button @click="() => navigate('./base-x')">
+      <template #icon>
+        <svg-host
+          src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/number_symbol_square_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="base-x" class="unset">Base X</h4>
+      </template>
+      <template #description>
+        使用 <fluent-anchor appearance="hypertext" href="https://github.com/UmamiAppearance/BaseExJS"
+          target="_blank">BaseEx</fluent-anchor> 编码与解码 Base1、Base16、Base32、Base64 等文本。
       </template>
       <template #action-icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
@@ -178,7 +194,7 @@ sitemap: false
 {% endraw %}
 
 <script type="module" data-pjax>
-  import { createApp, useSlots } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   function checkSolt(solt) {
     if (typeof solt === "function") {
       let value = solt();
@@ -391,10 +407,10 @@ sitemap: false
 
 <style>
   #vue-app {
-    font-family: "Segoe UI Variable", "Segoe UI", sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 400;
+    font-family: var(--body-font);
+    font-size: var(--type-ramp-base-font-size);
+    line-height: var(--type-ramp-base-line-height);
+    font-weight: var(--font-weight);
   }
 
   #vue-app * {

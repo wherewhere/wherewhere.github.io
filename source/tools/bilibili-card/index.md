@@ -48,7 +48,7 @@ sitemap: false
         <svg-host :src="getTypeIcon(type)"></svg-host>
       </template>
       <template #header>
-        <h4 class="unset">卡片类型</h4>
+        <h4 id="card-type" class="unset">卡片类型</h4>
       </template>
       <template #description>
         选择卡片显示内容的类型。
@@ -62,7 +62,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/card_ui_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 class="unset">卡片 ID</h4>
+        <h4 id="card-id" class="unset">卡片 ID</h4>
       </template>
       <template #description>
         输入卡片显示的哔哩哔哩{{ types[type] }}的 ID。
@@ -75,7 +75,7 @@ sitemap: false
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/database_arrow_down_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 class="unset">获取数据</h4>
+        <h4 id="get-data" class="unset">获取数据</h4>
       </template>
       <template #description>
         从哔哩哔哩获取 JSON 数据。(由于跨域限制无法自动获取信息，请手动在下方填入 JSON 数据)
@@ -98,7 +98,7 @@ sitemap: false
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/image_arrow_forward_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 class="unset">图片代理</h4>
+        <h4 id="image-proxy" class="unset">图片代理</h4>
       </template>
       <template #description>
         设置封面图片的代理。
@@ -110,7 +110,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/tag_multiple_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 class="unset">信息类型</h4>
+        <h4 id="info-types" class="unset">信息类型</h4>
       </template>
       <template #description>
         设置卡片显示信息的类型。(views, danmakus, comments, favorites, coins, likes)
@@ -1078,10 +1078,10 @@ sitemap: false
   @import 'https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css';
 
   #vue-app {
-    font-family: "Segoe UI Variable", "Segoe UI", sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 400;
+    font-family: var(--body-font);
+    font-size: var(--type-ramp-base-font-size);
+    line-height: var(--type-ramp-base-line-height);
+    font-weight: var(--font-weight);
   }
 
   #vue-app * {
