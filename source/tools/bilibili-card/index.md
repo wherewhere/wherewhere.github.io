@@ -1082,6 +1082,7 @@ sitemap: false
     font-size: var(--type-ramp-base-font-size);
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
+    color: var(--neutral-foreground-rest);
   }
 
   #vue-app * {
@@ -1095,7 +1096,6 @@ sitemap: false
     flex-direction: column;
     align-items: start;
     justify-content: start;
-    gap: 10px;
     width: 100%;
   }
 
@@ -1104,7 +1104,6 @@ sitemap: false
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    gap: 10px;
     width: 100%;
   }
 

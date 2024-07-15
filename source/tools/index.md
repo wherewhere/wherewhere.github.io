@@ -38,36 +38,10 @@ sitemap: false
 
 {% raw %}
 <div id="vue-app">
-  <div class="stack-vertical" style="row-gap: 0.3rem;">
-    <settings-expander>
-      <template #icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/calendar_date_20_regular.svg"></svg-host>
-      </template>
-      <template #header>
-        <h4 id="timestamp" class="unset">时间戳转换</h4>
-      </template>
-      <template #description>
-        转换 Unix 时间戳与时间字符串。
-      </template>
-      <div class="setting-expander-content-grid">
-        <div class="stack-vertical">
-          <div class="stack-horizontal">
-            <fluent-number-field v-model="timeStamp" style="flex: 1;"></fluent-number-field>
-            <fluent-button @click="convertTimeStamp">转换时间戳</fluent-button>
-          </div>
-          <div class="stack-horizontal">
-            <fluent-text-field v-model="timeString" style="flex: 1;"></fluent-text-field>
-            <fluent-button @click="convertTimeString">转换时间</fluent-button>
-          </div>
-          <div class="stack-horizontal" style="justify-content: space-between;">
-            <fluent-button @click="setDateTimeNow">当前时间</fluent-button>
-            <value-change-host v-model="isMillisecond" value-name="current-checked">
-              <fluent-switch>时间戳是否为毫秒</fluent-switch>
-            </value-change-host>
-          </div>
-        </div>
-      </div>
-    </settings-expander>
+  <settings-group>
+    <template #header>
+      <h3 id="render" class="unset">渲染</h3>
+    </template>
     <settings-button @click="() => navigate('./markdown')">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/markdown_20_regular.svg"></svg-host>
@@ -98,6 +72,55 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
+  </settings-group>
+  <settings-group>
+    <template #header>
+      <h3 id="convert" class="unset">转换</h3>
+    </template>
+    <settings-expander>
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/calendar_date_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="timestamp" class="unset">时间戳转换</h4>
+      </template>
+      <template #description>
+        转换 Unix 时间戳与时间字符串。
+      </template>
+      <div class="setting-expander-content-grid">
+        <div class="stack-vertical" style="gap: 10px;">
+          <div class="stack-horizontal" style="gap: inherit;">
+            <fluent-number-field v-model="timeStamp" style="flex: 1;"></fluent-number-field>
+            <fluent-button @click="convertTimeStamp">转换时间戳</fluent-button>
+          </div>
+          <div class="stack-horizontal" style="gap: inherit;">
+            <fluent-text-field v-model="timeString" style="flex: 1;"></fluent-text-field>
+            <fluent-button @click="convertTimeString">转换时间</fluent-button>
+          </div>
+          <div class="stack-horizontal" style="justify-content: space-between; gap: inherit;">
+            <fluent-button @click="setDateTimeNow">当前时间</fluent-button>
+            <value-change-host v-model="isMillisecond" value-name="current-checked">
+              <fluent-switch>时间戳是否为毫秒</fluent-switch>
+            </value-change-host>
+          </div>
+        </div>
+      </div>
+    </settings-expander>
+    <settings-button @click="() => navigate('./encoding')">
+      <template #icon>
+        <svg-host
+          src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_sync_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="encoding" class="unset">编码&解码</h4>
+      </template>
+      <template #description>
+        编码与解码 HTML、XML、Base64、Unicode 文本。
+      </template>
+      <template #action-icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+      </template>
+    </settings-button>
     <settings-button @click="() => navigate('./base-x')">
       <template #icon>
         <svg-host
@@ -114,7 +137,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
-  </div>
+  </settings-group>
 </div>
 
 <template id="empty-slot-template">
@@ -151,7 +174,7 @@ sitemap: false
 <template id="settings-button-template">
   <div class="settings-button">
     <div class="content-grid">
-      <settings-presenter class="presenter">
+      <settings-presenter class="presenter" :expanded="expanded">
         <template #icon>
           <slot name="icon"></slot>
         </template>
@@ -191,6 +214,17 @@ sitemap: false
     </fluent-accordion-item>
   </fluent-accordion>
 </template>
+
+<template id="settings-group-template">
+  <div class="settings-group" v-show="showHeader || showContent">
+    <div class="header-presenter" v-show="showHeader">
+      <slot name="header"></slot>
+    </div>
+    <div class="items-presenter" v-show="showContent">
+      <slot></slot>
+    </div>
+  </div>
+</template>
 {% endraw %}
 
 <script type="module" data-pjax>
@@ -201,14 +235,14 @@ sitemap: false
       if (value instanceof Array) {
         value = value[0];
         if (typeof value === "object") {
-          if (typeof value.type === "object") {
-            return true;
-          }
-          else {
+          if (typeof value.type === "symbol") {
             value = value.children;
             if (value instanceof Array) {
               return value.length > 0;
             }
+          }
+          else {
+            return true;
           }
         }
       }
@@ -401,7 +435,31 @@ sitemap: false
       this.setShowSlots();
     }
   }).component("settings-expander", {
-    template: "#settings-expander-template"
+    template: "#settings-expander-template",
+    props: {
+      expanded: String
+    }
+  }).component("settings-group", {
+    template: "#settings-group-template",
+    data() {
+      return {
+        showHeader: false,
+        showContent: false,
+      };
+    },
+    methods: {
+      setShowSlots() {
+        const slots = this.$slots;
+        this.showHeader = checkSolt(slots.header);
+        this.showContent = checkSolt(slots.default);
+      }
+    },
+    created() {
+      this.setShowSlots();
+    },
+    beforeUpdate() {
+      this.setShowSlots();
+    }
   }).mount("#vue-app");
 </script>
 
@@ -411,6 +469,7 @@ sitemap: false
     font-size: var(--type-ramp-base-font-size);
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
+    color: var(--neutral-foreground-rest);
   }
 
   #vue-app * {
@@ -428,8 +487,6 @@ sitemap: false
     flex-direction: column;
     align-items: start;
     justify-content: start;
-    column-gap: 10px;
-    row-gap: 10px;
     width: 100%;
   }
 
@@ -438,8 +495,6 @@ sitemap: false
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    column-gap: 10px;
-    row-gap: 10px;
     width: 100%;
   }
 
@@ -577,5 +632,26 @@ sitemap: false
 
   .settings-expander div.setting-expander-content-grid {
     padding: var(--settings-expander-item-padding);
+  }
+
+  .settings-group {
+    width: 100%;
+  }
+
+  .settings-group * {
+    --body-strong-text-block-font-size: 14px;
+  }
+
+  .settings-group div.header-presenter {
+    margin: 1rem 0px 6px 1px;
+    font-size: var(--body-strong-text-block-font-size);
+    font-weight: bold;
+    color: var(--neutral-foreground-rest);
+  }
+
+  .settings-group div.items-presenter {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.3rem;
   }
 </style>

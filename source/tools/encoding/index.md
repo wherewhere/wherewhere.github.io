@@ -1,5 +1,5 @@
 ---
-title: Base X 编码
+title: 编码与解码
 sitemap: false
 ---
 <script type="module" data-pjax>
@@ -43,30 +43,15 @@ sitemap: false
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/number_symbol_square_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="base-type" class="unset">Base X 类型</h4>
+        <h4 id="encode-type" class="unset">编码类型</h4>
       </template>
       <template #description>
-        选择编码 Base 的类型。
+        选择编码的类型。
       </template>
       <fluent-select v-model="type" style="min-width: 160px;">
-        <fluent-option v-for="key in getBaseExList()" :value="key">{{ key }}</fluent-option>
+        <fluent-option v-for="key in types" :value="key">{{ key }}</fluent-option>
       </fluent-select>
     </settings-card>
-    <settings-expander v-show="showCharsets">
-      <template #icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/password_20_regular.svg"></svg-host>
-      </template>
-      <template #header>
-        <h4 id="base-charsets" class="unset">编码表</h4>
-      </template>
-      <template #description>
-        {{ type }} 的编码表。
-      </template>
-      <div class="setting-expander-content-grid">
-        <fluent-text-area :value="getBaseCharsets()" resize="vertical" style="width: 100%;"
-          readonly="true"></fluent-text-area>
-      </div>
-    </settings-expander>
     <div class="split-view">
       <input-label class="split-content" label="明文" style="flex: 1;">
         <template #action>
@@ -137,33 +122,12 @@ sitemap: false
     </settings-presenter>
   </div>
 </template>
-
-<template id="settings-expander-template">
-  <fluent-accordion class="settings-expander" style="width: 100%;">
-    <fluent-accordion-item class="expander" :expanded="expanded">
-      <div slot="heading">
-        <settings-presenter class="presenter">
-          <template #icon>
-            <slot name="icon"></slot>
-          </template>
-          <template #header>
-            <slot name="header"></slot>
-          </template>
-          <template #description>
-            <slot name="description"></slot>
-          </template>
-          <slot name="action-content"></slot>
-        </settings-presenter>
-      </div>
-      <slot></slot>
-    </fluent-accordion-item>
-  </fluent-accordion>
-</template>
 {% endraw %}
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
-  import { BaseEx } from "https://cdn.jsdelivr.net/npm/base-ex/+esm";
+  import * as entities from "https://cdn.jsdelivr.net/npm/entities/+esm";
+  import { Base64 } from "https://cdn.jsdelivr.net/npm/js-base64/+esm";
   function checkSolt(solt) {
     if (typeof solt === "function") {
       let value = solt();
@@ -187,41 +151,50 @@ sitemap: false
   createApp({
     data() {
       return {
-        type: "base64",
+        type: "HTML",
         encoded: null,
         decoded: null,
-        showCharsets: false,
-        baseEx: new BaseEx("str")
+        types: ["HTML", "XML", "URL", "Base64", "Unicode"]
       }
     },
     methods: {
-      getBaseExList() {
-        const keys = Object.keys(this.baseEx);
-        const index = keys.lastIndexOf("simpleBase");
-        if (index > -1) {
-          keys.splice(index, 1);
-        }
-        return keys;
-      },
-      getBaseCharsets() {
-        try {
-          const base = this.baseEx[this.type];
-          if (typeof base.charsets === "object") {
-            this.showCharsets = true;
-            return base.charsets[base.version].join('');
-          }
-        }
-        catch (ex) {
-          console.error(ex);
-        }
-        this.showCharsets = false;
-        return [];
-      },
       encode() {
-        this.encoded = this.baseEx[this.type].encode(this.decoded);
+        switch (this.type) {
+          case "HTML":
+            this.encoded = entities.encodeHTML(this.decoded);
+            break;
+          case "XML":
+            this.encoded = entities.encodeXML(this.decoded);
+            break;
+          case "URL":
+            this.encoded = encodeURIComponent(this.decoded);
+            break;
+          case "Base64":
+            this.encoded = Base64.encode(this.decoded);
+            break;
+          case "Unicode":
+            this.encoded = entities.escape(this.decoded);
+            break;
+        }
       },
       decode() {
-        this.decoded = this.baseEx[this.type].decode(this.encoded);
+        switch (this.type) {
+          case "HTML":
+            this.decoded = entities.decodeHTML(this.encoded);
+            break;
+          case "XML":
+            this.decoded = entities.decodeXML(this.encoded);
+            break;
+          case "URL":
+            this.decoded = decodeURIComponent(this.encoded);
+            break;
+          case "Base64":
+            this.decoded = Base64.decode(this.encoded);
+            break;
+          case "Unicode":
+            this.decoded = entities.unescape(this.encoded);
+            break;
+        }
       }
     }
   }).component("svg-host", {
@@ -290,11 +263,6 @@ sitemap: false
     }
   }).component("settings-card", {
     template: "#settings-card-template"
-  }).component("settings-expander", {
-    template: "#settings-expander-template",
-    props: {
-      expanded: String
-    }
   }).mount("#vue-app");
 </script>
 
@@ -460,18 +428,5 @@ sitemap: false
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  .settings-expander fluent-accordion-item.expander {
-    box-sizing: border-box;
-    box-shadow: var(--elevation-shadow-card-rest);
-  }
-
-  .settings-expander .presenter {
-    padding: var(--settings-expander-header-padding);
-  }
-
-  .settings-expander div.setting-expander-content-grid {
-    padding: var(--settings-expander-item-padding);
   }
 </style>
