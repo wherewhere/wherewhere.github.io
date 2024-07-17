@@ -139,7 +139,7 @@ sitemap: false
 </template>
 
 <template id="settings-expander-template">
-  <fluent-accordion class="settings-expander" style="width: 100%;">
+  <fluent-accordion class="settings-expander">
     <fluent-accordion-item class="expander" :expanded="expanded">
       <div slot="heading">
         <settings-presenter class="presenter">
@@ -318,9 +318,6 @@ sitemap: false
   #vue-app .stack-vertical {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    width: 100%;
   }
 
   #vue-app h6.unset,
@@ -338,7 +335,6 @@ sitemap: false
   }
 
   #vue-app div.split-view {
-    width: 100%;
     height: 100%;
     display: flex;
     gap: 0.3rem;

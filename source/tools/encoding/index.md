@@ -5,8 +5,6 @@ sitemap: false
 <script type="module" data-pjax>
   import {
     provideFluentDesignSystem,
-    fluentAccordion,
-    fluentAccordionItem,
     fluentButton,
     fluentOption,
     fluentSelect,
@@ -16,8 +14,6 @@ sitemap: false
   } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
   provideFluentDesignSystem()
     .register(
-      fluentAccordion(),
-      fluentAccordionItem(),
       fluentButton(),
       fluentOption(),
       fluentSelect(),
@@ -48,7 +44,7 @@ sitemap: false
       <template #description>
         选择编码的类型。
       </template>
-      <fluent-select v-model="type" style="min-width: 160px;">
+      <fluent-select v-model="type" style="min-width: 100px;">
         <fluent-option v-for="key in types" :value="key">{{ key }}</fluent-option>
       </fluent-select>
     </settings-card>
@@ -286,9 +282,6 @@ sitemap: false
   #vue-app .stack-vertical {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    width: 100%;
   }
 
   #vue-app h6.unset,
@@ -306,7 +299,6 @@ sitemap: false
   }
 
   #vue-app div.split-view {
-    width: 100%;
     height: 100%;
     display: flex;
     gap: 0.3rem;

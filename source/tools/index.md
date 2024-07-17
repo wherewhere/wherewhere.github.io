@@ -99,7 +99,7 @@ sitemap: false
           </div>
           <div class="stack-horizontal" style="justify-content: space-between; gap: inherit;">
             <fluent-button @click="setDateTimeNow">当前时间</fluent-button>
-            <value-change-host v-model="isMillisecond" value-name="current-checked">
+            <value-change-host v-model="isMillisecond" value-name="checked" event-name="change">
               <fluent-switch>时间戳是否为毫秒</fluent-switch>
             </value-change-host>
           </div>
@@ -108,8 +108,7 @@ sitemap: false
     </settings-expander>
     <settings-button @click="() => navigate('./encoding')">
       <template #icon>
-        <svg-host
-          src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_sync_20_regular.svg"></svg-host>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_sync_20_regular.svg"></svg-host>
       </template>
       <template #header>
         <h4 id="encoding" class="unset">编码&解码</h4>
@@ -132,6 +131,26 @@ sitemap: false
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/UmamiAppearance/BaseExJS"
           target="_blank">BaseEx</fluent-anchor> 编码与解码 Base1、Base16、Base32、Base64 等文本。
+      </template>
+      <template #action-icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+      </template>
+    </settings-button>
+  </settings-group>
+  <settings-group>
+    <template #header>
+      <h3 id="convert" class="unset">生成</h3>
+    </template>
+    <settings-button @click="() => navigate('./crypto')">
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/shield_lock_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="base-x" class="unset">加密</h4>
+      </template>
+      <template #description>
+        使用 <fluent-anchor appearance="hypertext" href="https://github.com/Daninet/hash-wasm/"
+          target="_blank">hash-wasm</fluent-anchor> 加密 MD5、Sha1、Sha2、Sha3、Bcrypt 等文本。
       </template>
       <template #action-icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
@@ -174,7 +193,7 @@ sitemap: false
 <template id="settings-button-template">
   <div class="settings-button">
     <div class="content-grid">
-      <settings-presenter class="presenter" :expanded="expanded">
+      <settings-presenter class="presenter">
         <template #icon>
           <slot name="icon"></slot>
         </template>
@@ -194,8 +213,8 @@ sitemap: false
 </template>
 
 <template id="settings-expander-template">
-  <fluent-accordion class="settings-expander" style="width: 100%;">
-    <fluent-accordion-item class="expander">
+  <fluent-accordion class="settings-expander">
+    <fluent-accordion-item class="expander" :expanded="expanded">
       <div slot="heading">
         <settings-presenter class="presenter">
           <template #icon>
@@ -252,7 +271,7 @@ sitemap: false
   createApp({
     data() {
       return {
-        isMillisecond: "false",
+        isMillisecond: false,
         timeStamp: Math.floor(Date.now() / 1000),
         timeString: new Date().toISOString()
       }
@@ -260,7 +279,7 @@ sitemap: false
     watch: {
       isMillisecond(newValue, oldValue) {
         if (newValue !== oldValue) {
-          this.timeStamp = Math.floor(oldValue === "true" ? this.timeStamp / 1000 : this.timeStamp * 1000);
+          this.timeStamp = Math.floor(oldValue ? this.timeStamp / 1000 : this.timeStamp * 1000);
         }
       }
     },
@@ -268,23 +287,17 @@ sitemap: false
       navigate(src) {
         location.href = src;
       },
-      getIsMillisecond() {
-        this.isMillisecond === "true";
-      },
       convertTimeStamp() {
-        const isMillisecond = this.getIsMillisecond();
-        const time = Math.floor(isMillisecond ? +this.timeStamp : this.timeStamp * 1000);
+        const time = Math.floor(this.isMillisecond ? +this.timeStamp : this.timeStamp * 1000);
         this.timeString = new Date(time).toISOString();
       },
       convertTimeString() {
-        const isMillisecond = this.getIsMillisecond();
         const time = new Date(this.timeString);
-        this.timeStamp = isMillisecond ? time.getTime() : Math.floor(time.getTime() / 1000);
+        this.timeStamp = this.isMillisecond ? time.getTime() : Math.floor(time.getTime() / 1000);
       },
       setDateTimeNow() {
         const time = new Date();
-        const isMillisecond = this.getIsMillisecond();
-        this.timeStamp = isMillisecond ? time.getTime() : Math.floor(time.getTime() / 1000);
+        this.timeStamp = this.isMillisecond ? time.getTime() : Math.floor(time.getTime() / 1000);
         this.timeString = new Date().toISOString();
       }
     }
@@ -292,17 +305,23 @@ sitemap: false
     template: "#empty-slot-template",
     props: {
       valueName: String,
-      modelValue: String
+      eventName: String,
+      modelValue: undefined
     },
     emits: ['update:modelValue'],
     watch: {
-      valueName(newValue, oldValue) {
+      eventName(newValue, oldValue) {
         if (newValue !== oldValue) {
-          if (typeof this.mutation !== "undefined") {
-            this.mutation.disconnect();
-            this.mutation = undefined;
-            if (newValue) {
-              this.registerObserver(newValue);
+          const $el = this.$el;
+          if ($el instanceof HTMLElement) {
+            const element = $el.children[0];
+            if (element instanceof HTMLElement) {
+              if (oldValue) {
+                element.removeEventListener(oldValue, this.onValueChanged);
+              }
+              if (newValue) {
+                element.addEventListener(newValue, this.onValueChanged);
+              }
             }
           }
         }
@@ -315,7 +334,7 @@ sitemap: false
             if ($el instanceof HTMLElement) {
               const element = $el.children[0];
               if (element instanceof HTMLElement) {
-                element.setAttribute(valueName, newValue);
+                element[valueName] = newValue;
               }
             }
           }
@@ -323,37 +342,33 @@ sitemap: false
       }
     },
     methods: {
-      registerObserver(valueName) {
+      registerEvent(valueName) {
         const $el = this.$el;
         if ($el instanceof HTMLElement) {
           const element = $el.children[0];
           if (element instanceof HTMLElement) {
-            element.setAttribute(valueName, this.modelValue);
-            this.mutation = new MutationObserver((mutationsList, observer) => {
-              for (const mutation of mutationsList) {
-                if (mutation.type === "attributes" && mutation.attributeName === valueName) {
-                  const target = mutation.target;
-                  if (target instanceof HTMLElement) {
-                    const value = target.getAttribute(valueName);
-                    this.$emit('update:modelValue', value);
-                  }
-                }
-              }
-            }).observe(
-              element,
-              {
-                attributes: true,
-                attributeFilter: [this.valueName]
-              }
-            );
+            const modelValue = this.modelValue;
+            if (modelValue === undefined) {
+              this.$emit('update:modelValue', element[valueName]);
+            }
+            else {
+              element[valueName] = modelValue;
+            }
+            element.addEventListener(this.eventName, this.onValueChanged);
           }
+        }
+      },
+      onValueChanged(event) {
+        const target = event.target;
+        if (target instanceof HTMLElement) {
+          this.$emit('update:modelValue', target[this.valueName]);
         }
       }
     },
     mounted() {
       const valueName = this.valueName;
-      if (valueName) {
-        this.registerObserver(valueName);
+      if (valueName && this.eventName) {
+        this.registerEvent(valueName);
       }
     }
   }).component("svg-host", {
@@ -478,24 +493,15 @@ sitemap: false
     --settings-expander-item-padding: 0px 36px 0px 50px;
   }
 
-  #vue-app div.root {
-    display: flex;
-  }
-
   #vue-app .stack-vertical {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    width: 100%;
   }
 
   #vue-app .stack-horizontal {
     display: flex;
     flex-direction: row;
-    justify-content: start;
     align-items: center;
-    width: 100%;
   }
 
   #vue-app h6.unset,
@@ -632,10 +638,6 @@ sitemap: false
 
   .settings-expander div.setting-expander-content-grid {
     padding: var(--settings-expander-item-padding);
-  }
-
-  .settings-group {
-    width: 100%;
   }
 
   .settings-group * {

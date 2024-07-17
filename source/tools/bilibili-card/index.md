@@ -122,7 +122,7 @@ sitemap: false
       <input-label label="预览">
         <template #action>
           <div class="stack-horizontal" style="width: unset; column-gap: 4px;">
-            <fluent-button v-show="example" @click="(e) => onCopyClicked(e, example)">复制代码</fluent-button>
+            <fluent-button v-show="example" @click="e => onCopyClicked(e, example)">复制代码</fluent-button>
             <fluent-button @click="() => createExample(json, imageProxy, id, type, infoTypes)">生成卡片</fluent-button>
           </div>
         </template>
@@ -187,7 +187,7 @@ sitemap: false
 </template>
 
 <template id="settings-expander-template">
-  <fluent-accordion class="settings-expander" style="width: 100%;">
+  <fluent-accordion class="settings-expander">
     <fluent-accordion-item class="expander" :expanded="expanded">
       <div slot="heading">
         <settings-presenter class="presenter">
@@ -261,8 +261,9 @@ sitemap: false
         else { return this.getApi(id, this.type); }
       },
       async getApiAsync() {
+        const id = this.id;
         if (!id) { return; }
-        json = await fetch(this.getApi(id, type))
+        json = await fetch(this.getApi(id, this.type))
           .then(x => x.text())
           .catch(ex => ex.toString());
       },
@@ -1094,17 +1095,12 @@ sitemap: false
   #vue-app .stack-vertical {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    width: 100%;
   }
 
   #vue-app .stack-horizontal {
     display: flex;
     flex-direction: row;
-    justify-content: start;
     align-items: center;
-    width: 100%;
   }
 
   #vue-app h6.unset,
