@@ -167,14 +167,12 @@ sitemap: false
       <template #description>
         其他加密选项。
       </template>
-      <div class="setting-expander-content-grid">
-        <div class="stack-vertical" style="gap: 3px; align-items: stretch;">
-          <fluent-number-field v-for="(_, key) in option.others" v-model="option.others[key]">{{ key
-            }}</fluent-number-field>
-        </div>
+      <div class="setting-expander-content-grid stack-vertical" style="gap: 3px; align-items: stretch;">
+        <fluent-number-field v-for="(_, key) in option.others" v-model="option.others[key]">{{ key
+          }}</fluent-number-field>
       </div>
     </settings-expander>
-    <settings-card v-if="verify.enabled">
+    <settings-card class="settings-nowarp" v-if="verify.enabled">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/autocorrect_20_regular.svg"></svg-host>
       </template>
@@ -210,7 +208,8 @@ sitemap: false
             </div>
           </div>
         </template>
-        <fluent-text-area v-model="encoded" resize="vertical" :readonly="!verify.enabled" style="width: 100%;"></fluent-text-area>
+        <fluent-text-area v-model="encoded" resize="vertical" :readonly="!verify.enabled"
+          style="width: 100%;"></fluent-text-area>
       </input-label>
     </div>
   </div>
@@ -853,6 +852,20 @@ sitemap: false
 
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
+    }
+
+    .settings-nowarp .settings-presenter {
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .settings-nowarp .settings-presenter div.header-panel {
+      margin: 0px 24px 0px 0px;
+    }
+
+    .settings-nowarp .settings-presenter div.content-presenter {
+      margin: unset;
     }
   }
 

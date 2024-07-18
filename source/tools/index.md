@@ -87,22 +87,20 @@ sitemap: false
       <template #description>
         转换 Unix 时间戳与时间字符串。
       </template>
-      <div class="setting-expander-content-grid">
-        <div class="stack-vertical" style="gap: 10px;">
-          <div class="stack-horizontal" style="gap: inherit;">
-            <fluent-number-field v-model="timeStamp" style="flex: 1;"></fluent-number-field>
-            <fluent-button @click="convertTimeStamp">转换时间戳</fluent-button>
-          </div>
-          <div class="stack-horizontal" style="gap: inherit;">
-            <fluent-text-field v-model="timeString" style="flex: 1;"></fluent-text-field>
-            <fluent-button @click="convertTimeString">转换时间</fluent-button>
-          </div>
-          <div class="stack-horizontal" style="justify-content: space-between; gap: inherit;">
-            <fluent-button @click="setDateTimeNow">当前时间</fluent-button>
-            <value-change-host v-model="isMillisecond" value-name="checked" event-name="change">
-              <fluent-switch>时间戳是否为毫秒</fluent-switch>
-            </value-change-host>
-          </div>
+      <div class="setting-expander-content-grid stack-vertical" style="gap: 10px;">
+        <div class="stack-horizontal" style="gap: inherit;">
+          <fluent-number-field v-model="timeStamp" style="flex: 1;"></fluent-number-field>
+          <fluent-button @click="convertTimeStamp">转换时间戳</fluent-button>
+        </div>
+        <div class="stack-horizontal" style="gap: inherit;">
+          <fluent-text-field v-model="timeString" style="flex: 1;"></fluent-text-field>
+          <fluent-button @click="convertTimeString">转换时间</fluent-button>
+        </div>
+        <div class="stack-horizontal" style="justify-content: space-between; gap: inherit;">
+          <fluent-button @click="setDateTimeNow">当前时间</fluent-button>
+          <value-change-host v-model="isMillisecond" value-name="checked" event-name="change">
+            <fluent-switch>时间戳是否为毫秒</fluent-switch>
+          </value-change-host>
         </div>
       </div>
     </settings-expander>
@@ -126,7 +124,7 @@ sitemap: false
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/number_symbol_square_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="base-x" class="unset">Base X</h4>
+        <h4 id="base-x" class="unset">Base X 编码</h4>
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/UmamiAppearance/BaseExJS"
@@ -146,11 +144,25 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/shield_lock_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="base-x" class="unset">加密</h4>
+        <h4 id="base-x" class="unset">Hash 加密</h4>
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/Daninet/hash-wasm/"
           target="_blank">hash-wasm</fluent-anchor> 加密 MD5、Sha1、Sha2、Sha3、Bcrypt 等文本。
+      </template>
+      <template #action-icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+      </template>
+    </settings-button>
+    <settings-button @click="() => navigate('./regex')">
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/code_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="base-x" class="unset">正则表达式</h4>
+      </template>
+      <template #description>
+        测试正则表达式。
       </template>
       <template #action-icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
