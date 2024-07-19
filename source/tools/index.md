@@ -134,10 +134,26 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
+    <settings-button @click="() => navigate('./encoding')">
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/database_switch_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="encoding" class="unset">JSON 与 YAML 转换</h4>
+      </template>
+      <template #description>
+        使用 <fluent-anchor appearance="hypertext" href="https://github.com/sidorares/json-bigint"
+          target="_blank">json-bigint</fluent-anchor> 和 <fluent-anchor appearance="hypertext"
+          href="https://github.com/nodeca/js-yaml/" target="_blank">js-yaml</fluent-anchor> 转化 JSON 与 YAML 数据。
+      </template>
+      <template #action-icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+      </template>
+    </settings-button>
   </settings-group>
   <settings-group>
     <template #header>
-      <h3 id="convert" class="unset">生成</h3>
+      <h3 id="generate" class="unset">生成</h3>
     </template>
     <settings-button @click="() => navigate('./crypto')">
       <template #icon>

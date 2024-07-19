@@ -264,7 +264,7 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
-  import * as yaml from "https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/+esm";
+  import * as yaml from "https://cdn.jsdelivr.net/npm/js-yaml/+esm";
   function checkSolt(solt) {
     if (typeof solt === "function") {
       let value = solt();

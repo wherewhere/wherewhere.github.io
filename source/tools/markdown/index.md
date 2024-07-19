@@ -25,6 +25,19 @@ sitemap: false
     })
   );
   import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor/+esm";
+  if (typeof matchMedia === "function") {
+    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    if (typeof scheme !== "undefined") {
+      scheme.addListener(e => {
+        monaco.editor.setTheme(e.matches ? "vs-dark" : "vs");
+        baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode)
+      });
+      if (scheme.matches) {
+        monaco.editor.setTheme("vs-dark");
+        baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
+      }
+    }
+  }
   const editor = monaco.editor.create(document.getElementById("container"), {
     value: "# Markdown Editor",
     language: "markdown",
@@ -40,21 +53,8 @@ sitemap: false
     },
     smoothScrolling: true
   });
-  if (typeof matchMedia === "function") {
-    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
-    if (typeof scheme !== "undefined") {
-      scheme.addListener(e => {
-        monaco.editor.setTheme(e.matches ? "vs-dark" : "vs");
-        baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode)
-      });
-      if (scheme.matches) {
-        monaco.editor.setTheme("vs-dark");
-        baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
-      }
-    }
-  }
   const perview = document.getElementById("perview");
-  editor.onDidChangeModelContent(event => perviewMarkdown());
+  editor.onDidChangeModelContent(_ => perviewMarkdown());
   perviewMarkdown();
   function perviewMarkdown() {
     const value = editor.getValue();
@@ -75,7 +75,7 @@ sitemap: false
     width: 100%;
     height: 100%;
     display: flex;
-    gap: 1rem;
+    gap: 0.3rem;
   }
 
   div.split-view #container {
@@ -84,9 +84,13 @@ sitemap: false
     min-height: 400px;
     box-sizing: border-box;
     background: var(--vscode-editor-background);
-    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
     border-radius: calc(var(--layer-corner-radius)* 1px);
     box-shadow: var(--elevation-shadow-card-rest);
+  }
+
+  div.split-view #container .monaco-editor,
+  div.split-view #container .monaco-editor .overflow-guard {
+    border-radius: inherit;
   }
 
   div.split-view .perview-card {
