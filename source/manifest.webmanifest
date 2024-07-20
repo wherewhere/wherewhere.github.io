@@ -76,10 +76,16 @@
       "label": "关于"
     },
     {
-      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/7c1b9911-d06c-4fe3-b638-2fd1be87a443",
+      "src": "https://github.com/user-attachments/assets/79a6add3-0fbd-476f-9eb6-496741268b22",
       "sizes": "1080x2160",
       "type": "image/png",
-      "label": "文章"
+      "label": "首页"
+    },
+    {
+      "src": "https://github.com/user-attachments/assets/cff15429-3299-491a-ae05-6eac6011f947",
+      "sizes": "1080x2160",
+      "type": "image/png",
+      "label": "关于"
     }
   ]
 }
