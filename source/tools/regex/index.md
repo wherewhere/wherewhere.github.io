@@ -11,6 +11,10 @@ sitemap: false
     fluentSwitch,
     fluentTextArea,
     fluentTextField,
+    accentBaseColor,
+    SwatchRGB,
+    fillColor,
+    neutralLayerFloating,
     baseLayerLuminance,
     StandardLuminance
   } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
@@ -23,6 +27,8 @@ sitemap: false
       fluentTextArea(),
       fluentTextField()
     );
+  accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
+  fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
     const scheme = window.matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
@@ -156,7 +162,8 @@ sitemap: false
     </settings-expander>
     <settings-card>
       <template #icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_repeat_all_20_regular.svg"></svg-host>
+        <svg-host
+          src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_repeat_all_20_regular.svg"></svg-host>
       </template>
       <template #header>
         <h4 id="regex-replace" class="unset">替换</h4>
@@ -496,8 +503,6 @@ sitemap: false
 
   #vue-app * {
     --settings-card-padding: 16px;
-    --settings-expander-header-padding: 4px 0px 4px 8px;
-    --settings-expander-item-padding: 0px 36px 0px 50px;
   }
 
   #vue-app .stack-vertical {
@@ -538,8 +543,8 @@ sitemap: false
     padding: var(--settings-card-padding);
     background: var(--neutral-fill-input-rest);
     color: var(--neutral-foreground-rest);
-    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
-    border-radius: calc(var(--layer-corner-radius)* 1px);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
+    border-radius: calc(var(--control-corner-radius) * 1px);
     box-shadow: var(--elevation-shadow-card-rest);
   }
 
@@ -602,11 +607,6 @@ sitemap: false
     display: grid;
   }
 
-  .settings-presenter a.text-button {
-    font-weight: bold;
-    text-decoration: unset;
-  }
-
   @media (max-width: 600px) {
     .settings-presenter {
       flex-flow: column;
@@ -648,8 +648,8 @@ sitemap: false
     box-sizing: border-box;
     background: var(--neutral-fill-input-rest);
     color: var(--neutral-foreground-rest);
-    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
-    border-radius: calc(var(--layer-corner-radius)* 1px);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
+    border-radius: calc(var(--control-corner-radius) * 1px);
     box-shadow: var(--elevation-shadow-card-rest);
   }
 
@@ -664,12 +664,15 @@ sitemap: false
   }
 
   .settings-expander * {
+    --settings-expander-header-padding: 4px 0px 4px 8px;
+    --settings-expander-item-padding: 0px 36px 0px 50px;
     --settings-expander-item-border-thickness: 0px 1px 0px 0px;
   }
 
   .settings-expander fluent-accordion-item.expander {
     box-sizing: border-box;
     box-shadow: var(--elevation-shadow-card-rest);
+    border-radius: calc(var(--control-corner-radius) * 1px);
   }
 
   .settings-expander .presenter {

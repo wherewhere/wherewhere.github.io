@@ -12,6 +12,10 @@ sitemap: false
     fluentNumberField,
     fluentSwitch,
     fluentTextField,
+    accentBaseColor,
+    SwatchRGB,
+    fillColor,
+    neutralLayerFloating,
     baseLayerLuminance,
     StandardLuminance
   } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
@@ -25,6 +29,8 @@ sitemap: false
       fluentSwitch(),
       fluentTextField()
     );
+  accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
+  fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
     const scheme = window.matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
@@ -42,7 +48,7 @@ sitemap: false
     <template #header>
       <h3 id="render" class="unset">渲染</h3>
     </template>
-    <settings-button @click="() => navigate('./markdown')">
+    <settings-button href="markdown">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/markdown_20_regular.svg"></svg-host>
       </template>
@@ -57,7 +63,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
-    <settings-button @click="() => navigate('./bilibili-card')">
+    <settings-button href="bilibili-card">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/card_ui_20_regular.svg"></svg-host>
       </template>
@@ -104,7 +110,7 @@ sitemap: false
         </div>
       </div>
     </settings-expander>
-    <settings-button @click="() => navigate('./encoding')">
+    <settings-button href="encoding">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_sync_20_regular.svg"></svg-host>
       </template>
@@ -118,7 +124,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
-    <settings-button @click="() => navigate('./base-x')">
+    <settings-button href="base-x">
       <template #icon>
         <svg-host
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/number_symbol_square_20_regular.svg"></svg-host>
@@ -134,9 +140,10 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
-    <settings-button @click="() => navigate('./encoding')">
+    <settings-button href="json-yaml">
       <template #icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/database_switch_20_regular.svg"></svg-host>
+        <svg-host
+          src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/database_switch_20_regular.svg"></svg-host>
       </template>
       <template #header>
         <h4 id="encoding" class="unset">JSON 与 YAML 转换</h4>
@@ -155,7 +162,7 @@ sitemap: false
     <template #header>
       <h3 id="generate" class="unset">生成</h3>
     </template>
-    <settings-button @click="() => navigate('./crypto')">
+    <settings-button href="crypto">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/shield_lock_20_regular.svg"></svg-host>
       </template>
@@ -170,7 +177,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
-    <settings-button @click="() => navigate('./regex')">
+    <settings-button href="regex">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/code_20_regular.svg"></svg-host>
       </template>
@@ -219,7 +226,7 @@ sitemap: false
 </template>
 
 <template id="settings-button-template">
-  <div class="settings-button">
+  <a class="settings-button">
     <div class="content-grid">
       <settings-presenter class="presenter">
         <template #icon>
@@ -237,7 +244,7 @@ sitemap: false
         <slot name="action-icon"></slot>
       </div>
     </div>
-  </div>
+  </a>
 </template>
 
 <template id="settings-expander-template">
@@ -515,12 +522,6 @@ sitemap: false
     color: var(--neutral-foreground-rest);
   }
 
-  #vue-app * {
-    --settings-button-padding: 16px 0 16px 16px;
-    --settings-expander-header-padding: 4px 0px 4px 8px;
-    --settings-expander-item-padding: 0px 36px 0px 50px;
-  }
-
   #vue-app .stack-vertical {
     display: flex;
     flex-direction: column;
@@ -621,17 +622,24 @@ sitemap: false
     box-sizing: border-box;
     background: var(--neutral-fill-input-rest);
     color: var(--neutral-foreground-rest);
-    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
-    border-radius: calc(var(--layer-corner-radius)* 1px);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
+    border-radius: calc(var(--control-corner-radius) * 1px);
     box-shadow: var(--elevation-shadow-card-rest);
+    text-decoration: inherit;
   }
 
   .settings-button:hover {
     background: var(--neutral-fill-input-hover);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-hover);
   }
 
   .settings-button:active {
     background: var(--neutral-fill-input-active);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-active);
+  }
+
+  .settings-button * {
+    --settings-button-padding: 16px 0 16px 16px;
   }
 
   .settings-button .presenter {
@@ -655,9 +663,15 @@ sitemap: false
     fill: currentColor;
   }
 
+  .settings-expander * {
+    --settings-expander-header-padding: 4px 0px 4px 8px;
+    --settings-expander-item-padding: 0px 36px 0px 50px;
+  }
+
   .settings-expander fluent-accordion-item.expander {
     box-sizing: border-box;
     box-shadow: var(--elevation-shadow-card-rest);
+    border-radius: calc(var(--control-corner-radius) * 1px);
   }
 
   .settings-expander .presenter {

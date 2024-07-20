@@ -2,25 +2,43 @@
 title: JSON 与 YAML 转换
 sitemap: false
 ---
+<script type="module" data-pjax>
+  import {
+    provideFluentDesignSystem,
+    accentBaseColor,
+    SwatchRGB,
+    fillColor,
+    neutralLayerFloating,
+    baseLayerLuminance,
+    StandardLuminance
+  } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  provideFluentDesignSystem().register();
+  accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
+  fillColor.withDefault(neutralLayerFloating);
+  if (typeof matchMedia === "function") {
+    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    if (typeof scheme !== "undefined") {
+      scheme.addListener(e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+      if (scheme.matches) {
+        baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
+      }
+    }
+  }
+</script>
+
 <div class="split-view">
   <div id="json"></div>
   <div id="yaml"></div>
 </div>
 
 <script type="module" data-pjax>
-  import { provideFluentDesignSystem, baseLayerLuminance, StandardLuminance } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
-  provideFluentDesignSystem().register();
   import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor/+esm";
   if (typeof matchMedia === "function") {
     const scheme = window.matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
-      scheme.addListener(e => {
-        monaco.editor.setTheme(e.matches ? "vs-dark" : "vs");
-        baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode)
-      });
+      scheme.addListener(e => monaco.editor.setTheme(e.matches ? "vs-dark" : "vs"));
       if (scheme.matches) {
         monaco.editor.setTheme("vs-dark");
-        baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
       }
     }
   }
@@ -103,7 +121,7 @@ sitemap: false
     min-height: 400px;
     box-sizing: border-box;
     background: var(--vscode-editor-background);
-    border-radius: calc(var(--layer-corner-radius)* 1px);
+    border-radius: calc(var(--control-corner-radius) * 1px);
     box-shadow: var(--elevation-shadow-card-rest);
   }
 

@@ -2,6 +2,30 @@
 title: Markdown 预览
 sitemap: false
 ---
+<script type="module" data-pjax>
+  import {
+    provideFluentDesignSystem,
+    accentBaseColor,
+    SwatchRGB,
+    fillColor,
+    neutralLayerFloating,
+    baseLayerLuminance,
+    StandardLuminance
+  } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  provideFluentDesignSystem().register();
+  accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
+  fillColor.withDefault(neutralLayerFloating);
+  if (typeof matchMedia === "function") {
+    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    if (typeof scheme !== "undefined") {
+      scheme.addListener(e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+      if (scheme.matches) {
+        baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
+      }
+    }
+  }
+</script>
+
 <div class="split-view">
   <div id="container"></div>
   <div class="perview-card markdown-body monaco-component">
@@ -10,8 +34,6 @@ sitemap: false
 </div>
 
 <script type="module" data-pjax>
-  import { provideFluentDesignSystem, baseLayerLuminance, StandardLuminance } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
-  provideFluentDesignSystem().register();
   import { Marked } from "https://cdn.jsdelivr.net/npm/marked/+esm";
   import { markedHighlight } from "https://cdn.jsdelivr.net/npm/marked-highlight/+esm";
   import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
@@ -28,13 +50,9 @@ sitemap: false
   if (typeof matchMedia === "function") {
     const scheme = window.matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
-      scheme.addListener(e => {
-        monaco.editor.setTheme(e.matches ? "vs-dark" : "vs");
-        baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode)
-      });
+      scheme.addListener(e => monaco.editor.setTheme(e.matches ? "vs-dark" : "vs"));
       if (scheme.matches) {
         monaco.editor.setTheme("vs-dark");
-        baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
       }
     }
   }
@@ -84,7 +102,7 @@ sitemap: false
     min-height: 400px;
     box-sizing: border-box;
     background: var(--vscode-editor-background);
-    border-radius: calc(var(--layer-corner-radius)* 1px);
+    border-radius: calc(var(--control-corner-radius) * 1px);
     box-shadow: var(--elevation-shadow-card-rest);
   }
 
@@ -101,8 +119,7 @@ sitemap: false
     width: var(--card-width, 100%);
     box-sizing: border-box;
     background: var(--vscode-editor-background);
-    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
-    border-radius: calc(var(--layer-corner-radius)* 1px);
+    border-radius: calc(var(--control-corner-radius) * 1px);
     box-shadow: var(--elevation-shadow-card-rest);
   }
 

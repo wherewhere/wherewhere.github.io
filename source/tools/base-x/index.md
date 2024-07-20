@@ -11,6 +11,10 @@ sitemap: false
     fluentOption,
     fluentSelect,
     fluentTextArea,
+    fillColor,
+    accentBaseColor,
+    SwatchRGB,
+    neutralLayerFloating,
     baseLayerLuminance,
     StandardLuminance
   } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
@@ -23,6 +27,7 @@ sitemap: false
       fluentSelect(),
       fluentTextArea()
     );
+  fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
     const scheme = window.matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
@@ -334,6 +339,14 @@ sitemap: false
     line-height: unset;
   }
 
+  #vue-app fluent-select::part(listbox) {
+    max-height: 250px;
+  }
+
+  #vue-app fluent-select .listbox {
+    max-height: 250px;
+  }
+
   #vue-app div.split-view {
     height: 100%;
     display: flex;
@@ -347,8 +360,8 @@ sitemap: false
     padding: var(--settings-card-padding);
     background: var(--neutral-fill-input-rest);
     color: var(--neutral-foreground-rest);
-    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
-    border-radius: calc(var(--layer-corner-radius)* 1px);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
+    border-radius: calc(var(--control-corner-radius) * 1px);
     box-shadow: var(--elevation-shadow-card-rest);
   }
 
@@ -443,8 +456,8 @@ sitemap: false
     box-sizing: border-box;
     background: var(--neutral-fill-input-rest);
     color: var(--neutral-foreground-rest);
-    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
-    border-radius: calc(var(--layer-corner-radius)* 1px);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
+    border-radius: calc(var(--control-corner-radius) * 1px);
     box-shadow: var(--elevation-shadow-card-rest);
   }
 

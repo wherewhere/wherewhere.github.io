@@ -14,6 +14,10 @@ sitemap: false
     fluentSwitch,
     fluentTextArea,
     fluentTextField,
+    fillColor,
+    accentBaseColor,
+    SwatchRGB,
+    neutralLayerFloating,
     baseLayerLuminance,
     StandardLuminance
   } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
@@ -29,6 +33,8 @@ sitemap: false
       fluentTextArea(),
       fluentTextField()
     );
+  accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
+  fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
     const scheme = window.matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
@@ -196,7 +202,7 @@ sitemap: false
       </input-label>
       <input-label class="split-content" label="密文" style="flex: 1;">
         <template #action>
-          <div style="min-height: calc((var(--base-height-multiplier) + var(--density))* var(--design-unit)* 1px);">
+          <div style="min-height: calc((var(--base-height-multiplier) + var(--density)) * var(--design-unit) * 1px);">
             <div class="stack-horizontal" v-if="verify.enabled" style="width: unset; column-gap: 4px;">
               <svg-host v-if="verify.verified === false"
                 src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/dismiss_circle_20_filled.svg"
@@ -724,8 +730,6 @@ sitemap: false
     --success: #0E700E;
     --error: #BC2F32;
     --settings-card-padding: 16px;
-    --settings-expander-header-padding: 4px 0px 4px 8px;
-    --settings-expander-item-padding: 0px 36px 0px 50px;
   }
 
   #vue-app .stack-vertical {
@@ -753,6 +757,14 @@ sitemap: false
     line-height: unset;
   }
 
+  #vue-app fluent-select::part(listbox) {
+    max-height: 250px;
+  }
+
+  #vue-app fluent-select .listbox {
+    max-height: 250px;
+  }
+
   #vue-app div.split-view {
     height: 100%;
     display: flex;
@@ -766,8 +778,8 @@ sitemap: false
     padding: var(--settings-card-padding);
     background: var(--neutral-fill-input-rest);
     color: var(--neutral-foreground-rest);
-    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
-    border-radius: calc(var(--layer-corner-radius)* 1px);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
+    border-radius: calc(var(--control-corner-radius) * 1px);
     box-shadow: var(--elevation-shadow-card-rest);
   }
 
@@ -830,11 +842,6 @@ sitemap: false
     display: grid;
   }
 
-  .settings-presenter a.text-button {
-    font-weight: bold;
-    text-decoration: unset;
-  }
-
   @media (max-width: 600px) {
     .settings-presenter {
       flex-flow: column;
@@ -876,8 +883,8 @@ sitemap: false
     box-sizing: border-box;
     background: var(--neutral-fill-input-rest);
     color: var(--neutral-foreground-rest);
-    border: calc(var(--stroke-width)* 1px) solid var(--neutral-stroke-layer-rest);
-    border-radius: calc(var(--layer-corner-radius)* 1px);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-rest);
+    border-radius: calc(var(--control-corner-radius) * 1px);
     box-shadow: var(--elevation-shadow-card-rest);
   }
 
@@ -891,9 +898,15 @@ sitemap: false
     align-items: center;
   }
 
+  .settings-expander * {
+    --settings-expander-header-padding: 4px 0px 4px 8px;
+    --settings-expander-item-padding: 0px 36px 0px 50px;
+  }
+
   .settings-expander fluent-accordion-item.expander {
     box-sizing: border-box;
     box-shadow: var(--elevation-shadow-card-rest);
+    border-radius: calc(var(--control-corner-radius) * 1px);
   }
 
   .settings-expander .presenter {
