@@ -2,30 +2,6 @@
 title: Markdown 预览
 sitemap: false
 ---
-<script type="module" data-pjax>
-  import {
-    provideFluentDesignSystem,
-    accentBaseColor,
-    SwatchRGB,
-    fillColor,
-    neutralLayerFloating,
-    baseLayerLuminance,
-    StandardLuminance
-  } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
-  provideFluentDesignSystem().register();
-  accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
-  fillColor.withDefault(neutralLayerFloating);
-  if (typeof matchMedia === "function") {
-    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
-    if (typeof scheme !== "undefined") {
-      scheme.addListener(e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
-      if (scheme.matches) {
-        baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
-      }
-    }
-  }
-</script>
-
 <div class="split-view">
   <div id="container"></div>
   <div class="perview-card markdown-body monaco-component">
@@ -96,10 +72,17 @@ sitemap: false
     gap: 0.3rem;
   }
 
+  div.split-view * {
+    --base-height-multiplier: 8;
+    --design-unit: 4;
+    --control-corner-radius: 4;
+    --elevation-shadow-card-rest: 0 0 2px rgba(0, 0, 0, 0.12), 0 calc(4 * 0.5px) calc((4 * 1px)) rgba(0, 0, 0, 0.14);
+  }
+
   div.split-view #container {
     display: block;
     width: 50%;
-    min-height: 400px;
+    min-height: calc(var(--base-height-multiplier) * 50px);
     box-sizing: border-box;
     background: var(--vscode-editor-background);
     border-radius: calc(var(--control-corner-radius) * 1px);
@@ -113,7 +96,7 @@ sitemap: false
 
   div.split-view .perview-card {
     flex: 1;
-    padding: 16px;
+    padding: calc(var(--design-unit) * 4px);
     display: block;
     height: auto;
     width: var(--card-width, 100%);

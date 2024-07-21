@@ -93,7 +93,8 @@ sitemap: false
       <template #description>
         转换 Unix 时间戳与时间字符串。
       </template>
-      <div class="setting-expander-content-grid stack-vertical" style="gap: 10px;">
+      <div class="setting-expander-content-grid stack-vertical"
+        style="gap: calc(var(--base-horizontal-spacing-multiplier) * 3px);">
         <div class="stack-horizontal" style="gap: inherit;">
           <fluent-number-field v-model="timeStamp" style="flex: 1;"></fluent-number-field>
           <fluent-button @click="convertTimeStamp">转换时间戳</fluent-button>
@@ -207,19 +208,19 @@ sitemap: false
 <template id="settings-presenter-template">
   <div class="settings-presenter">
     <div class="header-root">
-      <div class="icon-holder" v-show="showIcon">
+      <div class="icon-holder" v-check-solt="getSlot('icon')">
         <slot name="icon"></slot>
       </div>
-      <div class="header-panel" v-show="showHeader && showDescription">
-        <span v-show="showHeader">
+      <div class="header-panel">
+        <span v-check-solt="getSlot('header')">
           <slot name="header"></slot>
         </span>
-        <span class="description" v-show="showDescription">
+        <span class="description" v-check-solt="getSlot('description')">
           <slot name="description"></slot>
         </span>
       </div>
     </div>
-    <div class="content-presenter" v-show="showContent">
+    <div class="content-presenter" v-check-solt="getSlot('default')">
       <slot></slot>
     </div>
   </div>
@@ -240,7 +241,7 @@ sitemap: false
         </template>
         <slot></slot>
       </settings-presenter>
-      <div class="action-icon-holder" v-show="showActionIcon">
+      <div class="action-icon-holder" v-check-solt="getSlot('action-icon')">
         <slot name="action-icon"></slot>
       </div>
     </div>
@@ -270,11 +271,11 @@ sitemap: false
 </template>
 
 <template id="settings-group-template">
-  <div class="settings-group" v-show="showHeader || showContent">
-    <div class="header-presenter" v-show="showHeader">
+  <div class="settings-group">
+    <div class="header-presenter" v-check-solt="getSlot('header')">
       <slot name="header"></slot>
     </div>
-    <div class="items-presenter" v-show="showContent">
+    <div class="items-presenter" v-check-solt="getSlot('default')">
       <slot></slot>
     </div>
   </div>
@@ -283,26 +284,6 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
-  function checkSolt(solt) {
-    if (typeof solt === "function") {
-      let value = solt();
-      if (value instanceof Array) {
-        value = value[0];
-        if (typeof value === "object") {
-          if (typeof value.type === "symbol") {
-            value = value.children;
-            if (value instanceof Array) {
-              return value.length > 0;
-            }
-          }
-          else {
-            return true;
-          }
-        }
-      }
-    }
-    return false;
-  }
   createApp({
     data() {
       return {
@@ -336,7 +317,45 @@ sitemap: false
         this.timeString = new Date().toISOString();
       }
     }
-  }).component("value-change-host", {
+  }).directive("check-solt",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const solt = binding.value;
+        if (solt !== binding.oldValue) {
+          function setDisplay(value) {
+            if (value) {
+              if (element.style.display === "none") {
+                element.style.display = '';
+              }
+            }
+            else {
+              element.style.display = "none";
+            }
+          }
+          if (typeof solt === "function") {
+            let value = solt();
+            if (value instanceof Array) {
+              value = value[0];
+              if (typeof value === "object") {
+                if (typeof value.type === "symbol") {
+                  value = value.children;
+                  if (value instanceof Array) {
+                    setDisplay(value.length > 0);
+                    return;
+                  }
+                }
+                else {
+                  setDisplay(true);
+                  return;
+                }
+              }
+            }
+          }
+          setDisplay(false);
+        }
+      }
+    }
+  ).component("value-change-host", {
     template: "#empty-slot-template",
     props: {
       valueName: String,
@@ -442,47 +461,17 @@ sitemap: false
     }
   }).component("settings-presenter", {
     template: "#settings-presenter-template",
-    data() {
-      return {
-        showIcon: false,
-        showHeader: false,
-        showDescription: false,
-        showContent: false,
-      };
-    },
     methods: {
-      setShowSlots() {
-        const slots = this.$slots;
-        this.showIcon = checkSolt(slots.icon);
-        this.showHeader = checkSolt(slots.header);
-        this.showDescription = checkSolt(slots.description);
-        this.showContent = checkSolt(slots.default);
+      getSlot(name) {
+        return this.$slots[name];
       }
-    },
-    created() {
-      this.setShowSlots();
-    },
-    beforeUpdate() {
-      this.setShowSlots();
     }
   }).component("settings-button", {
     template: "#settings-button-template",
-    data() {
-      return {
-        showActionIcon: false
-      };
-    },
     methods: {
-      setShowSlots() {
-        const slots = this.$slots;
-        this.showActionIcon = checkSolt(slots["action-icon"]);
+      getSlot(name) {
+        return this.$slots[name];
       }
-    },
-    created() {
-      this.setShowSlots();
-    },
-    beforeUpdate() {
-      this.setShowSlots();
     }
   }).component("settings-expander", {
     template: "#settings-expander-template",
@@ -491,24 +480,10 @@ sitemap: false
     }
   }).component("settings-group", {
     template: "#settings-group-template",
-    data() {
-      return {
-        showHeader: false,
-        showContent: false,
-      };
-    },
     methods: {
-      setShowSlots() {
-        const slots = this.$slots;
-        this.showHeader = checkSolt(slots.header);
-        this.showContent = checkSolt(slots.default);
+      getSlot(name) {
+        return this.$slots[name];
       }
-    },
-    created() {
-      this.setShowSlots();
-    },
-    beforeUpdate() {
-      this.setShowSlots();
     }
   }).mount("#vue-app");
 </script>
@@ -554,11 +529,10 @@ sitemap: false
   }
 
   .settings-presenter * {
-    --settings-card-description-font-size: 12px;
-    --settings-card-header-icon-max-size: 20px;
-    --settings-card-content-min-width: 240px;
-    --settings-card-header-icon-margin: 0px 20px 0px 2px;
-    --settings-card-vertical-header-content-spacing: 8px 0px 0px 0px;
+    --settings-card-description-font-size: var(--type-ramp-minus-1-font-size);
+    --settings-card-header-icon-max-size: var(--type-ramp-base-line-height);
+    --settings-card-header-icon-margin: 0 calc((var(--base-horizontal-spacing-multiplier) * 6 + var(--design-unit) * 0.5) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 6 - var(--design-unit) * 4) * 1px);
+    --settings-card-vertical-header-content-spacing: calc(var(--design-unit) * 2px) 0 0 0;
   }
 
   .settings-presenter div.header-root {
@@ -577,7 +551,7 @@ sitemap: false
   .settings-presenter div.header-panel {
     display: flex;
     flex-direction: column;
-    margin: 0px 24px 0px 0px;
+    margin: 0 calc(var(--design-unit) * 6px) 0 0;
   }
 
   .settings-presenter span.description {
@@ -601,10 +575,6 @@ sitemap: false
       align-items: unset;
     }
 
-    .settings-presenter * {
-      --settings-card-content-min-width: auto;
-    }
-
     .settings-presenter div.header-panel {
       margin: unset;
     }
@@ -617,8 +587,6 @@ sitemap: false
   .settings-button {
     cursor: pointer;
     display: block;
-    height: var(--card-height, 100%);
-    width: var(--card-width, 100%);
     box-sizing: border-box;
     background: var(--neutral-fill-input-rest);
     color: var(--neutral-foreground-rest);
@@ -631,15 +599,17 @@ sitemap: false
   .settings-button:hover {
     background: var(--neutral-fill-input-hover);
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-hover);
+    box-shadow: var(--elevation-shadow-card-hover);
   }
 
   .settings-button:active {
     background: var(--neutral-fill-input-active);
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-active);
+    box-shadow: var(--elevation-shadow-card-pressed);
   }
 
   .settings-button * {
-    --settings-button-padding: 16px 0 16px 16px;
+    --settings-button-padding: calc(var(--design-unit) * 4px) 0 calc(var(--design-unit) * 4px) calc(var(--design-unit) * 4px);
   }
 
   .settings-button .presenter {
@@ -654,24 +624,36 @@ sitemap: false
   }
 
   .settings-button div.action-icon-holder {
-    width: 32px;
+    width: calc((var(--base-height-multiplier) + var(--density)) * var(--design-unit) * 1px);
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 8px;
+    margin: 0 calc(var(--design-unit) * 2px);
     fill: currentColor;
   }
 
   .settings-expander * {
-    --settings-expander-header-padding: 4px 0px 4px 8px;
-    --settings-expander-item-padding: 0px 36px 0px 50px;
+    --settings-expander-header-padding: calc(var(--design-unit) * 1px) 0 calc(var(--design-unit) * 1px) calc(var(--design-unit) * 2px);
+    --settings-expander-item-padding: 0 calc((var(--base-height-multiplier) + 1 + var(--density)) * var(--design-unit) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 12 - var(--design-unit) * 1.5) * 1px + var(--type-ramp-base-line-height));
   }
 
   .settings-expander fluent-accordion-item.expander {
     box-sizing: border-box;
     box-shadow: var(--elevation-shadow-card-rest);
     border-radius: calc(var(--control-corner-radius) * 1px);
+  }
+
+  .settings-expander fluent-accordion-item.expander:hover {
+    background: var(--neutral-fill-input-hover);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-hover);
+    box-shadow: var(--elevation-shadow-card-hover);
+  }
+
+  .settings-expander fluent-accordion-item.expander:active {
+    background: var(--neutral-fill-input-active);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-active);
+    box-shadow: var(--elevation-shadow-card-pressed);
   }
 
   .settings-expander .presenter {
@@ -683,11 +665,11 @@ sitemap: false
   }
 
   .settings-group * {
-    --body-strong-text-block-font-size: 14px;
+    --body-strong-text-block-font-size: var(--type-ramp-base-font-size);
   }
 
   .settings-group div.header-presenter {
-    margin: 1rem 0px 6px 1px;
+    margin: 1rem 0 calc(var(--base-horizontal-spacing-multiplier) * 2px) calc(var(--stroke-width) * 1px);
     font-size: var(--body-strong-text-block-font-size);
     font-weight: bold;
     color: var(--neutral-foreground-rest);

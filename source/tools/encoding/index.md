@@ -50,7 +50,7 @@ sitemap: false
       <template #description>
         选择编码的类型。
       </template>
-      <fluent-select v-model="type" style="min-width: 100px;">
+      <fluent-select v-model="type" style="min-width: calc(var(--base-height-multiplier) * 12.5px);">
         <fluent-option v-for="key in types" :value="key">{{ key }}</fluent-option>
       </fluent-select>
     </settings-card>
@@ -90,19 +90,19 @@ sitemap: false
 <template id="settings-presenter-template">
   <div class="settings-presenter">
     <div class="header-root">
-      <div class="icon-holder" v-show="showIcon">
+      <div class="icon-holder" v-check-solt="getSlot('icon')">
         <slot name="icon"></slot>
       </div>
-      <div class="header-panel" v-show="showHeader && showDescription">
-        <span v-show="showHeader">
+      <div class="header-panel">
+        <span v-check-solt="getSlot('header')">
           <slot name="header"></slot>
         </span>
-        <span class="description" v-show="showDescription">
+        <span class="description" v-check-solt="getSlot('description')">
           <slot name="description"></slot>
         </span>
       </div>
     </div>
-    <div class="content-presenter" v-show="showContent">
+    <div class="content-presenter" v-check-solt="getSlot('default')">
       <slot></slot>
     </div>
   </div>
@@ -130,26 +130,6 @@ sitemap: false
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   import * as entities from "https://cdn.jsdelivr.net/npm/entities/+esm";
   import { Base64 } from "https://cdn.jsdelivr.net/npm/js-base64/+esm";
-  function checkSolt(solt) {
-    if (typeof solt === "function") {
-      let value = solt();
-      if (value instanceof Array) {
-        value = value[0];
-        if (typeof value === "object") {
-          if (typeof value.type === "object") {
-            return true;
-          }
-          else {
-            value = value.children;
-            if (value instanceof Array) {
-              return value.length > 0;
-            }
-          }
-        }
-      }
-    }
-    return false;
-  }
   createApp({
     data() {
       return {
@@ -240,28 +220,10 @@ sitemap: false
     }
   }).component("settings-presenter", {
     template: "#settings-presenter-template",
-    data() {
-      return {
-        showIcon: false,
-        showHeader: false,
-        showDescription: false,
-        showContent: false,
-      };
-    },
     methods: {
-      setShowSlots() {
-        const slots = this.$slots;
-        this.showIcon = checkSolt(slots.icon);
-        this.showHeader = checkSolt(slots.header);
-        this.showDescription = checkSolt(slots.description);
-        this.showContent = checkSolt(slots.default);
+      getSlot(name) {
+        return this.$slots[name];
       }
-    },
-    created() {
-      this.setShowSlots();
-    },
-    beforeUpdate() {
-      this.setShowSlots();
     }
   }).component("settings-card", {
     template: "#settings-card-template"
@@ -280,7 +242,7 @@ sitemap: false
   }
 
   #vue-app * {
-    --settings-card-padding: 16px;
+    --settings-card-padding: calc(var(--design-unit) * 4px);
   }
 
   #vue-app .stack-vertical {
@@ -303,11 +265,11 @@ sitemap: false
   }
 
   #vue-app fluent-select::part(listbox) {
-    max-height: 250px;
+    max-height: calc(var(--base-height-multiplier) * 30px);
   }
 
   #vue-app fluent-select .listbox {
-    max-height: 250px;
+    max-height: calc(var(--base-height-multiplier) * 30px);
   }
 
   #vue-app div.split-view {
@@ -352,11 +314,10 @@ sitemap: false
   }
 
   .settings-presenter * {
-    --settings-card-description-font-size: 12px;
-    --settings-card-header-icon-max-size: 20px;
-    --settings-card-content-min-width: 240px;
-    --settings-card-header-icon-margin: 0px 20px 0px 2px;
-    --settings-card-vertical-header-content-spacing: 8px 0px 0px 0px;
+    --settings-card-description-font-size: var(--type-ramp-minus-1-font-size);
+    --settings-card-header-icon-max-size: var(--type-ramp-base-line-height);
+    --settings-card-header-icon-margin: 0 calc((var(--base-horizontal-spacing-multiplier) * 6 + var(--design-unit) * 0.5) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 6 - var(--design-unit) * 4) * 1px);
+    --settings-card-vertical-header-content-spacing: calc(var(--design-unit) * 2px) 0 0 0;
   }
 
   .settings-presenter div.header-root {
@@ -375,7 +336,7 @@ sitemap: false
   .settings-presenter div.header-panel {
     display: flex;
     flex-direction: column;
-    margin: 0px 24px 0px 0px;
+    margin: 0 calc(var(--design-unit) * 6px) 0 0;
   }
 
   .settings-presenter span.description {
@@ -394,10 +355,6 @@ sitemap: false
       align-items: unset;
     }
 
-    .settings-presenter * {
-      --settings-card-content-min-width: auto;
-    }
-
     .settings-presenter div.header-panel {
       margin: unset;
     }
@@ -409,8 +366,6 @@ sitemap: false
 
   .settings-card {
     display: block;
-    height: var(--card-height, 100%);
-    width: var(--card-width, 100%);
     box-sizing: border-box;
     background: var(--neutral-fill-input-rest);
     color: var(--neutral-foreground-rest);

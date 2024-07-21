@@ -59,7 +59,7 @@ sitemap: false
       <template #description>
         选择卡片显示内容的类型。
       </template>
-      <fluent-select placeholder="video" v-model="type" style="min-width: 90px;">
+      <fluent-select placeholder="video" v-model="type" style="min-width: calc(var(--base-height-multiplier) * 11.25px);">
         <fluent-option v-for="(value, key) in types" :value="key">{{ value }}</fluent-option>
       </fluent-select>
     </settings-card>
@@ -89,7 +89,7 @@ sitemap: false
       <div class="setting-expander-content-grid">
         <input-label label="输入 JSON">
           <template #action>
-            <div class="stack-horizontal" style="width: unset; column-gap: 4px;">
+            <div class="stack-horizontal" style="width: unset; column-gap: calc(var(--design-unit) * 1px);">
               <fluent-button title="这个按钮并不能正常使用" :disabled="!id" @click="() => getApiAsync()">自动</fluent-button>
               <fluent-anchor :href="getApiUrl()" target="_blank">手动</fluent-anchor>
             </div>
@@ -124,10 +124,11 @@ sitemap: false
       <fluent-text-field v-model="infoTypes" :placeholder="getDefaultInfoTypes(type)"></fluent-text-field>
     </settings-card>
     <div class="settings-card"
-      :style="{ paddingTop: '16px', paddingRight: '16px', paddingBottom: example ? '16px' : 'calc(16px - var(--design-unit) * 1px)', paddingLeft: '16px' }">
+      :style="{ paddingTop: 'calc(var(--design-unit) * 4px)', paddingRight: 'calc(var(--design-unit) * 4px)', paddingBottom: example ? 'calc(var(--design-unit) * 4px)' : 'calc(var(--design-unit) * 3px)', paddingLeft: 'calc(var(--design-unit) * 4px)' }">
       <input-label label="预览">
         <template #action>
-          <div class="stack-horizontal" style="width: unset; column-gap: 4px;">
+          <div class="stack-horizontal"
+            style="width: unset; column-gap: calc(var(--design-unit) * 1px);">
             <fluent-button v-show="example" @click="e => onCopyClicked(e, example)">复制代码</fluent-button>
             <fluent-button @click="() => createExample(json, imageProxy, id, type, infoTypes)">生成卡片</fluent-button>
           </div>
@@ -157,19 +158,19 @@ sitemap: false
 <template id="settings-presenter-template">
   <div class="settings-presenter">
     <div class="header-root">
-      <div class="icon-holder" v-show="showIcon">
+      <div class="icon-holder" v-check-solt="getSlot('icon')">
         <slot name="icon"></slot>
       </div>
-      <div class="header-panel" v-show="showHeader && showDescription">
-        <span v-show="showHeader">
+      <div class="header-panel">
+        <span v-check-solt="getSlot('header')">
           <slot name="header"></slot>
         </span>
-        <span class="description" v-show="showDescription">
+        <span class="description" v-check-solt="getSlot('description')">
           <slot name="description"></slot>
         </span>
       </div>
     </div>
-    <div class="content-presenter" v-show="showContent">
+    <div class="content-presenter" v-check-solt="getSlot('default')">
       <slot></slot>
     </div>
   </div>
@@ -218,26 +219,6 @@ sitemap: false
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
-  function checkSolt(solt) {
-    if (typeof solt === "function") {
-      let value = solt();
-      if (value instanceof Array) {
-        value = value[0];
-        if (typeof value === "object") {
-          if (typeof value.type === "object") {
-            return true;
-          }
-          else {
-            value = value.children;
-            if (value instanceof Array) {
-              return value.length > 0;
-            }
-          }
-        }
-      }
-    }
-    return false;
-  }
   createApp({
     data() {
       return {
@@ -1007,7 +988,45 @@ sitemap: false
         return times.map(n => n.toString().padStart(2, 0)).join(':');
       }
     }
-  }).component("svg-host", {
+  }).directive("check-solt",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const solt = binding.value;
+        if (solt !== binding.oldValue) {
+          function setDisplay(value) {
+            if (value) {
+              if (element.style.display === "none") {
+                element.style.display = '';
+              }
+            }
+            else {
+              element.style.display = "none";
+            }
+          }
+          if (typeof solt === "function") {
+            let value = solt();
+            if (value instanceof Array) {
+              value = value[0];
+              if (typeof value === "object") {
+                if (typeof value.type === "symbol") {
+                  value = value.children;
+                  if (value instanceof Array) {
+                    setDisplay(value.length > 0);
+                    return;
+                  }
+                }
+                else {
+                  setDisplay(true);
+                  return;
+                }
+              }
+            }
+          }
+          setDisplay(false);
+        }
+      }
+    }
+  ).component("svg-host", {
     template: "#svg-host-template",
     props: {
       src: String
@@ -1048,28 +1067,10 @@ sitemap: false
     }
   }).component("settings-presenter", {
     template: "#settings-presenter-template",
-    data() {
-      return {
-        showIcon: false,
-        showHeader: false,
-        showDescription: false,
-        showContent: false,
-      };
-    },
     methods: {
-      setShowSlots() {
-        const slots = this.$slots;
-        this.showIcon = checkSolt(slots.icon);
-        this.showHeader = checkSolt(slots.header);
-        this.showDescription = checkSolt(slots.description);
-        this.showContent = checkSolt(slots.default);
+      getSlot(name) {
+        return this.$slots[name];
       }
-    },
-    created() {
-      this.setShowSlots();
-    },
-    beforeUpdate() {
-      this.setShowSlots();
     }
   }).component("settings-card", {
     template: "#settings-card-template"
@@ -1093,7 +1094,7 @@ sitemap: false
   }
 
   #vue-app * {
-    --settings-card-padding: 16px;
+    --settings-card-padding: calc(var(--design-unit) * 4px);
   }
 
   #vue-app .stack-vertical {
@@ -1122,11 +1123,11 @@ sitemap: false
   }
 
   #vue-app fluent-select::part(listbox) {
-    max-height: 250px;
+    max-height: calc(var(--base-height-multiplier) * 30px);
   }
 
   #vue-app fluent-select .listbox {
-    max-height: 250px;
+    max-height: calc(var(--base-height-multiplier) * 30px);
   }
 
   .input-label .fluent-input-label {
@@ -1147,11 +1148,10 @@ sitemap: false
   }
 
   .settings-presenter * {
-    --settings-card-description-font-size: 12px;
-    --settings-card-header-icon-max-size: 20px;
-    --settings-card-content-min-width: 240px;
-    --settings-card-header-icon-margin: 0px 20px 0px 2px;
-    --settings-card-vertical-header-content-spacing: 8px 0px 0px 0px;
+    --settings-card-description-font-size: var(--type-ramp-minus-1-font-size);
+    --settings-card-header-icon-max-size: var(--type-ramp-base-line-height);
+    --settings-card-header-icon-margin: 0 calc((var(--base-horizontal-spacing-multiplier) * 6 + var(--design-unit) * 0.5) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 6 - var(--design-unit) * 4) * 1px);
+    --settings-card-vertical-header-content-spacing: calc(var(--design-unit) * 2px) 0 0 0;
   }
 
   .settings-presenter div.header-root {
@@ -1170,7 +1170,7 @@ sitemap: false
   .settings-presenter div.header-panel {
     display: flex;
     flex-direction: column;
-    margin: 0px 24px 0px 0px;
+    margin: 0 calc(var(--design-unit) * 6px) 0 0;
   }
 
   .settings-presenter span.description {
@@ -1189,10 +1189,6 @@ sitemap: false
       align-items: unset;
     }
 
-    .settings-presenter * {
-      --settings-card-content-min-width: auto;
-    }
-
     .settings-presenter div.header-panel {
       margin: unset;
     }
@@ -1204,8 +1200,6 @@ sitemap: false
 
   .settings-card {
     display: block;
-    height: var(--card-height, 100%);
-    width: var(--card-width, 100%);
     box-sizing: border-box;
     background: var(--neutral-fill-input-rest);
     color: var(--neutral-foreground-rest);
@@ -1225,14 +1219,26 @@ sitemap: false
   }
 
   .settings-expander * {
-    --settings-expander-header-padding: 4px 0px 4px 8px;
-    --settings-expander-item-padding: 0px 36px 0px 50px;
+    --settings-expander-header-padding: calc(var(--design-unit) * 1px) 0 calc(var(--design-unit) * 1px) calc(var(--design-unit) * 2px);
+    --settings-expander-item-padding: 0 calc((var(--base-height-multiplier) + 1 + var(--density)) * var(--design-unit) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 12 - var(--design-unit) * 1.5) * 1px + var(--type-ramp-base-line-height));
   }
 
   .settings-expander fluent-accordion-item.expander {
     box-sizing: border-box;
     box-shadow: var(--elevation-shadow-card-rest);
     border-radius: calc(var(--control-corner-radius) * 1px);
+  }
+
+  .settings-expander fluent-accordion-item.expander:hover {
+    background: var(--neutral-fill-input-hover);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-hover);
+    box-shadow: var(--elevation-shadow-card-hover);
+  }
+
+  .settings-expander fluent-accordion-item.expander:active {
+    background: var(--neutral-fill-input-active);
+    border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-active);
+    box-shadow: var(--elevation-shadow-card-pressed);
   }
 
   .settings-expander .presenter {

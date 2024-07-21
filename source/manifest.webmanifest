@@ -14,62 +14,160 @@
   "orientation": "any",
   "background_color": "#ffffff",
   "theme_color": "#222222",
+  "shortcuts": [
+    {
+      "name": "首页",
+      "url": "./",
+      "icons": [
+        {
+          "src": "https://github.com/user-attachments/assets/82d0bd87-3548-4b3a-a05d-1a02ba2f7766",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        },
+        {
+          "src": "https://github.com/user-attachments/assets/cd6ae091-7016-4d32-994c-0e819f8abc9d",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "关于",
+      "url": "./about",
+      "icons": [
+        {
+          "src": "https://github.com/user-attachments/assets/4b3e59c7-83ba-4d19-8fef-37f58d121bf3",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        },
+        {
+          "src": "https://github.com/user-attachments/assets/19fa3741-4262-42e6-9d06-745c79fd324d",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "标签",
+      "url": "./tags",
+      "icons": [
+        {
+          "src": "https://github.com/user-attachments/assets/3beeceb2-8422-491d-bbbf-a1aa489f2a92",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        },
+        {
+          "src": "https://github.com/user-attachments/assets/5ef886eb-54b9-4d59-975c-13c051131772",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "分类",
+      "url": "./categories",
+      "icons": [
+        {
+          "src": "https://github.com/user-attachments/assets/eaf31404-f274-487a-802c-6855d444a90e",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        },
+        {
+          "src": "https://github.com/user-attachments/assets/3ceee83b-b775-4415-b9b2-2c3965b290d4",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "归档",
+      "url": "./archives",
+      "icons": [
+        {
+          "src": "https://github.com/user-attachments/assets/9e5b9545-72b5-4a1f-983e-d872cf80214b",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        },
+        {
+          "src": "https://github.com/user-attachments/assets/a7316c02-6cd7-45fc-b571-f68d630f813a",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "小工具",
+      "url": "./tools",
+      "icons": [
+        {
+          "src": "https://github.com/user-attachments/assets/4e7bafc5-d41d-4c98-ba07-312199e3af32",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        },
+        {
+          "src": "https://github.com/user-attachments/assets/88829d67-203d-4b76-bb34-be7c3099f54c",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
   "icons": [
     {
-      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/b66057ec-daeb-4dbe-8a26-04b510c7b2b3",
+      "src": "https://github.com/user-attachments/assets/b66057ec-daeb-4dbe-8a26-04b510c7b2b3",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "maskable"
     },
     {
-      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/2ecc7072-a4c4-40e4-9cd3-43299538b436",
+      "src": "https://github.com/user-attachments/assets/2ecc7072-a4c4-40e4-9cd3-43299538b436",
       "sizes": "144x144",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/8469e1db-78b3-4f5b-a962-767d2f73b7ad",
+      "src": "https://github.com/user-attachments/assets/8469e1db-78b3-4f5b-a962-767d2f73b7ad",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/fab8ce15-fcf0-4e4a-95d9-27b8b4906dc0",
+      "src": "https://github.com/user-attachments/assets/fab8ce15-fcf0-4e4a-95d9-27b8b4906dc0",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/cdb36b7f-318f-4c27-b302-17ace91cf67d",
+      "src": "https://github.com/user-attachments/assets/cdb36b7f-318f-4c27-b302-17ace91cf67d",
       "sizes": "any",
       "type": "image/svg+xml"
     },
     {
-      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/d1923d74-f33a-4858-83cf-dcea9aa95a2a",
+      "src": "https://github.com/user-attachments/assets/d1923d74-f33a-4858-83cf-dcea9aa95a2a",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/fc94a772-b4e6-4706-b3c1-d541f0c43ae2",
+      "src": "https://github.com/user-attachments/assets/fc94a772-b4e6-4706-b3c1-d541f0c43ae2",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/769b1b2c-6e57-4b26-864b-9dd5633a28e8",
+      "src": "https://github.com/user-attachments/assets/769b1b2c-6e57-4b26-864b-9dd5633a28e8",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
   "screenshots": [
     {
-      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/ecef883b-eecd-4c68-bf28-c6cb852c8ec2",
+      "src": "https://github.com/user-attachments/assets/ecef883b-eecd-4c68-bf28-c6cb852c8ec2",
       "sizes": "2736x1824",
       "type": "image/png",
       "form_factor": "wide",
       "label": "首页"
     },
     {
-      "src": "https://github.com/wherewhere/wherewhere.github.io/assets/27689196/18391ebc-2b3e-4439-aceb-79ab2f4cd45a",
+      "src": "https://github.com/user-attachments/assets/18391ebc-2b3e-4439-aceb-79ab2f4cd45a",
       "sizes": "2736x1824",
       "type": "image/png",
       "form_factor": "wide",
