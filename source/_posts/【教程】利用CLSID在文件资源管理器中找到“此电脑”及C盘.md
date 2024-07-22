@@ -17,15 +17,15 @@ categories: 玩机
 
 这个文件夹会默认隐藏
 
-![wp_ss_20181214_0007](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/cad7ac0e-1141-4e9a-8777-544b0f8c316a)
+![wp_ss_20181214_0007](https://github.com/user-attachments/assets/cad7ac0e-1141-4e9a-8777-544b0f8c316a)
 
 第二步，搜索这个文件夹，不能搜索就再随便新建个文件
 
-![wp_ss_20181214_0008](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/97d1bf19-b69f-435e-b3f8-25a5972bdb98)<!--more-->
+![wp_ss_20181214_0008](https://github.com/user-attachments/assets/97d1bf19-b69f-435e-b3f8-25a5972bdb98)<!--more-->
 
 第三步，点开它，完事，没权限，只能复制文件出来
 
-![wp_ss_20181214_0009](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/6b1316c8-d49a-4189-8d93-e1b47396dd87)
+![wp_ss_20181214_0009](https://github.com/user-attachments/assets/6b1316c8-d49a-4189-8d93-e1b47396dd87)
 
 原文 (智机的没找到)：[IT之家学院：Win10 Mobile使用CLSID开启“此电脑”及C盘教程](https://www.ithome.com/0/313/835.htm)
 

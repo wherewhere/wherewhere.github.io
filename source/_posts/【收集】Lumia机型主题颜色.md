@@ -6,9 +6,9 @@ date: 2018-02-17 20:44:00
 updated: 2018-02-21 21:16:00
 tags: [Lumia, Win10M, WP, 资源, 玩机]
 categories: 玩机
-banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/fbae4701-9e4b-4c2b-99ab-416d197ad4ee
+banner: https://github.com/user-attachments/assets/fbae4701-9e4b-4c2b-99ab-416d197ad4ee
 ---
-![wp_ss_20180217_0003 (2)](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/fbae4701-9e4b-4c2b-99ab-416d197ad4ee)
+![wp_ss_20180217_0003 (2)](https://github.com/user-attachments/assets/fbae4701-9e4b-4c2b-99ab-416d197ad4ee)
 
 最近瞎改主题结果改的改不回去了，好不容易才找了一个古老的截图把颜色找回来了，所以想发一贴收集收集大家的主题色，先写这么多。
 
@@ -18,7 +18,7 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/fbae4
 
    颜色代码（RBG）：<code style="color: #E3C800;">#E3C800</code>
 
-   ![wp_ss_20180217_0002](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/c586cabf-9e87-4622-8d4e-484753188ac7)
+   ![wp_ss_20180217_0002](https://github.com/user-attachments/assets/c586cabf-9e87-4622-8d4e-484753188ac7)
 
 2. 950/XL蓝
 
@@ -26,7 +26,7 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/fbae4
 
    颜色代码（RGB）：<code style="color: #3E65FF;">#3E65FF</code><!--more-->
 
-   ![wp_ss_20180217_0004](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/d2f6e345-9991-4268-adb9-8e73989f4880)
+   ![wp_ss_20180217_0004](https://github.com/user-attachments/assets/d2f6e345-9991-4268-adb9-8e73989f4880)
 
 > wherewhere 评论于 2018年2月17日
 >

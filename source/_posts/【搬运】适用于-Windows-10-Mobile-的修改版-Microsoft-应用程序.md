@@ -37,7 +37,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 
 #### 计算器
 
-![mod-apps-calculator](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/80b23959-a679-4e57-9bca-bc4cd69a2a19)
+![mod-apps-calculator](https://github.com/user-attachments/assets/80b23959-a679-4e57-9bca-bc4cd69a2a19)
 
 新版本有着不同于标准设计风格的流畅设计和内置自动同步更新的货币转换器功能。
 
@@ -47,7 +47,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 
 #### 相机
 
-![mod-apps-camera](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/195e4c11-249a-49bf-9a11-ebad469e5dc1)
+![mod-apps-camera](https://github.com/user-attachments/assets/195e4c11-249a-49bf-9a11-ebad469e5dc1)
 
 由于重写了应用程序的内核，修改版明显快于原版本。缩放已更改-现在相应的控件位于屏幕的左侧。此外，出于某种原因，删除了对某些智能手机上的物理按钮的支持，以及对动态照片的支持。您可以阅读[相应文章](https://wp-seven.ru/stat-i/novosti/microsoft-vypustila-krupnoe-obnovlenie-windows-camera.html)找到其他的更改。我们只是注意到，这个程序仍然在积极的发展，这可能导致不稳定和各种问题。
 
@@ -57,7 +57,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 
 #### 人脉
 
-![mod-apps-people](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/5f2e8ecf-8b52-451e-978a-e4145abeeb58)
+![mod-apps-people](https://github.com/user-attachments/assets/5f2e8ecf-8b52-451e-978a-e4145abeeb58)
 
 修改版和原版本的设计有点不同。它不是很稳定，所以如果没什么必要的话请不要安装。
 
@@ -67,7 +67,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 
 #### 消息
 
-![mod-apps-messaging](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/6b3d06bc-2f71-4b3c-aab8-10cdaefb6247)
+![mod-apps-messaging](https://github.com/user-attachments/assets/6b3d06bc-2f71-4b3c-aab8-10cdaefb6247)
 
 新设计的修改版不同于原版本: 对话框中的照片和联系人的姓名等以不同的方式显示。即使在低端智能手机上，它也能以足够快的速度工作。
 
@@ -77,7 +77,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 
 #### 照片
 
-![mod-apps-photos](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/cebefb00-c816-452f-9d86-767bcad46d6b)
+![mod-apps-photos](https://github.com/user-attachments/assets/cebefb00-c816-452f-9d86-767bcad46d6b)
 
 新版本包含许多新功能-高级图像编辑工具，使用 Windows 墨迹、其他功能区显示模板以及更多的功能来绘制它们。足够稳定可以日常使用。
 
@@ -95,7 +95,7 @@ banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
 
 #### 画图 3D
 
-![mod-apps-paint3d](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/3f7dd00a-4bc4-4413-8c7d-eaf96a537900)
+![mod-apps-paint3d](https://github.com/user-attachments/assets/3f7dd00a-4bc4-4413-8c7d-eaf96a537900)
 
 该应用程序没有针对小屏幕进行优化，也需要大量的资源用于正常操作。所以尝试安装在旗舰智能手机上，如果在其它的普通设备上，它肯定是不能用的。
 

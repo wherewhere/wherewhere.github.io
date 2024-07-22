@@ -15,7 +15,7 @@ categories: 玩机
 
      在搜索栏中搜索并打开`启用或关闭Windows功能`，勾选`适用于Linux的Windows子系统`项。
 
-     ![批注 2020-02-28 172223](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/15513f05-5911-4e2c-b5d3-593605f45287)
+     ![批注 2020-02-28 172223](https://github.com/user-attachments/assets/15513f05-5911-4e2c-b5d3-593605f45287)
 
    - 使用`PowerShell`打开
 
@@ -25,7 +25,7 @@ categories: 玩机
      Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
      ```
 
-     ![批注 2020-02-28 172642](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/05218ba7-7c18-493a-8549-6da535692706)
+     ![批注 2020-02-28 172642](https://github.com/user-attachments/assets/05218ba7-7c18-493a-8549-6da535692706)
 
 2. 更改WSL版本号
 
@@ -37,15 +37,15 @@ categories: 玩机
    Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
    ```
 
-   ![批注 2020-02-28 172826](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/66853a28-649c-4f5c-93a7-6c0bd5280019)
+   ![批注 2020-02-28 172826](https://github.com/user-attachments/assets/66853a28-649c-4f5c-93a7-6c0bd5280019)
 
    或在`启用或关闭Windows功能`，勾选`虚拟机平台`项。
 
-   ![批注 2020-02-28 174514](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/d6a02934-0b9e-4fca-a40d-eff01d6c4382)
+   ![批注 2020-02-28 174514](https://github.com/user-attachments/assets/d6a02934-0b9e-4fca-a40d-eff01d6c4382)
 
    输入 `wsl -l` 可以查看已安装的Linux
 
-   ![批注 2020-02-28 172900](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/2dedd776-48fd-4a6c-96e2-f49b0b52bab9)
+   ![批注 2020-02-28 172900](https://github.com/user-attachments/assets/2dedd776-48fd-4a6c-96e2-f49b0b52bab9)
 
    输入 `wsl --set-version Ubuntu 2` 可以更改Ubuntu为WSL2(Ubuntu可改为你正在使用的版本)(如果想换回1，只需把2改为1再运行一次)
 
@@ -61,11 +61,11 @@ categories: 玩机
 
    CMD是无可救药了，这里就给一个底色了
 
-   ![批注 2020-02-28 111532](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/6766f827-d073-47eb-818f-7f4db4e8e062)
+   ![批注 2020-02-28 111532](https://github.com/user-attachments/assets/6766f827-d073-47eb-818f-7f4db4e8e062)
 
    推荐使用Windows Terminal，这里送上我自用的[配置文件](https://github.com/wherewhere/WindowsTerminalProfiles)
 
-   ![批注 2020-02-28 174459](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/2cb1564f-882c-4e1c-8855-49770e9b7038)
+   ![批注 2020-02-28 174459](https://github.com/user-attachments/assets/2cb1564f-882c-4e1c-8855-49770e9b7038)
 
 2. 更换源并更新到最新版Ubuntu (以20.04为例)
 
@@ -98,7 +98,7 @@ categories: 玩机
       # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security multiverse
       ```
 
-      ![批注 2020-02-28 173252](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/aa43e5ab-0eff-49b2-90ff-611c919d9293)
+      ![批注 2020-02-28 173252](https://github.com/user-attachments/assets/aa43e5ab-0eff-49b2-90ff-611c919d9293)
 
     - 对于WSL2，Windows是没有权限修改WSL的系统文件的，所以只能在WSL中修改
 
@@ -110,7 +110,7 @@ categories: 玩机
 
       将内容修改为上文
 
-      ![批注 2020-02-28 173356](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/e9ad4c87-1560-4c73-a191-f69d5fa7c845)
+      ![批注 2020-02-28 173356](https://github.com/user-attachments/assets/e9ad4c87-1560-4c73-a191-f69d5fa7c845)
 
     - 在终端输入
 
@@ -134,15 +134,15 @@ categories: 玩机
    sudo dpkg-reconfigure locales
    ```
 
-   ![批注 2020-02-28 173452](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/17af7a1c-bb53-4cba-a93f-dbb4cbbf9bca)
+   ![批注 2020-02-28 173452](https://github.com/user-attachments/assets/17af7a1c-bb53-4cba-a93f-dbb4cbbf9bca)
 
    选中 `zh_CN GB2312` 和 `zh_CN.UTF-8 UTF-8` 确定
 
-   ![批注 2020-02-28 173531](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/c29fa217-af62-4910-8368-fe5ba28b3072)
+   ![批注 2020-02-28 173531](https://github.com/user-attachments/assets/c29fa217-af62-4910-8368-fe5ba28b3072)
 
    选择 `zh_CN.UTF-8` 确定
 
-   ![批注 2020-02-28 173551](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/bc276409-0235-444a-895f-d4a9cde64043)
+   ![批注 2020-02-28 173551](https://github.com/user-attachments/assets/bc276409-0235-444a-895f-d4a9cde64043)
 
    重启终端
 

@@ -3,9 +3,9 @@ title: 【转载】适用于RX-130的ARM64底层以及Win10 ARM64
 date: 2018-04-16 20:48:47
 tags: [Lumia, Win10, WOA, 资源, 玩机, 快讯, 转载]
 categories: 玩机
-banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/127aff91-65a0-463b-b2ea-54d88eaffb35
+banner: https://github.com/user-attachments/assets/127aff91-65a0-463b-b2ea-54d88eaffb35
 ---
-![【转载】适用于RX-130的ARM64底层以及Win10 ARM64](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/127aff91-65a0-463b-b2ea-54d88eaffb35)
+![【转载】适用于RX-130的ARM64底层以及Win10 ARM64](https://github.com/user-attachments/assets/127aff91-65a0-463b-b2ea-54d88eaffb35)
 
 [#酷安夜话#](https://www.coolapk.com/t/酷安夜话) [#玩机技巧#](https://www.coolapk.com/t/玩机技巧) [#ROM杂谈#](https://www.coolapk.com/t/ROM杂谈)
 
@@ -15,7 +15,7 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/127af
 
 #### 转载授权:
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/29615a9a-395d-4fb7-bdb0-647138f9952d" alt="转载授权" />
+<img src="https://github.com/user-attachments/assets/29615a9a-395d-4fb7-bdb0-647138f9952d" alt="转载授权" />
 <figcaption>转载授权（原帖地址：<a herf="https://tieba.baidu.com/p/5650553455">https://tieba.baidu.com/p/5650553455</a>）</figcaption>
 
 #### 再次提醒:
@@ -53,13 +53,13 @@ banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/127af
 
 到目前为止已经有人成功刷入了，并且给出了照片
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/2f8b1634-5e16-471a-ad1f-73ba0d3a72d3" alt="登录界面" />
+<img src="https://github.com/user-attachments/assets/2f8b1634-5e16-471a-ad1f-73ba0d3a72d3" alt="登录界面" />
 <figcaption>登录界面</figcaption>
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/823bf306-2652-41d0-aec1-5ed97b890089" alt="关于" />
+<img src="https://github.com/user-attachments/assets/823bf306-2652-41d0-aec1-5ed97b890089" alt="关于" />
 <figcaption>关于</figcaption>
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/095d7be6-15e2-43bf-90aa-00628d7de630" alt="桌面" />
+<img src="https://github.com/user-attachments/assets/095d7be6-15e2-43bf-90aa-00628d7de630" alt="桌面" />
 <figcaption>桌面</figcaption>
 
 #### 英文版：

@@ -4,7 +4,7 @@ date: 2017-05-09 15:42:00
 tags: [APK, Android, MD, 资源, 微信]
 categories: 资源
 ---
-![image](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/53d39383-02e9-4af5-936e-dd0efcb6848d)
+![image](https://github.com/user-attachments/assets/53d39383-02e9-4af5-936e-dd0efcb6848d)
 MD.Wechat
 [百度网盘](http://pan.baidu.com/share/link?shareid=3246682077&uk=2316494213) 密码：`6666`
 1. 仅供交流学习使用，禁止转载，其他任何出处与作者无关

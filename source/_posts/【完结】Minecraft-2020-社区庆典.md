@@ -14,7 +14,7 @@ Minecraft 2020 社区庆典已于12月14日开始，接下来我将会为大家�
 
 每日签到获取礼包，过期应该就领不了了
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/feac2396-5243-484c-84c0-0c8f7478199a" alt="签到" />
+<img src="https://github.com/user-attachments/assets/feac2396-5243-484c-84c0-0c8f7478199a" alt="签到" />
 <figcaption>签到页面</figcaption>
 
 12月14日更新：

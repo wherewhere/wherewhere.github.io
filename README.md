@@ -1,4 +1,4 @@
-<img alt="Wherlog LOGO" src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/cdb36b7f-318f-4c27-b302-17ace91cf67d" width="200px" />
+<img alt="Wherlog LOGO" src="https://github.com/user-attachments/assets/cdb36b7f-318f-4c27-b302-17ace91cf67d" width="200px" />
 
 # 魔法薇ㄦ的书馆
 wherewhere的个人博客

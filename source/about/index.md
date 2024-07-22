@@ -22,8 +22,7 @@ title: 关于
         this.readme = document.createElement("div");
       }
       connectedCallback() {
-        const message = this.message;
-        const readme = this.readme;
+        const { message, readme } = this;
         readme.textContent = "如果这里什么也没有，请";
         let link = document.createElement("a");
         link.href = "javascript:void(0)";

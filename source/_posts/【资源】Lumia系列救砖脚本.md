@@ -9,7 +9,7 @@ categories: 玩机
 ---
 #### <span style="color: red;">转载授权：</span>
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/5262984f-5049-4265-86fe-19316b9ae788" alt="wp_ss_20181120_0001 (2)" />
+<img src="https://github.com/user-attachments/assets/5262984f-5049-4265-86fe-19316b9ae788" alt="wp_ss_20181120_0001 (2)" />
 <figcaption>转载授权</figcaption>
 
 #### <span style="color: red;">说明：</span>
@@ -36,16 +36,16 @@ RM-1050 RM-1051 RM-1052 RM-1054
 
 #### <span style="color: red;">运行截图：</span><!--more-->
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/b86a70ea-0973-41e6-8aca-859ae6c6ef0b" alt="B7124932A6059CA4DC5E119E83DD54A1" />
+<img src="https://github.com/user-attachments/assets/b86a70ea-0973-41e6-8aca-859ae6c6ef0b" alt="B7124932A6059CA4DC5E119E83DD54A1" />
 <figcaption>主界面</figcaption>
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/907495b1-055e-41f9-9f13-f8243eb47135" alt="屏幕截图(5)" />
+<img src="https://github.com/user-attachments/assets/907495b1-055e-41f9-9f13-f8243eb47135" alt="屏幕截图(5)" />
 <figcaption>FFU</figcaption>
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/c1cabce7-ffed-4435-a91f-f755ac1ae097" alt="屏幕截图(4)" />
+<img src="https://github.com/user-attachments/assets/c1cabce7-ffed-4435-a91f-f755ac1ae097" alt="屏幕截图(4)" />
 <figcaption>9008</figcaption>
 
-<img src="https://github.com/wherewhere/wherewhere.github.io/assets/27689196/f7bb0c71-e055-4537-bf3a-964a4daac033" alt="屏幕截图(3)" />
+<img src="https://github.com/user-attachments/assets/f7bb0c71-e055-4537-bf3a-964a4daac033" alt="屏幕截图(3)" />
 <figcaption>关于</figcaption>
 
 #### <span style="color: red;">下载链接：</span>

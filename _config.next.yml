@@ -32,10 +32,10 @@ darkmode: true
 # ---------------------------------------------------------------
 
 favicon:
-  small: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/293d7da4-a94c-444f-aee9-a7fc65851fb4
-  medium: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/a6bc6ed3-e820-4409-a743-a2891c577158
-  apple_touch_icon: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/041251be-1720-4428-a0da-02af7fedc4d7
-  safari_pinned_tab: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/cdb36b7f-318f-4c27-b302-17ace91cf67d
+  small: https://github.com/user-attachments/assets/293d7da4-a94c-444f-aee9-a7fc65851fb4
+  medium: https://github.com/user-attachments/assets/a6bc6ed3-e820-4409-a743-a2891c577158
+  apple_touch_icon: https://github.com/user-attachments/assets/041251be-1720-4428-a0da-02af7fedc4d7
+  safari_pinned_tab: https://github.com/user-attachments/assets/cdb36b7f-318f-4c27-b302-17ace91cf67d
   android_manifest: /manifest.webmanifest
 
 # Creative Commons 4.0 International License.
@@ -138,10 +138,10 @@ reward_settings:
   animation: true
 
 reward:
-  #wechatpay: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/04d07d8d-fecc-469e-a5da-fd427858a829
-  #alipay: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/a3b76735-469c-4d74-8c6a-f311df65e4b0
+  #wechatpay: https://github.com/user-attachments/assets/04d07d8d-fecc-469e-a5da-fd427858a829
+  #alipay: https://github.com/user-attachments/assets/a3b76735-469c-4d74-8c6a-f311df65e4b0
   #paypal: /images/paypal.png
-  bitcoin: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/14448ea4-2f41-4f72-b9f0-e85c603cfbcb
+  bitcoin: https://github.com/user-attachments/assets/14448ea4-2f41-4f72-b9f0-e85c603cfbcb
 
 # Subscribe through Telegram Channel, Twitter, etc.
 # Usage: `Key: permalink || icon` (Font Awesome)

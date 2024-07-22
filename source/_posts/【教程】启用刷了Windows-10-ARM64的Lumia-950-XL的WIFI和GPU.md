@@ -8,7 +8,7 @@ categories: 玩机
 ---
 ### 原文
 
-![wp_ss_20190119_0007](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/e25766ea-4bf7-42c1-93d2-3034a0a586b0)
+![wp_ss_20190119_0007](https://github.com/user-attachments/assets/e25766ea-4bf7-42c1-93d2-3034a0a586b0)
 
 ### 开启WIFI
 
@@ -30,7 +30,7 @@ categories: 玩机
 
 #### 效果图
 
-![20190118_151708_495](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/b153e8b0-25fd-4c64-948d-5e9a8f78d3fd)
+![20190118_151708_495](https://github.com/user-attachments/assets/b153e8b0-25fd-4c64-948d-5e9a8f78d3fd)
 
 ### GPU install procedure for 950 XL
 
