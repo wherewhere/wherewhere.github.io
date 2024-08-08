@@ -114,7 +114,7 @@ sitemap: false
         <h4 id="crypto-key" class="unset">Key</h4>
       </template>
       <template #description>
-        输入加密的钥匙。<span v-show="type === 'blake3'">(必须 32 字节长)</span>
+        输入加密的钥匙。<span v-if="type === 'blake3'">(必须 32 字节长)</span>
       </template>
       <fluent-text-field v-model="option.key"></fluent-text-field>
     </settings-card>
@@ -129,7 +129,8 @@ sitemap: false
         输入加密种子。
       </template>
       <div class="setting-expander-content-grid stack-vertical" style="align-items: stretch;">
-        <div v-if="typeof option.seed === 'object'" class="stack-vertical" style="gap: calc(var(--base-horizontal-spacing-multiplier) * 1px); align-items: stretch;">
+        <div v-if="typeof option.seed === 'object'" class="stack-vertical"
+          style="gap: calc(var(--base-horizontal-spacing-multiplier) * 1px); align-items: stretch;">
           <fluent-number-field v-model="option.seed.low">Low</fluent-number-field>
           <fluent-number-field v-model="option.seed.high">High</fluent-number-field>
         </div>
@@ -144,7 +145,7 @@ sitemap: false
         <h4 id="crypto-salt" class="unset">Salt</h4>
       </template>
       <template #description>
-        输入加密的盐。
+        <span>输入加密的盐。</span>
         <span v-if="type.startsWith('argon')">(至少 8 字节长)</span>
         <span v-else-if="type === 'bcrypt'">(必须 16 字节长)</span>
       </template>
@@ -173,7 +174,8 @@ sitemap: false
       <template #description>
         其他加密选项。
       </template>
-      <div class="setting-expander-content-grid stack-vertical" style="gap: calc(var(--base-horizontal-spacing-multiplier) * 1px); align-items: stretch;">
+      <div class="setting-expander-content-grid stack-vertical"
+        style="gap: calc(var(--base-horizontal-spacing-multiplier) * 1px); align-items: stretch;">
         <fluent-number-field v-for="(_, key) in option.others" v-model="option.others[key]">{{ key
           }}</fluent-number-field>
       </div>

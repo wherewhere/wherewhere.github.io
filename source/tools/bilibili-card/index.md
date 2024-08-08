@@ -133,7 +133,7 @@ sitemap: false
             <fluent-button @click="() => createExample(json, imageProxy, id, type, infoTypes)">生成卡片</fluent-button>
           </div>
         </template>
-        <div ref="example" v-show="example" style="max-width: 100%;"> </div>
+        <div ref="example" v-show="example" style="max-width: 100%;"></div>
       </input-label>
     </div>
   </div>

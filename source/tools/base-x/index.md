@@ -57,7 +57,7 @@ sitemap: false
         <fluent-option v-for="key in getBaseExList()" :value="key">{{ key }}</fluent-option>
       </fluent-select>
     </settings-card>
-    <settings-expander v-show="showCharsets">
+    <settings-expander v-if="showCharsets">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/password_20_regular.svg"></svg-host>
       </template>

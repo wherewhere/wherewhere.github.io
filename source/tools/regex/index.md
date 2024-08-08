@@ -66,7 +66,7 @@ sitemap: false
         <h4 id="regex-option" class="unset">标志</h4>
       </template>
       <template #description>
-        设置正则表达式标志。
+        <span>设置正则表达式标志。</span>
         <code ref="option">
           <span v-if="option.global">g</span>
           <span v-if="option.ignoreCase">i</span>
@@ -80,7 +80,7 @@ sitemap: false
       <div>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-global" class="unset">全局匹配：<code>g</code></h5>
+            <h5 id="regex-option-global" class="unset">全局匹配：<code>g</code></h5>
           </template>
           <template #description>
             找到所有的匹配，而不是在第一个匹配之后停止。
@@ -91,7 +91,7 @@ sitemap: false
         </settings-card>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-ignore-case" class="unset">忽略大小写：<code>i</code></h5>
+            <h5 id="regex-option-ignore-case" class="unset">忽略大小写：<code>i</code></h5>
           </template>
           <template #description>
             如果 <code>c</code> 标志也被启用，使用 Unicode 大小写折叠。
@@ -102,7 +102,7 @@ sitemap: false
         </settings-card>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-multiline" class="unset">多行匹配：<code>m</code></h5>
+            <h5 id="regex-option-multiline" class="unset">多行匹配：<code>m</code></h5>
           </template>
           <template #description>
             将开始和结束字符 (<code>^</code> and <code>$</code>) 视为在多行上工作。换句话说，匹配每一行的开头或结尾 <em>each</em> line
@@ -114,7 +114,7 @@ sitemap: false
         </settings-card>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-dotAll" class="unset">点号匹配所有字符：<code>s</code></h5>
+            <h5 id="regex-option-dotAll" class="unset">点号匹配所有字符：<code>s</code></h5>
           </template>
           <template #description>
             允许 <code>.</code> 去匹配新的行。
@@ -125,7 +125,7 @@ sitemap: false
         </settings-card>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-unicode" class="unset">Unicode: <code>u</code></h5>
+            <h5 id="regex-option-unicode" class="unset">Unicode: <code>u</code></h5>
           </template>
           <template #description>
             Treat <code>pattern</code> as a sequence of Unicode code points.
@@ -136,7 +136,7 @@ sitemap: false
         </settings-card>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-unicodeSets" class="unset">Unicode Sets: <code>v</code></h5>
+            <h5 id="regex-option-unicodeSets" class="unset">Unicode Sets: <code>v</code></h5>
           </template>
           <template #description>
             An upgrade to the <code>u</code> flag that enables set notation in character classes as well as properties
@@ -148,7 +148,7 @@ sitemap: false
         </settings-card>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-sticky" class="unset">粘性匹配：<code>y</code></h5>
+            <h5 id="regex-option-sticky" class="unset">粘性匹配：<code>y</code></h5>
           </template>
           <template #description>
             Matches only from the index indicated by the <code>lastIndex</code> property of this regular expression
@@ -181,7 +181,8 @@ sitemap: false
         <fluent-text-area v-model="text" v-attribute:rows="7" resize="vertical" style="width: 100%;"></fluent-text-area>
       </input-label>
       <input-label class="split-content" label="匹配结果" style="flex: 1;">
-        <fluent-text-area :value="getResult()" v-attribute:rows="7" resize="vertical" style="width: 100%;" readonly></fluent-text-area>
+        <fluent-text-area :value="getResult()" v-attribute:rows="7" resize="vertical" style="width: 100%;"
+          readonly></fluent-text-area>
       </input-label>
     </div>
   </div>
