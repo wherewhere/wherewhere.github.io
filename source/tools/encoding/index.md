@@ -42,7 +42,7 @@ sitemap: false
     <settings-card>
       <template #icon>
         <svg-host
-          src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/number_symbol_square_20_regular.svg"></svg-host>
+          src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/settings_cog_multiple_20_regular.svg"></svg-host>
       </template>
       <template #header>
         <h4 id="encode-type" class="unset">编码类型</h4>
