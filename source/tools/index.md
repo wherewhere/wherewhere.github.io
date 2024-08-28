@@ -172,7 +172,22 @@ sitemap: false
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/Daninet/hash-wasm/"
-          target="_blank">hash-wasm</fluent-anchor> 加密 MD5、Sha1、Sha2、Sha3、Bcrypt 等文本。
+          target="_blank">hash-wasm</fluent-anchor> 进行 MD5、Sha1、Sha2、Sha3、Bcrypt 等文本加密。
+      </template>
+      <template #action-icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+      </template>
+    </settings-button>
+    <settings-button href="uuid">
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/fluid_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="generate-uuid" class="unset">UUID & GUID</h4>
+      </template>
+      <template #description>
+        使用 <fluent-anchor appearance="hypertext" href="https://github.com/uuidjs/uuid/"
+          target="_blank">uuid</fluent-anchor> 生成 UUID 与 GUID。
       </template>
       <template #action-icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
