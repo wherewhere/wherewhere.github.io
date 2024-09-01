@@ -59,7 +59,8 @@ sitemap: false
       <template #description>
         选择卡片显示内容的类型。
       </template>
-      <fluent-select placeholder="video" v-model="type" style="min-width: calc(var(--base-height-multiplier) * 11.25px);">
+      <fluent-select placeholder="video" v-model="type"
+        style="min-width: calc(var(--base-height-multiplier) * 11.25px);">
         <fluent-option v-for="(value, key) in types" :value="key">{{ value }}</fluent-option>
       </fluent-select>
     </settings-card>
@@ -123,19 +124,16 @@ sitemap: false
       </template>
       <fluent-text-field v-model="infoTypes" :placeholder="getDefaultInfoTypes(type)"></fluent-text-field>
     </settings-card>
-    <div class="settings-card"
+    <input-label class="settings-card" label="预览"
       :style="{ paddingTop: 'calc(var(--design-unit) * 4px)', paddingRight: 'calc(var(--design-unit) * 4px)', paddingBottom: example ? 'calc(var(--design-unit) * 4px)' : 'calc(var(--design-unit) * 3px)', paddingLeft: 'calc(var(--design-unit) * 4px)' }">
-      <input-label label="预览">
-        <template #action>
-          <div class="stack-horizontal"
-            style="width: unset; column-gap: calc(var(--design-unit) * 1px);">
-            <fluent-button v-show="example" @click="e => onCopyClicked(e, example)">复制代码</fluent-button>
-            <fluent-button @click="() => createExample(json, imageProxy, id, type, infoTypes)">生成卡片</fluent-button>
-          </div>
-        </template>
-        <div ref="example" v-show="example" style="max-width: 100%;"></div>
-      </input-label>
-    </div>
+      <template #action>
+        <div class="stack-horizontal" style="width: unset; column-gap: calc(var(--design-unit) * 1px);">
+          <fluent-button v-show="example" @click="e => onCopyClicked(e, example)">复制代码</fluent-button>
+          <fluent-button @click="() => createExample(json, imageProxy, id, type, infoTypes)">生成卡片</fluent-button>
+        </div>
+      </template>
+      <div ref="example" v-show="example" style="max-width: 100%;"></div>
+    </input-label>
   </div>
 </div>
 

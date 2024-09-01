@@ -78,6 +78,21 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
+    <settings-button href="bopo">
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/local_language_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="render-bopomofo" class="unset">注音组字</h4>
+      </template>
+      <template #description>
+        使用 <fluent-anchor appearance="hypertext" href="http://cheonhyeong.com/Tools/Times.html"
+          target="_blank">TH-Times</fluent-anchor> 字体显示注音文本。
+      </template>
+      <template #action-icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+      </template>
+    </settings-button>
   </settings-group>
   <settings-group>
     <template #header>
