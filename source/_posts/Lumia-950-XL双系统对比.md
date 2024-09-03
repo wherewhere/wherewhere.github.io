@@ -6,9 +6,9 @@ date: 2018-07-15 14:58:00
 updated: 2018-07-17 17:56:00
 tags: [Lumia, Win10, WOA, 快讯, 玩机]
 categories: 玩机
-banner: https://github.com/wherewhere/wherewhere.github.io/assets/27689196/cfd2baee-6b53-4237-a514-eb2c2a034f67
+banner: https://github.com/user-attachments/assets/cfd2baee-6b53-4237-a514-eb2c2a034f67
 ---
-![Lumia 950 XL双系统对比](https://github.com/wherewhere/wherewhere.github.io/assets/27689196/cfd2baee-6b53-4237-a514-eb2c2a034f67)
+![Lumia 950 XL双系统对比](https://github.com/user-attachments/assets/cfd2baee-6b53-4237-a514-eb2c2a034f67)
 
 <style>
   img.emoji {
