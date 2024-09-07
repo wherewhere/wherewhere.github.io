@@ -20,7 +20,7 @@ banner: https://github.com/user-attachments/assets/f23b00b3-775e-476e-9f83-c0060
 
 转载自蓝点网：[查看链接»](https://www.landiannews.com/archives/47882.htm)
 
-尽量不要过多转载，以防和谐<img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。
+尽量不要过多转载，以防和谐<img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。
 
 日前在国外科技论坛有大神发布名为HWIDGEN激活工具，该激活工具几乎秒杀所有版本Windows 10系统。
 

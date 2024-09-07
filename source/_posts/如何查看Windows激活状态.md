@@ -18,7 +18,7 @@ banner: https://github.com/user-attachments/assets/793cc19b-19a5-4f40-9dd6-c0b91
 
 [#玩机技巧#](https://www.coolapk.com/t/玩机技巧) [#电脑玩家#](https://www.coolapk.com/t/电脑玩家) [铺路根据地](https://www.coolapk.com/dyh/1480)
 
-本图文用来补充之前的一个图文 ，方便大家激活后能够查看具体的激活情况。(相当于水贴<img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />)
+本图文用来补充之前的一个图文 ，方便大家激活后能够查看具体的激活情况。(相当于水贴<img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />)
 
 #### 第一种，粗略查看
 

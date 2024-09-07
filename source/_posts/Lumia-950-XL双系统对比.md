@@ -21,7 +21,7 @@ banner: https://github.com/user-attachments/assets/cfd2baee-6b53-4237-a514-eb2c2
 
 [#玩机技巧#](https://www.coolapk.com/t/玩机技巧) [#酷安夜话#](https://www.coolapk.com/t/酷安夜话) [#ROM杂谈#](https://www.coolapk.com/t/ROM杂谈) [铺路根据地](https://www.coolapk.com/dyh/1480)
 
-随便水一贴，发些截图，不要介意<img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />
+随便水一贴，发些截图，不要介意<img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />
 
 #### 开始屏幕
 
@@ -101,6 +101,6 @@ banner: https://github.com/user-attachments/assets/cfd2baee-6b53-4237-a514-eb2c2
 <img src="https://github.com/user-attachments/assets/25263cfe-a6c0-439e-b65e-8d655ff6b48f" alt="屏幕截图(3)" />
 <figcaption>Windows 10 ARM64</figcaption>
 
-先水这么多，不喜勿喷<img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />
+先水这么多，不喜勿喷<img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />
 
 > [Lumia 950 XL 双系统对比](https://bbs.wfun.com/thread-1013749-1-1.html) 转载者 [@wherewhere](https://bbs.wfun.com/u/2850357) 2018年7月15日 转载于 [智机社区](https://bbs.wfun.com "WFun")

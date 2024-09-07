@@ -36,7 +36,7 @@ There are two way to reference it.
   Download [AdvancedSharpAdbClient.WinRT.zip](https://github.com/yungd1plomat/AdvancedSharpAdbClient/files/12092217/AdvancedSharpAdbClient.WinRT.0.0.1.zip).
 
   Unzip it into `nupkgs` folder of the root path of your project
-  ![image](https://github.com/yungd1plomat/AdvancedSharpAdbClient/assets/27689196/da648eb2-d505-4fd2-ac78-f534f1ad018b)
+  ![image](https://github.com/user-attachments/assets/da648eb2-d505-4fd2-ac78-f534f1ad018b)
 
   Create `nuget.config` into the root path of your project and add
   ```xml
@@ -49,7 +49,7 @@ There are two way to reference it.
   ```
 
   Open the manager of nuget and you will find it. Just install it like a normal nuget.
-  ![image](https://github.com/yungd1plomat/AdvancedSharpAdbClient/assets/27689196/7d2ce405-5879-42e1-a27d-191a37ebb8f4)
+  ![image](https://github.com/user-attachments/assets/7d2ce405-5879-42e1-a27d-191a37ebb8f4)
 
 After that, if your project is not packaged into appx or misx, remember to create `ProjectName.exe.manifest` in the root of your project to register winrt class.
 ```xml

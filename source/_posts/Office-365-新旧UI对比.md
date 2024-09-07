@@ -19,16 +19,16 @@ banner: https://github.com/user-attachments/assets/2594f477-550f-4c54-b811-ea0d4
 
 [#酷安夜话#](https://www.coolapk.com/t/酷安夜话) [#电脑好软#](https://www.coolapk.com/t/电脑好软) [#电脑玩家#](https://www.coolapk.com/t/电脑玩家)
 
-什么也不说了，直接开始，当然不要忘了关注我哦<img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。
+什么也不说了，直接开始，当然不要忘了关注我哦<img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。
 
 office在之前的**1804**中引入了全新的UI，在风格上更加贴近Fluent Design，也更加适合触控。
 
 <img src="https://github.com/user-attachments/assets/1cf2b622-4654-469a-8aad-283122e628e7" alt="版本号" />
 <figcaption>最早引入该UI的版本号（不确定）</figcaption>
 
-好，正文正式开始<img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(滑稽).png" alt="滑稽" />
+好，正文正式开始<img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(滑稽).png" alt="滑稽" />
 
-主页，不说<img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。
+主页，不说<img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。
 
 <img src="https://github.com/user-attachments/assets/0bbf8e28-f2b5-4132-9b1f-5a39ce952f56" alt="主页" />
 <figcaption>主页</figcaption>
@@ -38,7 +38,7 @@ Office本地文件编辑页面，没什么好说的，只改了一个共享图�
 <img src="https://github.com/user-attachments/assets/9308f873-3737-4394-a56f-7a46c3c1e987" alt="本地文件编辑页面" />
 <figcaption>Office本地文件编辑页面，没什么好说的，只改了一个共享图标。</figcaption>
 
-云端文件编辑界面，多了一个历史记录（上次office365更新的）和一个不知道啥东西<img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。<!--more-->
+云端文件编辑界面，多了一个历史记录（上次office365更新的）和一个不知道啥东西<img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。<!--more-->
 
 <img src="https://github.com/user-attachments/assets/34898150-998e-4980-a8a9-a52742290819" alt="云端文件编辑界面" />
 <figcaption>云端文件编辑界面，多了一个历史记录（上次office365更新的）和一个不知道啥东西。</figcaption>
@@ -58,7 +58,7 @@ Office本地文件编辑页面，没什么好说的，只改了一个共享图�
 <img src="https://github.com/user-attachments/assets/f123e776-7f68-44d6-82df-6801330ef26b" alt="上传过云" />
 <figcaption>如果上传过云的话长这样</figcaption>
 
-这是新增的历史记录，没什么好看的<img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(斗鸡眼滑稽).png" alt="斗鸡眼滑稽" />。
+这是新增的历史记录，没什么好看的<img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(斗鸡眼滑稽).png" alt="斗鸡眼滑稽" />。
 
 <img src="https://github.com/user-attachments/assets/f05ff639-676f-40c9-88f5-aa527bc279bb" alt="历史记录" />
 <figcaption>这是新增的历史记录，没什么好看的。</figcaption>
@@ -105,7 +105,7 @@ Office本地文件编辑页面，没什么好说的，只改了一个共享图�
 <img src="https://github.com/user-attachments/assets/61e5422b-3427-4287-8c82-93832c68f5b4" alt="版本号" />
 <figcaption>这是最后一版不需要特殊操作就能启用新UI的版本号</figcaption>
 
-如果更新到了新版，需要将图中底下部分选项的`false`改成`true`，具体不清楚是那些，我就直接全改了<img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。
+如果更新到了新版，需要将图中底下部分选项的`false`改成`true`，具体不清楚是那些，我就直接全改了<img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。
 
 <img src="https://github.com/user-attachments/assets/d7b8087c-9ddb-4ae4-83dd-9203fdf81bd1" alt="“开发者”选项" />
 <figcaption>“开发者”选项</figcaption>
@@ -117,6 +117,6 @@ IT之家：[查看链接»](https://quan.ithome.com/0/242/917.htm)
 百度贴吧：[查看链接»](https://tieba.baidu.com/p/5619216210)
 Coolapk：[查看链接»](https://www.coolapk.com/feed/6182878?shareKey=M2QxNzM3OWE3OGM2NjY1MjM0ZjM~)
 
-喜欢的就关注一下<img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(稽滑).png" alt="稽滑" /><img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(斗鸡眼滑稽).png" alt="斗鸡眼滑稽" /><img class="emoji" src="https://raw.githubusercontent.com/Coolapk-UWP/Coolapk-Lite/master/CoolapkLite/CoolapkLite/Assets/Emoji/(滑稽).png" alt="滑稽" />。
+喜欢的就关注一下<img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(稽滑).png" alt="稽滑" /><img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(斗鸡眼滑稽).png" alt="斗鸡眼滑稽" /><img class="emoji" src="https://cdn.jsdelivr.net/gh/Coolapk-UWP/Coolapk-Lite@master/CoolapkLite/CoolapkLite/Assets/Emoji/(滑稽).png" alt="滑稽" />。
 
 > [Office 365 新旧UI对比](https://tieba.baidu.com/p/5619216210) 作者 [@😂where😄](https://tieba.baidu.com/home/main?id=tb.1.e2e2121d.sH1-n4eqVLV7bs_Z_nz_Sw "一二三四389") 2018年3月27日 发表于 [百度贴吧](https://tieba.baidu.com)，转载请注明出处
