@@ -1,9 +1,9 @@
 ---
 title: 【教程】适用于Linux的Windows子系统使用教程——安装与配置
-<!-- 发布时间精确到: 天 -->
 date: 2020-02-28 09:45:00
-<!-- 更新时间精确到: 分 -->
+date_accuracy: day
 updated: 2020-02-28 18:57:00
+updated_accuracy: minute
 tags: [Linux, Win10, WSL, 资源, 教程, 玩机]
 categories: 玩机
 ---

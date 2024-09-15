@@ -1,9 +1,9 @@
 ---
 title: 【已停更】适用于Windows全平台的非官方微信UWP版安装包
-<!-- 发布时间精确到: 分 -->
 date: 2018-12-02 16:35:00
-<!-- 更新时间精确到: 分 -->
+date_accuracy: minute
 updated: 2019-02-14 19:03:00
+updated_accuracy: minute
 tags: [UWP, APPX, Win10M, WP, 资源, 微信]
 categories: 资源
 ---

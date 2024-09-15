@@ -1,9 +1,9 @@
 ---
 title: 【UWP】修改清单脱离沙盒运行
-<!-- 发布时间精确到: 分 -->
 date: 2024-05-03 16:37:00
-<!-- 更新时间精确到: 分 -->
+date_accuracy: minute
 updated: 2024-05-03 18:05:00
+updated_accuracy: minute
 tags: [UWP, .NET, C#, 开发, 教程]
 categories: 开发
 ---

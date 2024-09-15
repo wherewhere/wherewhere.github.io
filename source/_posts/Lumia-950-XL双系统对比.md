@@ -1,9 +1,9 @@
 ---
 title: Lumia 950 XL双系统对比
-<!-- 发布时间精确到: 天 -->
 date: 2018-07-15 14:58:00
-<!-- 更新时间精确到: 分 -->
+date_accuracy: day
 updated: 2018-07-17 17:56:00
+updated_accuracy: minute
 tags: [Lumia, Win10, WOA, 快讯, 玩机]
 categories: 玩机
 banner: https://github.com/user-attachments/assets/cfd2baee-6b53-4237-a514-eb2c2a034f67

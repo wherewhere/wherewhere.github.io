@@ -1,9 +1,9 @@
 ---
 title: 【转载】适用于Lumia950/XL的免解锁安装Windows10ARM64方案(测试)
-<!-- 发布时间精确到: 分 -->
 date: 2018-10-02 00:05:00
-<!-- 更新时间精确到: 分 -->
+date_accuracy: minute
 updated: 2018-10-02 16:04:00
+updated_accuracy: minute
 tags: [Lumia, Win10, WOA, 资源, 玩机, 转载]
 categories: 玩机
 banner: https://github.com/user-attachments/assets/9bcc95cc-8843-45e7-9ba1-5113409e6edb

@@ -1,7 +1,7 @@
 ---
 title: Office 365 新旧UI对比
-<!-- 发布时间精确到: 分 -->
 date: 2018-03-27 16:00:00
+date_accuracy: minute
 tags: [Office, Win10, 玩机, 快讯]
 categories: 快讯
 banner: https://github.com/user-attachments/assets/2594f477-550f-4c54-b811-ea0d4d9971ec

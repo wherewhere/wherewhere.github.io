@@ -1,9 +1,9 @@
 ---
 title: 【教程】Lumia 950 XL 刷win10教程第四步-优化
-<!-- 发布时间精确到: 分 -->
 date: 2019-02-16 19:40:00
-<!-- 更新时间精确到: 分 -->
+date_accuracy: minute
 updated: 2019-02-18 21:07:00
+updated_accuracy: minute
 tags: [Lumia, Win10, WOA, 教程, 玩机]
 categories: 玩机
 ---

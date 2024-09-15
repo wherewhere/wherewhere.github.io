@@ -1,9 +1,9 @@
 ---
 title: 【收集】Lumia机型主题颜色
-<!-- 发布时间精确到: 天 -->
 date: 2018-02-17 20:44:00
-<!-- 更新时间精确到: 分 -->
+date_accuracy: day
 updated: 2018-02-21 21:16:00
+updated_accuracy: minute
 tags: [Lumia, Win10M, WP, 资源, 玩机]
 categories: 玩机
 banner: https://github.com/user-attachments/assets/fbae4701-9e4b-4c2b-99ab-416d197ad4ee

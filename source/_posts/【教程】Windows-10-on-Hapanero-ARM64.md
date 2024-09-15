@@ -1,8 +1,8 @@
 ---
 title: 【教程】Windows 10 on Hapanero ARM64
 date: 2018-05-21 20:10:44
-<!-- 更新时间精确到: 分 -->
 updated: 2018-08-06 23:15:00
+updated_accuracy: minute
 tags: [Lumia, Win10, WOA, 教程, 玩机, 转载, 翻译]
 categories: 玩机
 banner: https://protobetatest.com/wp-content/uploads/2018/05/IMG_1503.jpg

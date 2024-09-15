@@ -1,9 +1,9 @@
 ---
 title: 【教程】利用CLSID在文件资源管理器中找到“此电脑”及C盘
-<!-- 发布时间精确到: 天 -->
 date: 2018-12-14 14:50:00
-<!-- 更新时间精确到: 分 -->
+date_accuracy: day
 updated: 2018-12-29 22:30:00
+updated_accuracy: minute
 tags: [Win10M, WP, 教程, 玩机]
 categories: 玩机
 ---

@@ -1,9 +1,9 @@
 ---
 title: 【.NET】利用 IL 魔法实现随心随意的泛型约束
-<!-- 发布时间精确到: 分 -->
 date: 2024-04-17 17:10:00
-<!-- 更新时间精确到: 分 -->
+date_accuracy: minute
 updated: 2024-05-04 14:59:00
+updated_accuracy: minute
 tags: [.NET, IL, 开发, 逆向, 魔法]
 categories: 开发
 ---

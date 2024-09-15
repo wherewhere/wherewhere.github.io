@@ -1,8 +1,8 @@
 ---
 title: 【教程】Lumia 950/XL 刷win10教程第二步-部署
 date: 2018-08-05 21:08:51
-<!-- 更新时间精确到: 分 -->
 updated: 2018-08-07 13:31:00
+updated_accuracy: minute
 tags: [Lumia, Win10, WOA, 教程, 玩机]
 categories: 玩机
 banner: https://github.com/user-attachments/assets/206082f2-1c23-45e6-96f4-02096e0571fc

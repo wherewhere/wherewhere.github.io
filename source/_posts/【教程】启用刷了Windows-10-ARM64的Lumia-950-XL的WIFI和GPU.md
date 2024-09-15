@@ -1,8 +1,8 @@
 ---
 title: 【教程】启用刷了Windows 10 ARM64的Lumia 950 XL的WIFI和GPU
 date: 2019-01-19 11:12:39
-<!-- 更新时间精确到: 分 -->
 updated: 2019-01-20 17:49:00
+updated_accuracy: minute
 tags: [Lumia, Win10, WOA, 资源, 教程, 玩机]
 categories: 玩机
 ---

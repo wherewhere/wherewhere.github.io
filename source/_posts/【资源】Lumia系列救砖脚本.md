@@ -1,9 +1,9 @@
 ---
 title: 【资源】Lumia系列救砖脚本
-<!-- 发布时间精确到: 天 -->
 date: 2018-11-22 20:00:00
-<!-- 更新时间精确到: 分 -->
+date_accuracy: day
 updated: 2018-11-24 22:22:00
+updated_accuracy: minute
 tags: [Lumia, Win10M, 资源, 玩机, 转载]
 categories: 玩机
 ---
