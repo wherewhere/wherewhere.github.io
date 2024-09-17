@@ -58,7 +58,7 @@ deb https://mirrors.ustc.edu.cn/debian-security/ stretch/updates main contrib no
 # deb-src https://mirrors.ustc.edu.cn/debian-security/ stretch/updates main contrib non-free
 ```
 
-按照常规操作就是更新源和组件了
+按照常规操作就是更新源和组件了  
 照常两行命令：
 
 ```sh

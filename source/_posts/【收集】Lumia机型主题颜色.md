@@ -30,7 +30,7 @@ banner: https://github.com/user-attachments/assets/fbae4701-9e4b-4c2b-99ab-416d1
 
 > wherewhere 评论于 2018年2月17日
 >
-> 欢迎大家分享自己的Lumia的默认主题色
+> 欢迎大家分享自己的Lumia的默认主题色  
 > 分享内容：
 > 1. 设置→个性化→颜色的截图
 > 2. 主题色的`RGB`值或`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Curr entVersion\Control Panel\Theme\Themes\SpecialColor`的键值

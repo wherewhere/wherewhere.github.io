@@ -94,8 +94,8 @@ public class Test
 
 这段代码是无法运行的，在 .NET Framework 会直接无返回，而在 Mono 会报错
 
-> [ERROR] FATAL UNHANDLED EXCEPTION: System.MissingMethodException: Method not found: string .T_REF.Test()
->     at Test.Main () [0x00005] in &lt;ddf64a5d94ef4722be4197eb692d9478&gt;:0
+> [ERROR] FATAL UNHANDLED EXCEPTION: System.MissingMethodException: Method not found: string .T_REF.Test()  
+> 　　at Test.Main () [0x00005] in &lt;ddf64a5d94ef4722be4197eb692d9478&gt;:0
 
 于是我就当这是 .NET 泛型的局限性了，后来有群友提醒我说约束会影响运行时，于是我就尝试加上约束
 
@@ -126,8 +126,8 @@ Mono 成功输出
 
 而 Framework 直接运行时约束了。。。
 
-> 未经处理的异常: System.Security.VerificationException: 方法 Test.Test: 类型参数“Test”与类型参数“T”的约束冲突。
->     在 Test.Main()
+> 未经处理的异常: System.Security.VerificationException: 方法 Test.Test: 类型参数“Test”与类型参数“T”的约束冲突。  
+> 　　在 Test.Main()
 
 很明显 Mono 给泛型开了洞
 
@@ -231,9 +231,9 @@ Mono 成功输出
 
 正确输出
 
-> This is Test
-> Call instance string Test::Test()
-> This is Test2
+> This is Test  
+> Call instance string Test::Test()  
+> This is Test2  
 > Call instance string Test2::Test()
 
 Framework 自然还是炸的

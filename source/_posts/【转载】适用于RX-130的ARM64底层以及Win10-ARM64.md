@@ -30,12 +30,12 @@ banner: https://github.com/user-attachments/assets/127aff91-65a0-463b-b2ea-54d88
 
 #### 内容:<!--more-->
 
-这一底层备份来自于于微软一款代号为`Hapanero`的实验性工程机的一台ARM64测试机。
-对于Lumia 950XL，由于其同样使用高通骁龙**MSM8994SoC**，虽然底层由于显示驱动不匹配会招致烧毁屏幕上的芯片的不良后果，但其仍可运行。
-对于RX-130，在刷入之前，请检查你的设备背部电池仓的型号贴纸的Build一栏，此次放出的底层仅有**EB2.X**可以使用，**EB1.0**暂时无法刷入，经测试会导致无限重启。刷机前请务必备份原有底层0-3分区（`DPP`、`MODEM_FSG`、`MODEM_FS1`、`MODEM_FS2`）以在刷回ARM32后还原基带。
-你可以在使用任何一种方式使你的RX-130设备进入到`MassStorage`大容量存储模式后，使用**WinHex**刷入此份备份；或者直接使用`thor2`刷入完整备份（命令示例：`thor2 -mode uefiflash -imagefile <文件名称> -startsector 0`）。
-刷入完成后，请重新启动你的设备，本底层并不带有开机振动，请注意。
-如果在刷入后需要进入`MassStorage`模式，请下载文后提供的SD卡启动，并将其内文件解压到SD卡根目录。将处理过的SD卡插入设备后启动设备，系统将自动进入菜单。
+这一底层备份来自于于微软一款代号为`Hapanero`的实验性工程机的一台ARM64测试机。  
+对于Lumia 950XL，由于其同样使用高通骁龙**MSM8994SoC**，虽然底层由于显示驱动不匹配会招致烧毁屏幕上的芯片的不良后果，但其仍可运行。  
+对于RX-130，在刷入之前，请检查你的设备背部电池仓的型号贴纸的Build一栏，此次放出的底层仅有**EB2.X**可以使用，**EB1.0**暂时无法刷入，经测试会导致无限重启。刷机前请务必备份原有底层0-3分区（`DPP`、`MODEM_FSG`、`MODEM_FS1`、`MODEM_FS2`）以在刷回ARM32后还原基带。  
+你可以在使用任何一种方式使你的RX-130设备进入到`MassStorage`大容量存储模式后，使用**WinHex**刷入此份备份；或者直接使用`thor2`刷入完整备份（命令示例：`thor2 -mode uefiflash -imagefile <文件名称> -startsector 0`）。  
+刷入完成后，请重新启动你的设备，本底层并不带有开机振动，请注意。  
+如果在刷入后需要进入`MassStorage`模式，请下载文后提供的SD卡启动，并将其内文件解压到SD卡根目录。将处理过的SD卡插入设备后启动设备，系统将自动进入菜单。  
 经测试，由于RX-130的特殊性，其在不刷带bl更新的安卓底层的前提下，已无砖可言（9008救砖方法将随后放出）。
 
 下载地址：
@@ -48,7 +48,7 @@ banner: https://github.com/user-attachments/assets/127aff91-65a0-463b-b2ea-54d88
 - 打包转存：
   [网盘链接](https://pan.baidu.com/s/1x9mSjDlXVIgbL-5sJmUSmw") 密码：`dbzz`
 
-感谢imbushuo、JerryYin、五块二等人对于完善这一方式所作出的贡献。
+感谢imbushuo、JerryYin、五块二等人对于完善这一方式所作出的贡献。  
 若有后续发现及研究成果，将在本吧进行发布。欢迎各位对其进行测试及研究，希望能有更多人加入到适配的行列中来。
 
 到目前为止已经有人成功刷入了，并且给出了照片
@@ -64,11 +64,11 @@ banner: https://github.com/user-attachments/assets/127aff91-65a0-463b-b2ea-54d88
 
 #### 英文版：
 
-This is a low-level backup comes from an ARM64 test machine made by Microsoft, codenamed `Hapanero`.
-For the Lumia 950XL, since it also uses the Qualcomm Snapdragon **MSM8994** SoC, the bottom layer can still operate but the display driver are not the same. Running on the Luumia950XL will damage the Amoled driver IC.
+This is a low-level backup comes from an ARM64 test machine made by Microsoft, codenamed `Hapanero`.  
+For the Lumia 950XL, since it also uses the Qualcomm Snapdragon **MSM8994** SoC, the bottom layer can still operate but the display driver are not the same. Running on the Luumia950XL will damage the Amoled driver IC.  
 For the RX-130, please check the HW Build number of the model, the sticker is on the back of your device. Only **EB2.X** can be use this file, **EB1.0** can‘t flash those file for the moment, and will causes an infinite boot loop. Before flashing, be sure to back up the original low-level 0-3 partition (`DPP`, `MODEM_FSG`, `MODEM_FS1`, `MODEM_FS2`) with Winhex. 
-You need to restore the baseband after flash back to the ARM32. After the flashing is completed, please restart your device. Please notice that the bottom layer does not have start-up vibration.
-If you need to enter the `Mass Storage` mode, download the provided file into the SD card and extract the files in it to the root directory of the SD card. After the SD card is inserted into the device and the device is started, the system will automatically enter the menu.
+You need to restore the baseband after flash back to the ARM32. After the flashing is completed, please restart your device. Please notice that the bottom layer does not have start-up vibration.  
+If you need to enter the `Mass Storage` mode, download the provided file into the SD card and extract the files in it to the root directory of the SD card. After the SD card is inserted into the device and the device is started, the system will automatically enter the menu.  
 After testing, due to the particularity of RX-130, it has no bricks at all, expect flash the android bootloader (how to unbrick the device in 9008 mode will public later).
 
 Download link:
@@ -76,7 +76,7 @@ Download link:
 - Full system backup image(with certificate provided by imbushuo): [Link](https://pan.baidu.com/s/1EQ7OC9h3xSvVT8WzvUzdyA) PASSWORD: `96gk`
 - SD card boot file(ARM64): [Link](https://pan.baidu.com/s/17DqccVMqJmLgAtMnlcXjrw) PASSWORD：`kgo8`
 
-Thanks to imbushuo, JerryYin and other people make contribute to this project.
+Thanks to imbushuo, JerryYin and other people make contribute to this project.  
 We will keep this project updated once we got any breakthrough
 
 > [【转载】适用于RX-130的ARM64底层以及Win10 ARM64](https://www.coolapk.com/feed/6181480?shareKey=NTljN2E1NzZmOGU1NjY0MjYwMDM) 转载者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2018年4月16日 转载于 [酷安](https://www.coolapk.com "Coolapk")
