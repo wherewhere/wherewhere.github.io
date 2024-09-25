@@ -86,7 +86,7 @@ sitemap: false
         <h4 id="render-bopomofo" class="unset">注音组字</h4>
       </template>
       <template #description>
-        使用 <fluent-anchor appearance="hypertext" href="http://cheonhyeong.com/Tools/Times.html"
+        使用 <fluent-anchor appearance="hypertext" href="http://cheonhyeong.com/Tools/Times.html#9"
           target="_blank">TH-Times</fluent-anchor> 字体显示注音文本。
       </template>
       <template #action-icon>

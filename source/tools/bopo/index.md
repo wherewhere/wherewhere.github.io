@@ -66,11 +66,11 @@ sitemap: false
       <div class="keys">
         <div class="key" title="b" @click="clickKey">ㄅ</div>
         <div class="key" title="d" @click="clickKey">ㄉ</div>
-        <div class="key" title="上声" @click="clickKey">ˇ</div>
-        <div class="key" title="去声" @click="clickKey">ˋ</div>
+        <div class="key" title="上声" @click="clickKey">̌</div>
+        <div class="key" title="去声" @click="clickKey">̀</div>
         <div class="key" title="zh" @click="clickKey">ㄓ</div>
-        <div class="key" title="阳平" @click="clickKey">ˊ</div>
-        <div class="key" title="轻声" @click="clickKey">˙</div>
+        <div class="key" title="阳平" @click="clickKey">́</div>
+        <div class="key" title="轻声" @click="clickKey">̇</div>
         <div class="key" title="a" @click="clickKey">ㄚ</div>
         <div class="key" title="ai" @click="clickKey">ㄞ</div>
         <div class="key" title="an" @click="clickKey">ㄢ</div>
@@ -116,8 +116,8 @@ sitemap: false
         <div class="key" title="m" @click="clickKey">ㆬ</div>
         <div class="key" title="ng" @click="clickKey">ㄫ</div>
         <div class="key" title="gn" @click="clickKey">ㄬ</div>
-        <div class="key" title="阴平" @click="clickKey">ˉ</div>
-        <div class="key" title="入声" @click="clickKey">·</div>
+        <div class="key" title="阴平" @click="clickKey">̄</div>
+        <div class="key" title="入声" @click="clickKey">̣</div>
         <div class="key" title="er" @click="clickKey">ㄦ</div>
         <div class="key" title="i" @click="clickKey">ㄭ</div>
         <div class="key" title="ng" @click="clickKey">ㆭ</div>
