@@ -4,6 +4,7 @@ sitemap: false
 ---
 <script src="https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.js" data-pjax
   async></script>
+<script src="https://cdn.jsdelivr.net/npm/js-beautify/js/lib/beautify-html.js" data-pjax></script>
 <script type="module" data-pjax>
   import {
     provideFluentDesignSystem,
@@ -11,6 +12,7 @@ sitemap: false
     fluentAccordionItem,
     fluentAnchor,
     fluentButton,
+    fluentCombobox,
     fluentOption,
     fluentSelect,
     fluentTextArea,
@@ -28,6 +30,7 @@ sitemap: false
       fluentAccordionItem(),
       fluentAnchor(),
       fluentButton(),
+      fluentCombobox(),
       fluentOption(),
       fluentSelect(),
       fluentTextArea(),
@@ -51,10 +54,27 @@ sitemap: false
   <div class="stack-vertical" style="row-gap: 0.3rem;">
     <settings-card>
       <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/design_ideas_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="bilibili-card-output" class="unset">生成类型</h4>
+      </template>
+      <template #description>
+        选择生成卡片的类型。
+      </template>
+      <fluent-select placeholder="components" v-model="output"
+        style="min-width: calc(var(--base-height-multiplier) * 11.25px);">
+        <fluent-option value="components">控件</fluent-option>
+        <fluent-option value="html">HTML</fluent-option>
+        <fluent-option value="svg" disabled>SVG</fluent-option>
+      </fluent-select>
+    </settings-card>
+    <settings-card>
+      <template #icon>
         <svg-host :src="getTypeIcon(type)"></svg-host>
       </template>
       <template #header>
-        <h4 id="card-type" class="unset">卡片类型</h4>
+        <h4 id="bilibili-card-type" class="unset">卡片类型</h4>
       </template>
       <template #description>
         选择卡片显示内容的类型。
@@ -69,7 +89,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/card_ui_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="card-id" class="unset">卡片 ID</h4>
+        <h4 id="bilibili-card-id" class="unset">卡片 ID</h4>
       </template>
       <template #description>
         输入卡片显示的哔哩哔哩{{ types[type] }}的 ID。
@@ -82,7 +102,7 @@ sitemap: false
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/database_arrow_down_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="get-data" class="unset">获取数据</h4>
+        <h4 id="bilibili-card-get-data" class="unset">获取数据</h4>
       </template>
       <template #description>
         从哔哩哔哩获取 JSON 数据。(由于跨域限制无法自动获取信息，请手动在下方填入 JSON 数据)
@@ -105,7 +125,7 @@ sitemap: false
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/image_arrow_forward_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="image-proxy" class="unset">图片代理</h4>
+        <h4 id="bilibili-card-image-proxy" class="unset">图片代理</h4>
       </template>
       <template #description>
         设置封面图片的代理。
@@ -117,25 +137,49 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/tag_multiple_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="info-types" class="unset">信息类型</h4>
+        <h4 id="bilibili-card-info-types" class="unset">信息类型</h4>
       </template>
       <template #description>
         设置卡片显示信息的类型。(views, danmakus, comments, favorites, coins, likes)
       </template>
       <fluent-text-field v-model="infoTypes" :placeholder="getDefaultInfoTypes(type)"></fluent-text-field>
     </settings-card>
+    <settings-card>
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/color_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="bilibili-card-theme" class="unset">卡片主题</h4>
+      </template>
+      <template #description>
+        选择卡片的主题样式。
+      </template>
+      <value-change-host v-model="theme" value-name="value" event-name="change" style="display: inherit;">
+        <fluent-combobox placeholder="default" style="min-width: unset;">
+          <fluent-option>system</fluent-option>
+          <fluent-option>light</fluent-option>
+          <fluent-option>dark</fluent-option>
+        </fluent-combobox>
+      </value-change-host>
+    </settings-card>
     <input-label class="settings-card" label="预览"
       :style="{ paddingTop: 'calc(var(--design-unit) * 4px)', paddingRight: 'calc(var(--design-unit) * 4px)', paddingBottom: example ? 'calc(var(--design-unit) * 4px)' : 'calc(var(--design-unit) * 3px)', paddingLeft: 'calc(var(--design-unit) * 4px)' }">
       <template #action>
         <div class="stack-horizontal" style="width: unset; column-gap: calc(var(--design-unit) * 1px);">
           <fluent-button v-show="example" @click="e => onCopyClicked(e, example)">复制代码</fluent-button>
-          <fluent-button @click="() => createExample(json, imageProxy, id, type, infoTypes)">生成卡片</fluent-button>
+          <fluent-button @click="() => createExample(json, imageProxy, id, type, infoTypes, theme)">生成卡片</fluent-button>
         </div>
       </template>
       <div ref="example" v-show="example" style="max-width: 100%;"></div>
     </input-label>
   </div>
 </div>
+
+<template id="empty-slot-template">
+  <div>
+    <slot></slot>
+  </div>
+</template>
 
 <template id="svg-host-template">
   <div v-html="innerHTML"></div>
@@ -216,15 +260,19 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { encodeHTML } from "https://cdn.jsdelivr.net/npm/entities/+esm";
   import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
+  import builder from "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card-builder/bilibili-card-builder.esm.js";
   createApp({
     data() {
       return {
         id: null,
+        output: "components",
         type: "video",
         json: null,
         imageProxy: null,
         infoTypes: null,
+        theme: null,
         types: {
           video: "视频",
           article: "专栏",
@@ -329,8 +377,8 @@ sitemap: false
             }
           })
       },
-      createExample(json, imageProxy, id, type, infoTypes) {
-        this.updateExample(this.createCard(JSON.parse(json), imageProxy, id, type, infoTypes));
+      createExample(json, imageProxy, id, type, infoTypes, theme) {
+        this.updateExample(this.createCard(JSON.parse(json), imageProxy, id, type, infoTypes, theme));
       },
       updateExample(element) {
         const example = this.$refs.example;
@@ -339,6 +387,7 @@ sitemap: false
             example.innerHTML = this.example = '';
           }
           else {
+            element = html_beautify(element);
             example.innerHTML = this.example = element;
             const pre = document.createElement("pre");
             pre.className = "highlight html language-html";
@@ -346,14 +395,14 @@ sitemap: false
             pre.style.marginBottom = "unset";
             pre.style.borderRadius = "6px";
             const code = document.createElement("code");
-            code.innerText = element;
+            code.innerHTML = encodeHTML(element);
             pre.appendChild(code);
             example.appendChild(pre);
             hljs.highlightElement(code);
           }
         }
       },
-      createCard(token, imageProxy, id, type, infoTypes) {
+      createCard(token, imageProxy, id, type, infoTypes, theme) {
         if (!token) { return ''; }
         let message;
         switch (type) {
@@ -399,7 +448,7 @@ sitemap: false
                 return this.createCard(token, imageProxy, id, "video");
             }
         }
-        return this.createElement(imageProxy, infoTypes, message);
+        return this.createElement(imageProxy, infoTypes, message, theme);
       },
       getApi(id, type) {
         switch (type) {
@@ -462,7 +511,7 @@ sitemap: false
               };
             }
             else {
-              console.warn(`Failed to get bilibli video ${id}`);
+              console.warn(`Failed to get bilibili video ${id}`);
               return {
                 vid: id,
                 type: "video",
@@ -513,7 +562,7 @@ sitemap: false
             };
         }
         function warn(code, message) {
-          console.warn(`Failed to get bilibli video ${id}: { code: ${code}, message: ${message} }`);
+          console.warn(`Failed to get bilibili video ${id}: { code: ${code}, message: ${message} }`);
         }
       },
       getArticleMessage(id, token) {
@@ -535,7 +584,7 @@ sitemap: false
               };
             }
             else {
-              console.warn(`Failed to get bilibli article ${id}`);
+              console.warn(`Failed to get bilibili article ${id}`);
               return {
                 vid: id,
                 type: "article",
@@ -565,7 +614,7 @@ sitemap: false
             };
         }
         function warn(code, message) {
-          console.warn(`Failed to get bilibli article ${id}: { code: ${code}, message: ${message} }`);
+          console.warn(`Failed to get bilibili article ${id}: { code: ${code}, message: ${message} }`);
         }
       },
       getUserMessage(id, token) {
@@ -584,7 +633,7 @@ sitemap: false
               };
             }
             else {
-              console.warn(`Failed to get bilibli article ${id}`);
+              console.warn(`Failed to get bilibili article ${id}`);
               return {
                 vid: id,
                 type: "user",
@@ -607,7 +656,7 @@ sitemap: false
             };
         }
         function warn(code, message) {
-          console.warn(`Failed to get bilibli user ${id}: { code: ${code}, message: ${message} }`);
+          console.warn(`Failed to get bilibili user ${id}: { code: ${code}, message: ${message} }`);
         }
       },
       getLiveMessage(id, token) {
@@ -624,7 +673,7 @@ sitemap: false
               };
             }
             else {
-              console.warn(`Failed to get bilibli live ${id}`);
+              console.warn(`Failed to get bilibili live ${id}`);
               return {
                 vid: id,
                 type: "live",
@@ -647,7 +696,7 @@ sitemap: false
             };
         }
         function warn(code, message) {
-          console.warn(`Failed to get bilibli live ${id}: { code: ${code}, message: ${message} }`);
+          console.warn(`Failed to get bilibili live ${id}: { code: ${code}, message: ${message} }`);
         }
       },
       getBangumiMessage(id, token) {
@@ -666,7 +715,7 @@ sitemap: false
             }
             else {
               if (log) {
-                log.warn(`Failed to get bilibli article ${id}`);
+                log.warn(`Failed to get bilibili article ${id}`);
               }
               return {
                 vid: id,
@@ -697,7 +746,7 @@ sitemap: false
             };
         }
         function warn(code, message) {
-          console.warn(`Failed to get bilibli user ${id}: { code: ${code}, message: ${message} }`);
+          console.warn(`Failed to get bilibili user ${id}: { code: ${code}, message: ${message} }`);
         }
       },
       getAudioMessage(id, token) {
@@ -720,7 +769,7 @@ sitemap: false
             }
             else {
               if (log) {
-                log.warn(`Failed to get bilibli audio ${id}`);
+                log.warn(`Failed to get bilibili audio ${id}`);
               }
               return {
                 vid: id,
@@ -737,7 +786,7 @@ sitemap: false
             };
         }
         function warn(code, message) {
-          console.warn(`Failed to get bilibli audio ${id}: { code: ${code}, message: ${message} }`);
+          console.warn(`Failed to get bilibili audio ${id}: { code: ${code}, message: ${message} }`);
         }
       },
       getDynamicMessage(id, token) {
@@ -789,7 +838,7 @@ sitemap: false
               }
             }
             else {
-              console.warn(`Failed to get bilibli dynamic ${id}`);
+              console.warn(`Failed to get bilibili dynamic ${id}`);
               return {
                 vid: id,
                 type: "dynamic",
@@ -805,7 +854,7 @@ sitemap: false
             };
         }
         function warn(code, message) {
-          console.warn(`Failed to get bilibli dynamic ${id}: { code: ${code}, message: ${message} }`);
+          console.warn(`Failed to get bilibili dynamic ${id}: { code: ${code}, message: ${message} }`);
         }
       },
       getFavoriteMessage(id, token) {
@@ -824,7 +873,7 @@ sitemap: false
               };
             }
             else {
-              console.warn(`Failed to get bilibli favorite ${id}`);
+              console.warn(`Failed to get bilibili favorite ${id}`);
               return {
                 vid: id,
                 type: "favorite",
@@ -854,7 +903,7 @@ sitemap: false
             };
         }
         function warn(code, message) {
-          console.warn(`Failed to get bilibli favorite ${id}: { code: ${code}, message: ${message} }`);
+          console.warn(`Failed to get bilibili favorite ${id}: { code: ${code}, message: ${message} }`);
         }
       },
       getAlbumMessage(id, token) {
@@ -875,7 +924,7 @@ sitemap: false
               };
             }
             else {
-              console.warn(`Failed to get bilibli album ${id}`);
+              console.warn(`Failed to get bilibili album ${id}`);
               return {
                 vid: id,
                 type: "album",
@@ -898,54 +947,23 @@ sitemap: false
             };
         }
         function warn(code, message) {
-          console.warn(`Failed to get bilibli album ${id}: { code: ${code}, message: ${message} }`);
+          console.warn(`Failed to get bilibili album ${id}: { code: ${code}, message: ${message} }`);
         }
       },
-      createElement(imageProxy, infoTypes, { vid, type, title, author, cover, duration, views, danmakus, comments, favorites, coins, likes }) {
-        const attributes = ["bilibili-card"];
-        if (vid) {
-          attributes.push(`vid="${vid}"`);
+      createElement(imageProxy, infoTypes, { vid, type, title, author, cover, duration, views, danmakus, comments, favorites, coins, likes }, theme) {
+        switch (this.output) {
+          case "components":
+            return builder.createHost(imageProxy, infoTypes, { vid, type, title, author, cover, duration, views, danmakus, comments, favorites, coins, likes }, theme).outerHTML;
+          case "html":
+            const card = builder.createCardWithTagName("div", imageProxy, infoTypes, { vid, type, title, author, cover, duration, views, danmakus, comments, favorites, coins, likes }, theme);
+            if (card instanceof HTMLElement) {
+              const link = document.createElement("link");
+              link.rel = "stylesheet";
+              link.href = this.getTheme(this.theme || '0');
+              card.insertBefore(link, card.firstChild);
+            }
+            return card.innerHTML;
         }
-        if (type) {
-          attributes.push(`type="${type}"`);
-        }
-        if (title) {
-          attributes.push(`title="${title}"`);
-        }
-        if (author) {
-          attributes.push(`author="${author}"`);
-        }
-        if (cover) {
-          attributes.push(`cover="${cover}"`);
-        }
-        if (duration) {
-          attributes.push(`duration="${duration}"`);
-        }
-        if (views) {
-          attributes.push(`views="${views}"`);
-        }
-        if (danmakus) {
-          attributes.push(`danmakus="${danmakus}"`);
-        }
-        if (comments) {
-          attributes.push(`comments="${comments}"`);
-        }
-        if (favorites) {
-          attributes.push(`favorites="${favorites}"`);
-        }
-        if (coins) {
-          attributes.push(`coins="${coins}"`);
-        }
-        if (likes) {
-          attributes.push(`likes="${likes}"`);
-        }
-        if (infoTypes) {
-          attributes.push(`info-types="${infoTypes}"`);
-        }
-        if (imageProxy) {
-          attributes.push(`image-proxy="${imageProxy}"`);
-        }
-        return `<${attributes.join(' ')}></bilibili-card>`;
       },
       getVid(id) {
         const type = id?.slice(0, 2).toUpperCase();
@@ -984,6 +1002,26 @@ sitemap: false
         times.push(min);
         times.push(sec);
         return times.map(n => n.toString().padStart(2, 0)).join(':');
+      },
+      getTheme(theme) {
+        switch (theme.toLowerCase()) {
+          case '1':
+          case "light":
+            return "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.light.css";
+          case '2':
+          case "dark":
+            return "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.dark.css";
+          case '0':
+          case "auto":
+          case "system":
+          case "default":
+            return "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.css";
+          case "-1":
+          case "none":
+            return '';
+          default:
+            return theme;
+        }
       }
     }
   }).directive("check-solt",
@@ -1024,7 +1062,77 @@ sitemap: false
         }
       }
     }
-  ).component("svg-host", {
+  ).component("value-change-host", {
+    template: "#empty-slot-template",
+    props: {
+      valueName: String,
+      eventName: String,
+      modelValue: undefined
+    },
+    emits: ['update:modelValue'],
+    watch: {
+      eventName(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          const $el = this.$el;
+          if ($el instanceof HTMLElement) {
+            const element = $el.children[0];
+            if (element instanceof HTMLElement) {
+              if (oldValue) {
+                element.removeEventListener(oldValue, this.onValueChanged);
+              }
+              if (newValue) {
+                element.addEventListener(newValue, this.onValueChanged);
+              }
+            }
+          }
+        }
+      },
+      modelValue(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          const valueName = this.valueName;
+          if (valueName) {
+            const $el = this.$el;
+            if ($el instanceof HTMLElement) {
+              const element = $el.children[0];
+              if (element instanceof HTMLElement) {
+                element[valueName] = newValue;
+              }
+            }
+          }
+        }
+      }
+    },
+    methods: {
+      registerEvent(valueName) {
+        const $el = this.$el;
+        if ($el instanceof HTMLElement) {
+          const element = $el.children[0];
+          if (element instanceof HTMLElement) {
+            const modelValue = this.modelValue;
+            if (modelValue === undefined) {
+              this.$emit('update:modelValue', element[valueName]);
+            }
+            else {
+              element[valueName] = modelValue;
+            }
+            element.addEventListener(this.eventName, this.onValueChanged);
+          }
+        }
+      },
+      onValueChanged(event) {
+        const target = event.target;
+        if (target instanceof HTMLElement) {
+          this.$emit('update:modelValue', target[this.valueName]);
+        }
+      }
+    },
+    mounted() {
+      const valueName = this.valueName;
+      if (valueName && this.eventName) {
+        this.registerEvent(valueName);
+      }
+    }
+  }).component("svg-host", {
     template: "#svg-host-template",
     props: {
       src: String
