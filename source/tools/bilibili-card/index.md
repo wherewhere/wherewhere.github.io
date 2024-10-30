@@ -159,19 +159,23 @@ sitemap: false
           <fluent-option>system</fluent-option>
           <fluent-option>light</fluent-option>
           <fluent-option>dark</fluent-option>
+          <fluent-option>https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.fluent.css</fluent-option>
         </fluent-combobox>
       </value-change-host>
     </settings-card>
-    <input-label class="settings-card" label="预览"
+    <div class="settings-card"
       :style="{ paddingTop: 'calc(var(--design-unit) * 4px)', paddingRight: 'calc(var(--design-unit) * 4px)', paddingBottom: example ? 'calc(var(--design-unit) * 4px)' : 'calc(var(--design-unit) * 3px)', paddingLeft: 'calc(var(--design-unit) * 4px)' }">
-      <template #action>
-        <div class="stack-horizontal" style="width: unset; column-gap: calc(var(--design-unit) * 1px);">
-          <fluent-button v-show="example" @click="e => onCopyClicked(e, example)">复制代码</fluent-button>
-          <fluent-button @click="() => createExample(json, imageProxy, id, type, infoTypes, theme)">生成卡片</fluent-button>
-        </div>
-      </template>
-      <div ref="example" v-show="example" style="max-width: 100%;"></div>
-    </input-label>
+      <input-label label="预览" v-fill-color="neutralFillInputRest">
+        <template #action>
+          <div class="stack-horizontal" style="width: unset; column-gap: calc(var(--design-unit) * 1px);">
+            <fluent-button v-show="example" @click="e => onCopyClicked(e, example)">复制代码</fluent-button>
+            <fluent-button
+              @click="() => createExample(json, imageProxy, id, type, infoTypes, theme)">生成卡片</fluent-button>
+          </div>
+        </template>
+        <div ref="example" v-show="example" style="max-width: 100%;"></div>
+      </input-label>
+    </div>
   </div>
 </div>
 
@@ -220,18 +224,20 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <settings-presenter class="presenter">
-      <template #icon>
-        <slot name="icon"></slot>
-      </template>
-      <template #header>
-        <slot name="header"></slot>
-      </template>
-      <template #description>
-        <slot name="description"></slot>
-      </template>
-      <slot></slot>
-    </settings-presenter>
+    <div class="content-grid" v-fill-color="neutralFillInputRest">
+      <settings-presenter class="presenter">
+        <template #icon>
+          <slot name="icon"></slot>
+        </template>
+        <template #header>
+          <slot name="header"></slot>
+        </template>
+        <template #description>
+          <slot name="description"></slot>
+        </template>
+        <slot></slot>
+      </settings-presenter>
+    </div>
   </div>
 </template>
 
@@ -252,7 +258,9 @@ sitemap: false
           <slot name="action-content"></slot>
         </settings-presenter>
       </div>
-      <slot></slot>
+      <div v-fill-color="neutralFillLayerAltRest">
+        <slot></slot>
+      </div>
     </fluent-accordion-item>
   </fluent-accordion>
 </template>
@@ -260,9 +268,16 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
   import { encodeHTML } from "https://cdn.jsdelivr.net/npm/entities/+esm";
   import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
+  import message from "https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card-message/bilibili-card-message.esm.js";
   import builder from "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card-builder/bilibili-card-builder.esm.js";
+  const root = document.getElementById("vue-app");
+  const designTokens = {
+    neutralFillInputRest: neutralFillInputRest.getValueFor(root),
+    neutralFillLayerAltRest: neutralFillLayerAltRest.getValueFor(root)
+  }
   createApp({
     data() {
       return {
@@ -284,19 +299,20 @@ sitemap: false
           favorite: "收藏夹",
           album: "相簿"
         },
-        example: null
+        example: null,
+        neutralFillInputRest: designTokens.neutralFillInputRest
       }
     },
     methods: {
       getApiUrl() {
         const id = this.id;
         if (!id) { return null; }
-        else { return this.getApi(id, this.type); }
+        else { return message.getApi(id, this.type); }
       },
       async getApiAsync() {
         const id = this.id;
         if (!id) { return; }
-        json = await fetch(this.getApi(id, this.type))
+        json = await fetch(message.getApi(id, this.type))
           .then(x => x.text())
           .catch(ex => ex.toString());
       },
@@ -333,7 +349,7 @@ sitemap: false
           case "user":
             return "266112738";
           case "live":
-            return "1720863137";
+            return "12720436";
           case "bangumi":
             return "md1689";
           case "audio":
@@ -404,551 +420,8 @@ sitemap: false
       },
       createCard(token, imageProxy, id, type, infoTypes, theme) {
         if (!token) { return ''; }
-        let message;
-        switch (type) {
-          case "video":
-            message = this.getVideoMessage(id, token);
-            break;
-          case "article":
-            message = this.getArticleMessage(id, token);
-            break;
-          case "user":
-            message = this.getUserMessage(id, token);
-            break;
-          case "live":
-            message = this.getLiveMessage(id, token);
-            break;
-          case "bangumi":
-            message = this.getBangumiMessage(id, token);
-            break;
-          case "audio":
-            message = this.getAudioMessage(id, token);
-            break;
-          case "dynamic":
-            message = this.getDynamicMessage(id, token);
-            break;
-          case "favorite":
-            message = this.getFavoriteMessage(id, token);
-            break;
-          case "album":
-            message = this.getAlbumMessage(id, token);
-            break;
-          default:
-            const code = id?.slice(0, 2).toLowerCase();
-            switch (code) {
-              case "cv":
-                return this.createCard(token, imageProxy, id, "article");
-              case "md":
-                return this.createCard(token, imageProxy, id, "bangumi");
-              case "au":
-                return this.createCard(token, imageProxy, id, "audio");
-              case "bv":
-              case "av":
-              default:
-                return this.createCard(token, imageProxy, id, "video");
-            }
-        }
-        return this.createElement(imageProxy, infoTypes, message, theme);
-      },
-      getApi(id, type) {
-        switch (type) {
-          case "video":
-            const vid = this.getVid(id);
-            return `https://api.bilibili.com/x/web-interface/view?${vid.type}=${vid.id}`;
-          case "article":
-            const cvid = id.slice(0, 2).toLowerCase() === "cv" ? id.slice(2) : id;
-            return `https://api.bilibili.com/x/article/viewinfo?id=${cvid}`;
-          case "user":
-            return `https://api.bilibili.com/x/web-interface/card?mid=${id}`;
-          case "live":
-            return `https://api.live.bilibili.com/room/v1/Room/get_info?room_id=${id}`;
-          case "bangumi":
-            const mdid = id.slice(0, 2).toLowerCase() === "md" ? id.slice(2) : id;
-            return `https://api.bilibili.com/pgc/review/user?media_id=${mdid}`;
-          case "audio":
-            const auid = id.slice(0, 2).toLowerCase() === "au" ? id.slice(2) : id;
-            return `https://api.bilibili.com/audio/music-service-c/web/song/info?sid=${auid}`;
-          case "dynamic":
-            return `https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/get_dynamic_detail?dynamic_id=${id}`;
-          case "favorite":
-            return `https://api.bilibili.com/x/v3/fav/folder/info?media_id=${id}`;
-          case "album":
-            return `https://api.vc.bilibili.com/link_draw/v1/doc/detail?doc_id=${id}`;
-          default:
-            const code = id?.slice(0, 2).toLowerCase();
-            switch (code) {
-              case "cv":
-                return this.getApi(id, "article");
-              case "md":
-                return this.getApi(id, "bangumi");
-              case "au":
-                return this.getApi(id, "audio");
-              case "bv":
-              case "av":
-              default:
-                return this.getApi(id, "video");
-            }
-        }
-      },
-      getVideoMessage(id, token) {
-        switch (token?.code) {
-          case 0:
-            const data = token?.data;
-            if (data) {
-              return {
-                vid: data.bvid,
-                type: "video",
-                title: data.title,
-                author: data.owner?.name,
-                cover: data.pic,
-                duration: this.formatSecondsToTime(data.duration),
-                views: this.formatLargeNumber(data.stat?.view),
-                danmakus: this.formatLargeNumber(data.stat?.danmaku),
-                comments: this.formatLargeNumber(data.stat?.reply),
-                favorites: this.formatLargeNumber(data.stat?.favorite),
-                coins: this.formatLargeNumber(data.stat?.coin),
-                likes: this.formatLargeNumber(data.stat?.like)
-              };
-            }
-            else {
-              console.warn(`Failed to get bilibili video ${id}`);
-              return {
-                vid: id,
-                type: "video",
-                title: "出错了！"
-              }
-            }
-          case -400:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "video",
-              title: `出错了！${token.code}`
-            };
-          case -403:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "video",
-              title: `权限不足！${token.code}`
-            };
-          case -404:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "video",
-              title: `视频不存在！${token.code}`
-            };
-          case 62002:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "video",
-              title: `稿件不可见！${token.code}`
-            };
-          case 62004:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "video",
-              title: `稿件审核中！${token.code}`
-            };
-          default:
-            warn(token?.code, token?.message);
-            return {
-              vid: id,
-              type: "video",
-              title: `出错了！${token?.code}`
-            };
-        }
-        function warn(code, message) {
-          console.warn(`Failed to get bilibili video ${id}: { code: ${code}, message: ${message} }`);
-        }
-      },
-      getArticleMessage(id, token) {
-        switch (token?.code) {
-          case 0:
-            const data = token?.data;
-            if (data) {
-              return {
-                vid: id,
-                type: "article",
-                title: data.title,
-                author: data.author_name,
-                cover: data.banner_url,
-                views: this.formatLargeNumber(data.stat?.view),
-                comments: this.formatLargeNumber(data.stat?.reply),
-                favorites: this.formatLargeNumber(data.stat?.favorite),
-                coins: this.formatLargeNumber(data.stat?.coin),
-                likes: this.formatLargeNumber(data.stat?.like)
-              };
-            }
-            else {
-              console.warn(`Failed to get bilibili article ${id}`);
-              return {
-                vid: id,
-                type: "article",
-                title: "出错了！"
-              }
-            }
-          case -400:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "article",
-              title: `出错了！${token.code}`
-            };
-          case -404:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "article",
-              title: `专栏不存在！${token.code}`
-            };
-          default:
-            warn(token?.code, token?.message);
-            return {
-              vid: id,
-              type: "article",
-              title: `出错了！${token?.code}`
-            };
-        }
-        function warn(code, message) {
-          console.warn(`Failed to get bilibili article ${id}: { code: ${code}, message: ${message} }`);
-        }
-      },
-      getUserMessage(id, token) {
-        switch (token?.code) {
-          case 0:
-            const data = token?.data;
-            if (data) {
-              return {
-                vid: data.card?.mid,
-                type: "user",
-                title: `${data.card?.name}\n${data.card?.sign}`,
-                author: data.card?.name,
-                cover: data.card?.face,
-                views: this.formatLargeNumber(data.card?.fans),
-                likes: this.formatLargeNumber(data.like_num)
-              };
-            }
-            else {
-              console.warn(`Failed to get bilibili article ${id}`);
-              return {
-                vid: id,
-                type: "user",
-                title: "出错了！"
-              }
-            }
-          case -400:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "user",
-              title: `出错了！${token.code}`
-            };
-          default:
-            warn(token?.code, token?.message);
-            return {
-              vid: id,
-              type: "user",
-              title: `出错了！${token?.code}`
-            };
-        }
-        function warn(code, message) {
-          console.warn(`Failed to get bilibili user ${id}: { code: ${code}, message: ${message} }`);
-        }
-      },
-      getLiveMessage(id, token) {
-        switch (token?.code) {
-          case 0:
-            const data = token?.data;
-            if (data) {
-              return {
-                vid: data.room_id,
-                type: "live",
-                title: data.title,
-                cover: data.user_cover,
-                views: this.formatLargeNumber(data.online)
-              };
-            }
-            else {
-              console.warn(`Failed to get bilibili live ${id}`);
-              return {
-                vid: id,
-                type: "live",
-                title: "出错了！"
-              }
-            }
-          case 1:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "live",
-              title: `房间不存在！${token.code}`
-            };
-          default:
-            warn(token?.code, token?.message);
-            return {
-              vid: id,
-              type: "live",
-              title: `出错了！${token?.code}`
-            };
-        }
-        function warn(code, message) {
-          console.warn(`Failed to get bilibili live ${id}: { code: ${code}, message: ${message} }`);
-        }
-      },
-      getBangumiMessage(id, token) {
-        switch (token?.code) {
-          case 0:
-            const data = token?.result;
-            if (data) {
-              return {
-                vid: data.media?.media_id,
-                type: "bangumi",
-                title: data.media?.title,
-                author: data.media?.type_name,
-                cover: data.media?.horizontal_picture,
-                favorites: data.media?.rating?.score
-              };
-            }
-            else {
-              if (log) {
-                log.warn(`Failed to get bilibili article ${id}`);
-              }
-              return {
-                vid: id,
-                type: "bangumi",
-                title: "出错了！"
-              }
-            }
-          case -400:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "bangumi",
-              title: `出错了！${token.code}`
-            };
-          case -404:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "bangumi",
-              title: `番剧不存在！${token.code}`
-            };
-          default:
-            warn(token?.code, token?.message);
-            return {
-              vid: id,
-              type: "bangumi",
-              title: `出错了！${token?.code}`
-            };
-        }
-        function warn(code, message) {
-          console.warn(`Failed to get bilibili user ${id}: { code: ${code}, message: ${message} }`);
-        }
-      },
-      getAudioMessage(id, token) {
-        switch (token?.code) {
-          case 0:
-            const data = token?.data;
-            if (data) {
-              return {
-                vid: data.id,
-                type: "audio",
-                title: data.title,
-                author: data.author,
-                cover: data.cover,
-                duration: this.formatSecondsToTime(data.duration),
-                views: this.formatLargeNumber(data.statistic?.play),
-                comments: this.formatLargeNumber(data.statistic?.comment),
-                favorites: this.formatLargeNumber(data.statistic?.collect),
-                coins: this.formatLargeNumber(data.coin_num)
-              };
-            }
-            else {
-              if (log) {
-                log.warn(`Failed to get bilibili audio ${id}`);
-              }
-              return {
-                vid: id,
-                type: "audio",
-                title: "出错了！"
-              }
-            }
-          default:
-            warn(token?.code, token?.message);
-            return {
-              vid: id,
-              type: "audio",
-              title: `出错了！${token?.code}`
-            };
-        }
-        function warn(code, message) {
-          console.warn(`Failed to get bilibili audio ${id}: { code: ${code}, message: ${message} }`);
-        }
-      },
-      getDynamicMessage(id, token) {
-        switch (token?.code) {
-          case 0:
-            const data = token?.data;
-            if (data) {
-              const result = {
-                vid: data.card?.desc?.dynamic_id_str,
-                type: "dynamic",
-                author: data.card?.desc?.user_profile?.info?.uname,
-                views: this.formatLargeNumber(data.card?.desc?.view),
-                comments: this.formatLargeNumber(data.card?.desc?.comment),
-                likes: this.formatLargeNumber(data.card?.desc?.like)
-              };
-              const card = JSON.parse(data.card?.card);
-              switch (data.card?.desc?.type) {
-                case 1:
-                case 4:
-                  return {
-                    ...result,
-                    title: card?.item?.content,
-                    cover: card?.user?.face,
-                  }
-                case 2:
-                  return {
-                    ...result,
-                    title: card?.item?.description,
-                    cover: card?.item?.pictures?.[0]?.img_src,
-                  };
-                case 8:
-                  return {
-                    ...result,
-                    title: card?.dynamic,
-                    cover: card?.pic,
-                  }
-                case 64:
-                  return {
-                    ...result,
-                    title: card?.title,
-                    cover: card?.image_urls?.[0],
-                  }
-                default:
-                  return {
-                    ...result,
-                    title: `${data.card?.desc?.user_profile?.info?.uname} 的动态`,
-                    cover: data.card?.desc?.user_profile?.info?.face
-                  }
-              }
-            }
-            else {
-              console.warn(`Failed to get bilibili dynamic ${id}`);
-              return {
-                vid: id,
-                type: "dynamic",
-                title: "出错了！"
-              }
-            }
-          default:
-            warn(token?.code, token?.message);
-            return {
-              vid: id,
-              type: "dynamic",
-              title: `出错了！${token?.code}`
-            };
-        }
-        function warn(code, message) {
-          console.warn(`Failed to get bilibili dynamic ${id}: { code: ${code}, message: ${message} }`);
-        }
-      },
-      getFavoriteMessage(id, token) {
-        switch (token?.code) {
-          case 0:
-            const data = token?.data;
-            if (data) {
-              return {
-                vid: data.id,
-                type: "favorite",
-                title: data.title,
-                author: data.upper?.name,
-                cover: data.cover,
-                views: this.formatLargeNumber(data.cnt_info?.play),
-                favorites: this.formatLargeNumber(data.cnt_info?.collect)
-              };
-            }
-            else {
-              console.warn(`Failed to get bilibili favorite ${id}`);
-              return {
-                vid: id,
-                type: "favorite",
-                title: "出错了！"
-              }
-            }
-          case -400:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "favorite",
-              title: `出错了！${token.code}`
-            };
-          case -403:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "favorite",
-              title: `权限不足！${token.code}`
-            };
-          default:
-            warn(token?.code, token?.message);
-            return {
-              vid: id,
-              type: "favorite",
-              title: `出错了！${token?.code}`
-            };
-        }
-        function warn(code, message) {
-          console.warn(`Failed to get bilibili favorite ${id}: { code: ${code}, message: ${message} }`);
-        }
-      },
-      getAlbumMessage(id, token) {
-        switch (token?.code) {
-          case 0:
-            const data = token?.data;
-            if (data) {
-              return {
-                vid: data.item?.doc_id,
-                type: "album",
-                title: data.item?.title,
-                author: data.user?.name,
-                cover: data.item?.pictures[0]?.img_src,
-                views: this.formatLargeNumber(data.item?.view_count),
-                comments: this.formatLargeNumber(data.item?.comment_count),
-                favorites: this.formatLargeNumber(data.item?.collect_count),
-                likes: this.formatLargeNumber(data.item?.like_count)
-              };
-            }
-            else {
-              console.warn(`Failed to get bilibili album ${id}`);
-              return {
-                vid: id,
-                type: "album",
-                title: "出错了！"
-              }
-            }
-          case 110001:
-            warn(token.code, token.message);
-            return {
-              vid: id,
-              type: "album",
-              title: `相册不存在！${token.code}`
-            };
-          default:
-            warn(token?.code, token?.message);
-            return {
-              vid: id,
-              type: "album",
-              title: `出错了！${token?.code}`
-            };
-        }
-        function warn(code, message) {
-          console.warn(`Failed to get bilibili album ${id}: { code: ${code}, message: ${message} }`);
-        }
+        const _message = message.getMessage(type, id, console);
+        return this.createElement(imageProxy, infoTypes, _message, theme);
       },
       createElement(imageProxy, infoTypes, { vid, type, title, author, cover, duration, views, danmakus, comments, favorites, coins, likes }, theme) {
         switch (this.output) {
@@ -965,57 +438,22 @@ sitemap: false
             return card.innerHTML;
         }
       },
-      getVid(id) {
-        const type = id?.slice(0, 2).toUpperCase();
-        if (type === "BV") {
-          return { id: id, type: "bvid" };
-        }
-        else if (type === "AV") {
-          return { id: id.slice(2), type: "aid" };
-        }
-        else {
-          const num = Number(id);
-          if (isNaN(num)) {
-            return { id: `BV${id}`, type: "bvid" };
-          }
-          else {
-            return { id: num, type: "aid" };
-          }
-        }
-      },
-      formatLargeNumber(num) {
-        return (num >= 1E8)
-          ? `${(num / 1E8).toFixed(1)}亿`
-          : (num >= 1E4)
-            ? `${(num / 1E4).toFixed(1)}万`
-            : num;
-      },
-      formatSecondsToTime(second) {
-        console.log(second);
-        const sec = second % 60;
-        const min = Math.floor(second / 60) % 60;
-        const hour = Math.floor(second / 3600);
-        const times = [];
-        if (hour) {
-          times.push(hour);
-        }
-        times.push(min);
-        times.push(sec);
-        return times.map(n => n.toString().padStart(2, 0)).join(':');
-      },
       getTheme(theme) {
+        const baseUrl = "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card";
         switch (theme.toLowerCase()) {
           case '1':
           case "light":
-            return "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.light.css";
+            return `${baseUrl}.light.css`;
           case '2':
           case "dark":
-            return "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.dark.css";
+            return `${baseUrl}.dark.css`;
           case '0':
           case "auto":
           case "system":
           case "default":
-            return "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.css";
+            return `${baseUrl}.css`;
+          case "fluent":
+            return `${baseUrl}.fluent.css`;
           case "-1":
           case "none":
             return '';
@@ -1059,6 +497,15 @@ sitemap: false
             }
           }
           setDisplay(false);
+        }
+      }
+    }
+  ).directive("fill-color",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const color = binding.value;
+        if (color !== binding.oldValue) {
+          fillColor.setValueFor(element, color);
         }
       }
     }
@@ -1179,11 +626,21 @@ sitemap: false
       }
     }
   }).component("settings-card", {
-    template: "#settings-card-template"
+    template: "#settings-card-template",
+    data() {
+      return {
+        neutralFillInputRest: designTokens.neutralFillInputRest
+      }
+    }
   }).component("settings-expander", {
     template: "#settings-expander-template",
     props: {
       expanded: String
+    },
+    data() {
+      return {
+        neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
+      }
     }
   }).mount("#vue-app");
 </script>
@@ -1316,12 +773,6 @@ sitemap: false
 
   .settings-card .presenter {
     padding: var(--settings-card-padding);
-  }
-
-  .settings-card div.content-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   .settings-expander * {
