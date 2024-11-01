@@ -23,20 +23,20 @@ title: 关于
       }
       connectedCallback() {
         const { message, readme } = this;
-        readme.textContent = "如果这里什么也没有，请";
+        readme.innerText = "如果这里什么也没有，请";
         let link = document.createElement("a");
         link.href = "javascript:void(0)";
         link.onclick = () => this.loadReadmeAsync();
-        link.textContent = "刷新";
+        link.innerText = "刷新";
         readme.appendChild(link);
         readme.append("页面，或者前往这个");
         link = document.createElement("a");
         link.href = "https://wherewhere.github.io/wherewhere";
-        link.textContent = "页面";
+        link.innerText = "页面";
         readme.appendChild(link);
         readme.append("查看");
-        this.appendChild(this.message);
-        this.appendChild(this.readme);
+        this.appendChild(message);
+        this.appendChild(readme);
         this.loadReadmeAsync();
       }
       async loadReadmeAsync() {
@@ -46,14 +46,14 @@ title: 关于
         const message = this.message;
         try {
           this.isLoading = true;
-          message.textContent = "正在从 GitHub 拉取信息，请坐和放宽";
+          message.innerText = "正在从 GitHub 拉取信息，请坐和放宽";
           const response = await fetch("https://api.github.com/repos/wherewhere/wherewhere/readme");
           if (response.ok) {
-            message.textContent = "拉取成功，正在解析";
+            message.innerText = "拉取成功，正在解析";
             const json = await response.json();
             const content = json.content;
             if (typeof (content) == "string" && content.length > 0) {
-              message.textContent = "解析成功";
+              message.innerText = "解析成功";
               this.readme.innerHTML = marked.parse(decodeBase64(content));
               message.remove();
               return;
@@ -65,7 +65,7 @@ title: 关于
         finally {
           this.isLoading = false;
         }
-        message.textContent = "拉取失败，即将跳转到 GitHub 页面";
+        message.innerText = "拉取失败，即将跳转到 GitHub 页面";
         location.href = "https://wherewhere.github.io/wherewhere"
       }
     }

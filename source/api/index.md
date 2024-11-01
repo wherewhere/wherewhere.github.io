@@ -16,11 +16,11 @@ title: API 文档
       connectedCallback() {
         const swaggerDiv = document.createElement("div");
         swaggerDiv.id = this.dom_id;
-        swaggerDiv.textContent = "如果这里什么也没有，请";
+        swaggerDiv.innerText = "如果这里什么也没有，请";
         const link = document.createElement("a");
         link.href = "javascript:void(0)";
         link.click = () => this.loadSwaggerUI();
-        link.textContent = "刷新";
+        link.innerText = "刷新";
         swaggerDiv.appendChild(link);
         swaggerDiv.append("页面");
         this.append(swaggerDiv);

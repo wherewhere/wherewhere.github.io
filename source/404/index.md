@@ -19,10 +19,10 @@ permalink: /404.html
       }
       count(timeout) {
         if (--this.countTime > 0) {
-          timeout.textContent = "预计将在约 " + this.countTime + " 秒后返回首页。";
+          timeout.innerText = "预计将在约 " + this.countTime + " 秒后返回首页。";
         }
         else if (this.countTime === 0) {
-          timeout.textContent = "即将跳转到首页。";
+          timeout.innerText = "即将跳转到首页。";
           location.href = '/';
         }
         else if (this.countTime < 0) {
