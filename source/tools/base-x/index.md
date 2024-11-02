@@ -10,7 +10,9 @@ sitemap: false
     fluentButton,
     fluentOption,
     fluentSelect,
+    fluentSwitch,
     fluentTextArea,
+    fluentTextField,
     fillColor,
     accentBaseColor,
     SwatchRGB,
@@ -25,7 +27,9 @@ sitemap: false
       fluentButton(),
       fluentOption(),
       fluentSelect(),
-      fluentTextArea()
+      fluentSwitch(),
+      fluentTextArea(),
+      fluentTextField()
     );
   fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
@@ -57,7 +61,7 @@ sitemap: false
         <fluent-option v-for="key in getBaseExList()" :value="key">{{ key }}</fluent-option>
       </fluent-select>
     </settings-card>
-    <settings-expander v-if="showCharsets">
+    <settings-expander v-show="showCharsets">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/password_20_regular.svg"></svg-host>
       </template>
@@ -72,22 +76,70 @@ sitemap: false
           readonly="true"></fluent-text-area>
       </div>
     </settings-expander>
+    <settings-card class="settings-nowarp">
+      <template #icon>
+        <svg-host
+          :src="`https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/${isFile ? 'document' : 'textbox'}_20_regular.svg`"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="base-file" class="unset">是否为文件</h4>
+      </template>
+      <template #description>
+        编码与解码{{ isFile ? '文件' : '文本' }}。
+      </template>
+      <value-change-host v-model="isFile" value-name="checked" event-name="change">
+        <fluent-switch>{{ isFile ? '是' : '否' }}</fluent-switch>
+      </value-change-host>
+    </settings-card>
+    <settings-card v-if="isFile">
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/rename_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="base-file-name" class="unset">自定义文件名</h4>
+      </template>
+      <template #description>
+        自定义解码后生成的文件名。
+      </template>
+      <fluent-text-field v-model="fileName" :placeholder="getFileName()"></fluent-text-field>
+    </settings-card>
     <div class="split-view">
-      <input-label class="split-content" label="明文" style="flex: 1;">
-        <template #action>
-          <fluent-button @click="() => encode()">编码</fluent-button>
-        </template>
-        <fluent-text-area v-model="decoded" resize="vertical" style="width: 100%;"></fluent-text-area>
-      </input-label>
-      <input-label class="split-content" label="密文" style="flex: 1;">
-        <template #action>
-          <fluent-button @click="() => decode()">解码</fluent-button>
-        </template>
-        <fluent-text-area v-model="encoded" resize="vertical" style="width: 100%;"></fluent-text-area>
-      </input-label>
+      <div class="split-content">
+        <input-label :label="isFile ? '文件' : '明文'" v-fill-color="neutralFillInputRest"
+          style="flex: 1; display: flex; flex-direction: column;">
+          <template #action>
+            <fluent-button @click="() => encode()">编码</fluent-button>
+          </template>
+          <div class="fluent-inputfile-container" v-if="isFile" style="flex: 1; min-height: 64px;">
+            <div class="inputfile-content">
+              <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_upload_24_regular.svg"
+                style="fill: var(--accent-fill-rest);"></svg-host>
+              <div v-if="file">{{ file.name }} ({{ getSizeString(file.size) }})</div>
+              <div v-else>上传一个文件</div>
+            </div>
+            <input @change="(e) => file = e.target.files[0]" type="file"
+              style="grid-column: 1; grid-row: 1; opacity: 0;"></input>
+          </div>
+          <fluent-text-area v-model="decoded" resize="vertical" style="width: 100%;" v-else></fluent-text-area>
+        </input-label>
+      </div>
+      <div class="split-content">
+        <input-label label="密文" v-fill-color="neutralFillInputRest" style="flex: 1;">
+          <template #action>
+            <fluent-button @click="() => decode()">解码</fluent-button>
+          </template>
+          <fluent-text-area v-model="encoded" resize="vertical" style="width: 100%;"></fluent-text-area>
+        </input-label>
+      </div>
     </div>
   </div>
 </div>
+
+<template id="empty-slot-template">
+  <div>
+    <slot></slot>
+  </div>
+</template>
 
 <template id="svg-host-template">
   <div v-html="innerHTML"></div>
@@ -128,18 +180,20 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <settings-presenter class="presenter">
-      <template #icon>
-        <slot name="icon"></slot>
-      </template>
-      <template #header>
-        <slot name="header"></slot>
-      </template>
-      <template #description>
-        <slot name="description"></slot>
-      </template>
-      <slot></slot>
-    </settings-presenter>
+    <div class="content-grid" v-fill-color="neutralFillInputRest">
+      <settings-presenter class="presenter">
+        <template #icon>
+          <slot name="icon"></slot>
+        </template>
+        <template #header>
+          <slot name="header"></slot>
+        </template>
+        <template #description>
+          <slot name="description"></slot>
+        </template>
+        <slot></slot>
+      </settings-presenter>
+    </div>
   </div>
 </template>
 
@@ -160,7 +214,9 @@ sitemap: false
           <slot name="action-content"></slot>
         </settings-presenter>
       </div>
-      <slot></slot>
+      <div v-fill-color="neutralFillLayerAltRest">
+        <slot></slot>
+      </div>
     </fluent-accordion-item>
   </fluent-accordion>
 </template>
@@ -168,6 +224,12 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  const root = document.getElementById("vue-app");
+  const designTokens = {
+    neutralFillInputRest: neutralFillInputRest.getValueFor(root),
+    neutralFillLayerAltRest: neutralFillLayerAltRest.getValueFor(root)
+  }
   import { BaseEx } from "https://cdn.jsdelivr.net/npm/base-ex/+esm";
   createApp({
     data() {
@@ -175,8 +237,12 @@ sitemap: false
         type: "base64",
         encoded: null,
         decoded: null,
+        isFile: false,
+        file: null,
+        fileName: null,
         showCharsets: false,
-        baseEx: new BaseEx("str")
+        baseEx: new BaseEx(),
+        neutralFillInputRest: designTokens.neutralFillInputRest
       }
     },
     methods: {
@@ -203,10 +269,84 @@ sitemap: false
         return [];
       },
       encode() {
-        this.encoded = this.baseEx[this.type].encode(this.decoded);
+        if (this.isFile) {
+          const file = this.file;
+          if (file instanceof Blob) {
+            const reader = new FileReader();
+            reader.onload = () => {
+              this.encoded = this.baseEx[this.type].encode(reader.result);
+            }
+            reader.readAsArrayBuffer(file);
+          }
+          else {
+            this.encoded = '';
+          }
+        }
+        else {
+          this.encoded = this.baseEx[this.type].encode(this.decoded);
+        }
       },
       decode() {
-        this.decoded = this.baseEx[this.type].decode(this.encoded);
+        if (this.isFile) {
+          let name = this.fileName;
+          if (!name) {
+            name = this.getFileName();
+          }
+          const file = new File([this.baseEx[this.type].decode(this.encoded)], name);
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(file);
+          link.download = name;
+          link.click();
+        }
+        else {
+          this.decoded = this.baseEx[this.type].decode(this.encoded, "str");
+        }
+      },
+      getFileName() {
+        const file = this.file;
+        if (file instanceof File) {
+          return file.name;
+        }
+        const date = new Date();
+        function padStart(value, total) {
+          return value.toString().padStart(total, '0');
+        }
+        return `whercate_${date.getFullYear()}-${padStart(date.getMonth() + 1, 2)}-${padStart(date.getDate(), 2)}_${padStart(date.getHours(), 2)}-${padStart(date.getMinutes(), 2)}-${padStart(date.getSeconds(), 2)}`
+      },
+      getSizeString(size) {
+        let index = 0;
+        while (index <= 11) {
+          index++;
+          size /= 1024;
+          if (size > 0.7 && size < 716.8) { break; }
+          else if (size >= 716.8) { continue; }
+          else if (size <= 0.7) {
+            size *= 1024;
+            index--;
+            break;
+          }
+        }
+        let str = '';
+        switch (index) {
+          case 0: str = "B"; break;
+          case 1: str = "KB"; break;
+          case 2: str = "MB"; break;
+          case 3: str = "GB"; break;
+          case 4: str = "TB"; break;
+          case 5: str = "PB"; break;
+          case 6: str = "EB"; break;
+          case 7: str = "ZB"; break;
+          case 8: str = "YB"; break;
+          case 9: str = "BB"; break;
+          case 10: str = "NB"; break;
+          case 11: str = "DB"; break;
+          default:
+            break;
+        }
+        function toFixed(value) {
+          return Math.floor(value * 100) / 100;
+        }
+        return `${toFixed(size)}${str}`;
       }
     }
   }).directive("check-solt",
@@ -247,7 +387,86 @@ sitemap: false
         }
       }
     }
-  ).component("svg-host", {
+  ).directive("fill-color",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const color = binding.value;
+        if (color !== binding.oldValue) {
+          fillColor.setValueFor(element, color);
+        }
+      }
+    }
+  ).component("value-change-host", {
+    template: "#empty-slot-template",
+    props: {
+      valueName: String,
+      eventName: String,
+      modelValue: undefined
+    },
+    emits: ['update:modelValue'],
+    watch: {
+      eventName(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          const $el = this.$el;
+          if ($el instanceof HTMLElement) {
+            const element = $el.children[0];
+            if (element instanceof HTMLElement) {
+              if (oldValue) {
+                element.removeEventListener(oldValue, this.onValueChanged);
+              }
+              if (newValue) {
+                element.addEventListener(newValue, this.onValueChanged);
+              }
+            }
+          }
+        }
+      },
+      modelValue(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          const valueName = this.valueName;
+          if (valueName) {
+            const $el = this.$el;
+            if ($el instanceof HTMLElement) {
+              const element = $el.children[0];
+              if (element instanceof HTMLElement) {
+                element[valueName] = newValue;
+              }
+            }
+          }
+        }
+      }
+    },
+    methods: {
+      registerEvent(valueName) {
+        const $el = this.$el;
+        if ($el instanceof HTMLElement) {
+          const element = $el.children[0];
+          if (element instanceof HTMLElement) {
+            const modelValue = this.modelValue;
+            if (modelValue === undefined) {
+              this.$emit('update:modelValue', element[valueName]);
+            }
+            else {
+              element[valueName] = modelValue;
+            }
+            element.addEventListener(this.eventName, this.onValueChanged);
+          }
+        }
+      },
+      onValueChanged(event) {
+        const target = event.target;
+        if (target instanceof HTMLElement) {
+          this.$emit('update:modelValue', target[this.valueName]);
+        }
+      }
+    },
+    mounted() {
+      const valueName = this.valueName;
+      if (valueName && this.eventName) {
+        this.registerEvent(valueName);
+      }
+    }
+  }).component("svg-host", {
     template: "#svg-host-template",
     props: {
       src: String
@@ -294,11 +513,21 @@ sitemap: false
       }
     }
   }).component("settings-card", {
-    template: "#settings-card-template"
+    template: "#settings-card-template",
+    data() {
+      return {
+        neutralFillInputRest: designTokens.neutralFillInputRest
+      }
+    }
   }).component("settings-expander", {
     template: "#settings-expander-template",
     props: {
       expanded: String
+    },
+    data() {
+      return {
+        neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
+      }
     }
   }).mount("#vue-app");
 </script>
@@ -353,7 +582,7 @@ sitemap: false
 
   #vue-app div.split-view .split-content {
     flex: 1;
-    display: block;
+    display: flex;
     box-sizing: border-box;
     padding: var(--settings-card-padding);
     background: var(--neutral-fill-input-rest);
@@ -367,6 +596,22 @@ sitemap: false
     #vue-app div.split-view {
       flex-direction: column;
     }
+  }
+
+  #vue-app .fluent-inputfile-container {
+    display: grid;
+    grid-gap: 10px;
+    border-radius: calc(var(--control-corner-radius)* 1px);
+    background-color: var(--neutral-fill-hover);
+    border: 1px dashed var(--accent-fill-rest);
+  }
+
+  #vue-app .fluent-inputfile-container .inputfile-content {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
   }
 
   .input-label .fluent-input-label {
@@ -440,6 +685,20 @@ sitemap: false
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
     }
+
+    .settings-nowarp .settings-presenter {
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .settings-nowarp .settings-presenter div.header-panel {
+      margin: 0 calc(var(--design-unit) * 6px) 0 0;
+    }
+
+    .settings-nowarp .settings-presenter div.content-presenter {
+      margin: unset;
+    }
   }
 
   .settings-card {
@@ -456,12 +715,6 @@ sitemap: false
     padding: var(--settings-card-padding);
   }
 
-  .settings-card div.content-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
   .settings-expander * {
     --settings-expander-header-padding: calc(var(--design-unit) * 1px) 0 calc(var(--design-unit) * 1px) calc(var(--design-unit) * 2px);
     --settings-expander-item-padding: 0 calc((var(--base-height-multiplier) + 1 + var(--density)) * var(--design-unit) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 12 - var(--design-unit) * 1.5) * 1px + var(--type-ramp-base-line-height));
@@ -470,6 +723,7 @@ sitemap: false
   .settings-expander fluent-accordion-item.expander {
     box-sizing: border-box;
     box-shadow: var(--elevation-shadow-card-rest);
+    border-radius: calc(var(--control-corner-radius) * 1px);
   }
 
   .settings-expander fluent-accordion-item.expander:hover {
