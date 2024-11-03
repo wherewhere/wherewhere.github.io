@@ -192,33 +192,64 @@ sitemap: false
       </template>
       <value-change-host v-model="verify.auto" value-name="checked" event-name="change"
         style="display: flex; justify-content: flex-end;">
-        <fluent-switch> {{ verify.auto ? '开' : '关' }} </fluent-switch>
+        <fluent-switch>{{ verify.auto ? '开' : '关' }}</fluent-switch>
+      </value-change-host>
+    </settings-card>
+    <settings-card class="settings-nowarp">
+      <template #icon>
+        <svg-host
+          :src="`https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/${isFile ? 'document' : 'textbox'}_20_regular.svg`"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="base-file" class="unset">是否为文件</h4>
+      </template>
+      <template #description>
+        加密{{ isFile ? '一个文件' : '一段文本' }}。
+      </template>
+      <value-change-host v-model="isFile" value-name="checked" event-name="change">
+        <fluent-switch>{{ isFile ? '是' : '否' }}</fluent-switch>
       </value-change-host>
     </settings-card>
     <div class="split-view">
-      <input-label class="split-content" label="明文" style="flex: 1;">
-        <template #action>
-          <fluent-button @click="() => encodeAsync()">加密</fluent-button>
-        </template>
-        <fluent-text-area v-model="decoded" resize="vertical" style="width: 100%;"></fluent-text-area>
-      </input-label>
-      <input-label class="split-content" label="密文" style="flex: 1;">
-        <template #action>
-          <div style="min-height: calc((var(--base-height-multiplier) + var(--density)) * var(--design-unit) * 1px);">
-            <div class="stack-horizontal" v-if="verify.enabled" style="width: unset; column-gap: 4px;">
-              <svg-host v-if="verify.verified === false"
-                src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/dismiss_circle_20_filled.svg"
-                style="fill: var(--error);"></svg-host>
-              <svg-host v-else-if="verify.verified === true"
-                src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/checkmark_circle_20_filled.svg"
-                style="fill: var(--success);"></svg-host>
-              <fluent-button @click="() => verifyAsync()">验证</fluent-button>
+      <div class="split-content">
+        <input-label :label="isFile ? '文件' : '明文'" v-fill-color="neutralFillInputRest"
+          style="flex: 1; display: flex; flex-direction: column;">
+          <template #action>
+            <fluent-button @click="() => encodeAsync()">加密</fluent-button>
+          </template>
+          <div class="fluent-inputfile-container" v-if="isFile" style="flex: 1; min-height: 64px;">
+            <div class="inputfile-content">
+              <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_upload_24_regular.svg"
+                style="fill: var(--accent-fill-rest);"></svg-host>
+              <div v-if="file">{{ file.name }} ({{ getSizeString(file.size) }})</div>
+              <div v-else>上传一个文件</div>
             </div>
+            <input @change="(e) => file = e.target.files[0]" type="file"
+              style="grid-column: 1; grid-row: 1; opacity: 0;"></input>
           </div>
-        </template>
-        <fluent-text-area v-model="encoded" resize="vertical" :readonly="!verify.enabled"
-          style="width: 100%;"></fluent-text-area>
-      </input-label>
+          <fluent-text-area v-model="decoded" resize="vertical" style="width: 100%;" v-else></fluent-text-area>
+        </input-label>
+      </div>
+      <div class="split-content">
+        <input-label label="密文" v-fill-color="neutralFillInputRest" style="flex: 1;">
+          <template #action>
+            <div v-fill-color="neutralFillInputRest"
+              style="min-height: calc((var(--base-height-multiplier) + var(--density)) * var(--design-unit) * 1px);">
+              <div class="stack-horizontal" v-if="verify.enabled" style="width: unset; column-gap: 4px;">
+                <svg-host v-if="verify.verified === false" title="不匹配"
+                  src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/dismiss_circle_20_filled.svg"
+                  style="fill: var(--error);"></svg-host>
+                <svg-host v-else-if="verify.verified === true" title="匹配"
+                  src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/checkmark_circle_20_filled.svg"
+                  style="fill: var(--success);"></svg-host>
+                <fluent-button @click="() => verifyAsync()">验证</fluent-button>
+              </div>
+            </div>
+          </template>
+          <fluent-text-area v-model="encoded" resize="vertical" :readonly="!verify.enabled"
+            style="width: 100%;"></fluent-text-area>
+        </input-label>
+      </div>
     </div>
   </div>
 </div>
@@ -268,18 +299,20 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <settings-presenter class="presenter">
-      <template #icon>
-        <slot name="icon"></slot>
-      </template>
-      <template #header>
-        <slot name="header"></slot>
-      </template>
-      <template #description>
-        <slot name="description"></slot>
-      </template>
-      <slot></slot>
-    </settings-presenter>
+    <div class="content-grid" v-fill-color="neutralFillInputRest">
+      <settings-presenter class="presenter">
+        <template #icon>
+          <slot name="icon"></slot>
+        </template>
+        <template #header>
+          <slot name="header"></slot>
+        </template>
+        <template #description>
+          <slot name="description"></slot>
+        </template>
+        <slot></slot>
+      </settings-presenter>
+    </div>
   </div>
 </template>
 
@@ -300,7 +333,9 @@ sitemap: false
           <slot name="action-content"></slot>
         </settings-presenter>
       </div>
-      <slot></slot>
+      <div v-fill-color="neutralFillLayerAltRest">
+        <slot></slot>
+      </div>
     </fluent-accordion-item>
   </fluent-accordion>
 </template>
@@ -308,6 +343,12 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  const root = document.getElementById("vue-app");
+  const designTokens = {
+    neutralFillInputRest: neutralFillInputRest.getValueFor(root),
+    neutralFillLayerAltRest: neutralFillLayerAltRest.getValueFor(root)
+  }
   import * as hash from "https://cdn.jsdelivr.net/npm/hash-wasm@4.11.0/+esm";
   import * as md2 from "https://cdn.jsdelivr.net/npm/js-md2/+esm";
   createApp({
@@ -317,11 +358,14 @@ sitemap: false
         option: {},
         encoded: null,
         decoded: null,
+        isFile: false,
+        file: null,
         verify: {
           enabled: false,
           auto: true,
           verified: null
-        }
+        },
+        neutralFillInputRest: designTokens.neutralFillInputRest
       }
     },
     watch: {
@@ -337,6 +381,11 @@ sitemap: false
         }
       },
       decoded(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          this.onWatchVerify();
+        }
+      },
+      file(newValue, oldValue) {
         if (newValue !== oldValue) {
           this.onWatchVerify();
         }
@@ -453,6 +502,7 @@ sitemap: false
       },
       async encodeAsync() {
         const type = this.type;
+        const decoded = this.isFile ? await this.getFileArrayAsync(this.file) : this.decoded;
         try {
           switch (type) {
             case "adler32":
@@ -463,31 +513,31 @@ sitemap: false
             case "sha1":
             case "sm3":
             case "whirlpool":
-              this.encoded = await hash[type](this.decoded);
+              this.encoded = await hash[type](decoded);
               break;
             case "blake2b":
             case "blake2s":
             case "blake3":
-              this.encoded = await hash[type](this.decoded, +this.option.bits, this.option.key || undefined);
+              this.encoded = await hash[type](decoded, +this.option.bits, this.option.key || undefined);
               break;
             case "keccak":
             case "sha3":
-              this.encoded = await hash[type](this.decoded, +this.option.bits);
+              this.encoded = await hash[type](decoded, +this.option.bits);
               break;
             case "sha2":
-              this.encoded = await hash[`sha${this.option.bits}`](this.decoded);
+              this.encoded = await hash[`sha${this.option.bits}`](decoded);
               break;
             case "xxhash32":
-              this.encoded = await hash[type](this.decoded, +this.option.seed);
+              this.encoded = await hash[type](decoded, +this.option.seed);
               break;
             case "xxhash64":
             case "xxhash3":
             case "xxhash128":
-              this.encoded = await hash[type](this.decoded, +this.option.seed.low, +this.option.seed.high);
+              this.encoded = await hash[type](decoded, +this.option.seed.low, +this.option.seed.high);
               break;
             case "scrypt":
               this.encoded = await hash[type]({
-                password: this.decoded,
+                password: decoded,
                 salt: this.option.salt,
                 costFactor: +this.option.others["Cost Factor"],
                 blockSize: +this.option.others["Block Size"],
@@ -499,7 +549,7 @@ sitemap: false
             case "argon2d":
             case "argon2id":
               this.encoded = await hash[type]({
-                password: this.decoded,
+                password: decoded,
                 salt: this.option.salt,
                 secret: this.option.secret || undefined,
                 iterations: +this.option.others.Iterations,
@@ -511,14 +561,14 @@ sitemap: false
               break;
             case "bcrypt":
               this.encoded = await hash[type]({
-                password: this.decoded,
+                password: decoded,
                 salt: this.option.salt,
                 costFactor: +this.option.others["Cost Factor"],
                 outputType: "encoded"
               });
               break;
             case "md2":
-              this.encoded = md2.default(this.decoded);
+              this.encoded = md2.default(decoded instanceof Uint32Array ? new TextDecoder().decode(decoded) : decoded);
               break;
           }
         }
@@ -529,20 +579,21 @@ sitemap: false
       },
       async verifyAsync() {
         const type = this.type;
+        const decoded = this.isFile ? await this.getFileArrayAsync(this.file) : this.decoded;
         try {
           switch (type) {
             case "argon2i":
             case "argon2d":
             case "argon2id":
               this.verify.verified = await hash.argon2Verify({
-                password: this.decoded,
+                password: decoded,
                 secret: this.option.secret || undefined,
                 hash: this.encoded
               });
               break;
             case "bcrypt":
               this.verify.verified = await hash.bcryptVerify({
-                password: this.decoded,
+                password: decoded,
                 hash: this.encoded
               });
           }
@@ -551,6 +602,54 @@ sitemap: false
           console.error(ex);
           this.verify.verified = false;
         }
+      },
+      getFileArrayAsync(file) {
+        return new Promise((resolve, reject) => {
+          if (file instanceof Blob) {
+            const reader = new FileReader();
+            reader.onload = () => resolve(new Uint32Array(reader.result));
+            reader.onerror = reject;
+            reader.readAsArrayBuffer(file);
+          }
+          else {
+            resolve(undefined);
+          }
+        });
+      },
+      getSizeString(size) {
+        let index = 0;
+        while (index <= 11) {
+          index++;
+          size /= 1024;
+          if (size > 0.7 && size < 716.8) { break; }
+          else if (size >= 716.8) { continue; }
+          else if (size <= 0.7) {
+            size *= 1024;
+            index--;
+            break;
+          }
+        }
+        let str = '';
+        switch (index) {
+          case 0: str = "B"; break;
+          case 1: str = "KB"; break;
+          case 2: str = "MB"; break;
+          case 3: str = "GB"; break;
+          case 4: str = "TB"; break;
+          case 5: str = "PB"; break;
+          case 6: str = "EB"; break;
+          case 7: str = "ZB"; break;
+          case 8: str = "YB"; break;
+          case 9: str = "BB"; break;
+          case 10: str = "NB"; break;
+          case 11: str = "DB"; break;
+          default:
+            break;
+        }
+        function toFixed(value) {
+          return Math.floor(value * 100) / 100;
+        }
+        return `${toFixed(size)}${str}`;
       }
     }
   }).directive("check-solt",
@@ -588,6 +687,15 @@ sitemap: false
             }
           }
           setDisplay(false);
+        }
+      }
+    }
+  ).directive("fill-color",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const color = binding.value;
+        if (color !== binding.oldValue) {
+          fillColor.setValueFor(element, color);
         }
       }
     }
@@ -708,11 +816,21 @@ sitemap: false
       }
     }
   }).component("settings-card", {
-    template: "#settings-card-template"
+    template: "#settings-card-template",
+    data() {
+      return {
+        neutralFillInputRest: designTokens.neutralFillInputRest
+      }
+    }
   }).component("settings-expander", {
     template: "#settings-expander-template",
     props: {
       expanded: String
+    },
+    data() {
+      return {
+        neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
+      }
     }
   }).mount("#vue-app");
 </script>
@@ -775,7 +893,7 @@ sitemap: false
 
   #vue-app div.split-view .split-content {
     flex: 1;
-    display: block;
+    display: flex;
     box-sizing: border-box;
     padding: var(--settings-card-padding);
     background: var(--neutral-fill-input-rest);
@@ -789,6 +907,22 @@ sitemap: false
     #vue-app div.split-view {
       flex-direction: column;
     }
+  }
+
+  #vue-app .fluent-inputfile-container {
+    display: grid;
+    grid-gap: 10px;
+    border-radius: calc(var(--control-corner-radius)* 1px);
+    background-color: var(--neutral-fill-hover);
+    border: 1px dashed var(--accent-fill-rest);
+  }
+
+  #vue-app .fluent-inputfile-container .inputfile-content {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
   }
 
   .input-label .fluent-input-label {
@@ -885,12 +1019,6 @@ sitemap: false
 
   .settings-card .presenter {
     padding: var(--settings-card-padding);
-  }
-
-  .settings-card div.content-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   .settings-expander * {
