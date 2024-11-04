@@ -156,10 +156,11 @@ sitemap: false
       </template>
       <value-change-host v-model="theme" value-name="value" event-name="change" style="display: inherit;">
         <fluent-combobox placeholder="default" style="min-width: unset;">
-          <fluent-option>system</fluent-option>
-          <fluent-option>light</fluent-option>
-          <fluent-option>dark</fluent-option>
-          <fluent-option>https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.fluent.css</fluent-option>
+          <fluent-option title="跟随系统">system</fluent-option>
+          <fluent-option title="浅色">light</fluent-option>
+          <fluent-option title="深色">dark</fluent-option>
+          <fluent-option title="Fluent UI">https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.fluent.css</fluent-option>
+          <fluent-option title="Windoes">https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.windose.css</fluent-option>
         </fluent-combobox>
       </value-change-host>
     </settings-card>
@@ -269,15 +270,15 @@ sitemap: false
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
-  import { encodeHTML } from "https://cdn.jsdelivr.net/npm/entities/+esm";
-  import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
-  import message from "https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card-message/bilibili-card-message.esm.js";
-  import builder from "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card-builder/bilibili-card-builder.esm.js";
   const root = document.getElementById("vue-app");
   const designTokens = {
     neutralFillInputRest: neutralFillInputRest.getValueFor(root),
     neutralFillLayerAltRest: neutralFillLayerAltRest.getValueFor(root)
   }
+  import { encodeHTML } from "https://cdn.jsdelivr.net/npm/entities/+esm";
+  import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
+  import message from "https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card-message/bilibili-card-message.esm.js";
+  import builder from "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card-builder/bilibili-card-builder.esm.js";
   createApp({
     data() {
       return {
