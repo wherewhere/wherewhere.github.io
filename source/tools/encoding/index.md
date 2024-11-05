@@ -55,18 +55,22 @@ sitemap: false
       </fluent-select>
     </settings-card>
     <div class="split-view">
-      <input-label class="split-content" label="明文" style="flex: 1;">
-        <template #action>
-          <fluent-button @click="() => encode()">编码</fluent-button>
-        </template>
-        <fluent-text-area v-model="decoded" resize="vertical" style="width: 100%;"></fluent-text-area>
-      </input-label>
-      <input-label class="split-content" label="密文" style="flex: 1;">
-        <template #action>
-          <fluent-button @click="() => decode()">解码</fluent-button>
-        </template>
-        <fluent-text-area v-model="encoded" resize="vertical" style="width: 100%;"></fluent-text-area>
-      </input-label>
+      <div class="split-content">
+        <input-label v-fill-color="neutralFillInputRest" label="明文" style="flex: 1;">
+          <template #action>
+            <fluent-button @click="() => encode()">编码</fluent-button>
+          </template>
+          <fluent-text-area v-model="decoded" resize="vertical" style="width: 100%;"></fluent-text-area>
+        </input-label>
+      </div>
+      <div class="split-content">
+        <input-label v-fill-color="neutralFillInputRest" label="密文" style="flex: 1;">
+          <template #action>
+            <fluent-button @click="() => decode()">解码</fluent-button>
+          </template>
+          <fluent-text-area v-model="encoded" resize="vertical" style="width: 100%;"></fluent-text-area>
+        </input-label>
+      </div>
     </div>
   </div>
 </div>
@@ -110,24 +114,31 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <settings-presenter class="presenter">
-      <template #icon>
-        <slot name="icon"></slot>
-      </template>
-      <template #header>
-        <slot name="header"></slot>
-      </template>
-      <template #description>
-        <slot name="description"></slot>
-      </template>
-      <slot></slot>
-    </settings-presenter>
+    <div class="content-grid" v-fill-color="neutralFillInputRest">
+      <settings-presenter class="presenter">
+        <template #icon>
+          <slot name="icon"></slot>
+        </template>
+        <template #header>
+          <slot name="header"></slot>
+        </template>
+        <template #description>
+          <slot name="description"></slot>
+        </template>
+        <slot></slot>
+      </settings-presenter>
+    </div>
   </div>
 </template>
 {% endraw %}
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { fillColor, neutralFillInputRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  const root = document.getElementById("vue-app");
+  const designTokens = {
+    neutralFillInputRest: neutralFillInputRest.getValueFor(root)
+  }
   import * as entities from "https://cdn.jsdelivr.net/npm/entities/+esm";
   import { Base64 } from "https://cdn.jsdelivr.net/npm/js-base64/+esm";
   createApp({
@@ -136,7 +147,8 @@ sitemap: false
         type: "HTML",
         encoded: null,
         decoded: null,
-        types: ["HTML", "XML", "URL", "Base64", "Unicode"]
+        types: ["HTML", "XML", "URL", "Base64", "Unicode"],
+        neutralFillInputRest: designTokens.neutralFillInputRest
       }
     },
     methods: {
@@ -179,7 +191,54 @@ sitemap: false
         }
       }
     }
-  }).component("svg-host", {
+  }).directive("check-solt",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const solt = binding.value;
+        if (solt !== binding.oldValue) {
+          function setDisplay(value) {
+            if (value) {
+              if (element.style.display === "none") {
+                element.style.display = '';
+              }
+            }
+            else {
+              element.style.display = "none";
+            }
+          }
+          if (typeof solt === "function") {
+            let value = solt();
+            if (value instanceof Array) {
+              value = value[0];
+              if (typeof value === "object") {
+                if (typeof value.type === "symbol") {
+                  value = value.children;
+                  if (value instanceof Array) {
+                    setDisplay(value.length > 0);
+                    return;
+                  }
+                }
+                else {
+                  setDisplay(true);
+                  return;
+                }
+              }
+            }
+          }
+          setDisplay(false);
+        }
+      }
+    }
+  ).directive("fill-color",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const color = binding.value;
+        if (color !== binding.oldValue) {
+          fillColor.setValueFor(element, color);
+        }
+      }
+    }
+  ).component("svg-host", {
     template: "#svg-host-template",
     props: {
       src: String
@@ -226,7 +285,12 @@ sitemap: false
       }
     }
   }).component("settings-card", {
-    template: "#settings-card-template"
+    template: "#settings-card-template",
+    data() {
+      return {
+        neutralFillInputRest: designTokens.neutralFillInputRest
+      }
+    }
   }).mount("#vue-app");
 </script>
 
@@ -280,7 +344,7 @@ sitemap: false
 
   #vue-app div.split-view .split-content {
     flex: 1;
-    display: block;
+    display: flex;
     box-sizing: border-box;
     padding: var(--settings-card-padding);
     background: var(--neutral-fill-input-rest);
@@ -376,11 +440,5 @@ sitemap: false
 
   .settings-card .presenter {
     padding: var(--settings-card-padding);
-  }
-
-  .settings-card div.content-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 </style>

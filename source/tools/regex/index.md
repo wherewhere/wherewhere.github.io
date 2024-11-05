@@ -177,13 +177,18 @@ sitemap: false
       </div>
     </settings-card>
     <div class="split-view">
-      <input-label class="split-content" label="要匹配的内容" style="flex: 1;">
-        <fluent-text-area v-model="text" v-attribute:rows="7" resize="vertical" style="width: 100%;"></fluent-text-area>
-      </input-label>
-      <input-label class="split-content" label="匹配结果" style="flex: 1;">
-        <fluent-text-area :value="getResult()" v-attribute:rows="7" resize="vertical" style="width: 100%;"
-          readonly></fluent-text-area>
-      </input-label>
+      <div class="split-content">
+        <input-label v-fill-color="neutralFillInputRest" label="要匹配的内容" style="flex: 1;">
+          <fluent-text-area v-model="text" v-attribute:rows="7" resize="vertical"
+            style="width: 100%;"></fluent-text-area>
+        </input-label>
+      </div>
+      <div class="split-content">
+        <input-label v-fill-color="neutralFillInputRest" label="匹配结果" style="flex: 1;">
+          <fluent-text-area :value="getResult()" v-attribute:rows="7" resize="vertical" style="width: 100%;"
+            readonly></fluent-text-area>
+        </input-label>
+      </div>
     </div>
   </div>
 </div>
@@ -232,18 +237,20 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <settings-presenter class="presenter">
-      <template #icon>
-        <slot name="icon"></slot>
-      </template>
-      <template #header>
-        <slot name="header"></slot>
-      </template>
-      <template #description>
-        <slot name="description"></slot>
-      </template>
-      <slot></slot>
-    </settings-presenter>
+    <div class="content-grid" v-fill-color="neutralFillInputRest">
+      <settings-presenter class="presenter">
+        <template #icon>
+          <slot name="icon"></slot>
+        </template>
+        <template #header>
+          <slot name="header"></slot>
+        </template>
+        <template #description>
+          <slot name="description"></slot>
+        </template>
+        <slot></slot>
+      </settings-presenter>
+    </div>
   </div>
 </template>
 
@@ -264,7 +271,9 @@ sitemap: false
           <slot name="action-content"></slot>
         </settings-presenter>
       </div>
-      <slot></slot>
+      <div v-fill-color="neutralFillLayerAltRest">
+        <slot></slot>
+      </div>
     </fluent-accordion-item>
   </fluent-accordion>
 </template>
@@ -272,6 +281,12 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  const root = document.getElementById("vue-app");
+  const designTokens = {
+    neutralFillInputRest: neutralFillInputRest.getValueFor(root),
+    neutralFillLayerAltRest: neutralFillLayerAltRest.getValueFor(root)
+  }
   import * as yaml from "https://cdn.jsdelivr.net/npm/js-yaml/+esm";
   createApp({
     data() {
@@ -289,7 +304,8 @@ sitemap: false
           unicode: false,
           unicodeSets: false,
           sticky: false
-        }
+        },
+        neutralFillInputRest: designTokens.neutralFillInputRest
       }
     },
     methods: {
@@ -374,6 +390,15 @@ sitemap: false
             }
           }
           setDisplay(false);
+        }
+      }
+    }
+  ).directive("fill-color",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const color = binding.value;
+        if (color !== binding.oldValue) {
+          fillColor.setValueFor(element, color);
         }
       }
     }
@@ -494,11 +519,21 @@ sitemap: false
       }
     }
   }).component("settings-card", {
-    template: "#settings-card-template"
+    template: "#settings-card-template",
+    data() {
+      return {
+        neutralFillInputRest: designTokens.neutralFillInputRest
+      }
+    }
   }).component("settings-expander", {
     template: "#settings-expander-template",
     props: {
       expanded: String
+    },
+    data() {
+      return {
+        neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
+      }
     }
   }).mount("#vue-app");
 </script>
@@ -551,7 +586,7 @@ sitemap: false
 
   #vue-app div.split-view .split-content {
     flex: 1;
-    display: block;
+    display: flex;
     box-sizing: border-box;
     padding: var(--settings-card-padding);
     background: var(--neutral-fill-input-rest);
@@ -661,12 +696,6 @@ sitemap: false
 
   .settings-card .presenter {
     padding: var(--settings-card-padding);
-  }
-
-  .settings-card div.content-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   .settings-expander * {

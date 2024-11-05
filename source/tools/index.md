@@ -1,6 +1,5 @@
 ---
 title: 小工具
-sitemap: false
 ---
 <script type="module" data-pjax>
   import {
@@ -48,21 +47,6 @@ sitemap: false
     <template #header>
       <h3 id="render" class="unset">渲染</h3>
     </template>
-    <settings-button href="markdown">
-      <template #icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/markdown_20_regular.svg"></svg-host>
-      </template>
-      <template #header>
-        <h4 id="render-markdown" class="unset">Markdown 预览</h4>
-      </template>
-      <template #description>
-        使用 <fluent-anchor appearance="hypertext" href="https://github.com/markedjs/marked"
-          target="_blank">Marked.JS</fluent-anchor> 解析并预览 Markdown 文本。
-      </template>
-      <template #action-icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
-      </template>
-    </settings-button>
     <settings-button href="bilibili-card">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/card_ui_20_regular.svg"></svg-host>
@@ -88,6 +72,21 @@ sitemap: false
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="http://cheonhyeong.com/Tools/Times.html#9"
           target="_blank">TH-Times</fluent-anchor> 字体显示注音文本。
+      </template>
+      <template #action-icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+      </template>
+    </settings-button>
+    <settings-button href="markdown">
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/markdown_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h4 id="render-markdown" class="unset">Markdown 预览</h4>
+      </template>
+      <template #description>
+        使用 <fluent-anchor appearance="hypertext" href="https://github.com/markedjs/marked"
+          target="_blank">Marked.JS</fluent-anchor> 解析并预览 Markdown 文本。
       </template>
       <template #action-icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
@@ -295,7 +294,9 @@ sitemap: false
           <slot name="action-content"></slot>
         </settings-presenter>
       </div>
-      <slot></slot>
+      <div v-fill-color="neutralFillLayerAltRest">
+        <slot></slot>
+      </div>
     </fluent-accordion-item>
   </fluent-accordion>
 </template>
@@ -314,6 +315,11 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { fillColor, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  const root = document.getElementById("vue-app");
+  const designTokens = {
+    neutralFillLayerAltRest: neutralFillLayerAltRest.getValueFor(root)
+  }
   createApp({
     data() {
       return {
@@ -382,6 +388,15 @@ sitemap: false
             }
           }
           setDisplay(false);
+        }
+      }
+    }
+  ).directive("fill-color",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const color = binding.value;
+        if (color !== binding.oldValue) {
+          fillColor.setValueFor(element, color);
         }
       }
     }
@@ -507,6 +522,11 @@ sitemap: false
     template: "#settings-expander-template",
     props: {
       expanded: String
+    },
+    data() {
+      return {
+        neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
+      }
     }
   }).component("settings-group", {
     template: "#settings-group-template",

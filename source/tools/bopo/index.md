@@ -52,7 +52,7 @@ sitemap: false
     <input-label class="settings-card" label="显示"
       :style="{ paddingTop: 'calc(var(--design-unit) * 4px)', paddingRight: 'calc(var(--design-unit) * 4px)', paddingBottom: content ? 'calc(var(--design-unit) * 4px)' : 'calc(var(--design-unit) * 3px)', paddingLeft: 'calc(var(--design-unit) * 4px)' }">
       <template #action>
-        <value-change-host v-model="fontSize" value-name="value" event-name="change"
+        <value-change-host v-model="fontSize" v-fill-color="neutralFillInputRest" value-name="value" event-name="change"
           style="display: flex; flex: 1; justify-content: flex-end;">
           <fluent-slider :title="`字体大小 ${fontSize}`" min="14" max="150"
             style="max-width: calc(var(--base-height-multiplier) * 30px); margin: 0 0 -18px 0"></fluent-slider>
@@ -172,36 +172,44 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <settings-presenter class="presenter">
-      <template #icon>
-        <slot name="icon"></slot>
-      </template>
-      <template #header>
-        <slot name="header"></slot>
-      </template>
-      <template #description>
-        <slot name="description"></slot>
-      </template>
-      <slot></slot>
-    </settings-presenter>
+    <div class="content-grid" v-fill-color="neutralFillInputRest">
+      <settings-presenter class="presenter">
+        <template #icon>
+          <slot name="icon"></slot>
+        </template>
+        <template #header>
+          <slot name="header"></slot>
+        </template>
+        <template #description>
+          <slot name="description"></slot>
+        </template>
+        <slot></slot>
+      </settings-presenter>
+    </div>
   </div>
 </template>
 {% endraw %}
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { fillColor, neutralFillInputRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  const root = document.getElementById("vue-app");
+  const designTokens = {
+    neutralFillInputRest: neutralFillInputRest.getValueFor(root)
+  }
   createApp({
     data() {
       return {
         content: "ㄊㄢㄊㄢㄏㄜㄨㄟㄦㄩㄥㄩㄢㄉㄡㄕㄏㄠㄆㄥㄧㄡ！",
-        fontSize: 50
+        fontSize: 50,
+        neutralFillInputRest: designTokens.neutralFillInputRest
       };
     },
     methods: {
       clickKey(args) {
         const target = args.target;
         if (target instanceof HTMLElement) {
-          this.content += target.textContent;
+          this.content += target.innerText;
         }
       }
     }
@@ -249,6 +257,15 @@ sitemap: false
             }
           }
           setDisplay(false);
+        }
+      }
+    }
+  ).directive("fill-color",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const color = binding.value;
+        if (color !== binding.oldValue) {
+          fillColor.setValueFor(element, color);
         }
       }
     }
@@ -426,7 +443,12 @@ sitemap: false
       }
     }
   }).component("settings-card", {
-    template: "#settings-card-template"
+    template: "#settings-card-template",
+    data() {
+      return {
+        neutralFillInputRest: designTokens.neutralFillInputRest
+      }
+    }
   }).mount("#vue-app");
 </script>
 
@@ -592,11 +614,5 @@ sitemap: false
 
   .settings-card .presenter {
     padding: var(--settings-card-padding);
-  }
-
-  .settings-card div.content-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 </style>

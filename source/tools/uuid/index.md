@@ -128,13 +128,15 @@ sitemap: false
           </template>
           <fluent-number-field v-model="number" min="1"></fluent-number-field>
         </settings-card>
-        <input-label class="settings-card" label="UUID" style="padding: var(--settings-card-padding);">
-          <template #action>
-            <fluent-button @click="() => create()">生成</fluent-button>
-          </template>
-          <fluent-text-area :value="uuids.join('\n')" v-attribute:rows="number" resize="vertical" style="width: 100%;"
-            readonly></fluent-text-area>
-        </input-label>
+        <div class="settings-card" style="padding: var(--settings-card-padding);">
+          <input-label label="UUID" v-fill-color="neutralFillInputRest">
+            <template #action>
+              <fluent-button @click="() => create()">生成</fluent-button>
+            </template>
+            <fluent-text-area :value="uuids.join('\n')" v-attribute:rows="number" resize="vertical" style="width: 100%;"
+              readonly></fluent-text-area>
+          </input-label>
+        </div>
       </div>
     </fluent-tab-panel>
     <fluent-tab id="validate">
@@ -242,18 +244,20 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <settings-presenter class="presenter">
-      <template #icon>
-        <slot name="icon"></slot>
-      </template>
-      <template #header>
-        <slot name="header"></slot>
-      </template>
-      <template #description>
-        <slot name="description"></slot>
-      </template>
-      <slot></slot>
-    </settings-presenter>
+    <div class="content-grid" v-fill-color="neutralFillInputRest">
+      <settings-presenter class="presenter">
+        <template #icon>
+          <slot name="icon"></slot>
+        </template>
+        <template #header>
+          <slot name="header"></slot>
+        </template>
+        <template #description>
+          <slot name="description"></slot>
+        </template>
+        <slot></slot>
+      </settings-presenter>
+    </div>
   </div>
 </template>
 
@@ -274,7 +278,9 @@ sitemap: false
           <slot name="action-content"></slot>
         </settings-presenter>
       </div>
-      <slot></slot>
+      <div v-fill-color="neutralFillLayerAltRest">
+        <slot></slot>
+      </div>
     </fluent-accordion-item>
   </fluent-accordion>
 </template>
@@ -282,6 +288,12 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  const root = document.getElementById("vue-app");
+  const designTokens = {
+    neutralFillInputRest: neutralFillInputRest.getValueFor(root),
+    neutralFillLayerAltRest: neutralFillLayerAltRest.getValueFor(root)
+  }
   import * as uuid from "https://cdn.jsdelivr.net/npm/uuid/+esm";
   createApp({
     data() {
@@ -300,7 +312,8 @@ sitemap: false
         format: {
           type: "CLSID",
           result: null
-        }
+        },
+        neutralFillInputRest: designTokens.neutralFillInputRest
       }
     },
     watch: {
@@ -545,6 +558,15 @@ sitemap: false
         }
       }
     }
+  ).directive("fill-color",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const color = binding.value;
+        if (color !== binding.oldValue) {
+          fillColor.setValueFor(element, color);
+        }
+      }
+    }
   ).component("svg-host", {
     template: "#svg-host-template",
     props: {
@@ -592,11 +614,21 @@ sitemap: false
       }
     }
   }).component("settings-card", {
-    template: "#settings-card-template"
+    template: "#settings-card-template",
+    data() {
+      return {
+        neutralFillInputRest: designTokens.neutralFillInputRest
+      }
+    }
   }).component("settings-expander", {
     template: "#settings-expander-template",
     props: {
       expanded: String
+    },
+    data() {
+      return {
+        neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
+      }
     }
   }).mount("#vue-app");
 </script>
@@ -731,12 +763,6 @@ sitemap: false
 
   .settings-card .presenter {
     padding: var(--settings-card-padding);
-  }
-
-  .settings-card div.content-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   .settings-expander * {
