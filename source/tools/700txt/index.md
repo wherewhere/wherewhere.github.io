@@ -51,7 +51,7 @@ sitemap: false
 </div>
 
 <template id="svg-host-template">
-  <div v-html="innerHTML"></div>
+  <div class="svg-host" v-html="innerHTML"></div>
 </template>
 {% endraw %}
 
@@ -147,7 +147,37 @@ sitemap: false
   }).mount("#vue-app");
 </script>
 
+<script data-pjax>
+  const header = document.querySelector("header.header");
+  if (header instanceof HTMLElement) {
+    header.ariaHidden = true;
+  }
+  window.onload = () => {
+    const footer = document.querySelector("footer.footer");
+    if (footer instanceof HTMLElement) {
+      footer.ariaHidden = true;
+    }
+    const backToTop = document.querySelector("div.back-to-top");
+    if (backToTop instanceof HTMLElement) {
+      backToTop.ariaHidden = true;
+    }
+  }
+</script>
+
 <style>
+  .post-block {
+    margin-top: initial !important;
+    padding: 8px 18px 8px !important;
+  }
+
+  .posts-expand .post-header {
+    margin-bottom: 10px !important;
+  }
+
+  .posts-expand .breadcrumb {
+    display: none;
+  }
+
   #vue-app {
     font-family: var(--body-font);
     font-size: var(--type-ramp-base-font-size);
@@ -165,5 +195,9 @@ sitemap: false
   #vue-app .stack-horizontal {
     display: flex;
     flex-direction: row;
+  }
+
+  .svg-host {
+    display: flex;
   }
 </style>
