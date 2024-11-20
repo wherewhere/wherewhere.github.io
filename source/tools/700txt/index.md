@@ -1,4 +1,5 @@
 ---
+title: 大声朗读
 sitemap: false
 ---
 <script type="module" data-pjax>
@@ -37,17 +38,18 @@ sitemap: false
 <div id="vue-app" class="stack-vertical" style="row-gap: 1rem; align-items: stretch;">
   <div class="stack-horizontal" style="column-gap: 3px; justify-content: space-between;">
     <fluent-text-field v-model="page" style="flex: 1;"></fluent-text-field>
-    <fluent-button title="获取" @click="() => getContent()" :disabled="isloading">
+    <fluent-button title="获取" @click="getContent" :disabled="isloading">
       <fluent-progress-ring v-if="isloading" style="width: 16px; height: 16px;"></fluent-progress-ring>
       <svg-host v-else src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_right_16_regular.svg"
         style="fill: currentColor;"></svg-host>
     </fluent-button>
-    <fluent-button title="清除" @click="() => clearContent()" :disabled="isloading">
+    <fluent-button title="清除" @click="clearContent" :disabled="isloading">
       <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/dismiss_16_regular.svg"
         style="fill: currentColor;"></svg-host>
     </fluent-button>
   </div>
   <div ref="content"></div>
+  <a class="unset" v-if="!isloading" href="javascript:void(0);" @click="moveNext" style="text-align: center;">本章完</a>
 </div>
 
 <template id="svg-host-template">
@@ -108,6 +110,10 @@ sitemap: false
       },
       clearContent() {
         this.$refs.content.innerHTML = '';
+      },
+      async moveNext() {
+        this.clearContent();
+        await this.getContent();
       }
     }
   }).component("svg-host", {
@@ -174,6 +180,7 @@ sitemap: false
     margin-bottom: 10px !important;
   }
 
+  .posts-expand .post-header .post-title,
   .posts-expand .breadcrumb {
     display: none;
   }
@@ -184,6 +191,10 @@ sitemap: false
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
+  }
+
+  #vue-app a.unset {
+    border-bottom: unset;
   }
 
   .stack-vertical#vue-app,
