@@ -1,5 +1,7 @@
 ---
 title: Base X 编码
+description: 使用 <fluent-anchor appearance="hypertext" href="https://github.com/UmamiAppearance/BaseExJS"
+  target="_blank">BaseEx</fluent-anchor> 编码与解码 Base1、Base16、Base32、Base64 等文本
 sitemap: false
 ---
 <script type="module" data-pjax>
@@ -33,9 +35,9 @@ sitemap: false
     );
   fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
-    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const scheme = matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
-      scheme.addListener(e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+      scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
       if (scheme.matches) {
         baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
       }
@@ -108,7 +110,7 @@ sitemap: false
         <input-label :label="isFile ? '文件' : '明文'" v-fill-color="neutralFillInputRest"
           style="flex: 1; display: flex; flex-direction: column;">
           <template #action>
-            <fluent-button @click="() => encode()">编码</fluent-button>
+            <fluent-button @click="encode">编码</fluent-button>
           </template>
           <div class="fluent-inputfile-container" v-if="isFile" style="flex: 1; min-height: 64px;">
             <div class="inputfile-content">
@@ -126,7 +128,7 @@ sitemap: false
       <div class="split-content">
         <input-label label="密文" v-fill-color="neutralFillInputRest" style="flex: 1;">
           <template #action>
-            <fluent-button @click="() => decode()">解码</fluent-button>
+            <fluent-button @click="decode">解码</fluent-button>
           </template>
           <fluent-text-area v-model="encoded" resize="vertical" style="width: 100%;"></fluent-text-area>
         </input-label>
@@ -142,7 +144,7 @@ sitemap: false
 </template>
 
 <template id="svg-host-template">
-  <div v-html="innerHTML"></div>
+  <div class="svg-host" v-html="innerHTML"></div>
 </template>
 
 <template id="input-label-template">
@@ -529,7 +531,7 @@ sitemap: false
         neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
       }
     }
-  }).mount("#vue-app");
+  }).mount(root);
 </script>
 
 <style>
@@ -612,6 +614,10 @@ sitemap: false
     text-align: center;
     align-self: center;
     justify-self: center;
+  }
+
+  .svg-host {
+    display: flex;
   }
 
   .input-label .fluent-input-label {

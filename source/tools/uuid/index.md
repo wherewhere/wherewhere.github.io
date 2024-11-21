@@ -1,5 +1,7 @@
 ---
 title: UUID 与 GUID
+description: 使用 <fluent-anchor appearance="hypertext" href="https://github.com/uuidjs/uuid/"
+  target="_blank">uuid</fluent-anchor> 生成 UUID 与 GUID
 sitemap: false
 ---
 <script type="module" data-pjax>
@@ -42,9 +44,9 @@ sitemap: false
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
-    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const scheme = matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
-      scheme.addListener(e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+      scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
       if (scheme.matches) {
         baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
       }
@@ -131,7 +133,7 @@ sitemap: false
         <div class="settings-card" style="padding: var(--settings-card-padding);">
           <input-label label="UUID" v-fill-color="neutralFillInputRest">
             <template #action>
-              <fluent-button @click="() => create()">生成</fluent-button>
+              <fluent-button @click="create">生成</fluent-button>
             </template>
             <fluent-text-area :value="uuids.join('\n')" v-attribute:rows="number" resize="vertical" style="width: 100%;"
               readonly></fluent-text-area>
@@ -206,7 +208,7 @@ sitemap: false
 </div>
 
 <template id="svg-host-template">
-  <div v-html="innerHTML"></div>
+  <div class="svg-host" v-html="innerHTML"></div>
 </template>
 
 <template id="input-label-template">
@@ -630,7 +632,7 @@ sitemap: false
         neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
       }
     }
-  }).mount("#vue-app");
+  }).mount(root);
 </script>
 
 <style>
@@ -681,6 +683,10 @@ sitemap: false
 
   #vue-app fluent-select .listbox {
     max-height: calc(var(--base-height-multiplier) * 30px);
+  }
+
+  .svg-host {
+    display: flex;
   }
 
   .input-label .fluent-input-label {

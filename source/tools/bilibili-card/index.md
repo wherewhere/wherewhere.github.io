@@ -1,5 +1,7 @@
 ---
 title: 哔哩哔哩卡片
+description: 使用 <fluent-anchor appearance="hypertext" href="https://github.com/wherewhere/hexo-tag-bilibili-card"
+  target="_blank">bilibili-card</fluent-anchor> 生成哔哩哔哩卡片
 sitemap: false
 ---
 <script src="https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.js" data-pjax
@@ -39,9 +41,9 @@ sitemap: false
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
-    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const scheme = matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
-      scheme.addListener(e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+      scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
       if (scheme.matches) {
         baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
       }
@@ -111,7 +113,7 @@ sitemap: false
         <input-label label="输入 JSON">
           <template #action>
             <div class="stack-horizontal" style="width: unset; column-gap: calc(var(--design-unit) * 1px);">
-              <fluent-button title="这个按钮并不能正常使用" :disabled="!id" @click="() => getApiAsync()">自动</fluent-button>
+              <fluent-button title="这个按钮并不能正常使用" :disabled="!id" @click="getApiAsync">自动</fluent-button>
               <fluent-anchor :href="getApiUrl()" target="_blank">手动</fluent-anchor>
             </div>
           </template>
@@ -159,8 +161,10 @@ sitemap: false
           <fluent-option title="跟随系统">system</fluent-option>
           <fluent-option title="浅色">light</fluent-option>
           <fluent-option title="深色">dark</fluent-option>
-          <fluent-option title="Fluent UI">https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.fluent.css</fluent-option>
-          <fluent-option title="Windoes">https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.windose.css</fluent-option>
+          <fluent-option
+            title="Fluent UI">https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.fluent.css</fluent-option>
+          <fluent-option
+            title="Windoes">https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.windose.css</fluent-option>
         </fluent-combobox>
       </value-change-host>
     </settings-card>
@@ -187,7 +191,7 @@ sitemap: false
 </template>
 
 <template id="svg-host-template">
-  <div v-html="innerHTML"></div>
+  <div class="svg-host" v-html="innerHTML"></div>
 </template>
 
 <template id="input-label-template">
@@ -643,7 +647,7 @@ sitemap: false
         neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
       }
     }
-  }).mount("#vue-app");
+  }).mount(root);
 </script>
 
 <style>
@@ -692,6 +696,10 @@ sitemap: false
 
   #vue-app fluent-select .listbox {
     max-height: calc(var(--base-height-multiplier) * 30px);
+  }
+
+  .svg-host {
+    display: flex;
   }
 
   .input-label .fluent-input-label {

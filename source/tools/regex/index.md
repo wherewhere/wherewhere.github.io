@@ -1,5 +1,6 @@
 ---
 title: 正则表达式
+description: 测试正则表达式
 sitemap: false
 ---
 <script type="module" data-pjax>
@@ -30,9 +31,9 @@ sitemap: false
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
-    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const scheme = matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
-      scheme.addListener(e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+      scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
       if (scheme.matches) {
         baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
       }
@@ -55,7 +56,7 @@ sitemap: false
       </template>
       <div class="stack-horizontal" style="column-gap: calc(var(--design-unit) * 1px); justify-content: space-between;">
         <fluent-text-field v-model="code" style="flex: 1;"></fluent-text-field>
-        <fluent-button @click="() => match()">匹配</fluent-button>
+        <fluent-button @click="match">匹配</fluent-button>
       </div>
     </settings-card>
     <settings-expander>
@@ -173,7 +174,7 @@ sitemap: false
       </template>
       <div class="stack-horizontal" style="column-gap: calc(var(--design-unit) * 1px); justify-content: space-between;">
         <fluent-text-field v-model="replacement" style="flex: 1;"></fluent-text-field>
-        <fluent-button @click="() => replace()">替换</fluent-button>
+        <fluent-button @click="replace">替换</fluent-button>
       </div>
     </settings-card>
     <div class="split-view">
@@ -200,7 +201,7 @@ sitemap: false
 </template>
 
 <template id="svg-host-template">
-  <div v-html="innerHTML"></div>
+  <div class="svg-host" v-html="innerHTML"></div>
 </template>
 
 <template id="input-label-template">
@@ -535,7 +536,7 @@ sitemap: false
         neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
       }
     }
-  }).mount("#vue-app");
+  }).mount(root);
 </script>
 
 <style>
@@ -600,6 +601,10 @@ sitemap: false
     #vue-app div.split-view {
       flex-direction: column;
     }
+  }
+
+  .svg-host {
+    display: flex;
   }
 
   .input-label .fluent-input-label {

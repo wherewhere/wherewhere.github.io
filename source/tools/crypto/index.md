@@ -1,5 +1,7 @@
 ---
 title: Hash 加密
+description: 使用 <fluent-anchor appearance="hypertext" href="https://github.com/Daninet/hash-wasm/"
+  target="_blank">hash-wasm</fluent-anchor> 进行 MD5、Sha1、Sha2、Sha3、Bcrypt 等文本加密
 sitemap: false
 ---
 <script type="module" data-pjax>
@@ -36,9 +38,9 @@ sitemap: false
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
-    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const scheme = matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
-      scheme.addListener(e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+      scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
       if (scheme.matches) {
         baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
       }
@@ -215,7 +217,7 @@ sitemap: false
         <input-label :label="isFile ? '文件' : '明文'" v-fill-color="neutralFillInputRest"
           style="flex: 1; display: flex; flex-direction: column;">
           <template #action>
-            <fluent-button @click="() => encodeAsync()">加密</fluent-button>
+            <fluent-button @click="encodeAsync">加密</fluent-button>
           </template>
           <div class="fluent-inputfile-container" v-if="isFile" style="flex: 1; min-height: 64px;">
             <div class="inputfile-content">
@@ -242,7 +244,7 @@ sitemap: false
                 <svg-host v-else-if="verify.verified === true" title="匹配"
                   src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/checkmark_circle_20_filled.svg"
                   style="fill: var(--success);"></svg-host>
-                <fluent-button @click="() => verifyAsync()">验证</fluent-button>
+                <fluent-button @click="verifyAsync">验证</fluent-button>
               </div>
             </div>
           </template>
@@ -261,7 +263,7 @@ sitemap: false
 </template>
 
 <template id="svg-host-template">
-  <div v-html="innerHTML"></div>
+  <div class="svg-host" v-html="innerHTML"></div>
 </template>
 
 <template id="input-label-template">
@@ -832,7 +834,7 @@ sitemap: false
         neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
       }
     }
-  }).mount("#vue-app");
+  }).mount(root);
 </script>
 
 <style>
@@ -923,6 +925,10 @@ sitemap: false
     text-align: center;
     align-self: center;
     justify-self: center;
+  }
+
+  .svg-host {
+    display: flex;
   }
 
   .input-label .fluent-input-label {

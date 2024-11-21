@@ -1,5 +1,6 @@
 ---
 title: 编码与解码
+description: 编码与解码 HTML、XML、Base64、Unicode 文本
 sitemap: false
 ---
 <script type="module" data-pjax>
@@ -26,9 +27,9 @@ sitemap: false
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
-    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const scheme = matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
-      scheme.addListener(e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+      scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
       if (scheme.matches) {
         baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
       }
@@ -58,7 +59,7 @@ sitemap: false
       <div class="split-content">
         <input-label v-fill-color="neutralFillInputRest" label="明文" style="flex: 1;">
           <template #action>
-            <fluent-button @click="() => encode()">编码</fluent-button>
+            <fluent-button @click="encode">编码</fluent-button>
           </template>
           <fluent-text-area v-model="decoded" resize="vertical" style="width: 100%;"></fluent-text-area>
         </input-label>
@@ -66,7 +67,7 @@ sitemap: false
       <div class="split-content">
         <input-label v-fill-color="neutralFillInputRest" label="密文" style="flex: 1;">
           <template #action>
-            <fluent-button @click="() => decode()">解码</fluent-button>
+            <fluent-button @click="decode">解码</fluent-button>
           </template>
           <fluent-text-area v-model="encoded" resize="vertical" style="width: 100%;"></fluent-text-area>
         </input-label>
@@ -76,7 +77,7 @@ sitemap: false
 </div>
 
 <template id="svg-host-template">
-  <div v-html="innerHTML"></div>
+  <div class="svg-host" v-html="innerHTML"></div>
 </template>
 
 <template id="input-label-template">
@@ -291,7 +292,7 @@ sitemap: false
         neutralFillInputRest: designTokens.neutralFillInputRest
       }
     }
-  }).mount("#vue-app");
+  }).mount(root);
 </script>
 
 <style>
@@ -358,6 +359,10 @@ sitemap: false
     #vue-app div.split-view {
       flex-direction: column;
     }
+  }
+
+  .svg-host {
+    display: flex;
   }
 
   .input-label .fluent-input-label {
