@@ -1,5 +1,6 @@
 ---
 title: 小工具
+description: 各种各样的实用小工具
 ---
 <script type="module" data-pjax>
   import {
@@ -31,9 +32,9 @@ title: 小工具
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
-    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const scheme = matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
-      scheme.addListener(e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+      scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
       if (scheme.matches) {
         baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
       }
@@ -182,7 +183,7 @@ title: 小工具
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/shield_lock_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="generate-base-x" class="unset">Hash 加密</h4>
+        <h4 id="generate-crypto" class="unset">Hash 加密</h4>
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/Daninet/hash-wasm/"
@@ -231,7 +232,7 @@ title: 小工具
 </template>
 
 <template id="svg-host-template">
-  <div v-html="innerHTML"></div>
+  <div class="svg-host" v-html="innerHTML"></div>
 </template>
 
 <template id="settings-presenter-template">
@@ -535,7 +536,7 @@ title: 小工具
         return this.$slots[name];
       }
     }
-  }).mount("#vue-app");
+  }).mount(root);
 </script>
 
 <style>
@@ -570,6 +571,10 @@ title: 小工具
     font-family: unset;
     font-size: unset;
     line-height: unset;
+  }
+
+  .svg-host {
+    display: flex;
   }
 
   .settings-presenter {

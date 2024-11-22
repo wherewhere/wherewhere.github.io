@@ -1,5 +1,7 @@
 ---
 title: 注音
+description: 使用 <fluent-anchor appearance="hypertext" href="http://cheonhyeong.com/Tools/Times.html#9"
+  target="_blank">TH-Times</fluent-anchor> 字体显示注音文本
 sitemap: false
 ---
 <script type="module" data-pjax>
@@ -24,9 +26,9 @@ sitemap: false
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
   if (typeof matchMedia === "function") {
-    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const scheme = matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
-      scheme.addListener(e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+      scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
       if (scheme.matches) {
         baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
       }
@@ -134,7 +136,7 @@ sitemap: false
 </template>
 
 <template id="svg-host-template">
-  <div v-html="innerHTML"></div>
+  <div class="svg-host" v-html="innerHTML"></div>
 </template>
 
 <template id="input-label-template">
@@ -449,7 +451,7 @@ sitemap: false
         neutralFillInputRest: designTokens.neutralFillInputRest
       }
     }
-  }).mount("#vue-app");
+  }).mount(root);
 </script>
 
 <style>
@@ -532,6 +534,10 @@ sitemap: false
 
   #vue-app .key:active {
     background: var(--neutral-fill-stealth-active-on-neutral-fill-layer-rest);
+  }
+
+  .svg-host {
+    display: flex;
   }
 
   .input-label .fluent-input-label {
