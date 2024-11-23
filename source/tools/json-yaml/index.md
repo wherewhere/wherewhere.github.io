@@ -1,5 +1,8 @@
 ---
 title: JSON 与 YAML 转换
+description: 使用 <fluent-anchor appearance="hypertext" href="https://github.com/sidorares/json-bigint"
+  target="_blank">json-bigint</fluent-anchor> 和 <fluent-anchor appearance="hypertext"
+  href="https://github.com/nodeca/js-yaml/" target="_blank">js-yaml</fluent-anchor> 转化 JSON 与 YAML 数据
 sitemap: false
 ---
 <div class="split-view">
@@ -10,9 +13,9 @@ sitemap: false
 <script type="module" data-pjax>
   import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor/+esm";
   if (typeof matchMedia === "function") {
-    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const scheme = matchMedia("(prefers-color-scheme: dark)");
     if (typeof scheme !== "undefined") {
-      scheme.addListener(e => monaco.editor.setTheme(e.matches ? "vs-dark" : "vs"));
+      scheme.addEventListener("change", e => monaco.editor.setTheme(e.matches ? "vs-dark" : "vs"));
       if (scheme.matches) {
         monaco.editor.setTheme("vs-dark");
       }
