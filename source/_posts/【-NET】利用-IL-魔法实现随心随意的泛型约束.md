@@ -30,7 +30,7 @@ public static string Test<T>(T value) where T : { string Test(); }
 
 最近无聊乱折腾 `MSIL`，弄出来好多不能跑的魔法，虽然不能跑但是反编译出的 C# 看着很神奇，其中正好就有想看看能不能弄个神奇的泛型出来，于是我胡写了一段代码<!--more-->
 
-```il
+```msil
 .assembly _
 {
 }
@@ -97,7 +97,7 @@ public class Test
 
 于是我就当这是 .NET 泛型的局限性了，后来有群友提醒我说约束会影响运行时，于是我就尝试加上约束
 
-```il
+```msil
 .method public static string Test<(Test) T>(!!T t)
 {
     ldarg.s t
@@ -108,7 +108,7 @@ public class Test
 
 发现真的能跑了（Framework 依然无返回。。。），于是我就看看能不能同时约束两个类型
 
-```il
+```msil
 .method public static string Test<(Test, Test2) T>(!!T t)
 {
     ldarg.s t
@@ -131,7 +131,7 @@ Mono 成功输出
 
 随后测试发现，只要约束的类有相关成员就可以正常调用，于是我就利用抽象类做接口
 
-```il
+```msil
 .assembly _
 {
 }
