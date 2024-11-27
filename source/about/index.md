@@ -1,8 +1,9 @@
 ---
 title: 关于
+description: 铺路尚未成功，同志仍需努力！
 ---
-<script type="module" data-pjax>
-  import { marked } from "https://cdn.jsdelivr.net/npm/marked/+esm";
+<script src="https://cdn.jsdelivr.net/npm/marked" data-pjax></script>
+<script data-pjax>
   if (!customElements.get("about-content")) {
     function decodeBase64(base64) {
       const text = atob(base64);
@@ -26,7 +27,7 @@ title: 关于
         readme.innerText = "如果这里什么也没有，请";
         let link = document.createElement("a");
         link.href = "javascript:void(0)";
-        link.onclick = () => this.loadReadmeAsync();
+        link.addEventListener("click", () => this.loadReadmeAsync());
         link.innerText = "刷新";
         readme.appendChild(link);
         readme.append("页面，或者前往这个");
@@ -52,7 +53,7 @@ title: 关于
             message.innerText = "拉取成功，正在解析";
             const json = await response.json();
             const content = json.content;
-            if (typeof (content) == "string" && content.length > 0) {
+            if (typeof content == "string" && content.length > 0) {
               message.innerText = "解析成功";
               this.readme.innerHTML = marked.parse(decodeBase64(content));
               message.remove();
