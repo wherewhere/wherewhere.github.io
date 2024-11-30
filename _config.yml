@@ -106,6 +106,13 @@ theme: next
 deploy:
   - type: indexnow_url_submitter
 
+# Babel
+babel:
+  options:
+    presets:
+    - - "@babel/preset-env"
+      - targets: Edge >= 16
+
 # Feed Atom
 feed:
   type:

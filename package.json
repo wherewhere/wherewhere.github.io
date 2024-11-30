@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "hexo": "^7.0.0",
+    "hexo-babel": "^1.0.0",
     "hexo-generator-apis": "^1.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
@@ -30,5 +31,8 @@
     "hexo-server": "^3.0.0",
     "hexo-theme-next": "^8.0.0",
     "hexo-util": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.0.0"
   }
 }

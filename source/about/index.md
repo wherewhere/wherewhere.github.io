@@ -4,7 +4,15 @@ description: 铺路尚未成功，同志仍需努力！
 ---
 <script src="https://cdn.jsdelivr.net/npm/marked" data-pjax></script>
 <script data-pjax>
-  if (!customElements.get("about-content")) {
+  if (typeof marked === "undefined" || typeof customElements === "undefined") {
+    if (typeof pjax === "undefined") {
+      location.href = new URL("fallback.html", location.href);
+    }
+    else {
+      pjax.loadUrl("fallback.html", { history: false });
+    }
+  }
+  else if (!customElements.get("about-content")) {
     function decodeBase64(base64) {
       const text = atob(base64);
       const length = text.length;
