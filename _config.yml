@@ -111,7 +111,7 @@ babel:
   options:
     presets:
     - - "@babel/preset-env"
-      - targets: Edge >= 16
+      - targets: Edge >= 14
 
 # Feed Atom
 feed:
