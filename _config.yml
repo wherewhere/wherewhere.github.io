@@ -110,7 +110,7 @@ deploy:
 babel:
   options:
     presets:
-    - - "@babel/preset-env"
+    - - '@babel/preset-env'
       - targets: Edge >= 14
 
 # Feed Atom
@@ -126,7 +126,7 @@ feed:
 
 # Robots.txt
 robotstxt:
-  useragent: "*"
+  useragent: '*'
   allow:
     - /
   sitemap: https://wherewhere.github.io/sitemap.xml
@@ -141,18 +141,18 @@ hexo_indexnow:
 # API Generator
 restful_xapi:
   site: [
-      "title",
-      "subtitle",
-      "description",
-      "author",
-      "language",
-      "timezone",
-      "url",
-      "keywords",
-      "favicon",
-      "social",
-      "reward",
-      "follow_me"
+      'title',
+      'subtitle',
+      'description',
+      'author',
+      'language',
+      'timezone',
+      'url',
+      'keywords',
+      'favicon',
+      'social',
+      'reward',
+      'follow_me'
     ]
   categories:
     category_generator:
@@ -170,3 +170,15 @@ restful_xapi:
       license:
         name: 'Apache 2.0'
       version: '0.0.1'
+
+# HTML NANO
+htmlnano-mini:
+  enable: true
+  uglifyjs: false
+  minifyJs: true
+  cleancss: true
+  collapseWhitespace: aggressive
+  removeComments: false
+  removeEmptyAttributes: false
+  collapseBooleanAttributes: false
+  sortAttributes: frequency
