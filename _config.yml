@@ -171,14 +171,26 @@ restful_xapi:
         name: 'Apache 2.0'
       version: '0.0.1'
 
-# HTML NANO
-htmlnano-mini:
+# Minfiy
+minify:
   enable: true
-  uglifyjs: false
-  minifyJs: true
-  cleancss: true
-  collapseWhitespace: aggressive
-  removeComments: false
-  removeEmptyAttributes: false
-  collapseBooleanAttributes: false
-  sortAttributes: frequency
+  html:
+    sortAttributes: true
+    sortClassName: true
+  js:
+    priority: 11
+    sourceMap:
+      includeSources: true
+  svg:
+    priority: 11
+  gzip:
+    priority: 11
+  brotli:
+    priority: 11
+  xml:
+    enable: true
+    priority: 11
+  json:
+    enable: true
+    priority: 11
+    include: ['*.webmanifest', '!*.min.webmanifest']
