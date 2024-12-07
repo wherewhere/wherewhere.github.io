@@ -183,10 +183,6 @@ minify:
       includeSources: true
   svg:
     priority: 11
-  gzip:
-    priority: 11
-  brotli:
-    priority: 11
   xml:
     enable: true
     priority: 11
@@ -194,3 +190,9 @@ minify:
     enable: true
     priority: 11
     include: ['*.webmanifest', '!*.min.webmanifest']
+  gzip:
+    enable: false
+    priority: 11
+  brotli:
+    enable: false
+    priority: 11
