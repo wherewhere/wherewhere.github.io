@@ -1,41 +1,41 @@
 ---
-title: 这是一个不存在的页面
+title: 404 找不到页面
+description: 这是一个不存在的页面
 comments: false
 sitemap: false
 permalink: /404.html
 ---
-对不起，您所访问的页面不存在或者已删除。
-
+对不起，您所访问的页面不存在或者已删除。  
+<span id="not-found-counter">页面将自动跳转到首页。</span>  
+您可以[**点这里**](/)直接返回首页。
 <script data-pjax>
-  if (!customElements.get("not-found-counter")) {
-    class NotFoundCounter extends HTMLElement {
-      constructor() {
-        super();
-        this.countTime = 5;
-        const timeout = document.createElement("span");
-        const shadowRoot = this.attachShadow({ mode: 'open' });
-        shadowRoot.appendChild(timeout);
-        this.count(timeout);
+  (() => {
+    const counter = document.getElementById("not-found-counter");
+    counter.innerText = "预计将在约 ";
+    const timeout = document.createElement("span");
+    let countTime = 6;
+    timeout.innerText = countTime;
+    counter.appendChild(timeout);
+    counter.append(" 秒后返回首页。");
+    function count() {
+      if (--countTime > 0) {
+        timeout.innerText = countTime;
       }
-      count(timeout) {
-        if (--this.countTime > 0) {
-          timeout.innerText = "预计将在约 " + this.countTime + " 秒后返回首页。";
-        }
-        else if (this.countTime === 0) {
-          timeout.innerText = "即将跳转到首页。";
+      else if (countTime === 0) {
+        counter.innerText = "即将跳转到首页。";
+        if (typeof pjax === "undefined") {
           location.href = '/';
         }
-        else if (this.countTime < 0) {
-          timeout.remove();
-          return;
+        else {
+          pjax.loadUrl('/');
         }
-        setTimeout(() => this.count(timeout), 1000);
       }
+      else if (countTime < 0) {
+        counter.innerText = "自动跳转失败。";
+        return;
+      }
+      setTimeout(count, 1000);
     }
-    customElements.define("not-found-counter", NotFoundCounter);
-  }
+    count();
+  })();
 </script>
-
-<not-found-counter></not-found-counter>
-
-您可以[**点这里**](/)直接返回首页。
