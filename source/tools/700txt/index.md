@@ -1,5 +1,6 @@
 ---
 title: 大声朗读
+description: 将文本排版为适合大声朗读的样式
 sitemap: false
 ---
 <script type="module" data-pjax>
@@ -83,7 +84,7 @@ sitemap: false
               const dom = new DOMParser().parseFromString(html, "text/html");
               const nr = dom.getElementById("nr");
               const prev_url = dom.getElementById("prev_url");
-              let i = prev_url.textContent.trim() === "上一页" ? 1 : 0;
+              let i = prev_url.innerText === "上一页" ? 1 : 0;
               const childNodes = nr.childNodes;
               for (; i < childNodes.length; i++) {
                 content.appendChild(childNodes[i].cloneNode(true));
@@ -91,7 +92,7 @@ sitemap: false
               const next_url = dom.getElementById("next_url");
               if (next_url) {
                 page = next_url.getAttribute("href");
-                if (next_url.textContent.trim() === "下一页") {
+                if (next_url.innerText === "下一页") {
                   await getContentInner();
                 }
               }

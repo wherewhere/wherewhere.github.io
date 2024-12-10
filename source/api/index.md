@@ -1,5 +1,6 @@
 ---
 title: API 文档
+description: 基于 <a href="https://github.com/swagger-api/swagger-ui" target="_blank">swagger-ui</a> 的 OpenAPI 文档展示
 ---
 <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui-bundle.js" data-pjax></script>
 
@@ -60,6 +61,10 @@ title: API 文档
 
 <style>
   @import 'https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui.css';
+
+  .post-description a {
+    color: #555;
+  }
 
   .load-swagger-ui a.link {
     border-bottom: unset;
