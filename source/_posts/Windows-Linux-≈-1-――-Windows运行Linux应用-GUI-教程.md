@@ -7,15 +7,6 @@ banner: https://github.com/user-attachments/assets/6099d70a-0be9-4025-ac1d-6e783
 ---
 ![Windows + Linux ≈ 1 ―― Windows运行Linux应用(GUI)教程](https://github.com/user-attachments/assets/6099d70a-0be9-4025-ac1d-6e7837fcd0fa)
 
-<style>
-  img.emoji {
-    height: 20px;
-    width: 20px;
-    margin-bottom: -4px !important;
-    display: unset;
-  }
-</style>
-
 [#电脑玩家#](https://www.coolapk.com/t/电脑玩家) [#玩机技巧#](https://www.coolapk.com/t/玩机技巧) [#酷安夜话#](https://www.coolapk.com/t/酷安夜话)
  
 欢迎关注铺路根据地：[查看链接»](https://www.coolapk.com/dyh/1480)
@@ -32,7 +23,17 @@ banner: https://github.com/user-attachments/assets/6099d70a-0be9-4025-ac1d-6e783
 <img src="https://github.com/user-attachments/assets/f8a4985f-abcd-4922-ad54-b73815c115fb" alt="20180601_073605_905" />
 <figcaption>三个Ubuntu</figcaption>
 
-下载就不用我说了，打开Linux，第一次进入需要先配置一下，说是几分钟，我似乎等了有一个小时<img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(阴险).png" alt="阴险" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(阴险).png" alt="阴险" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(阴险).png" alt="阴险" />。<!--more-->
+下载就不用我说了，打开Linux，第一次进入需要先配置一下，说是几分钟，我似乎等了有一个小时<img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(阴险).png" alt="阴险" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(阴险).png" alt="阴险" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(阴险).png" alt="阴险" />。
+
+<style>
+  img.emoji {
+    height: 20px;
+    width: 20px;
+    margin-bottom: -4px !important;
+    display: unset;
+  }
+</style>
+<!--more-->
 
 <img src="https://github.com/user-attachments/assets/4f84d3e1-b54e-438a-a363-645b03ff91f9" alt="20180402_225823_248" />
 <figcaption>配置Debian</figcaption>

@@ -7,15 +7,6 @@ banner: https://github.com/user-attachments/assets/f23b00b3-775e-476e-9f83-c0060
 ---
 ![Win10激活彻底破解：一键获取数字权利工具问世](https://github.com/user-attachments/assets/f23b00b3-775e-476e-9f83-c0060c85b833)
 
-<style>
-  img.emoji {
-    height: 20px;
-    width: 20px;
-    margin-bottom: -4px !important;
-    display: unset;
-  }
-</style>
-
 [#电脑玩家#](https://www.coolapk.com/t/电脑玩家) [#玩机技巧#](https://www.coolapk.com/t/玩机技巧) [#酷安夜话#](https://www.coolapk.com/t/酷安夜话)
 
 转载自蓝点网：[查看链接»](https://www.landiannews.com/archives/47882.htm)
@@ -35,7 +26,17 @@ banner: https://github.com/user-attachments/assets/f23b00b3-775e-476e-9f83-c0060
 
 先介绍使用再介绍原理：
 
-下载由远景论坛网友黯然KING编写的简化脚本包：[查看链接»](https://dl.lancdn.com/landian/software/HWIDGEN)<!--more-->
+下载由远景论坛网友黯然KING编写的简化脚本包：[查看链接»](https://dl.lancdn.com/landian/software/HWIDGEN)
+
+<style>
+  img.emoji {
+    height: 20px;
+    width: 20px;
+    margin-bottom: -4px !important;
+    display: unset;
+  }
+</style>
+<!--more-->
 
 由于借助该网友制作的脚本激活非常简单因此蓝点网不再赘述，具体直接以下面几张图片介绍整个激活流程。
 

@@ -7,15 +7,6 @@ banner: https://github.com/user-attachments/assets/793cc19b-19a5-4f40-9dd6-c0b91
 ---
 ![如何查看Windows激活状态](https://github.com/user-attachments/assets/793cc19b-19a5-4f40-9dd6-c0b91de41297)
 
-<style>
-  img.emoji {
-    height: 20px;
-    width: 20px;
-    margin-bottom: -4px !important;
-    display: unset;
-  }
-</style>
-
 [#玩机技巧#](https://www.coolapk.com/t/玩机技巧) [#电脑玩家#](https://www.coolapk.com/t/电脑玩家) [铺路根据地](https://www.coolapk.com/dyh/1480)
 
 本图文用来补充之前的一个图文 ，方便大家激活后能够查看具体的激活情况。(相当于水贴<img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />)
@@ -32,9 +23,18 @@ banner: https://github.com/user-attachments/assets/793cc19b-19a5-4f40-9dd6-c0b91
 
 使用 `Windows + R` 组合快捷键打开运行命令框 
 
+<style>
+  img.emoji {
+   height: 20px;
+   width: 20px;
+   margin-bottom: -4px !important;
+   display: unset;
+  }
+</style>
+
 1. 运行：`slmgr.vbs -dlv`
 
-   可以查询到Win10的激活信息，包括：激活ID、安装ID、激活截止日期等信息。 <!--more-->
+   可以查询到Win10的激活信息，包括：激活ID、安装ID、激活截止日期等信息。<!--more-->
 
    ![cc11728b4710b91245e6ec5bcffdfc039245226b](https://github.com/user-attachments/assets/b0c293bb-f159-498a-ad36-9e8d57d13aa0)
 

@@ -10,15 +10,6 @@ banner: https://github.com/user-attachments/assets/cfd2baee-6b53-4237-a514-eb2c2
 ---
 ![Lumia 950 XL双系统对比](https://github.com/user-attachments/assets/cfd2baee-6b53-4237-a514-eb2c2a034f67)
 
-<style>
-  img.emoji {
-    height: 20px;
-    width: 20px;
-    margin-bottom: -4px !important;
-    display: unset;
-  }
-</style>
-
 [#玩机技巧#](https://www.coolapk.com/t/玩机技巧) [#酷安夜话#](https://www.coolapk.com/t/酷安夜话) [#ROM杂谈#](https://www.coolapk.com/t/ROM杂谈) [铺路根据地](https://www.coolapk.com/dyh/1480)
 
 随便水一贴，发些截图，不要介意<img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />
@@ -31,7 +22,17 @@ banner: https://github.com/user-attachments/assets/cfd2baee-6b53-4237-a514-eb2c2
 <img src="https://github.com/user-attachments/assets/06ab462e-1877-45f3-bcef-45972d13c4e1" alt="屏幕截图(4)" />
 <figcaption>Windows 10 ARM64</figcaption>
 
-#### Microsoft 商店<!--more-->
+#### Microsoft 商店
+
+<style>
+  img.emoji {
+    height: 20px;
+    width: 20px;
+    margin-bottom: -4px !important;
+    display: unset;
+  }
+</style>
+<!--more-->
 
 <img src="https://github.com/user-attachments/assets/34235a95-a306-4816-9514-d2aadba3b82f" alt="wp_ss_20180715_0002" />
 <figcaption>Windows 10 Mobile</figcaption>

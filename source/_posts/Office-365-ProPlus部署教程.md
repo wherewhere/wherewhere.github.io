@@ -7,15 +7,6 @@ banner: https://github.com/user-attachments/assets/2594f477-550f-4c54-b811-ea0d4
 ---
 ![Office 365 新旧UI对比](https://github.com/user-attachments/assets/2594f477-550f-4c54-b811-ea0d4d9971ec)
 
-<style>
-  img.emoji {
-    height: 20px;
-    width: 20px;
-    margin-bottom: -4px !important;
-    display: unset;
-  }
-</style>
-
 [#玩机技巧#](https://www.coolapk.com/t/玩机技巧) [#酷安夜话#](https://www.coolapk.com/t/酷安夜话) [#电脑玩家#](https://www.coolapk.com/t/电脑玩家) [铺路根据地](https://www.coolapk.com/dyh/1480)
 
 欢迎关注 [@wherewhere](https://www.coolapk.com/u/wherewhere) 的铺路根据地 [查看链接»](https://www.coolapk.com/dyh/1480)，本次图文较长，如果第4步看不懂，可以跳过，不过会默认安装英文版32位Office。
@@ -342,3 +333,12 @@ Office 部署工具 (ODT) 是一个命令行工具，可用于下载并将其部
    <figcaption>Office Tool Plus</figcaption>
 
 > [Office 365 ProPlus部署教程](https://www.coolapk.com/feed/6904874?shareKey=ODQxNzgzNGM1OWNkNjY1ZTBkMjA) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2018年6月14日 发表于 [酷安](https://www.coolapk.com "Coolapk")，转载请注明出处
+
+<style>
+  img.emoji {
+    height: 20px;
+    width: 20px;
+    margin-bottom: -4px !important;
+    display: unset;
+  }
+</style>

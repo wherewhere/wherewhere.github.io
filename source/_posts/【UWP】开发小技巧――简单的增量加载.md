@@ -7,17 +7,6 @@ banner: https://github.com/user-attachments/assets/85655d62-1f07-4889-9191-143ce
 ---
 ![【UWP】开发小技巧――简单的增量加载](https://github.com/user-attachments/assets/85655d62-1f07-4889-9191-143ce0be5971)
 
-<style>
-  figcaption.figure {
-    color: #999;
-    font-size: 0.875em;
-    font-weight: bold;
-    line-height: 1;
-    margin: -15px auto 15px;
-    text-align: center;
-  }
-</style>
-
 [#UWP#](https://www.coolapk.com/t/UWP) [#爱编程#](https://www.coolapk.com/t/爱编程) [#电脑玩家#](https://www.coolapk.com/t/电脑玩家)
 
 增量加载的原理这里就不多说了，具体是干什么的可以看 CNBlogs 的讲解：[查看链接](https://www.cnblogs.com/ms-uap/p/4155601.html)
@@ -141,3 +130,14 @@ public async Task Refresh(int p = -1)
 好了，本次教程就先说这么多了，更多内容等我下次再说
 
 > [【UWP】开发小技巧――简单的增量加载](https://www.coolapk.com/feed/33071083?shareKey=MGUwNzc1MzBlZGViNjYzZmNhZDA) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2022年1月24日 发表于 [酷安](https://www.coolapk.com "Coolapk")，转载请注明出处
+
+<style>
+  figcaption.figure {
+    color: #999;
+    font-size: 0.875em;
+    font-weight: bold;
+    line-height: 1;
+    margin: -15px auto 15px;
+    text-align: center;
+  }
+</style>

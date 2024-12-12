@@ -8,15 +8,6 @@ banner: https://github.com/user-attachments/assets/2594f477-550f-4c54-b811-ea0d4
 ---
 ![Office 365 新旧UI对比](https://github.com/user-attachments/assets/2594f477-550f-4c54-b811-ea0d4d9971ec)
 
-<style>
-  img.emoji {
-    height: 20px;
-    width: 20px;
-    margin-bottom: -4px !important;
-    display: unset;
-  }
-</style>
-
 [#酷安夜话#](https://www.coolapk.com/t/酷安夜话) [#电脑好软#](https://www.coolapk.com/t/电脑好软) [#电脑玩家#](https://www.coolapk.com/t/电脑玩家)
 
 什么也不说了，直接开始，当然不要忘了关注我哦<img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。
@@ -38,7 +29,17 @@ Office本地文件编辑页面，没什么好说的，只改了一个共享图�
 <img src="https://github.com/user-attachments/assets/9308f873-3737-4394-a56f-7a46c3c1e987" alt="本地文件编辑页面" />
 <figcaption>Office本地文件编辑页面，没什么好说的，只改了一个共享图标。</figcaption>
 
-云端文件编辑界面，多了一个历史记录（上次office365更新的）和一个不知道啥东西<img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。<!--more-->
+云端文件编辑界面，多了一个历史记录（上次office365更新的）和一个不知道啥东西<img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />。
+
+<style>
+  img.emoji {
+    height: 20px;
+    width: 20px;
+    margin-bottom: -4px !important;
+    display: unset;
+  }
+</style>
+<!--more-->
 
 <img src="https://github.com/user-attachments/assets/34898150-998e-4980-a8a9-a52742290819" alt="云端文件编辑界面" />
 <figcaption>云端文件编辑界面，多了一个历史记录（上次office365更新的）和一个不知道啥东西。</figcaption>

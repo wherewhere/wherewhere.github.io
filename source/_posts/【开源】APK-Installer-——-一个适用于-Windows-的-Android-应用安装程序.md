@@ -9,13 +9,6 @@ categories: 资源
 ---
 <img alt="APK Installer LOGO" src="https://github.com/user-attachments/assets/5ebcccb0-c607-41d3-8ffc-8481cfe3dba2" width="200px" style="display: unset;" />
 
-<style>
-  img.badge {
-    margin-bottom: unset !important;
-    display: unset;
-  }
-</style>
-
 # APK Installer
 
 一个适用于 WIndows 的 Android 应用安装程序
@@ -39,7 +32,15 @@ categories: 资源
 - 设备需支持ARM64/x86/x64
 - 至少400MB的空余储存空间(用于储存安装包与安装应用)
 
-### 使用应用安装脚本安装应用<!--more-->
+### 使用应用安装脚本安装应用
+
+<style>
+  img.badge {
+    margin-bottom: unset !important;
+    display: unset;
+  }
+</style>
+<!--more-->
 
 - 下载并解压最新的[安装包`(APKInstaller (Package)_x.x.x.0_Test.rar)`](https://github.com/Paving-Base/APK-Installer/releases/latest "下载安装包")
 - 如果没有应用安装脚本，下载[`Install.ps1`](Install.ps1)到目标目录  
