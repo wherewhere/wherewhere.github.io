@@ -3,9 +3,10 @@ title: 关于
 description: 铺路尚未成功，同志仍需努力！
 ---
 <span id="about-content"><span id="about-message"></span>如果这里什么也没有，请<a id="about-refresh"
-    href="./">刷新</a>页面，或者前往这个[页面](https://wherewhere.github.io/wherewhere)查看</span>
+    href="./fallback.html">刷新</a>页面，或者前往这个[页面](https://wherewhere.github.io/wherewhere)查看</span>
 
 <script id="marked-script" src="https://cdn.jsdelivr.net/npm/marked" data-pjax></script>
+
 <script data-pjax>
   (() => {
     function importMarkedAsync() {
@@ -98,6 +99,18 @@ description: 铺路尚未成功，同志仍需努力！
     }
     loadReadmeAsync();
   })();
+  function success() { return true; }
+</script>
+
+<script data-pjax>
+  if (typeof success === "undefined") {
+    if (typeof pjax === "undefined") {
+      location.href = "./fallback.html";
+    }
+    else {
+      pjax.loadUrl("./fallback.html", { history: false });
+    }
+  }
 </script>
 
 <style>

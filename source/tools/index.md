@@ -337,9 +337,6 @@ description: 各种各样的实用小工具
       }
     },
     methods: {
-      navigate(src) {
-        location.href = src;
-      },
       convertTimeStamp() {
         const time = Math.floor(this.isMillisecond ? +this.timeStamp : this.timeStamp * 1000);
         this.timeString = new Date(time).toISOString();

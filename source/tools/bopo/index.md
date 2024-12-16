@@ -328,8 +328,7 @@ sitemap: false
         element.resizeObserver.disconnect();
       }
     }
-  }
-  ).component("value-change-host", {
+  }).component("value-change-host", {
     template: "#empty-slot-template",
     props: {
       valueName: String,

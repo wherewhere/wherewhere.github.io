@@ -314,5 +314,3 @@ local_search:
   enable: true
   # Unescape html strings to the readable one.
   unescape: true
-  # Preload the search data when the page loads.
-  preload: true
