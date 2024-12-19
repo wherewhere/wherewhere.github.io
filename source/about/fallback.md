@@ -63,3 +63,10 @@ description: 铺路尚未成功，同志仍需努力！
     }
   })();
 </script>
+
+<style>
+  #about-content img {
+    margin-bottom: unset !important;
+    display: unset;
+  }
+</style>
