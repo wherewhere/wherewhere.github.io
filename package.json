@@ -1,12 +1,43 @@
 {
   "name": "wherlog",
   "version": "0.0.1",
+  "description": "wherewhere的个人博客",
   "private": true,
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server"
+  },
+  "keywords": [
+    "博客",
+    "开发",
+    "where",
+    "薇ㄦ",
+    "whercate"
+  ],
+  "homepage": "https://github.com/wherewhere/wherewhere.github.io",
+  "bugs": {
+    "url": "https://github.com/wherewhere/wherewhere.github.io/issues"
+  },
+  "license": "Apache-2.0",
+  "author": "wherewhere7",
+  "contributors": [
+    "wherewhere"
+  ],
+  "funding": [
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/wherewhere"
+    },
+    {
+      "type": "爱发电",
+      "url": "http://afdian.com/@wherewhere"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wherewhere/wherewhere.github.io.git"
   },
   "hexo": {
     "version": "7.3.0"
