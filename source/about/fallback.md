@@ -1,6 +1,7 @@
 ---
 title: 关于
 description: 铺路尚未成功，同志仍需努力！
+sitemap: false
 ---
 <span id="about-content"><span id="about-message"></span>如果这里什么也没有，请<a id="about-refresh"
     href="./fallback.html">刷新</a>页面，或者前往这个[页面](https://wherewhere.github.io/wherewhere)查看</span>
