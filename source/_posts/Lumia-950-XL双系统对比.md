@@ -104,4 +104,4 @@ banner: https://github.com/user-attachments/assets/cfd2baee-6b53-4237-a514-eb2c2
 
 先水这么多，不喜勿喷<img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />
 
-> [Lumia 950 XL 双系统对比](https://bbs.wfun.com/thread-1013749-1-1.html) 转载者 [@wherewhere](https://bbs.wfun.com/u/2850357) 2018年7月15日 转载于 [智机社区](https://bbs.wfun.com "WFun")
+> [Lumia 950 XL 双系统对比](https://bbs.wfun.com/thread-1013749-1-1.html) 作者 [@wherewhere](https://bbs.wfun.com/u/2850357) 2018年7月15日 发表于 [智机社区](https://bbs.wfun.com "WFun")，转载请注明出处
