@@ -4,6 +4,7 @@ date: 2018-05-13 13:49:36
 tags: [Win10, 发布会, 快讯, 新闻, 转载]
 categories: 快讯
 banner: https://github.com/user-attachments/assets/50e248e6-ee91-402b-83da-9c3c294a52eb
+copyright_reprint: true
 ---
 ![【转载】Build没提及的：进化FluentDesign，PWA，云剪切](https://github.com/user-attachments/assets/50e248e6-ee91-402b-83da-9c3c294a52eb)
 

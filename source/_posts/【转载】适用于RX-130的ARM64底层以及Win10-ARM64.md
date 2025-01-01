@@ -4,6 +4,7 @@ date: 2018-04-16 20:48:47
 tags: [Lumia, Win10, WOA, 资源, 玩机, 快讯, 转载]
 categories: 玩机
 banner: https://github.com/user-attachments/assets/127aff91-65a0-463b-b2ea-54d88eaffb35
+copyright_reprint: true
 ---
 ![【转载】适用于RX-130的ARM64底层以及Win10 ARM64](https://github.com/user-attachments/assets/127aff91-65a0-463b-b2ea-54d88eaffb35)
 

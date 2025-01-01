@@ -7,6 +7,7 @@ updated_accuracy: minute
 tags: [Lumia, Win10, WOA, 资源, 玩机, 转载]
 categories: 玩机
 banner: https://github.com/user-attachments/assets/9bcc95cc-8843-45e7-9ba1-5113409e6edb
+copyright_reprint: true
 ---
 ![【转载】适用于Lumia950/XL的免解锁安装Windows10ARM64方案(测试)](https://github.com/user-attachments/assets/9bcc95cc-8843-45e7-9ba1-5113409e6edb)
 

@@ -4,6 +4,7 @@ date: 2018-06-06 21:50:03
 tags: [Win10, 资源, 玩机, 快讯, 新闻, 教程, 转载]
 categories: 玩机
 banner: https://github.com/user-attachments/assets/f23b00b3-775e-476e-9f83-c0060c85b833
+copyright_reprint: true
 ---
 ![Win10激活彻底破解：一键获取数字权利工具问世](https://github.com/user-attachments/assets/f23b00b3-775e-476e-9f83-c0060c85b833)
 

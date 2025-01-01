@@ -6,6 +6,7 @@ updated_accuracy: minute
 tags: [UWP, APPX, Win10M, WP, 资源, 玩机, 转载, 翻译]
 categories: 资源
 banner: https://wp-seven.ru/wp-content/uploads/2017/02/Lumia-650.jpg
+copyright_reprint: true
 ---
 [#玩机技巧#](https://www.coolapk.com/t/玩机技巧) [#酷安夜话#](https://www.coolapk.com/t/酷安夜话) [#电脑好软#](https://www.coolapk.com/t/电脑好软) [铺路根据地](https://www.coolapk.com/dyh/1480)
 
