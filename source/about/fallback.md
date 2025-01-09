@@ -67,7 +67,7 @@ sitemap: false
 
 <style>
   #about-content img {
-    margin-bottom: unset !important;
-    display: unset;
+    margin-bottom: 0 !important;
+    display: inline;
   }
 </style>
