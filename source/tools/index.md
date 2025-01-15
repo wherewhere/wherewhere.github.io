@@ -257,7 +257,7 @@ description: 各种各样的实用小工具
 </template>
 
 <template id="settings-button-template">
-  <a class="settings-button">
+  <a class="settings-button" ref="anchor">
     <div class="content-grid">
       <settings-presenter class="presenter">
         <template #icon>
@@ -514,6 +514,11 @@ description: 各种各样的实用小工具
     methods: {
       getSlot(name) {
         return this.$slots[name];
+      }
+    },
+    mounted() {
+      if (typeof pjax !== "undefined") {
+        pjax.attachLink(this.$refs.anchor);
       }
     }
   }).component("settings-expander", {
