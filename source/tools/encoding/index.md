@@ -46,7 +46,7 @@ sitemap: false
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/settings_cog_multiple_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="encode-type" class="unset">编码类型</h4>
+        <h3 id="encode-type" class="unset">编码类型</h3>
       </template>
       <template #description>
         选择编码的类型。
@@ -83,9 +83,7 @@ sitemap: false
 <template id="input-label-template">
   <div class="input-label">
     <div class="fluent-input-label">
-      <label>
-        {{ label }}
-      </label>
+      <label>{{ label }}</label>
       <slot name="action"></slot>
     </div>
     <slot></slot>
@@ -95,19 +93,19 @@ sitemap: false
 <template id="settings-presenter-template">
   <div class="settings-presenter">
     <div class="header-root">
-      <div class="icon-holder" v-check-solt="getSlot('icon')">
+      <div class="icon-holder" v-check-solt="$slots.icon">
         <slot name="icon"></slot>
       </div>
       <div class="header-panel">
-        <span v-check-solt="getSlot('header')">
+        <span v-check-solt="$slots.header">
           <slot name="header"></slot>
         </span>
-        <span class="description" v-check-solt="getSlot('description')">
+        <span class="description" v-check-solt="$slots.description">
           <slot name="description"></slot>
         </span>
       </div>
     </div>
-    <div class="content-presenter" v-check-solt="getSlot('default')">
+    <div class="content-presenter" v-check-solt="$slots.default">
       <slot></slot>
     </div>
   </div>
@@ -191,6 +189,11 @@ sitemap: false
             break;
         }
       }
+    },
+    mounted() {
+      if (typeof NexT !== "undefined") {
+        NexT.utils.registerSidebarTOC();
+      }
     }
   }).directive("check-solt",
     (element, binding) => {
@@ -215,7 +218,7 @@ sitemap: false
                 if (typeof value.type === "symbol") {
                   value = value.children;
                   if (value instanceof Array) {
-                    setDisplay(value.length > 0);
+                    setDisplay(value.length);
                     return;
                   }
                 }
@@ -279,12 +282,7 @@ sitemap: false
       label: String
     }
   }).component("settings-presenter", {
-    template: "#settings-presenter-template",
-    methods: {
-      getSlot(name) {
-        return this.$slots[name];
-      }
-    }
+    template: "#settings-presenter-template"
   }).component("settings-card", {
     template: "#settings-card-template",
     data() {
@@ -299,15 +297,12 @@ sitemap: false
   @import 'https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css';
 
   #vue-app {
+    --settings-card-padding: calc(var(--design-unit) * 4px);
     font-family: var(--body-font);
     font-size: var(--type-ramp-base-font-size);
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
-  }
-
-  #vue-app * {
-    --settings-card-padding: calc(var(--design-unit) * 4px);
   }
 
   #vue-app .stack-vertical {
@@ -329,10 +324,7 @@ sitemap: false
     line-height: unset;
   }
 
-  #vue-app fluent-select::part(listbox) {
-    max-height: calc(var(--base-height-multiplier) * 30px);
-  }
-
+  #vue-app fluent-select::part(listbox),
   #vue-app fluent-select .listbox {
     max-height: calc(var(--base-height-multiplier) * 30px);
   }
@@ -377,16 +369,13 @@ sitemap: false
   }
 
   .settings-presenter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .settings-presenter * {
     --settings-card-description-font-size: var(--type-ramp-minus-1-font-size);
     --settings-card-header-icon-max-size: var(--type-ramp-base-line-height);
     --settings-card-header-icon-margin: 0 calc((var(--base-horizontal-spacing-multiplier) * 6 + var(--design-unit) * 0.5) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 6 - var(--design-unit) * 4) * 1px);
     --settings-card-vertical-header-content-spacing: calc(var(--design-unit) * 2px) 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .settings-presenter div.header-root {

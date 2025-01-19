@@ -46,21 +46,18 @@ description: 各种各样的实用小工具
 <div id="vue-app">
   <settings-group>
     <template #header>
-      <h3 id="render" class="unset">渲染</h3>
+      <h2 id="render" class="unset">渲染</h2>
     </template>
     <settings-button href="bilibili-card">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/card_ui_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="render-bilibili-card" class="unset">哔哩哔哩卡片</h4>
+        <h3 id="render-bilibili-card" class="unset">哔哩哔哩卡片</h3>
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/wherewhere/hexo-tag-bilibili-card"
           target="_blank">bilibili-card</fluent-anchor> 生成哔哩哔哩卡片。
-      </template>
-      <template #action-icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
     <settings-button href="bopo">
@@ -68,14 +65,11 @@ description: 各种各样的实用小工具
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/local_language_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="render-bopomofo" class="unset">注音组字</h4>
+        <h3 id="render-bopomofo" class="unset">注音组字</h3>
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="http://cheonhyeong.com/Tools/Times.html#9"
           target="_blank">TH-Times</fluent-anchor> 字体显示注音文本。
-      </template>
-      <template #action-icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
     <settings-button href="markdown">
@@ -83,27 +77,24 @@ description: 各种各样的实用小工具
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/markdown_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="render-markdown" class="unset">Markdown 预览</h4>
+        <h3 id="render-markdown" class="unset">Markdown 预览</h3>
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/markedjs/marked"
           target="_blank">Marked.JS</fluent-anchor> 解析并预览 Markdown 文本。
       </template>
-      <template #action-icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
-      </template>
     </settings-button>
   </settings-group>
   <settings-group>
     <template #header>
-      <h3 id="convert" class="unset">转换</h3>
+      <h2 id="convert" class="unset">转换</h2>
     </template>
     <settings-expander>
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/calendar_date_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="convert-timestamp" class="unset">时间戳转换</h4>
+        <h3 id="convert-timestamp" class="unset">时间戳转换</h3>
       </template>
       <template #description>
         转换 Unix 时间戳与时间字符串。
@@ -131,13 +122,10 @@ description: 各种各样的实用小工具
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_sync_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="convert-encoding" class="unset">编码&解码</h4>
+        <h3 id="convert-encoding" class="unset">编码&解码</h3>
       </template>
       <template #description>
         编码与解码 HTML、XML、Base64、Unicode 文本。
-      </template>
-      <template #action-icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
     <settings-button href="base-x">
@@ -146,14 +134,11 @@ description: 各种各样的实用小工具
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/number_symbol_square_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="convert-base-x" class="unset">Base X 编码</h4>
+        <h3 id="convert-base-x" class="unset">Base X 编码</h3>
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/UmamiAppearance/BaseExJS"
           target="_blank">BaseEx</fluent-anchor> 编码与解码 Base1、Base16、Base32、Base64 等文本。
-      </template>
-      <template #action-icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
     <settings-button href="json-yaml">
@@ -162,35 +147,29 @@ description: 各种各样的实用小工具
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/database_switch_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="convert-json-yaml" class="unset">JSON 与 YAML 转换</h4>
+        <h3 id="convert-json-yaml" class="unset">JSON 与 YAML 转换</h3>
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/sidorares/json-bigint"
           target="_blank">json-bigint</fluent-anchor> 和 <fluent-anchor appearance="hypertext"
           href="https://github.com/nodeca/js-yaml/" target="_blank">js-yaml</fluent-anchor> 转化 JSON 与 YAML 数据。
       </template>
-      <template #action-icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
-      </template>
     </settings-button>
   </settings-group>
   <settings-group>
     <template #header>
-      <h3 id="generate" class="unset">生成</h3>
+      <h2 id="generate" class="unset">生成</h2>
     </template>
     <settings-button href="crypto">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/shield_lock_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="generate-crypto" class="unset">Hash 加密</h4>
+        <h3 id="generate-crypto" class="unset">Hash 加密</h3>
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/Daninet/hash-wasm/"
           target="_blank">hash-wasm</fluent-anchor> 进行 MD5、Sha1、Sha2、Sha3、Bcrypt 等文本加密。
-      </template>
-      <template #action-icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
     <settings-button href="uuid">
@@ -198,14 +177,11 @@ description: 各种各样的实用小工具
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/fluid_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="generate-uuid" class="unset">UUID & GUID</h4>
+        <h3 id="generate-uuid" class="unset">UUID & GUID</h3>
       </template>
       <template #description>
         使用 <fluent-anchor appearance="hypertext" href="https://github.com/uuidjs/uuid/"
           target="_blank">uuid</fluent-anchor> 生成 UUID 与 GUID。
-      </template>
-      <template #action-icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
     <settings-button href="regex">
@@ -213,13 +189,10 @@ description: 各种各样的实用小工具
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/code_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="generate-regex" class="unset">正则表达式</h4>
+        <h3 id="generate-regex" class="unset">正则表达式</h3>
       </template>
       <template #description>
         测试正则表达式。
-      </template>
-      <template #action-icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
       </template>
     </settings-button>
   </settings-group>
@@ -238,19 +211,19 @@ description: 各种各样的实用小工具
 <template id="settings-presenter-template">
   <div class="settings-presenter">
     <div class="header-root">
-      <div class="icon-holder" v-check-solt="getSlot('icon')">
+      <div class="icon-holder" v-check-solt="$slots.icon">
         <slot name="icon"></slot>
       </div>
       <div class="header-panel">
-        <span v-check-solt="getSlot('header')">
+        <span v-check-solt="$slots['header']">
           <slot name="header"></slot>
         </span>
-        <span class="description" v-check-solt="getSlot('description')">
+        <span class="description" v-check-solt="$slots.description">
           <slot name="description"></slot>
         </span>
       </div>
     </div>
-    <div class="content-presenter" v-check-solt="getSlot('default')">
+    <div class="content-presenter" v-check-solt="$slots.default">
       <slot></slot>
     </div>
   </div>
@@ -271,8 +244,11 @@ description: 各种各样的实用小工具
         </template>
         <slot></slot>
       </settings-presenter>
-      <div class="action-icon-holder" v-check-solt="getSlot('action-icon')">
-        <slot name="action-icon"></slot>
+      <div class="action-icon-holder">
+        <slot name="action-icon">
+          <svg-host
+            src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+        </slot>
       </div>
     </div>
   </a>
@@ -304,10 +280,10 @@ description: 各种各样的实用小工具
 
 <template id="settings-group-template">
   <div class="settings-group">
-    <div class="header-presenter" v-check-solt="getSlot('header')">
+    <div class="header-presenter" v-check-solt="$slots.header">
       <slot name="header"></slot>
     </div>
-    <div class="items-presenter" v-check-solt="getSlot('default')">
+    <div class="items-presenter" v-check-solt="$slots.default">
       <slot></slot>
     </div>
   </div>
@@ -350,6 +326,11 @@ description: 各种各样的实用小工具
         this.timeStamp = this.isMillisecond ? time.getTime() : Math.floor(time.getTime() / 1000);
         this.timeString = new Date().toISOString();
       }
+    },
+    mounted() {
+      if (typeof NexT !== "undefined") {
+        NexT.utils.registerSidebarTOC();
+      }
     }
   }).directive("check-solt",
     (element, binding) => {
@@ -374,7 +355,7 @@ description: 各种各样的实用小工具
                 if (typeof value.type === "symbol") {
                   value = value.children;
                   if (value instanceof Array) {
-                    setDisplay(value.length > 0);
+                    setDisplay(value.length);
                     return;
                   }
                 }
@@ -503,19 +484,9 @@ description: 各种各样的实用小工具
       this.getSVGAsync(this.src).then(svg => this.innerHTML = svg);
     }
   }).component("settings-presenter", {
-    template: "#settings-presenter-template",
-    methods: {
-      getSlot(name) {
-        return this.$slots[name];
-      }
-    }
+    template: "#settings-presenter-template"
   }).component("settings-button", {
     template: "#settings-button-template",
-    methods: {
-      getSlot(name) {
-        return this.$slots[name];
-      }
-    },
     mounted() {
       if (typeof pjax !== "undefined") {
         pjax.attachLink(this.$refs.anchor);
@@ -532,12 +503,7 @@ description: 各种各样的实用小工具
       }
     }
   }).component("settings-group", {
-    template: "#settings-group-template",
-    methods: {
-      getSlot(name) {
-        return this.$slots[name];
-      }
-    }
+    template: "#settings-group-template"
   }).mount(root);
 </script>
 
@@ -580,16 +546,13 @@ description: 各种各样的实用小工具
   }
 
   .settings-presenter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .settings-presenter * {
     --settings-card-description-font-size: var(--type-ramp-minus-1-font-size);
     --settings-card-header-icon-max-size: var(--type-ramp-base-line-height);
     --settings-card-header-icon-margin: 0 calc((var(--base-horizontal-spacing-multiplier) * 6 + var(--design-unit) * 0.5) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 6 - var(--design-unit) * 4) * 1px);
     --settings-card-vertical-header-content-spacing: calc(var(--design-unit) * 2px) 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .settings-presenter div.header-root {
@@ -642,6 +605,7 @@ description: 各种各样的实用小工具
   }
 
   .settings-button {
+    --settings-button-padding: calc(var(--design-unit) * 4px) 0 calc(var(--design-unit) * 4px) calc(var(--design-unit) * 4px);
     cursor: pointer;
     display: block;
     box-sizing: border-box;
@@ -665,10 +629,6 @@ description: 各种各样的实用小工具
     box-shadow: var(--elevation-shadow-card-pressed);
   }
 
-  .settings-button * {
-    --settings-button-padding: calc(var(--design-unit) * 4px) 0 calc(var(--design-unit) * 4px) calc(var(--design-unit) * 4px);
-  }
-
   .settings-button .presenter {
     padding: var(--settings-button-padding);
     flex: 1;
@@ -690,7 +650,7 @@ description: 各种各样的实用小工具
     fill: currentColor;
   }
 
-  .settings-expander * {
+  .settings-expander {
     --settings-expander-header-padding: calc(var(--design-unit) * 1px) 0 calc(var(--design-unit) * 1px) calc(var(--design-unit) * 2px);
     --settings-expander-item-padding: 0 calc((var(--base-height-multiplier) + 1 + var(--density)) * var(--design-unit) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 12 - var(--design-unit) * 1.5) * 1px + var(--type-ramp-base-line-height));
   }
@@ -713,6 +673,12 @@ description: 各种各样的实用小工具
     box-shadow: var(--elevation-shadow-card-pressed);
   }
 
+  .settings-expander fluent-accordion-item.expander::part(region),
+  .settings-expander fluent-accordion-item.expander .region {
+    border-bottom-left-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
+    border-bottom-right-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
+  }
+
   .settings-expander .presenter {
     padding: var(--settings-expander-header-padding);
   }
@@ -721,7 +687,7 @@ description: 各种各样的实用小工具
     padding: var(--settings-expander-item-padding);
   }
 
-  .settings-group * {
+  .settings-group {
     --body-strong-text-block-font-size: var(--type-ramp-base-font-size);
   }
 

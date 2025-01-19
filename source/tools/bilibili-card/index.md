@@ -59,7 +59,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/design_ideas_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="bilibili-card-output" class="unset">生成类型</h4>
+        <h3 id="bilibili-card-output" class="unset">生成类型</h3>
       </template>
       <template #description>
         选择生成卡片的类型。
@@ -76,7 +76,7 @@ sitemap: false
         <svg-host :src="getTypeIcon(type)"></svg-host>
       </template>
       <template #header>
-        <h4 id="bilibili-card-type" class="unset">卡片类型</h4>
+        <h3 id="bilibili-card-type" class="unset">卡片类型</h3>
       </template>
       <template #description>
         选择卡片显示内容的类型。
@@ -91,7 +91,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/card_ui_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="bilibili-card-id" class="unset">卡片 ID</h4>
+        <h3 id="bilibili-card-id" class="unset">卡片 ID</h3>
       </template>
       <template #description>
         输入卡片显示的哔哩哔哩{{ types[type] }}的 ID。
@@ -104,7 +104,7 @@ sitemap: false
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/database_arrow_down_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="bilibili-card-get-data" class="unset">获取数据</h4>
+        <h3 id="bilibili-card-get-data" class="unset">获取数据</h3>
       </template>
       <template #description>
         从哔哩哔哩获取 JSON 数据。(由于跨域限制无法自动获取信息，请手动在下方填入 JSON 数据)
@@ -127,7 +127,7 @@ sitemap: false
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/image_arrow_forward_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="bilibili-card-image-proxy" class="unset">图片代理</h4>
+        <h3 id="bilibili-card-image-proxy" class="unset">图片代理</h3>
       </template>
       <template #description>
         设置封面图片的代理。
@@ -139,7 +139,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/tag_multiple_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="bilibili-card-info-types" class="unset">信息类型</h4>
+        <h3 id="bilibili-card-info-types" class="unset">信息类型</h3>
       </template>
       <template #description>
         设置卡片显示信息的类型。(views, danmakus, comments, favorites, coins, likes)
@@ -151,7 +151,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/color_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="bilibili-card-theme" class="unset">卡片主题</h4>
+        <h3 id="bilibili-card-theme" class="unset">卡片主题</h3>
       </template>
       <template #description>
         选择卡片的主题样式。
@@ -197,9 +197,7 @@ sitemap: false
 <template id="input-label-template">
   <div class="input-label">
     <div class="fluent-input-label">
-      <label>
-        {{ label }}
-      </label>
+      <label>{{ label }}</label>
       <slot name="action"></slot>
     </div>
     <slot></slot>
@@ -209,19 +207,19 @@ sitemap: false
 <template id="settings-presenter-template">
   <div class="settings-presenter">
     <div class="header-root">
-      <div class="icon-holder" v-check-solt="getSlot('icon')">
+      <div class="icon-holder" v-check-solt="$slots.icon">
         <slot name="icon"></slot>
       </div>
       <div class="header-panel">
-        <span v-check-solt="getSlot('header')">
+        <span v-check-solt="$slots.header">
           <slot name="header"></slot>
         </span>
-        <span class="description" v-check-solt="getSlot('description')">
+        <span class="description" v-check-solt="$slots.description">
           <slot name="description"></slot>
         </span>
       </div>
     </div>
-    <div class="content-presenter" v-check-solt="getSlot('default')">
+    <div class="content-presenter" v-check-solt="$slots.default">
       <slot></slot>
     </div>
   </div>
@@ -396,7 +394,7 @@ sitemap: false
               button.innerText = "已复制";
               setTimeout(() => button.innerHTML = content, 1000)
             }
-          })
+          });
       },
       createExample(json, imageProxy, id, type, infoTypes, theme) {
         this.updateExample(this.createCard(JSON.parse(json), imageProxy, id, type, infoTypes, theme));
@@ -439,8 +437,8 @@ sitemap: false
               link.rel = "stylesheet";
               link.href = this.getTheme(this.theme || '0');
               card.insertBefore(link, card.firstChild);
+              return card.innerHTML;
             }
-            return card.innerHTML;
         }
       },
       getTheme(theme) {
@@ -466,6 +464,11 @@ sitemap: false
             return theme;
         }
       }
+    },
+    mounted() {
+      if (typeof NexT !== "undefined") {
+        NexT.utils.registerSidebarTOC();
+      }
     }
   }).directive("check-solt",
     (element, binding) => {
@@ -490,7 +493,7 @@ sitemap: false
                 if (typeof value.type === "symbol") {
                   value = value.children;
                   if (value instanceof Array) {
-                    setDisplay(value.length > 0);
+                    setDisplay(value.length);
                     return;
                   }
                 }
@@ -624,12 +627,7 @@ sitemap: false
       label: String
     }
   }).component("settings-presenter", {
-    template: "#settings-presenter-template",
-    methods: {
-      getSlot(name) {
-        return this.$slots[name];
-      }
-    }
+    template: "#settings-presenter-template"
   }).component("settings-card", {
     template: "#settings-card-template",
     data() {
@@ -654,15 +652,12 @@ sitemap: false
   @import 'https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css';
 
   #vue-app {
+    --settings-card-padding: calc(var(--design-unit) * 4px);
     font-family: var(--body-font);
     font-size: var(--type-ramp-base-font-size);
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
-  }
-
-  #vue-app * {
-    --settings-card-padding: calc(var(--design-unit) * 4px);
   }
 
   #vue-app .stack-vertical {
@@ -690,10 +685,7 @@ sitemap: false
     line-height: unset;
   }
 
-  #vue-app fluent-select::part(listbox) {
-    max-height: calc(var(--base-height-multiplier) * 30px);
-  }
-
+  #vue-app fluent-select::part(listbox),
   #vue-app fluent-select .listbox {
     max-height: calc(var(--base-height-multiplier) * 30px);
   }
@@ -714,16 +706,13 @@ sitemap: false
   }
 
   .settings-presenter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .settings-presenter * {
     --settings-card-description-font-size: var(--type-ramp-minus-1-font-size);
     --settings-card-header-icon-max-size: var(--type-ramp-base-line-height);
     --settings-card-header-icon-margin: 0 calc((var(--base-horizontal-spacing-multiplier) * 6 + var(--design-unit) * 0.5) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 6 - var(--design-unit) * 4) * 1px);
     --settings-card-vertical-header-content-spacing: calc(var(--design-unit) * 2px) 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .settings-presenter div.header-root {
@@ -784,7 +773,7 @@ sitemap: false
     padding: var(--settings-card-padding);
   }
 
-  .settings-expander * {
+  .settings-expander {
     --settings-expander-header-padding: calc(var(--design-unit) * 1px) 0 calc(var(--design-unit) * 1px) calc(var(--design-unit) * 2px);
     --settings-expander-item-padding: 0 calc((var(--base-height-multiplier) + 1 + var(--density)) * var(--design-unit) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 12 - var(--design-unit) * 1.5) * 1px + var(--type-ramp-base-line-height));
   }
@@ -805,6 +794,12 @@ sitemap: false
     background: var(--neutral-fill-input-active);
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-active);
     box-shadow: var(--elevation-shadow-card-pressed);
+  }
+
+  .settings-expander fluent-accordion-item.expander::part(region),
+  .settings-expander fluent-accordion-item.expander .region {
+    border-bottom-left-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
+    border-bottom-right-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
   }
 
   .settings-expander .presenter {

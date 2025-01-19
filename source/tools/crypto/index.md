@@ -57,7 +57,7 @@ sitemap: false
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/settings_cog_multiple_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="crypto-type" class="unset">加密类型</h4>
+        <h3 id="crypto-type" class="unset">加密类型</h3>
       </template>
       <template #description>
         选择加密的类型。
@@ -90,12 +90,12 @@ sitemap: false
         <fluent-option value="bcrypt">Bcrypt</fluent-option>
       </fluent-select>
     </settings-card>
-    <settings-card v-if="typeof option.bits !== 'undefined'">
+    <settings-card v-show="typeof option.bits !== 'undefined'">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/code_circle_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="crypto-bit" class="unset">Bit 位</h4>
+        <h3 id="crypto-bit" class="unset">Bit 位</h3>
       </template>
       <template #description>
         选择加密的类型。
@@ -108,24 +108,24 @@ sitemap: false
       </fluent-select>
       <fluent-number-field v-else v-model="option.bits"></fluent-number-field>
     </settings-card>
-    <settings-card v-if="typeof option.key !== 'undefined'">
+    <settings-card v-show="typeof option.key !== 'undefined'">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/key_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="crypto-key" class="unset">Key</h4>
+        <h3 id="crypto-key" class="unset">Key</h3>
       </template>
       <template #description>
         输入加密的钥匙。<span v-if="type === 'blake3'">(必须 32 字节长)</span>
       </template>
       <fluent-text-field v-model="option.key"></fluent-text-field>
     </settings-card>
-    <settings-expander v-if="typeof option.seed !== 'undefined'" expanded="true">
+    <settings-expander v-show="typeof option.seed !== 'undefined'" expanded="true">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/tree_deciduous_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="crypto-seed" class="unset">Seed</h4>
+        <h3 id="crypto-seed" class="unset">Seed</h3>
       </template>
       <template #description>
         输入加密种子。
@@ -139,12 +139,12 @@ sitemap: false
         <fluent-text-field v-else v-model="option.seed"></fluent-text-field>
       </div>
     </settings-expander>
-    <settings-card v-if="typeof option.salt !== 'undefined'">
+    <settings-card v-show="typeof option.salt !== 'undefined'">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/cube_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="crypto-salt" class="unset">Salt</h4>
+        <h3 id="crypto-salt" class="unset">Salt</h3>
       </template>
       <template #description>
         <span>输入加密的盐。</span>
@@ -153,25 +153,25 @@ sitemap: false
       </template>
       <fluent-text-field v-model="option.salt"></fluent-text-field>
     </settings-card>
-    <settings-card v-if="typeof option.secret !== 'undefined'">
+    <settings-card v-show="typeof option.secret !== 'undefined'">
       <template #icon>
         <svg-host
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/lock_closed_key_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="crypto-secret" class="unset">Secret</h4>
+        <h3 id="crypto-secret" class="unset">Secret</h3>
       </template>
       <template #description>
         输入加密的密钥。
       </template>
       <fluent-text-field v-model="option.secret"></fluent-text-field>
     </settings-card>
-    <settings-expander v-if="typeof option.others === 'object'" expanded="true">
+    <settings-expander v-show="typeof option.others === 'object'" expanded="true">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/options_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="crypto-others" class="unset">其他</h4>
+        <h3 id="crypto-others" class="unset">其他</h3>
       </template>
       <template #description>
         其他加密选项。
@@ -182,12 +182,12 @@ sitemap: false
           }}</fluent-number-field>
       </div>
     </settings-expander>
-    <settings-card class="settings-nowarp" v-if="verify.enabled">
+    <settings-card class="settings-nowarp" v-show="verify.enabled">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/autocorrect_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="crypto-verify-auto" class="unset">自动验证</h4>
+        <h3 id="crypto-verify-auto" class="unset">自动验证</h3>
       </template>
       <template #description>
         修改内容时自动执行验证。
@@ -203,7 +203,7 @@ sitemap: false
           :src="`https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/${isFile ? 'document' : 'textbox'}_20_regular.svg`"></svg-host>
       </template>
       <template #header>
-        <h4 id="base-file" class="unset">是否为文件</h4>
+        <h3 id="base-file" class="unset">是否为文件</h3>
       </template>
       <template #description>
         加密{{ isFile ? '一个文件' : '一段文本' }}。
@@ -222,7 +222,7 @@ sitemap: false
           <div class="fluent-inputfile-container" v-if="isFile" style="flex: 1; min-height: 64px;">
             <div class="inputfile-content">
               <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_upload_24_regular.svg"
-                style="fill: var(--accent-fill-rest);"></svg-host>
+                style="fill: var(--accent-fill-rest); justify-content: center;"></svg-host>
               <div v-if="file">{{ file.name }} ({{ getSizeString(file.size) }})</div>
               <div v-else>上传一个文件</div>
             </div>
@@ -269,9 +269,7 @@ sitemap: false
 <template id="input-label-template">
   <div class="input-label">
     <div class="fluent-input-label">
-      <label>
-        {{ label }}
-      </label>
+      <label>{{ label }}</label>
       <slot name="action"></slot>
     </div>
     <slot></slot>
@@ -281,19 +279,19 @@ sitemap: false
 <template id="settings-presenter-template">
   <div class="settings-presenter">
     <div class="header-root">
-      <div class="icon-holder" v-check-solt="getSlot('icon')">
+      <div class="icon-holder" v-check-solt="$slots.icon">
         <slot name="icon"></slot>
       </div>
       <div class="header-panel">
-        <span v-check-solt="getSlot('header')">
+        <span v-check-solt="$slots.header">
           <slot name="header"></slot>
         </span>
-        <span class="description" v-check-solt="getSlot('description')">
+        <span class="description" v-check-solt="$slots.description">
           <slot name="description"></slot>
         </span>
       </div>
     </div>
-    <div class="content-presenter" v-check-solt="getSlot('default')">
+    <div class="content-presenter" v-check-solt="$slots.default">
       <slot></slot>
     </div>
   </div>
@@ -633,7 +631,7 @@ sitemap: false
         }
         let str = '';
         switch (index) {
-          case 0: str = "B"; break;
+          case 0: str = 'B'; break;
           case 1: str = "KB"; break;
           case 2: str = "MB"; break;
           case 3: str = "GB"; break;
@@ -652,6 +650,11 @@ sitemap: false
           return Math.floor(value * 100) / 100;
         }
         return `${toFixed(size)}${str}`;
+      }
+    },
+    mounted() {
+      if (typeof NexT !== "undefined") {
+        NexT.utils.registerSidebarTOC();
       }
     }
   }).directive("check-solt",
@@ -677,7 +680,7 @@ sitemap: false
                 if (typeof value.type === "symbol") {
                   value = value.children;
                   if (value instanceof Array) {
-                    setDisplay(value.length > 0);
+                    setDisplay(value.length);
                     return;
                   }
                 }
@@ -811,12 +814,7 @@ sitemap: false
       label: String
     }
   }).component("settings-presenter", {
-    template: "#settings-presenter-template",
-    methods: {
-      getSlot(name) {
-        return this.$slots[name];
-      }
-    }
+    template: "#settings-presenter-template"
   }).component("settings-card", {
     template: "#settings-card-template",
     data() {
@@ -841,17 +839,14 @@ sitemap: false
   @import 'https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css';
 
   #vue-app {
+    --success: #0E700E;
+    --error: #BC2F32;
+    --settings-card-padding: calc(var(--design-unit) * 4px);
     font-family: var(--body-font);
     font-size: var(--type-ramp-base-font-size);
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
-  }
-
-  #vue-app * {
-    --success: #0E700E;
-    --error: #BC2F32;
-    --settings-card-padding: calc(var(--design-unit) * 4px);
   }
 
   #vue-app .stack-vertical {
@@ -879,10 +874,7 @@ sitemap: false
     line-height: unset;
   }
 
-  #vue-app fluent-select::part(listbox) {
-    max-height: calc(var(--base-height-multiplier) * 30px);
-  }
-
+  #vue-app fluent-select::part(listbox),
   #vue-app fluent-select .listbox {
     max-height: calc(var(--base-height-multiplier) * 30px);
   }
@@ -943,16 +935,13 @@ sitemap: false
   }
 
   .settings-presenter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .settings-presenter * {
     --settings-card-description-font-size: var(--type-ramp-minus-1-font-size);
     --settings-card-header-icon-max-size: var(--type-ramp-base-line-height);
     --settings-card-header-icon-margin: 0 calc((var(--base-horizontal-spacing-multiplier) * 6 + var(--design-unit) * 0.5) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 6 - var(--design-unit) * 4) * 1px);
     --settings-card-vertical-header-content-spacing: calc(var(--design-unit) * 2px) 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .settings-presenter div.header-root {
@@ -1027,7 +1016,7 @@ sitemap: false
     padding: var(--settings-card-padding);
   }
 
-  .settings-expander * {
+  .settings-expander {
     --settings-expander-header-padding: calc(var(--design-unit) * 1px) 0 calc(var(--design-unit) * 1px) calc(var(--design-unit) * 2px);
     --settings-expander-item-padding: 0 calc((var(--base-height-multiplier) + 1 + var(--density)) * var(--design-unit) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 12 - var(--design-unit) * 1.5) * 1px + var(--type-ramp-base-line-height));
   }
@@ -1048,6 +1037,12 @@ sitemap: false
     background: var(--neutral-fill-input-active);
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-active);
     box-shadow: var(--elevation-shadow-card-pressed);
+  }
+
+  .settings-expander fluent-accordion-item.expander::part(region),
+  .settings-expander fluent-accordion-item.expander .region {
+    border-bottom-left-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
+    border-bottom-right-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
   }
 
   .settings-expander .presenter {

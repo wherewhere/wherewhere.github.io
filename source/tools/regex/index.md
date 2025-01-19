@@ -49,7 +49,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/code_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="regex-code" class="unset">表达式</h4>
+        <h3 id="regex-code" class="unset">表达式</h3>
       </template>
       <template #description>
         输入正则表达式。
@@ -64,7 +64,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/options_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="regex-option" class="unset">标志</h4>
+        <h3 id="regex-option" class="unset">标志</h3>
       </template>
       <template #description>
         <span>设置正则表达式标志。</span>
@@ -81,7 +81,7 @@ sitemap: false
       <div>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-option-global" class="unset">全局匹配：<code>g</code></h5>
+            <h4 id="regex-option-global" class="unset">全局匹配：<code>g</code></h4>
           </template>
           <template #description>
             找到所有的匹配，而不是在第一个匹配之后停止。
@@ -92,7 +92,7 @@ sitemap: false
         </settings-card>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-option-ignore-case" class="unset">忽略大小写：<code>i</code></h5>
+            <h4 id="regex-option-ignore-case" class="unset">忽略大小写：<code>i</code></h4>
           </template>
           <template #description>
             如果 <code>c</code> 标志也被启用，使用 Unicode 大小写折叠。
@@ -103,7 +103,7 @@ sitemap: false
         </settings-card>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-option-multiline" class="unset">多行匹配：<code>m</code></h5>
+            <h4 id="regex-option-multiline" class="unset">多行匹配：<code>m</code></h4>
           </template>
           <template #description>
             将开始和结束字符 (<code>^</code> and <code>$</code>) 视为在多行上工作。换句话说，匹配每一行的开头或结尾 <em>each</em> line
@@ -115,7 +115,7 @@ sitemap: false
         </settings-card>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-option-dotAll" class="unset">点号匹配所有字符：<code>s</code></h5>
+            <h4 id="regex-option-dotAll" class="unset">点号匹配所有字符：<code>s</code></h4>
           </template>
           <template #description>
             允许 <code>.</code> 去匹配新的行。
@@ -126,7 +126,7 @@ sitemap: false
         </settings-card>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-option-unicode" class="unset">Unicode: <code>u</code></h5>
+            <h4 id="regex-option-unicode" class="unset">Unicode: <code>u</code></h4>
           </template>
           <template #description>
             Treat <code>pattern</code> as a sequence of Unicode code points.
@@ -137,7 +137,7 @@ sitemap: false
         </settings-card>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-option-unicodeSets" class="unset">Unicode Sets: <code>v</code></h5>
+            <h4 id="regex-option-unicodeSets" class="unset">Unicode Sets: <code>v</code></h4>
           </template>
           <template #description>
             An upgrade to the <code>u</code> flag that enables set notation in character classes as well as properties
@@ -149,7 +149,7 @@ sitemap: false
         </settings-card>
         <settings-card class="default-setting-expander-item settings-nowarp">
           <template #header>
-            <h5 id="regex-option-sticky" class="unset">粘性匹配：<code>y</code></h5>
+            <h4 id="regex-option-sticky" class="unset">粘性匹配：<code>y</code></h4>
           </template>
           <template #description>
             Matches only from the index indicated by the <code>lastIndex</code> property of this regular expression
@@ -167,7 +167,7 @@ sitemap: false
           src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_repeat_all_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h4 id="regex-replace" class="unset">替换</h4>
+        <h3 id="regex-replace" class="unset">替换</h3>
       </template>
       <template #description>
         测试字符串替换。
@@ -207,9 +207,7 @@ sitemap: false
 <template id="input-label-template">
   <div class="input-label">
     <div class="fluent-input-label">
-      <label>
-        {{ label }}
-      </label>
+      <label>{{ label }}</label>
     </div>
     <slot></slot>
   </div>
@@ -218,19 +216,19 @@ sitemap: false
 <template id="settings-presenter-template">
   <div class="settings-presenter">
     <div class="header-root">
-      <div class="icon-holder" v-check-solt="getSlot('icon')">
+      <div class="icon-holder" v-check-solt="$slots.icon">
         <slot name="icon"></slot>
       </div>
       <div class="header-panel">
-        <span v-check-solt="getSlot('header')">
+        <span v-check-solt="$slots.header">
           <slot name="header"></slot>
         </span>
-        <span class="description" v-check-solt="getSlot('description')">
+        <span class="description" v-check-solt="$slots.description">
           <slot name="description"></slot>
         </span>
       </div>
     </div>
-    <div class="content-presenter" v-check-solt="getSlot('default')">
+    <div class="content-presenter" v-check-solt="$slots.default">
       <slot></slot>
     </div>
   </div>
@@ -343,6 +341,11 @@ sitemap: false
         }
         return result;
       }
+    },
+    mounted() {
+      if (typeof NexT !== "undefined") {
+        NexT.utils.registerSidebarTOC();
+      }
     }
   }).directive("attribute",
     (element, binding) => {
@@ -379,7 +382,7 @@ sitemap: false
                 if (typeof value.type === "symbol") {
                   value = value.children;
                   if (value instanceof Array) {
-                    setDisplay(value.length > 0);
+                    setDisplay(value.length);
                     return;
                   }
                 }
@@ -513,12 +516,7 @@ sitemap: false
       label: String
     }
   }).component("settings-presenter", {
-    template: "#settings-presenter-template",
-    methods: {
-      getSlot(name) {
-        return this.$slots[name];
-      }
-    }
+    template: "#settings-presenter-template"
   }).component("settings-card", {
     template: "#settings-card-template",
     data() {
@@ -543,15 +541,12 @@ sitemap: false
   @import 'https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css';
 
   #vue-app {
+    --settings-card-padding: calc(var(--design-unit) * 4px);
     font-family: var(--body-font);
     font-size: var(--type-ramp-base-font-size);
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
-  }
-
-  #vue-app * {
-    --settings-card-padding: calc(var(--design-unit) * 4px);
   }
 
   #vue-app .stack-vertical {
@@ -619,16 +614,13 @@ sitemap: false
   }
 
   .settings-presenter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .settings-presenter * {
     --settings-card-description-font-size: var(--type-ramp-minus-1-font-size);
     --settings-card-header-icon-max-size: var(--type-ramp-base-line-height);
     --settings-card-header-icon-margin: 0 calc((var(--base-horizontal-spacing-multiplier) * 6 + var(--design-unit) * 0.5) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 6 - var(--design-unit) * 4) * 1px);
     --settings-card-vertical-header-content-spacing: calc(var(--design-unit) * 2px) 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .settings-presenter div.header-root {
@@ -703,7 +695,7 @@ sitemap: false
     padding: var(--settings-card-padding);
   }
 
-  .settings-expander * {
+  .settings-expander {
     --settings-expander-header-padding: calc(var(--design-unit) * 1px) 0 calc(var(--design-unit) * 1px) calc(var(--design-unit) * 2px);
   }
 
@@ -723,6 +715,12 @@ sitemap: false
     background: var(--neutral-fill-input-active);
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-active);
     box-shadow: var(--elevation-shadow-card-pressed);
+  }
+
+  .settings-expander fluent-accordion-item.expander::part(region),
+  .settings-expander fluent-accordion-item.expander .region {
+    border-bottom-left-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
+    border-bottom-right-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
   }
 
   .settings-expander .presenter {

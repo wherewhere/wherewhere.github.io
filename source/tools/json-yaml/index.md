@@ -87,16 +87,13 @@ sitemap: false
   @import 'https://cdn.jsdelivr.net/npm/github-markdown-css';
 
   div.split-view {
+    --base-height-multiplier: 8;
+    --control-corner-radius: 4;
+    --elevation-shadow-card-rest: 0 0 2px rgba(0, 0, 0, 0.12), 0 calc(4 * 0.5px) calc((4 * 1px)) rgba(0, 0, 0, 0.14);
     width: 100%;
     height: 100%;
     display: flex;
     gap: 0.3rem;
-  }
-
-  div.split-view * {
-    --base-height-multiplier: 8;
-    --control-corner-radius: 4;
-    --elevation-shadow-card-rest: 0 0 2px rgba(0, 0, 0, 0.12), 0 calc(4 * 0.5px) calc((4 * 1px)) rgba(0, 0, 0, 0.14);
   }
 
   div.split-view #json,

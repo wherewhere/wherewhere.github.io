@@ -58,7 +58,7 @@ sitemap: false
 <div id="vue-app">
   <fluent-tabs>
     <fluent-tab id="generate">
-      <h3 id="uuid-generate" class="unset">生成</h3>
+      <h2 id="uuid-generate" class="unset">生成</h2>
     </fluent-tab>
     <fluent-tab-panel id="generatePanel">
       <div class="stack-vertical" style="row-gap: 0.3rem;">
@@ -68,7 +68,7 @@ sitemap: false
               src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/settings_cog_multiple_20_regular.svg"></svg-host>
           </template>
           <template #header>
-            <h4 id="uuid-generate-version" class="unset">版本</h4>
+            <h3 id="uuid-generate-version" class="unset">版本</h3>
           </template>
           <template #description>
             选择 UUID 的版本。
@@ -83,12 +83,12 @@ sitemap: false
             <fluent-option value="v8" disabled>Version 8 (Intentionally left blank)</fluent-option>
           </fluent-select>
         </settings-card>
-        <settings-expander v-if="option != null" expanded="true">
+        <settings-expander v-show="option != null" expanded="true">
           <template #icon>
             <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/rename_20_regular.svg"></svg-host>
           </template>
           <template #header>
-            <h4 id="uuid-generate-name" class="unset">名称</h4>
+            <h3 id="uuid-generate-name" class="unset">名称</h3>
           </template>
           <template #description>
             用于生成 UUID 的命名空间与内容。
@@ -96,7 +96,7 @@ sitemap: false
           <div>
             <settings-card class="default-setting-expander-item">
               <template #header>
-                <h5 id="uuid-generate-name-namespace" class="unset">命名空间</h5>
+                <h4 id="uuid-generate-name-namespace" class="unset">命名空间</h4>
               </template>
               <template #description>
                 输入命名空间的 UUID，有 <fluent-anchor :title="getNamespace('DNS')" appearance="hypertext"
@@ -108,7 +108,7 @@ sitemap: false
             </settings-card>
             <settings-card class="default-setting-expander-item">
               <template #header>
-                <h5 id="uuid-generate-name-content" class="unset">内容</h5>
+                <h4 id="uuid-generate-name-content" class="unset">内容</h4>
               </template>
               <template #description>
                 输入用于生成 UUID 的内容。
@@ -123,7 +123,7 @@ sitemap: false
               src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_repeat_all_20_regular.svg"></svg-host>
           </template>
           <template #header>
-            <h4 id="uuid-generate-count" class="unset">数量</h4>
+            <h3 id="uuid-generate-count" class="unset">数量</h3>
           </template>
           <template #description>
             生成 UUID 的个数。
@@ -142,7 +142,7 @@ sitemap: false
       </div>
     </fluent-tab-panel>
     <fluent-tab id="validate">
-      <h3 id="uuid-validate" class="unset">验证</h3>
+      <h2 id="uuid-validate" class="unset">验证</h2>
     </fluent-tab>
     <fluent-tab-panel id="validatePanel">
       <div class="stack-vertical" style="row-gap: 0.3rem;">
@@ -151,7 +151,7 @@ sitemap: false
             <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/braces_20_regular.svg"></svg-host>
           </template>
           <template #header>
-            <h4 id="uuid-validate-uuid" class="unset">UUID</h4>
+            <h3 id="uuid-validate-uuid" class="unset">UUID</h3>
           </template>
           <template #description>
             <span>输入要验证的 UUID。</span>
@@ -169,13 +169,13 @@ sitemap: false
           </template>
           <fluent-text-field v-model="uuid"></fluent-text-field>
         </settings-card>
-        <settings-card v-if="valid.version === 1 || valid.version === 6">
+        <settings-card v-show="valid.version === 1 || valid.version === 6">
           <template #icon>
             <svg-host
               src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/arrow_repeat_all_20_regular.svg"></svg-host>
           </template>
           <template #header>
-            <h4 id="uuid-validate-convert" class="unset">转换</h4>
+            <h3 id="uuid-validate-convert" class="unset">转换</h3>
           </template>
           <template #description>
             <span v-if="valid.version === 1">从 UUID v1 转换至 v6。</span>
@@ -183,13 +183,13 @@ sitemap: false
           </template>
           <fluent-text-field :value="converted" readonly></fluent-text-field>
         </settings-card>
-        <settings-card v-if="valid.valid">
+        <settings-card v-show="valid.valid">
           <template #icon>
             <svg-host
               src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/text_edit_style_20_regular.svg"></svg-host>
           </template>
           <template #header>
-            <h4 id="uuid-validate-convert" class="unset">格式化</h4>
+            <h3 id="uuid-validate-convert" class="unset">格式化</h3>
           </template>
           <template #description>格式化 UUID。</template>
           <div class="stack-horizontal"
@@ -214,9 +214,7 @@ sitemap: false
 <template id="input-label-template">
   <div class="input-label">
     <div class="fluent-input-label">
-      <label>
-        {{ label }}
-      </label>
+      <label>{{ label }}</label>
       <slot name="action"></slot>
     </div>
     <slot></slot>
@@ -226,19 +224,19 @@ sitemap: false
 <template id="settings-presenter-template">
   <div class="settings-presenter">
     <div class="header-root">
-      <div class="icon-holder" v-check-solt="getSlot('icon')">
+      <div class="icon-holder" v-check-solt="$slots.icon">
         <slot name="icon"></slot>
       </div>
       <div class="header-panel">
-        <span v-check-solt="getSlot('header')">
+        <span v-check-solt="$slots.header">
           <slot name="header"></slot>
         </span>
-        <span class="description" v-check-solt="getSlot('description')">
+        <span class="description" v-check-solt="$slots.description">
           <slot name="description"></slot>
         </span>
       </div>
     </div>
-    <div class="content-presenter" v-check-solt="getSlot('default')">
+    <div class="content-presenter" v-check-solt="$slots.default">
       <slot></slot>
     </div>
   </div>
@@ -509,6 +507,11 @@ sitemap: false
         this.uuids = uuids;
         this.uuid = uuids[0];
       }
+    },
+    mounted() {
+      if (typeof NexT !== "undefined") {
+        NexT.utils.registerSidebarTOC();
+      }
     }
   }).directive("attribute",
     (element, binding) => {
@@ -545,7 +548,7 @@ sitemap: false
                 if (typeof value.type === "symbol") {
                   value = value.children;
                   if (value instanceof Array) {
-                    setDisplay(value.length > 0);
+                    setDisplay(value.length);
                     return;
                   }
                 }
@@ -609,12 +612,7 @@ sitemap: false
       label: String
     }
   }).component("settings-presenter", {
-    template: "#settings-presenter-template",
-    methods: {
-      getSlot(name) {
-        return this.$slots[name];
-      }
-    }
+    template: "#settings-presenter-template"
   }).component("settings-card", {
     template: "#settings-card-template",
     data() {
@@ -639,17 +637,14 @@ sitemap: false
   @import 'https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css';
 
   #vue-app {
+    --success: #0E700E;
+    --error: #BC2F32;
+    --settings-card-padding: calc(var(--design-unit) * 4px);
     font-family: var(--body-font);
     font-size: var(--type-ramp-base-font-size);
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
-  }
-
-  #vue-app * {
-    --success: #0E700E;
-    --error: #BC2F32;
-    --settings-card-padding: calc(var(--design-unit) * 4px);
   }
 
   #vue-app .stack-vertical {
@@ -677,10 +672,7 @@ sitemap: false
     line-height: unset;
   }
 
-  #vue-app fluent-select::part(listbox) {
-    max-height: calc(var(--base-height-multiplier) * 30px);
-  }
-
+  #vue-app fluent-select::part(listbox),
   #vue-app fluent-select .listbox {
     max-height: calc(var(--base-height-multiplier) * 30px);
   }
@@ -701,16 +693,13 @@ sitemap: false
   }
 
   .settings-presenter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .settings-presenter * {
     --settings-card-description-font-size: var(--type-ramp-minus-1-font-size);
     --settings-card-header-icon-max-size: var(--type-ramp-base-line-height);
     --settings-card-header-icon-margin: 0 calc((var(--base-horizontal-spacing-multiplier) * 6 + var(--design-unit) * 0.5) * 1px) 0 calc((var(--base-horizontal-spacing-multiplier) * 6 - var(--design-unit) * 4) * 1px);
     --settings-card-vertical-header-content-spacing: calc(var(--design-unit) * 2px) 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .settings-presenter div.header-root {
@@ -771,7 +760,7 @@ sitemap: false
     padding: var(--settings-card-padding);
   }
 
-  .settings-expander * {
+  .settings-expander {
     --settings-expander-header-padding: calc(var(--design-unit) * 1px) 0 calc(var(--design-unit) * 1px) calc(var(--design-unit) * 2px);
   }
 
@@ -791,6 +780,12 @@ sitemap: false
     background: var(--neutral-fill-input-active);
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-active);
     box-shadow: var(--elevation-shadow-card-pressed);
+  }
+
+  .settings-expander fluent-accordion-item.expander::part(region),
+  .settings-expander fluent-accordion-item.expander .region {
+    border-bottom-left-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
+    border-bottom-right-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
   }
 
   .settings-expander .presenter {
