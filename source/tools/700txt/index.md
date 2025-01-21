@@ -24,13 +24,11 @@ sitemap: false
     );
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
-  if (typeof matchMedia === "function") {
-    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
-    if (typeof scheme !== "undefined") {
-      scheme.addListener(e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
-      if (scheme.matches) {
-        baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
-      }
+  const scheme = matchMedia("(prefers-color-scheme: dark)");
+  if (typeof scheme !== "undefined") {
+    scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+    if (scheme.matches) {
+      baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
     }
   }
 </script>
@@ -192,7 +190,14 @@ sitemap: false
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
-  }
+		color-scheme: light;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		#vue-app {
+			color-scheme: dark;
+		}
+	}
 
   #vue-app a.unset {
     border-bottom: unset;

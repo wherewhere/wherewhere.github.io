@@ -26,13 +26,11 @@ sitemap: false
     );
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
-  if (typeof matchMedia === "function") {
-    const scheme = matchMedia("(prefers-color-scheme: dark)");
-    if (typeof scheme !== "undefined") {
-      scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
-      if (scheme.matches) {
-        baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
-      }
+  const scheme = matchMedia("(prefers-color-scheme: dark)");
+  if (typeof scheme !== "undefined") {
+    scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+    if (scheme.matches) {
+      baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
     }
   }
 </script>
@@ -57,7 +55,7 @@ sitemap: false
     </settings-card>
     <div class="split-view">
       <div class="split-content">
-        <input-label v-fill-color="neutralFillInputRest" label="明文" style="flex: 1;">
+        <input-label v-fill-color="fillColor" label="明文" style="flex: 1;">
           <template #action>
             <fluent-button @click="encode">编码</fluent-button>
           </template>
@@ -65,7 +63,7 @@ sitemap: false
         </input-label>
       </div>
       <div class="split-content">
-        <input-label v-fill-color="neutralFillInputRest" label="密文" style="flex: 1;">
+        <input-label v-fill-color="fillColor" label="密文" style="flex: 1;">
           <template #action>
             <fluent-button @click="decode">解码</fluent-button>
           </template>
@@ -113,7 +111,7 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <div class="content-grid" v-fill-color="neutralFillInputRest">
+    <div class="content-grid" v-fill-color="fillColor">
       <settings-presenter class="presenter">
         <template #icon>
           <slot name="icon"></slot>
@@ -132,12 +130,8 @@ sitemap: false
 {% endraw %}
 
 <script type="module" data-pjax>
-  import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { createApp, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   import { fillColor, neutralFillInputRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
-  const root = document.getElementById("vue-app");
-  const designTokens = {
-    neutralFillInputRest: neutralFillInputRest.getValueFor(root)
-  }
   import * as entities from "https://cdn.jsdelivr.net/npm/entities/+esm";
   import { Base64 } from "https://cdn.jsdelivr.net/npm/js-base64/+esm";
   createApp({
@@ -147,7 +141,7 @@ sitemap: false
         encoded: null,
         decoded: null,
         types: ["HTML", "XML", "URL", "Base64", "Unicode"],
-        neutralFillInputRest: designTokens.neutralFillInputRest
+        fillColor: neutralFillInputRest
       }
     },
     methods: {
@@ -236,9 +230,9 @@ sitemap: false
   ).directive("fill-color",
     (element, binding) => {
       if (element instanceof HTMLElement) {
-        const color = binding.value;
+        const color = toRaw(binding.value);
         if (color !== binding.oldValue) {
-          fillColor.setValueFor(element, color);
+          fillColor.setValueFor(element, color.getValueFor(element.parentElement));
         }
       }
     }
@@ -287,10 +281,10 @@ sitemap: false
     template: "#settings-card-template",
     data() {
       return {
-        neutralFillInputRest: designTokens.neutralFillInputRest
+        fillColor: neutralFillInputRest
       }
     }
-  }).mount(root);
+  }).mount("#vue-app");
 </script>
 
 <style>
@@ -303,7 +297,14 @@ sitemap: false
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
-  }
+		color-scheme: light;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		#vue-app {
+			color-scheme: dark;
+		}
+	}
 
   #vue-app .stack-vertical {
     display: flex;

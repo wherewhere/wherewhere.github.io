@@ -40,13 +40,11 @@ sitemap: false
     );
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
-  if (typeof matchMedia === "function") {
-    const scheme = matchMedia("(prefers-color-scheme: dark)");
-    if (typeof scheme !== "undefined") {
-      scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
-      if (scheme.matches) {
-        baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
-      }
+  const scheme = matchMedia("(prefers-color-scheme: dark)");
+  if (typeof scheme !== "undefined") {
+    scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+    if (scheme.matches) {
+      baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
     }
   }
 </script>
@@ -170,7 +168,7 @@ sitemap: false
     </settings-card>
     <div class="settings-card"
       :style="{ paddingTop: 'calc(var(--design-unit) * 4px)', paddingRight: 'calc(var(--design-unit) * 4px)', paddingBottom: example ? 'calc(var(--design-unit) * 4px)' : 'calc(var(--design-unit) * 3px)', paddingLeft: 'calc(var(--design-unit) * 4px)' }">
-      <input-label label="预览" v-fill-color="neutralFillInputRest">
+      <input-label label="预览" v-fill-color="fillColor">
         <template #action>
           <div class="stack-horizontal" style="width: unset; column-gap: calc(var(--design-unit) * 1px);">
             <fluent-button v-show="example" @click="e => onCopyClicked(e, example)">复制代码</fluent-button>
@@ -227,7 +225,7 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <div class="content-grid" v-fill-color="neutralFillInputRest">
+    <div class="content-grid" v-fill-color="fillColor">
       <settings-presenter class="presenter">
         <template #icon>
           <slot name="icon"></slot>
@@ -261,7 +259,7 @@ sitemap: false
           <slot name="action-content"></slot>
         </settings-presenter>
       </div>
-      <div v-fill-color="neutralFillLayerAltRest">
+      <div v-fill-color="fillColor">
         <slot></slot>
       </div>
     </fluent-accordion-item>
@@ -270,13 +268,8 @@ sitemap: false
 {% endraw %}
 
 <script type="module" data-pjax>
-  import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { createApp, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
-  const root = document.getElementById("vue-app");
-  const designTokens = {
-    neutralFillInputRest: neutralFillInputRest.getValueFor(root),
-    neutralFillLayerAltRest: neutralFillLayerAltRest.getValueFor(root)
-  }
   import { encodeHTML } from "https://cdn.jsdelivr.net/npm/entities/+esm";
   import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
   import message from "https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card-message/bilibili-card-message.esm.js";
@@ -303,7 +296,7 @@ sitemap: false
           album: "相簿"
         },
         example: null,
-        neutralFillInputRest: designTokens.neutralFillInputRest
+        fillColor: neutralFillInputRest
       }
     },
     methods: {
@@ -511,9 +504,9 @@ sitemap: false
   ).directive("fill-color",
     (element, binding) => {
       if (element instanceof HTMLElement) {
-        const color = binding.value;
+        const color = toRaw(binding.value);
         if (color !== binding.oldValue) {
-          fillColor.setValueFor(element, color);
+          fillColor.setValueFor(element, color.getValueFor(element.parentElement));
         }
       }
     }
@@ -632,7 +625,7 @@ sitemap: false
     template: "#settings-card-template",
     data() {
       return {
-        neutralFillInputRest: designTokens.neutralFillInputRest
+        fillColor: neutralFillInputRest
       }
     }
   }).component("settings-expander", {
@@ -642,10 +635,10 @@ sitemap: false
     },
     data() {
       return {
-        neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
+        fillColor: neutralFillLayerAltRest
       }
     }
-  }).mount(root);
+  }).mount("#vue-app");
 </script>
 
 <style>
@@ -658,7 +651,14 @@ sitemap: false
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
-  }
+		color-scheme: light;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		#vue-app {
+			color-scheme: dark;
+		}
+	}
 
   #vue-app .stack-vertical {
     display: flex;

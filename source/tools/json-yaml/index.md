@@ -12,13 +12,11 @@ sitemap: false
 
 <script type="module" data-pjax>
   import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor/+esm";
-  if (typeof matchMedia === "function") {
-    const scheme = matchMedia("(prefers-color-scheme: dark)");
-    if (typeof scheme !== "undefined") {
-      scheme.addEventListener("change", e => monaco.editor.setTheme(e.matches ? "vs-dark" : "vs"));
-      if (scheme.matches) {
-        monaco.editor.setTheme("vs-dark");
-      }
+  const scheme = matchMedia("(prefers-color-scheme: dark)");
+  if (typeof scheme !== "undefined") {
+    scheme.addEventListener("change", e => monaco.editor.setTheme(e.matches ? "vs-dark" : "vs"));
+    if (scheme.matches) {
+      monaco.editor.setTheme("vs-dark");
     }
   }
   function createEditor(id, language, value) {

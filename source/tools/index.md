@@ -31,13 +31,11 @@ description: 各种各样的实用小工具
     );
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
-  if (typeof matchMedia === "function") {
-    const scheme = matchMedia("(prefers-color-scheme: dark)");
-    if (typeof scheme !== "undefined") {
-      scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
-      if (scheme.matches) {
-        baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
-      }
+  const scheme = matchMedia("(prefers-color-scheme: dark)");
+  if (typeof scheme !== "undefined") {
+    scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+    if (scheme.matches) {
+      baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
     }
   }
 </script>
@@ -271,7 +269,7 @@ description: 各种各样的实用小工具
           <slot name="action-content"></slot>
         </settings-presenter>
       </div>
-      <div v-fill-color="neutralFillLayerAltRest">
+      <div v-fill-color="fillColor">
         <slot></slot>
       </div>
     </fluent-accordion-item>
@@ -291,12 +289,8 @@ description: 各种各样的实用小工具
 {% endraw %}
 
 <script type="module" data-pjax>
-  import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { createApp, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   import { fillColor, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
-  const root = document.getElementById("vue-app");
-  const designTokens = {
-    neutralFillLayerAltRest: neutralFillLayerAltRest.getValueFor(root)
-  }
   createApp({
     data() {
       return {
@@ -373,9 +367,9 @@ description: 各种各样的实用小工具
   ).directive("fill-color",
     (element, binding) => {
       if (element instanceof HTMLElement) {
-        const color = binding.value;
+        const color = toRaw(binding.value);
         if (color !== binding.oldValue) {
-          fillColor.setValueFor(element, color);
+          fillColor.setValueFor(element, color.getValueFor(element.parentElement));
         }
       }
     }
@@ -499,12 +493,12 @@ description: 各种各样的实用小工具
     },
     data() {
       return {
-        neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
+        fillColor: neutralFillLayerAltRest
       }
     }
   }).component("settings-group", {
     template: "#settings-group-template"
-  }).mount(root);
+  }).mount("#vue-app");
 </script>
 
 <style>
@@ -514,7 +508,14 @@ description: 各种各样的实用小工具
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
-  }
+		color-scheme: light;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		#vue-app {
+			color-scheme: dark;
+		}
+	}
 
   #vue-app .stack-vertical {
     display: flex;

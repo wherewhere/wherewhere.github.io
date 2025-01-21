@@ -37,13 +37,11 @@ sitemap: false
     );
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
-  if (typeof matchMedia === "function") {
-    const scheme = matchMedia("(prefers-color-scheme: dark)");
-    if (typeof scheme !== "undefined") {
-      scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
-      if (scheme.matches) {
-        baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
-      }
+  const scheme = matchMedia("(prefers-color-scheme: dark)");
+  if (typeof scheme !== "undefined") {
+    scheme.addEventListener("change", e => baseLayerLuminance.withDefault(e.matches ? StandardLuminance.DarkMode : StandardLuminance.LightMode));
+    if (scheme.matches) {
+      baseLayerLuminance.withDefault(StandardLuminance.DarkMode);
     }
   }
 </script>
@@ -214,7 +212,7 @@ sitemap: false
     </settings-card>
     <div class="split-view">
       <div class="split-content">
-        <input-label :label="isFile ? '文件' : '明文'" v-fill-color="neutralFillInputRest"
+        <input-label :label="isFile ? '文件' : '明文'" v-fill-color="fillColor"
           style="flex: 1; display: flex; flex-direction: column;">
           <template #action>
             <fluent-button @click="encodeAsync">加密</fluent-button>
@@ -233,9 +231,9 @@ sitemap: false
         </input-label>
       </div>
       <div class="split-content">
-        <input-label label="密文" v-fill-color="neutralFillInputRest" style="flex: 1;">
+        <input-label label="密文" v-fill-color="fillColor" style="flex: 1;">
           <template #action>
-            <div v-fill-color="neutralFillInputRest"
+            <div v-fill-color="fillColor"
               style="min-height: calc((var(--base-height-multiplier) + var(--density)) * var(--design-unit) * 1px);">
               <div class="stack-horizontal" v-if="verify.enabled" style="width: unset; column-gap: 4px;">
                 <svg-host v-if="verify.verified === false" title="不匹配"
@@ -299,7 +297,7 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <div class="content-grid" v-fill-color="neutralFillInputRest">
+    <div class="content-grid" v-fill-color="fillColor">
       <settings-presenter class="presenter">
         <template #icon>
           <slot name="icon"></slot>
@@ -333,7 +331,7 @@ sitemap: false
           <slot name="action-content"></slot>
         </settings-presenter>
       </div>
-      <div v-fill-color="neutralFillLayerAltRest">
+      <div v-fill-color="fillColor">
         <slot></slot>
       </div>
     </fluent-accordion-item>
@@ -342,13 +340,8 @@ sitemap: false
 {% endraw %}
 
 <script type="module" data-pjax>
-  import { createApp } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { createApp, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
-  const root = document.getElementById("vue-app");
-  const designTokens = {
-    neutralFillInputRest: neutralFillInputRest.getValueFor(root),
-    neutralFillLayerAltRest: neutralFillLayerAltRest.getValueFor(root)
-  }
   import * as hash from "https://cdn.jsdelivr.net/npm/hash-wasm@4.11.0/+esm";
   import * as md2 from "https://cdn.jsdelivr.net/npm/js-md2/+esm";
   createApp({
@@ -365,7 +358,7 @@ sitemap: false
           auto: true,
           verified: null
         },
-        neutralFillInputRest: designTokens.neutralFillInputRest
+        fillColor: neutralFillInputRest
       }
     },
     watch: {
@@ -698,9 +691,9 @@ sitemap: false
   ).directive("fill-color",
     (element, binding) => {
       if (element instanceof HTMLElement) {
-        const color = binding.value;
+        const color = toRaw(binding.value);
         if (color !== binding.oldValue) {
-          fillColor.setValueFor(element, color);
+          fillColor.setValueFor(element, color.getValueFor(element.parentElement));
         }
       }
     }
@@ -819,7 +812,7 @@ sitemap: false
     template: "#settings-card-template",
     data() {
       return {
-        neutralFillInputRest: designTokens.neutralFillInputRest
+        fillColor: neutralFillInputRest
       }
     }
   }).component("settings-expander", {
@@ -829,10 +822,10 @@ sitemap: false
     },
     data() {
       return {
-        neutralFillLayerAltRest: designTokens.neutralFillLayerAltRest
+        fillColor: neutralFillLayerAltRest
       }
     }
-  }).mount(root);
+  }).mount("#vue-app");
 </script>
 
 <style>
@@ -847,7 +840,14 @@ sitemap: false
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
-  }
+		color-scheme: light;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		#vue-app {
+			color-scheme: dark;
+		}
+	}
 
   #vue-app .stack-vertical {
     display: flex;
