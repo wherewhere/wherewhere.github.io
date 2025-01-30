@@ -1,13 +1,13 @@
 ---
 title: 【UWP】让 UWP 自己托管自己 —— Windows App SDK 篇
 date: 2024-11-03 16:10:00
-updated: 2024-11-04 15:54:00
+updated: 2025-01-17 16:08:00
 tags: [UWP, WAS, .NET, C#, XAML岛, 开发, 教程]
 categories: 开发
 ---
 众所周知，UWP 使用的窗口模型是 CoreWindow，但是 UWP 本身只是一个应用模型，所以完全可以创建 win32 窗口，那么我们可以不可以创建一个 win32 窗口，然后像 XAML 岛 (XAML Islands) 一样把 XAML 托管上去呢？本篇将讲述如何利用 WAS (Windows App SDK，俗称 WinUI3) 在 UWP 创建一个 XAML 岛窗口。
 
-![屏幕截图(754)](https://github.com/user-attachments/assets/a47b9647-37fe-4301-b27a-bc681aab4f93)
+![示例](https://github.com/user-attachments/assets/a47b9647-37fe-4301-b27a-bc681aab4f93)
 
 演示视频：https://x.com/wherewhere7/status/1721570411388039587
 
@@ -371,4 +371,6 @@ private static Dictionary<DispatcherQueue, ulong> ActiveDesktopWindows { get; } 
 
 最后附上示例应用：https://github.com/wherewhere/CoreAppUWP/tree/muxc
 
-> [【UWP】在 UWP 中使用 Windows App SDK](https://www.cnblogs.com/wherewhere/p/18447226) 作者 [@where-where](https://home.cnblogs.com/u/wherewhere) 2024年10月8日 发表于 [博客园](https://home.cnblogs.com "CNBlogs")，转载请注明出处
+WUXC 篇：[【UWP】让 UWP 自己托管自己 —— Windows SDK 篇](/2025/01/17/【UWP】让-UWP-自己托管自己-——-Windows-SDK-篇)
+
+> [【UWP】让 UWP 自己托管自己 —— Windows App SDK 篇](https://www.cnblogs.com/wherewhere/p/18446822) 作者 [@where-where](https://home.cnblogs.com/u/wherewhere) 2024年11月3日 发表于 [博客园](https://home.cnblogs.com "CNBlogs")，转载请注明出处
