@@ -18,7 +18,7 @@ description: 基于 <a href="https://github.com/swagger-api/swagger-ui" target="
         const swaggerDiv = document.createElement("div");
         swaggerDiv.id = this.dom_id;
         swaggerDiv.innerText = "如果这里什么也没有，请";
-        const link = document.createElement("a");
+        const link = document.createElement('a');
         link.href = "javascript:void(0)";
         link.click = () => this.loadSwaggerUI();
         link.innerText = "刷新";
@@ -40,10 +40,15 @@ description: 基于 <a href="https://github.com/swagger-api/swagger-ui" target="
             deepLinking: true,
             queryConfigEnabled: true
           });
-          let elements = document.getElementsByClassName("main-inner");
-          Array.prototype.forEach.call(elements, element => element.style.background = "white");
-          elements = document.getElementsByClassName("post-title");
-          Array.prototype.forEach.call(elements, element => element.style.color = "#555");
+          const inner = document.querySelector(".main-inner");
+          if (inner instanceof HTMLElement) {
+            inner.style.background = "white";
+            inner.style.colorScheme = "light";
+          }
+          const title = document.querySelector(".post-title");
+          if (title instanceof HTMLElement) {
+            title.style.color = "#555";
+          }
         }
         catch (error) {
           console.error(error);
@@ -74,6 +79,11 @@ description: 基于 <a href="https://github.com/swagger-api/swagger-ui" target="
     background: unset;
   }
 
+  .load-swagger-ui .highlight-code code, 
+  .load-swagger-ui .highlight-code pre{
+    color: #dcdcdc;
+  }
+
   @media (min-width: 1200px) {
     .load-swagger-ui hgroup.main {
       width: auto;
@@ -81,10 +91,6 @@ description: 基于 <a href="https://github.com/swagger-api/swagger-ui" target="
   }
 
   @media (prefers-color-scheme: dark) {
-    .load-swagger-ui input[type="text"] {
-      color: black;
-    }
-
     .load-swagger-ui td:not(.col_header) {
       background: white;
     }
