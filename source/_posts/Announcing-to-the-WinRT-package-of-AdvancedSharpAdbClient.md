@@ -2,6 +2,7 @@
 title: Announcing to the WinRT package of AdvancedSharpAdbClient
 date: 2023-07-19 15:37:25
 updated: 2023-07-24 05:16:44
+lang: en-US
 tags: [.NET, WinRT, ADB, 公告, 资源, 教程]
 categories: 公告
 ---
