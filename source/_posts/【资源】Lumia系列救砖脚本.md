@@ -10,8 +10,8 @@ copyright_reprint: true
 ---
 #### <span style="color: red;">转载授权：</span>
 
-<img src="https://github.com/user-attachments/assets/5262984f-5049-4265-86fe-19316b9ae788" alt="wp_ss_20181120_0001 (2)" />
-<figcaption>转载授权</figcaption>
+![wp_ss_20181120_0001 (2)](https://github.com/user-attachments/assets/5262984f-5049-4265-86fe-19316b9ae788)
+<figcaption class="figure">转载授权</figcaption>
 
 #### <span style="color: red;">说明：</span>
 
@@ -35,19 +35,42 @@ RM-1085 RM-1087 RM-1089 RM-1090 RM-1091 RM-1092 RM-1096 RM-1099 RM-1104 RM-1105 
 
 RM-1050 RM-1051 RM-1052 RM-1054
 
-#### <span style="color: red;">运行截图：</span><!--more-->
+#### <span style="color: red;">运行截图：</span>
 
-<img src="https://github.com/user-attachments/assets/b86a70ea-0973-41e6-8aca-859ae6c6ef0b" alt="B7124932A6059CA4DC5E119E83DD54A1" />
-<figcaption>主界面</figcaption>
+<style>
+  figcaption.figure {
+    color: #999;
+    font-size: 0.875em;
+    font-weight: bold;
+    line-height: 1;
+    margin: 5px auto 15px;
+    text-align: center;
+  }
 
-<img src="https://github.com/user-attachments/assets/907495b1-055e-41f9-9f13-f8243eb47135" alt="屏幕截图(5)" />
-<figcaption>FFU</figcaption>
+  p+figcaption.figure,
+  p+div.code-line+.figure {
+    margin: -15px auto 15px;
+  }
 
-<img src="https://github.com/user-attachments/assets/c1cabce7-ffed-4435-a91f-f755ac1ae097" alt="屏幕截图(4)" />
-<figcaption>9008</figcaption>
+  @media (max-width: 567px) {
+    .post-body p+figcaption.figure {
+      margin: -5px auto 15px;
+    }
+  }
+</style>
+<!--more-->
 
-<img src="https://github.com/user-attachments/assets/f7bb0c71-e055-4537-bf3a-964a4daac033" alt="屏幕截图(3)" />
-<figcaption>关于</figcaption>
+![B7124932A6059CA4DC5E119E83DD54A1](https://github.com/user-attachments/assets/b86a70ea-0973-41e6-8aca-859ae6c6ef0b)
+<figcaption class="figure">主界面</figcaption>
+
+![屏幕截图(5)](https://github.com/user-attachments/assets/907495b1-055e-41f9-9f13-f8243eb47135)
+<figcaption class="figure">FFU</figcaption>
+
+![屏幕截图(4)](https://github.com/user-attachments/assets/c1cabce7-ffed-4435-a91f-f755ac1ae097)
+<figcaption class="figure">9008</figcaption>
+
+![屏幕截图(3)](https://github.com/user-attachments/assets/f7bb0c71-e055-4537-bf3a-964a4daac033)
+<figcaption class="figure">关于</figcaption>
 
 #### <span style="color: red;">下载链接：</span>
 

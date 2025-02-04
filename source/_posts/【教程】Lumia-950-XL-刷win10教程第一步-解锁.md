@@ -13,17 +13,40 @@ banner: https://github.com/user-attachments/assets/206082f2-1c23-45e6-96f4-02096
 
 本教程仅适合 Lumia 安全启动第二代系列，即包括但不仅限于 **Lumia x50** 系列的“新”一代Lumia设备，具体自己解锁的时候就知道了。
 
-<img src="https://github.com/user-attachments/assets/a2a50ff2-2405-4684-8683-1c483f6dcd16" alt="屏幕截图(57)">
-<figcaption>Lumia安全启动第二代包含设备</figcaption>
+![屏幕截图(57)](https://github.com/user-attachments/assets/a2a50ff2-2405-4684-8683-1c483f6dcd16)
+<figcaption class="figure">Lumia安全启动第二代包含设备</figcaption>
 
 首先本教程只包括解锁，不包括刷win10 arm
 
 现在正式开始
 
-这个是官方教程，之前的资源里有<!--more-->
+这个是官方教程，之前的资源里有
 
-<img src="https://github.com/user-attachments/assets/65779165-f371-4f5e-84b1-f9cc09856174" alt="wp_ss_20180804_0001">
-<figcaption>教程原文</figcaption>
+<style>
+  figcaption.figure {
+    color: #999;
+    font-size: 0.875em;
+    font-weight: bold;
+    line-height: 1;
+    margin: 5px auto 15px;
+    text-align: center;
+  }
+
+  p+figcaption.figure,
+  p+div.code-line+.figure {
+    margin: -15px auto 15px;
+  }
+
+  @media (max-width: 567px) {
+    .post-body p+figcaption.figure {
+      margin: -5px auto 15px;
+    }
+  }
+</style>
+<!--more-->
+
+![wp_ss_20180804_0001](https://github.com/user-attachments/assets/65779165-f371-4f5e-84b1-f9cc09856174)
+<figcaption class="figure">教程原文</figcaption>
 
 ### 真不废话了，现在开始
 
@@ -33,14 +56,14 @@ banner: https://github.com/user-attachments/assets/206082f2-1c23-45e6-96f4-02096
 
 #### 什么是WPinternals
 
-<img src="https://github.com/user-attachments/assets/803d3285-10f2-4cc9-8beb-dc4aa14c03a3" alt="屏幕截图(59)">
-<figcaption>关于</figcaption>
+![屏幕截图(59)](https://github.com/user-attachments/assets/803d3285-10f2-4cc9-8beb-dc4aa14c03a3)
+<figcaption class="figure">关于</figcaption>
 
 `WPinternals`就是一个专门的Lumia设备解锁工具，目前包括Lumia设备解锁，Lumia设备越狱，Windows移动设备刷机与备份等
 
 #### 在哪里可以获取WPinternals
 
-在这里：[https://www.wpinternals.net/index.php/downloads](https://www.wpinternals.net/index.php/downloads) 其他下载方式可能不安全，尽量使用最官方的方式
+在这里：https://www.wpinternals.net/index.php/downloads 其他下载方式可能不安全，尽量使用最官方的方式
 
 #### WPinternals介绍完毕
 
@@ -48,8 +71,8 @@ banner: https://github.com/user-attachments/assets/206082f2-1c23-45e6-96f4-02096
 
 你可以用任何Windows PC设备进行解锁，包括Lumia 950/XL
 
-<img src="https://github.com/user-attachments/assets/cfd2baee-6b53-4237-a514-eb2c2a034f67" alt="IMG_20180701_174316">
-<figcaption>Lumia 950 XL</figcaption>
+![IMG_20180701_174316](https://github.com/user-attachments/assets/cfd2baee-6b53-4237-a514-eb2c2a034f67)
+<figcaption class="figure">Lumia 950 XL</figcaption>
 
 在解锁之前，您必须知道，在解锁完成之后，您的设备将无法在线更新，无法使用Windows Hello进行解锁
 
@@ -61,38 +84,38 @@ banner: https://github.com/user-attachments/assets/206082f2-1c23-45e6-96f4-02096
 
 现在，把您的设备连接电脑
 
-<img src="https://github.com/user-attachments/assets/25a0487a-3011-4b4a-b393-f64320cbbff2" alt="f4c0b4e20a69e88f565d8bcd8b66713a15a2cfa1">
-<figcaption>连接电脑</figcaption>
+![f4c0b4e20a69e88f565d8bcd8b66713a15a2cfa1](https://github.com/user-attachments/assets/25a0487a-3011-4b4a-b393-f64320cbbff2)
+<figcaption class="figure">连接电脑</figcaption>
 
 前往`Download`，点击`Search`，在搜索到固件和紧急文件后，点击`Download`下载全部
 
-<img src="https://github.com/user-attachments/assets/7d980703-1aba-4884-9bf5-d17479f9d3dd" alt="IMG_20180805_131129">
-<figcaption>查找</figcaption>
+![IMG_20180805_131129](https://github.com/user-attachments/assets/7d980703-1aba-4884-9bf5-d17479f9d3dd)
+<figcaption class="figure">查找</figcaption>
 
 前往`Unlock Bootloader`页面，点击确定
 
-<img src="https://github.com/user-attachments/assets/fe8fd229-55e3-4bd8-bbca-2587d17a239d" alt="536381_1533696151_7603@760x503">
-<figcaption>OK</figcaption>
+![536381_1533696151_7603@760x503](https://github.com/user-attachments/assets/fe8fd229-55e3-4bd8-bbca-2587d17a239d)
+<figcaption class="figure">OK</figcaption>
 
 这时手机会重启至`flash mode`
 
-<img src="https://github.com/user-attachments/assets/c5fe9a3e-9ee3-4749-9886-821f83d6df92" alt="WP_20180526_19_46_43_Pro__highres">
-<figcaption>flash mode</figcaption>
+![WP_20180526_19_46_43_Pro__highres](https://github.com/user-attachments/assets/c5fe9a3e-9ee3-4749-9886-821f83d6df92)
+<figcaption class="figure">flash mode</figcaption>
 
 如果之前已经在`Download`页面下载完成所需文件，图中画圈部分会自动填写路径，如果没有，请自行填写，确保文件正确后，点击`Unlock`
 
-<img src="https://github.com/user-attachments/assets/6d31bfdf-d229-4d26-8b8f-583429f99313" alt="e83e3661fb36eeca2b4afda609c45d741fcb2e59_raw">
-<figcaption>Unlock</figcaption>
+![e83e3661fb36eeca2b4afda609c45d741fcb2e59_raw](https://github.com/user-attachments/assets/6d31bfdf-d229-4d26-8b8f-583429f99313)
+<figcaption class="figure">Unlock</figcaption>
 
 解锁时千万不要拔线，不然一块红砖等着您
 
-<img src="https://github.com/user-attachments/assets/f92e470e-69ea-42c7-88ea-3dbd6e0df8a2" alt="IMG_20180805_131138">
-<figcaption>开始</figcaption>
+![IMG_20180805_131138](https://github.com/user-attachments/assets/f92e470e-69ea-42c7-88ea-3dbd6e0df8a2)
+<figcaption class="figure">开始</figcaption>
 
 如果不出意外，当您的设备重启至系统时，您的设备以及解锁成功了，请确保WPinternals显示如下界面
 
-<img src="https://github.com/user-attachments/assets/c7104837-943b-45a5-bf96-a685bf7f2eda" alt="536381_1533696159_1972@759x502">
-<figcaption>完成</figcaption>
+![536381_1533696159_1972@759x502](https://github.com/user-attachments/assets/c7104837-943b-45a5-bf96-a685bf7f2eda)
+<figcaption class="figure">完成</figcaption>
 
 但是有时并不会这样
 
@@ -100,29 +123,29 @@ banner: https://github.com/user-attachments/assets/206082f2-1c23-45e6-96f4-02096
 
 #### 找不到`ffu`
 
-<img src="https://github.com/user-attachments/assets/394d4710-eb51-40f6-83f5-24adb29bffee" alt="52d2173237e9f09d3296bc1f2b0174b614fd3fac">
-<figcaption>找不到ffu</figcaption>
+![52d2173237e9f09d3296bc1f2b0174b614fd3fac](https://github.com/user-attachments/assets/394d4710-eb51-40f6-83f5-24adb29bffee)
+<figcaption class="figure">找不到ffu</figcaption>
 
 注意文件目录不要有中文字符，这玩意很玄学。。
 
 #### 解锁时无法进入大容量模式
 
-<img src="https://github.com/user-attachments/assets/eeb05257-43d9-4bc6-9e89-4474416781ae" alt="IMG_20180804_195903">
-<figcaption>解锁失败</figcaption>
+![IMG_20180804_195903](https://github.com/user-attachments/assets/eeb05257-43d9-4bc6-9e89-4474416781ae)
+<figcaption class="figure">解锁失败</figcaption>
 
 更新系统至**rs2**即可
 
 #### 解锁时进入大容量模式后无法识别
 
-<img src="https://github.com/user-attachments/assets/4037323a-f5ac-43de-9914-2c2854d5bb6c" alt="IMG_20180804_195837">
-<figcaption>无法识别</figcaption>
+![IMG_20180804_195837](https://github.com/user-attachments/assets/4037323a-f5ac-43de-9914-2c2854d5bb6c)
+<figcaption class="figure">无法识别</figcaption>
 
 不用急，等其自动重启，进入系统后重新解锁
 
 找不到`winlaod.efi`
 
-<img src="https://github.com/user-attachments/assets/f5107914-78dd-4f78-ba98-48dcd4167443" alt="IMG_20180804_195547">
-<figcaption>找不到<code>winlaod.efi</code></figcaption>
+![IMG_20180804_195547](https://github.com/user-attachments/assets/f5107914-78dd-4f78-ba98-48dcd4167443)
+<figcaption class="figure">找不到<code>winlaod.efi</code></figcaption>
 
 这种问题非常常见，出现这种问题，千万不要重启，否则您的设备将会卡在齿轮模式
 
@@ -132,16 +155,16 @@ banner: https://github.com/user-attachments/assets/206082f2-1c23-45e6-96f4-02096
 
 前往磁盘管理器，找到`mainos`所在磁盘
 
-<img src="https://github.com/user-attachments/assets/ddfdd126-0295-4d7a-ad9d-721ac5b00933" alt="屏幕截图(60)">
-<figcaption>磁盘管理器</figcaption>
+![屏幕截图(60)](https://github.com/user-attachments/assets/ddfdd126-0295-4d7a-ad9d-721ac5b00933)
+<figcaption class="figure">磁盘管理器</figcaption>
 
 取消挂载除`mainos`以外的其他所有分区
 
-<img src="https://github.com/user-attachments/assets/27bc8407-5357-49e6-9d7b-1c53811af72a" alt="屏幕截图(61)">
-<figcaption>更改驱动号</figcaption>
+![屏幕截图(61)](https://github.com/user-attachments/assets/27bc8407-5357-49e6-9d7b-1c53811af72a)
+<figcaption class="figure">更改驱动号</figcaption>
 
-<img src="https://github.com/user-attachments/assets/2dc1484d-3dca-4608-a887-16173a78cb26" alt="屏幕截图(62)">
-<figcaption>删除驱动号</figcaption>
+![屏幕截图(62)](https://github.com/user-attachments/assets/2dc1484d-3dca-4608-a887-16173a78cb26)
+<figcaption class="figure">删除驱动号</figcaption>
 
 重新上锁，设备重启进系统后重新解锁设备
 

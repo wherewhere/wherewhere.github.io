@@ -23,18 +23,19 @@ banner: https://github.com/user-attachments/assets/793cc19b-19a5-4f40-9dd6-c0b91
 
 使用 `Windows + R` 组合快捷键打开运行命令框 
 
-<style>
-  img.emoji {
-   height: 20px;
-   width: 20px;
-   margin-bottom: -4px !important;
-   display: unset;
-  }
-</style>
-
 1. 运行：`slmgr.vbs -dlv`
 
-   可以查询到Win10的激活信息，包括：激活ID、安装ID、激活截止日期等信息。<!--more-->
+   可以查询到Win10的激活信息，包括：激活ID、安装ID、激活截止日期等信息。
+
+   <style>
+     img.emoji {
+      height: 20px;
+      width: 20px;
+      margin-bottom: -4px !important;
+      display: inline;
+     }
+   </style>
+   <!--more-->
 
    ![cc11728b4710b91245e6ec5bcffdfc039245226b](https://github.com/user-attachments/assets/b0c293bb-f159-498a-ad36-9e8d57d13aa0)
 

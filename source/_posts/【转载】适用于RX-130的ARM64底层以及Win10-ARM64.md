@@ -16,8 +16,8 @@ copyright_reprint: true
 
 #### 转载授权:
 
-<img src="https://github.com/user-attachments/assets/29615a9a-395d-4fb7-bdb0-647138f9952d" alt="转载授权" />
-<figcaption>转载授权（原帖地址：<a herf="https://tieba.baidu.com/p/5650553455">https://tieba.baidu.com/p/5650553455</a>）</figcaption>
+![转载授权](https://github.com/user-attachments/assets/29615a9a-395d-4fb7-bdb0-647138f9952d)
+<figcaption class="figure">转载授权（原帖地址：<a herf="https://tieba.baidu.com/p/5650553455">https://tieba.baidu.com/p/5650553455</a>）</figcaption>
 
 #### 再次提醒:
 
@@ -29,7 +29,30 @@ copyright_reprint: true
 
 4. 目前Windows 10 ARM for **MSM8994**大量驱动不完善，您尚无法在系统中使用触摸功能能以及任何USB设备
 
-#### 内容:<!--more-->
+#### 内容:
+
+<style>
+  figcaption.figure {
+    color: #999;
+    font-size: 0.875em;
+    font-weight: bold;
+    line-height: 1;
+    margin: 5px auto 15px;
+    text-align: center;
+  }
+
+  p+figcaption.figure,
+  p+div.code-line+.figure {
+    margin: -15px auto 15px;
+  }
+
+  @media (max-width: 567px) {
+    .post-body p+figcaption.figure {
+      margin: -5px auto 15px;
+    }
+  }
+</style>
+<!--more-->
 
 这一底层备份来自于于微软一款代号为`Hapanero`的实验性工程机的一台ARM64测试机。  
 对于Lumia 950XL，由于其同样使用高通骁龙**MSM8994SoC**，虽然底层由于显示驱动不匹配会招致烧毁屏幕上的芯片的不良后果，但其仍可运行。  
@@ -54,14 +77,14 @@ copyright_reprint: true
 
 到目前为止已经有人成功刷入了，并且给出了照片
 
-<img src="https://github.com/user-attachments/assets/2f8b1634-5e16-471a-ad1f-73ba0d3a72d3" alt="登录界面" />
-<figcaption>登录界面</figcaption>
+![登录界面](https://github.com/user-attachments/assets/2f8b1634-5e16-471a-ad1f-73ba0d3a72d3)
+<figcaption class="figure">登录界面</figcaption>
 
-<img src="https://github.com/user-attachments/assets/823bf306-2652-41d0-aec1-5ed97b890089" alt="关于" />
-<figcaption>关于</figcaption>
+![关于](https://github.com/user-attachments/assets/823bf306-2652-41d0-aec1-5ed97b890089)
+<figcaption class="figure">关于</figcaption>
 
-<img src="https://github.com/user-attachments/assets/095d7be6-15e2-43bf-90aa-00628d7de630" alt="桌面" />
-<figcaption>桌面</figcaption>
+![桌面](https://github.com/user-attachments/assets/095d7be6-15e2-43bf-90aa-00628d7de630)
+<figcaption class="figure">桌面</figcaption>
 
 #### 英文版：
 

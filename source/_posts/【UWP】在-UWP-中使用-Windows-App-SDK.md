@@ -23,13 +23,13 @@ Window::Window()
     // serves as a dummy for all other instances. dummy behavior is deprecated and being removed.
     auto dxamlCore = DXamlCore::GetCurrent();
     Window* window = dxamlCore->GetDummyWindowNoRef();
- 
+
     if (!window)
     {
         // Do a runtime check to see if UWP should be enabled
         static auto runtimeEnabledFeatureDetector = RuntimeFeatureBehavior::GetRuntimeEnabledFeatureDetector();
         auto UWPWindowEnabled = runtimeEnabledFeatureDetector->IsFeatureEnabled(RuntimeEnabledFeature::EnableUWPWindow);
- 
+
         // WinUI UWP
         if (!UWPWindowEnabled && DXamlCore::GetCurrent()->GetHandle()->GetInitializationType() != InitializationType::IslandsOnly)
         {
@@ -64,7 +64,7 @@ Window::Window()
 
 ```ini
 Windows Registry Editor Version 5.00
- 
+
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WinUI\Xaml]
 "EnableUWPWindow"=dword:00000001
 ```
@@ -76,7 +76,7 @@ Windows Registry Editor Version 5.00
 ```cs
 #r "nuget:Detours.Win32Metadata"
 #r "nuget:Microsoft.Windows.CsWin32"
- 
+
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -85,7 +85,7 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.System.Registry;
 using Detours = Microsoft.Detours.PInvoke;
- 
+
 /// <summary>
 /// Represents a hook for getting the value of the <c>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WinUI\Xaml\EnableUWPWindow</c> registry key always returning <see langword="00000001"/>.
 /// </summary>
@@ -95,34 +95,34 @@ public partial class HookRegistry : IDisposable
     /// The value that indicates whether the class has been disposed.
     /// </summary>
     private bool disposed;
- 
+
     /// <summary>
     /// The reference count for the hook.
     /// </summary>
     private static int refCount;
- 
+
     /// <summary>
     /// The dictionary that maps the <see cref="HKEY"/> to a value that indicates whether the key is a real key.
     /// </summary>
     private static readonly Dictionary<HKEY, bool> xamlKeyMap = [];
- 
+
     /// <summary>
     /// The object used to synchronize access to the <see cref="xamlKeyMap"/> dictionary.
     /// </summary>
     private static readonly object locker = new();
- 
+
     /// <remarks>The original <see cref="PInvoke.RegOpenKeyEx(HKEY, PCWSTR, uint, REG_SAM_FLAGS, HKEY*)"/> function.</remarks>
     /// <inheritdoc cref="PInvoke.RegOpenKeyEx(HKEY, PCWSTR, uint, REG_SAM_FLAGS, HKEY*)"/>
     private static unsafe delegate* unmanaged[Stdcall]<HKEY, PCWSTR, uint, REG_SAM_FLAGS, HKEY*, WIN32_ERROR> RegOpenKeyExW;
- 
+
     /// <remarks>The original <see cref="PInvoke.RegCloseKey(HKEY)"/> function.</remarks>
     /// <inheritdoc cref="PInvoke.RegCloseKey(HKEY)"/>
     private static unsafe delegate* unmanaged[Stdcall]<HKEY, WIN32_ERROR> RegCloseKey;
- 
+
     /// <remarks>The original <see cref="PInvoke.RegQueryValueEx(HKEY, PCWSTR, uint*, REG_VALUE_TYPE*, byte*, uint*)"/> function.</remarks>
     /// <inheritdoc cref="PInvoke.RegQueryValueEx(HKEY, PCWSTR, uint*, REG_VALUE_TYPE*, byte*, uint*)"/>
     private static unsafe delegate* unmanaged[Stdcall]<HKEY, PCWSTR, uint*, REG_VALUE_TYPE*, byte*, uint*, WIN32_ERROR> RegQueryValueExW;
- 
+
     /// <summary>
     /// Initializes a new instance of the <see cref="HookRegistry"/> class.
     /// </summary>
@@ -131,7 +131,7 @@ public partial class HookRegistry : IDisposable
         refCount++;
         StartHook();
     }
- 
+
     /// <summary>
     /// Finalizes this instance of the <see cref="HookRegistry"/> class.
     /// </summary>
@@ -139,12 +139,12 @@ public partial class HookRegistry : IDisposable
     {
         Dispose();
     }
- 
+
     /// <summary>
     /// Gets the value that indicates whether the hook is active.
     /// </summary>
     public static bool IsHooked { get; private set; }
- 
+
     /// <summary>
     /// Starts the hook for the <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function.
     /// </summary>
@@ -161,29 +161,29 @@ public partial class HookRegistry : IDisposable
                 void* regOpenKeyExWPtr = (void*)regOpenKeyExW;
                 void* regCloseKeyPtr = (void*)regCloseKey;
                 void* regQueryValueExWPtr = (void*)regQueryValueExW;
- 
+
                 delegate* unmanaged[Stdcall]<HKEY, PCWSTR, uint, REG_SAM_FLAGS, HKEY*, WIN32_ERROR> overrideRegOpenKeyExW = &OverrideRegOpenKeyExW;
                 delegate* unmanaged[Stdcall]<HKEY, WIN32_ERROR> overrideRegCloseKey = &OverrideRegCloseKey;
                 delegate* unmanaged[Stdcall]<HKEY, PCWSTR, uint*, REG_VALUE_TYPE*, byte*, uint*, WIN32_ERROR> overrideRegQueryValueExW = &OverrideRegQueryValueExW;
- 
+
                 _ = Detours.DetourRestoreAfterWith();
- 
+
                 _ = Detours.DetourTransactionBegin();
                 _ = Detours.DetourUpdateThread(PInvoke.GetCurrentThread());
                 _ = Detours.DetourAttach(ref regOpenKeyExWPtr, overrideRegOpenKeyExW);
                 _ = Detours.DetourAttach(ref regCloseKeyPtr, overrideRegCloseKey);
                 _ = Detours.DetourAttach(ref regQueryValueExWPtr, overrideRegQueryValueExW);
                 _ = Detours.DetourTransactionCommit();
- 
+
                 RegOpenKeyExW = (delegate* unmanaged[Stdcall]<HKEY, PCWSTR, uint, REG_SAM_FLAGS, HKEY*, WIN32_ERROR>)regOpenKeyExWPtr;
                 RegCloseKey = (delegate* unmanaged[Stdcall]<HKEY, WIN32_ERROR>)regCloseKeyPtr;
                 RegQueryValueExW = (delegate* unmanaged[Stdcall]<HKEY, PCWSTR, uint*, REG_VALUE_TYPE*, byte*, uint*, WIN32_ERROR>)regQueryValueExWPtr;
- 
+
                 IsHooked = true;
             }
         }
     }
- 
+
     /// <summary>
     /// Ends the hook for the <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function.
     /// </summary>
@@ -194,26 +194,26 @@ public partial class HookRegistry : IDisposable
             void* regOpenKeyExWPtr = RegOpenKeyExW;
             void* regCloseKeyPtr = RegCloseKey;
             void* regQueryValueExWPtr = RegQueryValueExW;
- 
+
             delegate* unmanaged[Stdcall]<HKEY, PCWSTR, uint, REG_SAM_FLAGS, HKEY*, WIN32_ERROR> overrideRegOpenKeyExW = &OverrideRegOpenKeyExW;
             delegate* unmanaged[Stdcall]<HKEY, WIN32_ERROR> overrideRegCloseKey = &OverrideRegCloseKey;
             delegate* unmanaged[Stdcall]<HKEY, PCWSTR, uint*, REG_VALUE_TYPE*, byte*, uint*, WIN32_ERROR> overrideRegQueryValueExW = &OverrideRegQueryValueExW;
- 
+
             _ = Detours.DetourTransactionBegin();
             _ = Detours.DetourUpdateThread(PInvoke.GetCurrentThread());
             _ = Detours.DetourDetach(&regOpenKeyExWPtr, overrideRegOpenKeyExW);
             _ = Detours.DetourDetach(&regCloseKeyPtr, overrideRegCloseKey);
             _ = Detours.DetourDetach(&regQueryValueExWPtr, overrideRegQueryValueExW);
             _ = Detours.DetourTransactionCommit();
- 
+
             RegOpenKeyExW = null;
             RegCloseKey = null;
             RegQueryValueExW = null;
- 
+
             IsHooked = false;
         }
     }
- 
+
     /// <remarks>The overridden <see cref="PInvoke.RegOpenKeyEx(HKEY, PCWSTR, uint, REG_SAM_FLAGS, HKEY*)"/> function.</remarks>
     /// <inheritdoc cref="PInvoke.RegOpenKeyEx(HKEY, PCWSTR, uint, REG_SAM_FLAGS, HKEY*)"/>
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
@@ -236,7 +236,7 @@ public partial class HookRegistry : IDisposable
         }
         return result;
     }
- 
+
     /// <remarks>The overridden <see cref="PInvoke.RegCloseKey(HKEY)"/> function.</remarks>
     /// <inheritdoc cref="PInvoke.RegCloseKey(HKEY)"/>
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
@@ -258,7 +258,7 @@ public partial class HookRegistry : IDisposable
                     : RegCloseKey(hKey);
         }
     }
- 
+
     /// <remarks>The overridden <see cref="PInvoke.RegQueryValueEx(HKEY, PCWSTR, uint*, REG_VALUE_TYPE*, byte*, uint*)"/> function.</remarks>
     /// <inheritdoc cref="PInvoke.RegQueryValueEx(HKEY, PCWSTR, uint*, REG_VALUE_TYPE*, byte*, uint*)"/>
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvStdcall)])]
@@ -328,7 +328,7 @@ public partial class HookRegistry : IDisposable
         }
         return RegQueryValueExW(hKey, lpValueName, lpReserved, lpType, lpData, lpcbData);
     }
- 
+
     /// <inheritdoc/>
     public void Dispose()
     {
@@ -360,7 +360,7 @@ private static bool IsSupportCoreWindow
         }
     }
 }
- 
+
 private static void Main()
 {
     ComWrappersSupport.InitializeComWrappers();

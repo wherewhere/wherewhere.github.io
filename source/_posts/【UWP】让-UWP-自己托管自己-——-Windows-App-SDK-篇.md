@@ -18,7 +18,7 @@ categories: 开发
 ```cs
 #r "nuget:Detours.Win32Metadata"
 #r "nuget:Microsoft.Windows.CsWin32"
- 
+
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -26,7 +26,7 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.Storage.Packaging.Appx;
 using Detours = Microsoft.Detours.PInvoke;
- 
+
 /// <summary>
 /// Represents a hook for the <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function.
 /// </summary>
@@ -36,21 +36,21 @@ public sealed partial class HookWindowingModel : IDisposable
     /// The value that indicates whether the class has been disposed.
     /// </summary>
     private bool disposed;
- 
+
     /// <summary>
     /// The reference count for the hook.
     /// </summary>
     private static int refCount;
- 
+
     /// <summary>
     /// The value that represents the current process token.
     /// </summary>
     private const int currentProcessToken = -6;
- 
+
     /// <remarks>The original <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function.</remarks>
     /// <inheritdoc cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/>
     private static unsafe delegate* unmanaged[Stdcall]<HANDLE, AppPolicyWindowingModel*, WIN32_ERROR> AppPolicyGetWindowingModel;
- 
+
     /// <summary>
     /// Initializes a new instance of the <see cref="HookWindowingModel"/> class.
     /// </summary>
@@ -59,7 +59,7 @@ public sealed partial class HookWindowingModel : IDisposable
         refCount++;
         StartHook();
     }
- 
+
     /// <summary>
     /// Finalizes this instance of the <see cref="HookWindowingModel"/> class.
     /// </summary>
@@ -67,17 +67,17 @@ public sealed partial class HookWindowingModel : IDisposable
     {
         Dispose();
     }
- 
+
     /// <summary>
     /// Gets the value that indicates whether the hook is active.
     /// </summary>
     public static bool IsHooked { get; private set; }
- 
+
     /// <summary>
     /// Gets or sets the windowing model to use when the hooked <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function is called.
     /// </summary>
     internal static AppPolicyWindowingModel WindowingModel { get; set; } = AppPolicyWindowingModel.AppPolicyWindowingModel_ClassicDesktop;
- 
+
     /// <summary>
     /// Starts the hook for the <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function.
     /// </summary>
@@ -90,20 +90,20 @@ public sealed partial class HookWindowingModel : IDisposable
             {
                 void* appPolicyGetWindowingModelPtr = (void*)appPolicyGetWindowingModel;
                 delegate* unmanaged[Stdcall]<HANDLE, AppPolicyWindowingModel*, WIN32_ERROR> overrideAppPolicyGetWindowingModel = &OverrideAppPolicyGetWindowingModel;
- 
+
                 _ = Detours.DetourRestoreAfterWith();
- 
+
                 _ = Detours.DetourTransactionBegin();
                 _ = Detours.DetourUpdateThread(PInvoke.GetCurrentThread());
                 _ = Detours.DetourAttach(ref appPolicyGetWindowingModelPtr, overrideAppPolicyGetWindowingModel);
                 _ = Detours.DetourTransactionCommit();
- 
+
                 AppPolicyGetWindowingModel = (delegate* unmanaged[Stdcall]<HANDLE, AppPolicyWindowingModel*, WIN32_ERROR>)appPolicyGetWindowingModelPtr;
                 IsHooked = true;
             }
         }
     }
- 
+
     /// <summary>
     /// Ends the hook for the <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function.
     /// </summary>
@@ -113,17 +113,17 @@ public sealed partial class HookWindowingModel : IDisposable
         {
             void* appPolicyGetWindowingModelPtr = AppPolicyGetWindowingModel;
             delegate* unmanaged[Stdcall]<HANDLE, AppPolicyWindowingModel*, WIN32_ERROR> overrideAppPolicyGetWindowingModel = &OverrideAppPolicyGetWindowingModel;
- 
+
             _ = Detours.DetourTransactionBegin();
             _ = Detours.DetourUpdateThread(PInvoke.GetCurrentThread());
             _ = Detours.DetourDetach(&appPolicyGetWindowingModelPtr, overrideAppPolicyGetWindowingModel);
             _ = Detours.DetourTransactionCommit();
- 
+
             AppPolicyGetWindowingModel = null;
             IsHooked = false;
         }
     }
- 
+
     /// <param name="policy">A pointer to a variable of the <a href="https://docs.microsoft.com/windows/win32/api/appmodel/ne-appmodel-apppolicywindowingmodel">AppPolicyWindowingModel</a> enumerated type.
     /// When the function returns successfully, the variable contains the <see cref="WindowingModel"/> when the identified process is current; otherwise, the windowing model of the identified process.</param>
     /// <remarks>The overridden <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function.</remarks>
@@ -138,7 +138,7 @@ public sealed partial class HookWindowingModel : IDisposable
         }
         return AppPolicyGetWindowingModel(processToken, policy);
     }
- 
+
     /// <inheritdoc/>
     public void Dispose()
     {
@@ -171,7 +171,7 @@ AppWindow window = AppWindow.Create();
 ```cs
 DispatcherQueueController controller;
 DesktopWindowXamlSource source;
- 
+
 using (HookWindowingModel hook = new())
 {
     controller = DispatcherQueueController.CreateOnCurrentThread();
@@ -186,7 +186,7 @@ source.Initialize(window.Id);
 DesktopChildSiteBridge bridge = source.SiteBridge;
 bridge.ResizePolicy = ContentSizePolicy.ResizeContentToParentWindow;
 bridge.Show();
- 
+
 DispatcherQueue dispatcherQueue = controller.DispatcherQueue;
 window.AssociateWithDispatcherQueue(dispatcherQueue);
 ```
@@ -224,7 +224,7 @@ await controller.ShutdownQueueAsync();
 public static Task<DesktopWindow> CreateAsync(Action<DesktopWindowXamlSource> launched)
 {
     TaskCompletionSource<DesktopWindow> taskCompletionSource = new();
- 
+
     new Thread(async () =>
     {
         try
@@ -232,18 +232,18 @@ public static Task<DesktopWindow> CreateAsync(Action<DesktopWindowXamlSource> la
             DispatcherQueueController controller;
             DesktopWindowXamlSource source;
             AppWindow window = AppWindow.Create();
- 
+
             using (HookWindowingModel hook = new())
             {
                 controller = DispatcherQueueController.CreateOnCurrentThread();
                 source = new DesktopWindowXamlSource();
             }
- 
+
             source.Initialize(window.Id);
             DesktopChildSiteBridge bridge = source.SiteBridge;
             bridge.ResizePolicy = ContentSizePolicy.ResizeContentToParentWindow;
             bridge.Show();
- 
+
             window.Changed += (sender, args) =>
             {
                 if (args.DidPresenterChange)
@@ -252,11 +252,11 @@ public static Task<DesktopWindow> CreateAsync(Action<DesktopWindowXamlSource> la
                     bridge.ResizePolicy = ContentSizePolicy.ResizeContentToParentWindow;
                 }
             };
- 
+
             DispatcherQueue dispatcherQueue = controller.DispatcherQueue;
             window.AssociateWithDispatcherQueue(dispatcherQueue);
             TrackWindow(window);
- 
+
             launched(source);
             DesktopWindow desktopWindow = new()
             {
@@ -264,7 +264,7 @@ public static Task<DesktopWindow> CreateAsync(Action<DesktopWindowXamlSource> la
                 WindowXamlSource = source
             };
             taskCompletionSource.SetResult(desktopWindow);
- 
+
             dispatcherQueue.RunEventLoop();
             await controller.ShutdownQueueAsync();
         }
@@ -276,10 +276,10 @@ public static Task<DesktopWindow> CreateAsync(Action<DesktopWindowXamlSource> la
     {
         Name = nameof(DesktopWindowXamlSource)
     }.Start();
- 
+
     return taskCompletionSource.Task;
 }
- 
+
 /// <summary>
 /// Create a new <see cref="DesktopWindow"/> instance.
 /// </summary>
@@ -289,7 +289,7 @@ public static Task<DesktopWindow> CreateAsync(Action<DesktopWindowXamlSource> la
 public static Task<DesktopWindow> CreateAsync(DispatcherQueue dispatcherQueue, Action<DesktopWindowXamlSource> launched)
 {
     TaskCompletionSource<DesktopWindow> taskCompletionSource = new();
- 
+
     _ = dispatcherQueue.TryEnqueue(() =>
     {
         try
@@ -298,17 +298,17 @@ public static Task<DesktopWindow> CreateAsync(DispatcherQueue dispatcherQueue, A
             AppWindow window = AppWindow.Create();
             window.AssociateWithDispatcherQueue(dispatcherQueue);
             TrackWindow(window);
- 
+
             using (HookWindowingModel hook = new())
             {
                 source = new DesktopWindowXamlSource();
             }
- 
+
             source.Initialize(window.Id);
             DesktopChildSiteBridge bridge = source.SiteBridge;
             bridge.ResizePolicy = ContentSizePolicy.ResizeContentToParentWindow;
             bridge.Show();
- 
+
             window.Changed += (sender, args) =>
             {
                 if (args.DidPresenterChange)
@@ -317,7 +317,7 @@ public static Task<DesktopWindow> CreateAsync(DispatcherQueue dispatcherQueue, A
                     bridge.ResizePolicy = ContentSizePolicy.ResizeContentToParentWindow;
                 }
             };
- 
+
             launched(source);
             DesktopWindow desktopWindow = new()
             {
@@ -331,10 +331,10 @@ public static Task<DesktopWindow> CreateAsync(DispatcherQueue dispatcherQueue, A
             taskCompletionSource.SetException(e);
         }
     });
- 
+
     return taskCompletionSource.Task;
 }
- 
+
 private static void TrackWindow(AppWindow window)
 {
     if (ActiveDesktopWindows.ContainsKey(window.DispatcherQueue))
@@ -348,7 +348,7 @@ private static void TrackWindow(AppWindow window)
     window.Destroying -= AppWindow_Destroying;
     window.Destroying += AppWindow_Destroying;
 }
- 
+
 private static void AppWindow_Destroying(AppWindow sender, object args)
 {
     if (ActiveDesktopWindows.TryGetValue(sender.DispatcherQueue, out ulong num))
@@ -363,7 +363,7 @@ private static void AppWindow_Destroying(AppWindow sender, object args)
         ActiveDesktopWindows[sender.DispatcherQueue] = num;
     }
 }
- 
+
 private static Dictionary<DispatcherQueue, ulong> ActiveDesktopWindows { get; } = [];
 ```
 

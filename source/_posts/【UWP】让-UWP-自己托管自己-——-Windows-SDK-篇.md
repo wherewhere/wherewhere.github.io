@@ -14,7 +14,7 @@ categories: 开发
 ```cs
 #r "nuget:Detours.Win32Metadata"
 #r "nuget:Microsoft.Windows.CsWin32"
- 
+
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -22,7 +22,7 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.Storage.Packaging.Appx;
 using Detours = Microsoft.Detours.PInvoke;
- 
+
 /// <summary>
 /// Represents a hook for the <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function.
 /// </summary>
@@ -32,21 +32,21 @@ public sealed partial class HookWindowingModel : IDisposable
     /// The value that indicates whether the class has been disposed.
     /// </summary>
     private bool disposed;
- 
+
     /// <summary>
     /// The reference count for the hook.
     /// </summary>
     private static int refCount;
- 
+
     /// <summary>
     /// The value that represents the current process token.
     /// </summary>
     private const int currentProcessToken = -6;
- 
+
     /// <remarks>The original <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function.</remarks>
     /// <inheritdoc cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/>
     private static unsafe delegate* unmanaged[Stdcall]<HANDLE, AppPolicyWindowingModel*, WIN32_ERROR> AppPolicyGetWindowingModel;
- 
+
     /// <summary>
     /// Initializes a new instance of the <see cref="HookWindowingModel"/> class.
     /// </summary>
@@ -55,7 +55,7 @@ public sealed partial class HookWindowingModel : IDisposable
         refCount++;
         StartHook();
     }
- 
+
     /// <summary>
     /// Finalizes this instance of the <see cref="HookWindowingModel"/> class.
     /// </summary>
@@ -63,17 +63,17 @@ public sealed partial class HookWindowingModel : IDisposable
     {
         Dispose();
     }
- 
+
     /// <summary>
     /// Gets the value that indicates whether the hook is active.
     /// </summary>
     public static bool IsHooked { get; private set; }
- 
+
     /// <summary>
     /// Gets or sets the windowing model to use when the hooked <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function is called.
     /// </summary>
     internal static AppPolicyWindowingModel WindowingModel { get; set; } = AppPolicyWindowingModel.AppPolicyWindowingModel_ClassicDesktop;
- 
+
     /// <summary>
     /// Starts the hook for the <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function.
     /// </summary>
@@ -86,20 +86,20 @@ public sealed partial class HookWindowingModel : IDisposable
             {
                 void* appPolicyGetWindowingModelPtr = (void*)appPolicyGetWindowingModel;
                 delegate* unmanaged[Stdcall]<HANDLE, AppPolicyWindowingModel*, WIN32_ERROR> overrideAppPolicyGetWindowingModel = &OverrideAppPolicyGetWindowingModel;
- 
+
                 _ = Detours.DetourRestoreAfterWith();
- 
+
                 _ = Detours.DetourTransactionBegin();
                 _ = Detours.DetourUpdateThread(PInvoke.GetCurrentThread());
                 _ = Detours.DetourAttach(ref appPolicyGetWindowingModelPtr, overrideAppPolicyGetWindowingModel);
                 _ = Detours.DetourTransactionCommit();
- 
+
                 AppPolicyGetWindowingModel = (delegate* unmanaged[Stdcall]<HANDLE, AppPolicyWindowingModel*, WIN32_ERROR>)appPolicyGetWindowingModelPtr;
                 IsHooked = true;
             }
         }
     }
- 
+
     /// <summary>
     /// Ends the hook for the <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function.
     /// </summary>
@@ -109,17 +109,17 @@ public sealed partial class HookWindowingModel : IDisposable
         {
             void* appPolicyGetWindowingModelPtr = AppPolicyGetWindowingModel;
             delegate* unmanaged[Stdcall]<HANDLE, AppPolicyWindowingModel*, WIN32_ERROR> overrideAppPolicyGetWindowingModel = &OverrideAppPolicyGetWindowingModel;
- 
+
             _ = Detours.DetourTransactionBegin();
             _ = Detours.DetourUpdateThread(PInvoke.GetCurrentThread());
             _ = Detours.DetourDetach(&appPolicyGetWindowingModelPtr, overrideAppPolicyGetWindowingModel);
             _ = Detours.DetourTransactionCommit();
- 
+
             AppPolicyGetWindowingModel = null;
             IsHooked = false;
         }
     }
- 
+
     /// <param name="policy">A pointer to a variable of the <a href="https://docs.microsoft.com/windows/win32/api/appmodel/ne-appmodel-apppolicywindowingmodel">AppPolicyWindowingModel</a> enumerated type.
     /// When the function returns successfully, the variable contains the <see cref="WindowingModel"/> when the identified process is current; otherwise, the windowing model of the identified process.</param>
     /// <remarks>The overridden <see cref="PInvoke.AppPolicyGetWindowingModel(HANDLE, AppPolicyWindowingModel*)"/> function.</remarks>
@@ -134,7 +134,7 @@ public sealed partial class HookWindowingModel : IDisposable
         }
         return AppPolicyGetWindowingModel(processToken, policy);
     }
- 
+
     /// <inheritdoc/>
     public void Dispose()
     {
@@ -190,7 +190,7 @@ namespace Windows.Win32.System.WinRT.Xaml
         [PreserveSig]
         [return: MarshalAs(UnmanagedType.Error)]
         int AttachToWindow(nint parentWnd);
- 
+
         /// <summary>
         /// Gets the window handle of the parent UI element that is associated with the current IDesktopWindowXamlSourceNative instance.
         /// </summary>
@@ -199,7 +199,7 @@ namespace Windows.Win32.System.WinRT.Xaml
         [return: MarshalAs(UnmanagedType.Error)]
         int get_WindowHandle(out nint hWnd);
     }
- 
+
     file static class Extensions
     {
         /// <summary>
@@ -225,10 +225,10 @@ public partial class DesktopWindow
     private bool m_bIsClosed = false;
     private DesktopWindowXamlSource m_source;
     private IDesktopWindowXamlSourceNative m_native;
- 
+
     private readonly HWND m_hwnd;
     private readonly WNDCLASSEXW m_wndClassEx;
- 
+
     /// <summary>
     /// Initializes a new instance of the <see cref="DesktopWindow"/> class.
     /// </summary>
@@ -237,12 +237,12 @@ public partial class DesktopWindow
         m_wndClassEx = RegisterDesktopWindowClass(WNDPROC);
         m_hwnd = CreateDesktopWindow();
     }
- 
+
     /// <summary>
     /// Gets the event dispatcher for the window.
     /// </summary>
     public CoreDispatcher Dispatcher { get; private set; }
- 
+
     /// <summary>
     /// Gets the <see cref="DesktopWindowXamlSource"/> to provide XAML for this window.
     /// </summary>
@@ -268,12 +268,12 @@ public partial class DesktopWindow
             }
         }
     }
- 
+
     /// <summary>
     /// Shows the window and activates it.
     /// </summary>
     public void Show() => _ = PInvoke.ShowWindow(m_hwnd, SHOW_WINDOW_CMD.SW_NORMAL);
- 
+
     private LRESULT WNDPROC(HWND hWnd, uint message, WPARAM wParam, LPARAM lParam)
     {
         switch (message)
@@ -301,7 +301,7 @@ public partial class DesktopWindow
                 return PInvoke.DefWindowProc(hWnd, message, wParam, lParam);
         }
     }
- 
+
     private void ResizeWindowToDesktopWindowXamlSourceWindowDimensions()
     {
         if (m_bIsClosed) return;
@@ -314,17 +314,17 @@ public partial class DesktopWindow
             SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE | SET_WINDOW_POS_FLAGS.SWP_NOZORDER | SET_WINDOW_POS_FLAGS.SWP_SHOWWINDOW);
     }
 }
- 
+
 public partial class DesktopWindow
 {
     private static readonly unsafe HINSTANCE g_hInstance = new((void*)Process.GetCurrentProcess().Handle);
- 
+
     // win32 window class name for top-level WinUI desktop windows
     private const string s_windowClassName = "WinUIDesktopWin32WindowClass";
- 
+
     // Default window title for top-level WinUI desktop windows
     private const string s_defaultWindowTitle = "WinUI Desktop";
- 
+
     private static unsafe WNDCLASSEXW RegisterDesktopWindowClass(WNDPROC lpfnWndProc)
     {
         if (!PInvoke.GetClassInfoEx(new DefaultSafeHandle(g_hInstance), s_windowClassName, out WNDCLASSEXW wndClassEx))
@@ -336,20 +336,20 @@ public partial class DesktopWindow
             wndClassEx.hCursor = PInvoke.LoadCursor(new HINSTANCE(), PInvoke.IDC_ARROW);
             wndClassEx.hbrBackground = (HBRUSH)((nint)SYS_COLOR_INDEX.COLOR_WINDOW + 1);
             wndClassEx.hInstance = g_hInstance;
- 
+
             fixed (char* lps_windowClassName = s_windowClassName)
             {
                 wndClassEx.lpszClassName = lps_windowClassName;
             }
- 
+
             wndClassEx.lpfnWndProc = lpfnWndProc;
             _ = PInvoke.RegisterClassEx(wndClassEx);
- 
+
             return wndClassEx;
         }
         return default;
     }
- 
+
     private static unsafe HWND CreateDesktopWindow() =>
         PInvoke.CreateWindowEx(
             0,                                  // Extended Style
@@ -365,13 +365,13 @@ public partial class DesktopWindow
             null,                               // use class menu
             new DefaultSafeHandle(g_hInstance),
             null);
- 
+
     private partial class DefaultSafeHandle(nint invalidHandleValue, bool ownsHandle) : SafeHandle(invalidHandleValue, ownsHandle)
     {
         public DefaultSafeHandle(nint handle) : this(handle, true) => SetHandle(handle);
- 
+
         public override bool IsInvalid => handle != nint.Zero;
- 
+
         protected override bool ReleaseHandle() => true;
     }
 }
@@ -407,10 +407,10 @@ public partial class DesktopWindow
     private bool m_bIsClosed = false;
     private DesktopWindowXamlSource m_source;
     private IDesktopWindowXamlSourceNative m_native;
- 
+
     private readonly HWND m_hwnd;
     private readonly WNDCLASSEXW m_wndClassEx;
- 
+
     /// <summary>
     /// Initializes a new instance of the <see cref="DesktopWindow"/> class.
     /// </summary>
@@ -419,17 +419,17 @@ public partial class DesktopWindow
         m_wndClassEx = RegisterDesktopWindowClass(WNDPROC);
         m_hwnd = CreateDesktopWindow();
     }
- 
+
     /// <summary>
     /// Get the handle of the window.
     /// </summary>
     public nint Hwnd => m_hwnd;
- 
+
     /// <summary>
     /// Gets the event dispatcher for the window.
     /// </summary>
     public CoreDispatcher Dispatcher { get; private set; }
- 
+
     /// <summary>
     /// Gets or sets the visual root of an application window.
     /// </summary>
@@ -438,7 +438,7 @@ public partial class DesktopWindow
         get => WindowXamlSource.Content;
         set => WindowXamlSource.Content = value;
     }
- 
+
     /// <summary>
     /// Gets or sets the XamlRoot in which this element is being viewed.
     /// </summary>
@@ -448,7 +448,7 @@ public partial class DesktopWindow
         get => WindowXamlSource.Content.XamlRoot;
         set => WindowXamlSource.Content.XamlRoot = value;
     }
- 
+
     /// <summary>
     /// Gets or sets a string used for the window title.
     /// </summary>
@@ -463,7 +463,7 @@ public partial class DesktopWindow
         }
         set => _ = PInvoke.SetWindowText(m_hwnd, value);
     }
- 
+
     /// <summary>
     /// Gets the <see cref="DesktopWindowXamlSource"/> to provide XAML for this window.
     /// </summary>
@@ -489,17 +489,17 @@ public partial class DesktopWindow
             }
         }
     }
- 
+
     /// <summary>
     /// Occurs when the window has closed.
     /// </summary>
     public event TypedEventHandler<DesktopWindow, object> Closed;
- 
+
     /// <summary>
     /// Shows the window and activates it.
     /// </summary>
     public void Show() => _ = PInvoke.ShowWindow(m_hwnd, SHOW_WINDOW_CMD.SW_NORMAL);
- 
+
     /// <summary>
     /// Sets the icon for the window, using the specified icon path.
     /// </summary>
@@ -512,7 +512,7 @@ public partial class DesktopWindow
             _ = PInvoke.SendMessage(m_hwnd, PInvoke.WM_SETICON, PInvoke.ICON_BIG, new LPARAM((nint)icon.Value));
         }
     }
- 
+
     private LRESULT WNDPROC(HWND hWnd, uint message, WPARAM wParam, LPARAM lParam)
     {
         switch (message)
@@ -541,7 +541,7 @@ public partial class DesktopWindow
                 return PInvoke.DefWindowProc(hWnd, message, wParam, lParam);
         }
     }
- 
+
     private void ResizeWindowToDesktopWindowXamlSourceWindowDimensions()
     {
         if (m_bIsClosed) return;
@@ -554,17 +554,17 @@ public partial class DesktopWindow
             SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE | SET_WINDOW_POS_FLAGS.SWP_NOZORDER | SET_WINDOW_POS_FLAGS.SWP_SHOWWINDOW);
     }
 }
- 
+
 public partial class DesktopWindow
 {
     private static readonly unsafe HINSTANCE g_hInstance = new((void*)Process.GetCurrentProcess().Handle);
- 
+
     // win32 window class name for top-level WinUI desktop windows
     private const string s_windowClassName = "WinUIDesktopWin32WindowClass";
- 
+
     // Default window title for top-level WinUI desktop windows
     private const string s_defaultWindowTitle = "WinUI Desktop";
- 
+
     private static unsafe WNDCLASSEXW RegisterDesktopWindowClass(WNDPROC lpfnWndProc)
     {
         if (!PInvoke.GetClassInfoEx(new DefaultSafeHandle(g_hInstance), s_windowClassName, out WNDCLASSEXW wndClassEx))
@@ -576,20 +576,20 @@ public partial class DesktopWindow
             wndClassEx.hCursor = PInvoke.LoadCursor(new HINSTANCE(), PInvoke.IDC_ARROW);
             wndClassEx.hbrBackground = (HBRUSH)((nint)SYS_COLOR_INDEX.COLOR_WINDOW + 1);
             wndClassEx.hInstance = g_hInstance;
- 
+
             fixed (char* lps_windowClassName = s_windowClassName)
             {
                 wndClassEx.lpszClassName = lps_windowClassName;
             }
- 
+
             wndClassEx.lpfnWndProc = lpfnWndProc;
             _ = PInvoke.RegisterClassEx(wndClassEx);
- 
+
             return wndClassEx;
         }
         return default;
     }
- 
+
     private static unsafe HWND CreateDesktopWindow() =>
         PInvoke.CreateWindowEx(
             0,                                  // Extended Style
@@ -605,17 +605,17 @@ public partial class DesktopWindow
             null,                               // use class menu
             new DefaultSafeHandle(g_hInstance),
             null);
- 
+
     private partial class DefaultSafeHandle(nint invalidHandleValue, bool ownsHandle) : SafeHandle(invalidHandleValue, ownsHandle)
     {
         public DefaultSafeHandle(nint handle) : this(handle, true) => SetHandle(handle);
- 
+
         public override bool IsInvalid => handle != nint.Zero;
- 
+
         protected override bool ReleaseHandle() => true;
     }
 }
- 
+
 public partial class DesktopWindow
 {
     /// <summary>
@@ -626,7 +626,7 @@ public partial class DesktopWindow
     public static Task<DesktopWindow> CreateAsync(Action<DesktopWindowXamlSource> launched)
     {
         TaskCompletionSource<DesktopWindow> taskCompletionSource = new();
- 
+
         new Thread(() =>
         {
             try
@@ -636,12 +636,12 @@ public partial class DesktopWindow
                 {
                     source = new DesktopWindowXamlSource();
                 }
- 
+
                 DesktopWindow window = new() { WindowXamlSource = source };
- 
+
                 launched(source);
                 taskCompletionSource.SetResult(window);
- 
+
                 MSG msg = new();
                 while (msg.message != PInvoke.WM_QUIT)
                 {
@@ -659,7 +659,7 @@ public partial class DesktopWindow
         {
             Name = nameof(DesktopWindowXamlSource)
         }.Start();
- 
+
         return taskCompletionSource.Task;
     }
 }
@@ -685,7 +685,7 @@ namespace Windows.Win32.System.WinRT.Xaml
         [PreserveSig]
         [return: MarshalAs(UnmanagedType.Error)]
         int AttachToWindow(nint parentWnd);
- 
+
         /// <summary>
         /// Gets the window handle of the parent UI element that is associated with the current IDesktopWindowXamlSourceNative instance.
         /// </summary>
@@ -694,7 +694,7 @@ namespace Windows.Win32.System.WinRT.Xaml
         [return: MarshalAs(UnmanagedType.Error)]
         int get_WindowHandle(out nint hWnd);
     }
- 
+
     file static class Extensions
     {
         /// <summary>

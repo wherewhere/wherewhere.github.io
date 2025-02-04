@@ -22,8 +22,31 @@ copyright_reprint: true
 
 然后说未来可能会是这样Courier
 
-<img src="https://github.com/user-attachments/assets/26945887-e9fe-467c-9998-1cb7bac03784" alt="Surface Phone" />
-<figcaption>Surface Phone ？！！</figcaption><!--more-->
+![Surface Phone](https://github.com/user-attachments/assets/26945887-e9fe-467c-9998-1cb7bac03784)
+<figcaption class="figure">Surface Phone ？！！</figcaption>
+
+<style>
+  figcaption.figure {
+    color: #999;
+    font-size: 0.875em;
+    font-weight: bold;
+    line-height: 1;
+    margin: 5px auto 15px;
+    text-align: center;
+  }
+
+  p+figcaption.figure,
+  p+div.code-line+.figure {
+    margin: -15px auto 15px;
+  }
+
+  @media (max-width: 567px) {
+    .post-body p+figcaption.figure {
+      margin: -5px auto 15px;
+    }
+  }
+</style>
+<!--more-->
 
 Fluent Degisn的菜单会是这样的
 

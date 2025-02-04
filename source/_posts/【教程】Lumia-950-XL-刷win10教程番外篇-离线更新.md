@@ -13,8 +13,8 @@ banner: https://github.com/user-attachments/assets/206082f2-1c23-45e6-96f4-02096
 
 #### 在解锁之后，您的设备是无法在线更新Windows 10 Mobile的，所以这时就需要用的离线更新
 
-<img src="https://github.com/user-attachments/assets/918baef0-0196-411b-9ab0-921a5876d965" alt="wp_ss_20180806_0003">
-<figcaption>教程原文</figcaption>
+![wp_ss_20180806_0003](https://github.com/user-attachments/assets/918baef0-0196-411b-9ab0-921a5876d965)
+<figcaption class="figure">教程原文</figcaption>
 
 1. 确保您的设备处于**10586.107**的未解锁状态
 
@@ -42,7 +42,28 @@ banner: https://github.com/user-attachments/assets/206082f2-1c23-45e6-96f4-02096
 
 10. 安装 msi 文件。
 
-11. 以管理员身份运行 cmd 并运行下面的命令:<!--more-->
+11. 以管理员身份运行 cmd 并运行下面的命令:
+
+    <style>
+      figcaption.figure {
+        color: #999;
+        font-size: 0.875em;
+        font-weight: bold;
+        line-height: 1;
+        margin: 5px auto 15px;
+        text-align: center;
+      }
+      p+figcaption.figure,
+      p+div.code-line+.figure {
+        margin: -15px auto 15px;
+      }
+      @media (max-width: 567px) {
+        .post-body p+figcaption.figure {
+          margin: -5px auto 15px;
+        }
+      }
+    </style>
+    <!--more-->
 
     - **X64 system :**
       ```cmd

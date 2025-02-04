@@ -19,31 +19,55 @@ Office 部署工具 (ODT) 是一个命令行工具，可用于下载并将其部
 
 1. 从Microsoft 下载中心([查看链接»](http://go.microsoft.com/fwlink/p/?LinkID=626065))下载 Office 部署工具。
 
-   <img src="https://github.com/user-attachments/assets/3ff2adcf-e968-4353-92b5-e29ebd1f0d23" alt="下载" />
-   <figcaption>下载页面</figcaption>
+   ![下载](https://github.com/user-attachments/assets/3ff2adcf-e968-4353-92b5-e29ebd1f0d23)
+   <figcaption class="figure">下载页面</figcaption>
 
 2. 双击下载的工具，如下图，勾选“`Click here to...`”，点击“`Continue`”；
 
-   <img src="https://github.com/user-attachments/assets/e2863ba9-e10e-4477-abcf-95566cb845fd" alt="启动" />
-   <figcaption>打开</figcaption>
+   ![启动](https://github.com/user-attachments/assets/e2863ba9-e10e-4477-abcf-95566cb845fd)
+   <figcaption class="figure">打开</figcaption>
 
-3. 该工具会释放两个我们需要的文件（`setup.exe`和`configuration.xml`），如下图所示，选择解压的目录，这里选择解压在桌面。<!--more-->
+3. 该工具会释放两个我们需要的文件（`setup.exe`和`configuration.xml`），如下图所示，选择解压的目录，这里选择解压在桌面。
 
-   <img src="https://github.com/user-attachments/assets/00bca0a4-c9b2-4cf0-b72e-c2a7bdb5175c" alt="文件夹选择" />
-   <figcaption>浏览文件夹</figcaption>
+   <style>
+     figcaption.figure {
+       color: #999;
+       font-size: 0.875em;
+       font-weight: bold;
+       line-height: 1;
+       margin: 5px auto 15px;
+       text-align: center;
+     }
+     p+figcaption.figure,
+     p+div.code-line+.figure {
+       margin: -15px auto 15px;
+     }
+     li p+div.code-line+.figure {
+       margin: -10px auto 15px;
+     }
+     @media (max-width: 567px) {
+       .post-body p+figcaption.figure {
+         margin: -5px auto 15px;
+       }
+     }
+   </style>
+   <!--more-->
+
+   ![文件夹选择](https://github.com/user-attachments/assets/00bca0a4-c9b2-4cf0-b72e-c2a7bdb5175c)
+   <figcaption class="figure">浏览文件夹</figcaption>
 
 4. 配置`configuration.xml`
 
    用记事本打开第3步解压得到的`configuration`文件
 
-   <img src="https://github.com/user-attachments/assets/ce409084-d45d-43b2-a5da-7e22e28df845" alt="configuration" />
-   <figcaption>configuration.xml</figcaption>
+   ![configuration](https://github.com/user-attachments/assets/ce409084-d45d-43b2-a5da-7e22e28df845)
+   <figcaption class="figure">configuration.xml</figcaption>
 
    默认内容为(联机安装完整的英文版32位Office 365 ProPlus，包括Visio，走每月通道)
 
    ```xml
    <Configuration>
-     <Add OfficeClientEdition="32&quot; Channel="Monthly">
+     <Add OfficeClientEdition="32" Channel="Monthly">
        <Product ID="O365ProPlusRetail">
          <Language ID="en-us" />
        </Product>
@@ -136,8 +160,8 @@ Office 部署工具 (ODT) 是一个命令行工具，可用于下载并将其部
 
    以上内容只需复制并替换`configuration.xml`中如图选择部分即可。
 
-   <img src="https://github.com/user-attachments/assets/7cbc2bc9-905a-4c8a-8185-e0f741517da1" alt="选中部分" />
-   <figcaption>复制并替换图中选择部分</figcaption>
+   ![选中部分](https://github.com/user-attachments/assets/7cbc2bc9-905a-4c8a-8185-e0f741517da1)
+   <figcaption class="figure">复制并替换图中选择部分</figcaption>
 
    如果以上内容已经能够满足你的要求，那么你就可以跳到第5步了，如果没有，请继续阅读
 
@@ -294,31 +318,31 @@ Office 部署工具 (ODT) 是一个命令行工具，可用于下载并将其部
    setup.exe /configure configuration.xml
    ```
 
-   <img src="https://github.com/user-attachments/assets/25007294-bdd2-4cf6-b0a7-2c1ef7bd6c81" alt="开始" />
-   <figcaption>命令提示符</figcaption>
+   ![开始](https://github.com/user-attachments/assets/25007294-bdd2-4cf6-b0a7-2c1ef7bd6c81)
+   <figcaption class="figure">命令提示符</figcaption>
 
    然后就开始了
 
-   <img src="https://github.com/user-attachments/assets/9c2d1982-ca17-4261-924e-1581f8cf07e5" alt="启动图" />
-   <figcaption>开始</figcaption>
+   ![启动图](https://github.com/user-attachments/assets/9c2d1982-ca17-4261-924e-1581f8cf07e5)
+   <figcaption class="figure">开始</figcaption>
 
    由于我以经安装过64位的了，所以就报错了
 
-   <img src="https://github.com/user-attachments/assets/128dcb9b-723f-4aa8-860d-5ebe1e2516eb" alt="报错弹窗" />
-   <figcaption>报错</figcaption>
+   ![报错弹窗](https://github.com/user-attachments/assets/128dcb9b-723f-4aa8-860d-5ebe1e2516eb)
+   <figcaption class="figure">报错</figcaption>
 
    如果你是首次安装，应该是这样
 
-   <img src="https://github.com/user-attachments/assets/a53d7dcd-b8a5-4138-b612-da1f9eb7e625" alt="安装" />
-   <figcaption>正在安装</figcaption>
+   ![安装](https://github.com/user-attachments/assets/a53d7dcd-b8a5-4138-b612-da1f9eb7e625)
+   <figcaption class="figure">正在安装</figcaption>
 
    安装完成后长这样
 
-   <img src="https://github.com/user-attachments/assets/d3187fed-6785-4386-a2f7-c3d001064c32" alt="引导" />
-   <figcaption>安装完成</figcaption>
+   ![引导](https://github.com/user-attachments/assets/d3187fed-6785-4386-a2f7-c3d001064c32)
+   <figcaption class="figure">安装完成</figcaption>
 
-   <img src="https://github.com/user-attachments/assets/1f04ed96-07da-4bcb-9df4-284760755737" alt="完成" />
-   <figcaption>命令提示符</figcaption>
+   ![完成](https://github.com/user-attachments/assets/1f04ed96-07da-4bcb-9df4-284760755737)
+   <figcaption class="figure">命令提示符</figcaption>
 
 6. 激活
 
@@ -329,8 +353,8 @@ Office 部署工具 (ODT) 是一个命令行工具，可用于下载并将其部
    下载[Office Tool Plus](https://otp.landian.la)自行解决
    [@萌萌哒Yerong](https://www.coolapk.com/u/萌萌哒Yerong) <img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" /><img class="emoji" src="https://coolapk-uwp.github.io/Coolapk-Lite/CoolapkLite/CoolapkLite/Assets/Emoji/(流汗滑稽).png" alt="流汗滑稽" />
 
-   <img src="https://github.com/user-attachments/assets/18bc3659-7f4e-407d-8316-bf7d1abb7a34" alt="Download Office" />
-   <figcaption>Office Tool Plus</figcaption>
+   ![Download Office](https://github.com/user-attachments/assets/18bc3659-7f4e-407d-8316-bf7d1abb7a34)
+   <figcaption class="figure">Office Tool Plus</figcaption>
 
 > [Office 365 ProPlus部署教程](https://www.coolapk.com/feed/6904874?shareKey=ODQxNzgzNGM1OWNkNjY1ZTBkMjA) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2018年6月14日 发表于 [酷安](https://www.coolapk.com "Coolapk")，转载请注明出处
 
@@ -339,6 +363,6 @@ Office 部署工具 (ODT) 是一个命令行工具，可用于下载并将其部
     height: 20px;
     width: 20px;
     margin-bottom: -4px !important;
-    display: unset;
+    display: inline;
   }
 </style>

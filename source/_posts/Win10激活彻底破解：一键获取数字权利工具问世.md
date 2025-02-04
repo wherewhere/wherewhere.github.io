@@ -22,8 +22,8 @@ copyright_reprint: true
 
 自此不论是零售KEY激活还是KMS激活都要让道，对于用户来说无论有多少台电脑需要激活多少次（相同电脑只需要激活1次）使用HWIDGEN即可轻松完成。
 
-<img src="https://github.com/user-attachments/assets/f2f91244-6648-488f-a030-f348a46d88e7" alt="640" />
-<figcaption>转自蓝点网</figcaption>
+![640](https://github.com/user-attachments/assets/f2f91244-6648-488f-a030-f348a46d88e7)
+<figcaption class="figure">转自蓝点网</figcaption>
 
 先介绍使用再介绍原理：
 
@@ -34,7 +34,27 @@ copyright_reprint: true
     height: 20px;
     width: 20px;
     margin-bottom: -4px !important;
-    display: unset;
+    display: inline;
+  }
+
+  figcaption.figure {
+    color: #999;
+    font-size: 0.875em;
+    font-weight: bold;
+    line-height: 1;
+    margin: 5px auto 15px;
+    text-align: center;
+  }
+
+  p+figcaption.figure,
+  p+div.code-line+.figure {
+    margin: -15px auto 15px;
+  }
+
+  @media (max-width: 567px) {
+    .post-body p+figcaption.figure {
+      margin: -5px auto 15px;
+    }
   }
 </style>
 <!--more-->
@@ -43,8 +63,8 @@ copyright_reprint: true
 
 注意事项：激活前电脑必须已经能够联网并且必须未禁用`Windows Update服务`，如已禁用请先开启该服务。
 
-<img src="https://github.com/user-attachments/assets/fa48600d-24ab-4a3f-9c03-6e4203416ee3" alt="47882-1" />
-<figcaption>转自蓝点网</figcaption>
+![47882-1](https://github.com/user-attachments/assets/fa48600d-24ab-4a3f-9c03-6e4203416ee3)
+<figcaption class="figure">转自蓝点网</figcaption>
 
 完整解压压缩包后右键点击`Activation.CMD`文件并选择使用管理员身份运行，然后会提示工具支持的版本。
 
@@ -52,20 +72,20 @@ copyright_reprint: true
 
 最后执行完毕后脚本会提示你系统已经激活，至此激活完毕全程不到30秒。若前往系统激活选项会看到已经获得数字权利。
 
-<img src="https://github.com/user-attachments/assets/c5f95b2e-70d0-4bd7-bde4-c7a1eeba8698" alt="47882-2" />
-<figcaption>转自蓝点网</figcaption>
+![47882-2](https://github.com/user-attachments/assets/c5f95b2e-70d0-4bd7-bde4-c7a1eeba8698)
+<figcaption class="figure">转自蓝点网</figcaption>
 
-<img src="https://github.com/user-attachments/assets/9dc1e8c8-92bc-4d92-8ee6-e19a84317fa8" alt="1528287140416" />
-<figcaption>转自蓝点网</figcaption>
+![1528287140416](https://github.com/user-attachments/assets/9dc1e8c8-92bc-4d92-8ee6-e19a84317fa8)
+<figcaption class="figure">转自蓝点网</figcaption>
 
-<img src="https://github.com/user-attachments/assets/3633741a-d84c-417e-9d34-c85f669f7500" alt="47882-4" />
-<figcaption>转自蓝点网</figcaption>
+![47882-4](https://github.com/user-attachments/assets/3633741a-d84c-417e-9d34-c85f669f7500)
+<figcaption class="figure">转自蓝点网</figcaption>
 
-<img src="https://github.com/user-attachments/assets/2a2cde58-a561-4edb-adb7-94675e614e8c" alt="47882-5" />
-<figcaption>转自蓝点网</figcaption>
+![47882-5](https://github.com/user-attachments/assets/2a2cde58-a561-4edb-adb7-94675e614e8c)
+<figcaption class="figure">转自蓝点网</figcaption>
 
-<img src="https://github.com/user-attachments/assets/688e5a64-f365-42ae-93fb-259754fda844" alt="47882-7" />
-<figcaption>转自蓝点网</figcaption>
+![47882-7](https://github.com/user-attachments/assets/688e5a64-f365-42ae-93fb-259754fda844)
+<figcaption class="figure">转自蓝点网</figcaption>
 
 HWIDGEN获得数字权利的激活原理：
 
