@@ -114,6 +114,6 @@ copyright_reprint: true
 #### <span style="color: #3E65FF;">附件</span>
 
 Lumia 950s 免解锁刷机
-[百度网盘](https://pan.baidu.com/s/16XhsG91QNn7eq_k1VyMLLw) 密码：`L950`
+[百度网盘](https://pan.baidu.com/s/16XhsG91QNn7eq_k1VyMLLw?pwd=L950) 密码：`L950`
 
 > [【搬运】适用于 Windows 10 Mobile 的修改版 Microsoft 应用程序](https://bbs.wfun.com/thread-1017998-1-1.html) 转载者 [@wherewhere](https://bbs.wfun.com/u/2850357) 2018年10月2日 转载于 [智机社区](https://bbs.wfun.com "WFun")

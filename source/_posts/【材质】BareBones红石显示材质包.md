@@ -60,6 +60,6 @@ BareBones材质简介：Bare Bones Texture Pack 官方都在用的朴素真理�
 
 - [Github](https://github.com/wherewhere/RedStone-Assistive/releases)
 - [Android File Host](https://www.androidfilehost.com/?w=files&flid=322278)
-- [百度网盘](https://pan.baidu.com/s/12dZHtQmn216qPxEILeZZ6Q) 密码：`bbhx`
+- [百度网盘](https://pan.baidu.com/s/12dZHtQmn216qPxEILeZZ6Q?pwd=bbhx) 密码：`bbhx`
 
 > [BareBones红石显示材质包](https://www.minebbs.com/resources/barebones.2116) 作者 [@wherewhere](https://www.minebbs.com/members/wherewhere.5555) 2021年2月4日 发表于 [MineBBS](https://www.minebbs.com "minebbs")，转载请注明出处

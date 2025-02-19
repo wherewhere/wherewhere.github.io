@@ -109,7 +109,7 @@ copyright_reprint: true
 >
 > 下载地址：  
 > [Mega 网盘](https://mega.nz/#!d2QwwZDa!eujUJWgKM-PhWAUUHyXp5wiuF7OJQUnLNKy0nzSs7tc)  
-> [百度网盘](https://pan.baidu.com/s/1ywrr4rUAq1nVfdHxjML6Sw) 密码：`apps`
+> [百度网盘](https://pan.baidu.com/s/1ywrr4rUAq1nVfdHxjML6Sw?pwd=apps) 密码：`apps`
 >
 > 最新人脉，相机应用，PC功能的照片应用（感谢[@软粉175](http://bbs.wfun.com/home.php?mod=space&uid=2874994)转存）
 > [百度网盘](https://pan.baidu.com/s/1pM0MGC7)

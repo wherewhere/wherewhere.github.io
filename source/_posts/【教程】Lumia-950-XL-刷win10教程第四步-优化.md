@@ -72,7 +72,7 @@ categories: 玩机
 重启 Lumia 950 XL 并进入 `Mass Storage` 模式
 
 从此处下载文件
-[百度网盘](https://pan.baidu.com/s/1byeNbsgygUdp80fbMjM0og) 提取码：`48ja`
+[百度网盘](https://pan.baidu.com/s/1byeNbsgygUdp80fbMjM0og?pwd=48ja) 提取码：`48ja`
 
 ![wp_ss_20190216_0010](https://github.com/user-attachments/assets/67db5d71-36e9-4fb9-a93a-928b72784d41)
 

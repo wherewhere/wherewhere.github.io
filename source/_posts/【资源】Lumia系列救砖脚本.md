@@ -74,6 +74,6 @@ RM-1050 RM-1051 RM-1052 RM-1054
 
 #### <span style="color: red;">下载链接：</span>
 
-[百度网盘](https://pan.baidu.com/s/1JMGZby_9Xur7eAI_MP5C9w) 提取码：`1hor`
+[百度网盘](https://pan.baidu.com/s/1JMGZby_9Xur7eAI_MP5C9w?pwd=1hor) 提取码：`1hor`
 
 > [【资源】Lumia系列救砖脚本](https://bbs.wfun.com/thread-1019332-1-1.html) 转载者 [@wherewhere](https://bbs.wfun.com/u/2850357) 2018年5月21日 转载于 [智机社区](https://bbs.wfun.com "WFun")
