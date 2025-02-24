@@ -7,7 +7,6 @@ categories: 材质包
 ---
 ## 材质简介
 
-<script src="https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.js" data-pjax async></script>
 <bilibili-card vid="BV19v411W7eo" type="video" title="【MCBE】预告-Bare Bones塑料材质红石辅助显示预览" author="where-where" cover="http://i2.hdslb.com/bfs/archive/367afe4dc94f54f71b0073dff5d8338d2bd36ac1.jpg" duration="01:24" views="1129" comments="6" favorites="5" coins="11" likes="27"></bilibili-card>
 
 由于基岩版没有红石百搭包，于是就自己做了一套红石显示，基于BareBones材质包，借鉴了XeKr红石显示。
@@ -20,7 +19,39 @@ BareBones材质简介：Bare Bones Texture Pack 官方都在用的朴素真理�
 
 ![Screenshot_20210204-201635_5c8300b655012b1930f2e0a7b81bf6a9](https://github.com/user-attachments/assets/40139ea2-d666-4b12-a1e8-c4a05fbee255)
 
-![Screenshot_20210204-201715_5c8300b655012b1930f2e0a7b81bf6a9](https://github.com/user-attachments/assets/65f2abb0-add6-475e-bdef-6d2975d56d16)<!--more-->
+![Screenshot_20210204-201715_5c8300b655012b1930f2e0a7b81bf6a9](https://github.com/user-attachments/assets/65f2abb0-add6-475e-bdef-6d2975d56d16)
+
+<style>
+  :root {
+    --bilibili-accent-color: #fb7299;
+    --bilibili-card-border-color: #e7e7e7;
+    --bilibili-card-background-color: white;
+    --bilibili-card-cover-color: #c9c9c9;
+    --bilibili-card-cover-background-color: #f4f4f4;
+    --bilibili-card-title-color: #505050;
+    --bilibili-card-subtitle-color: white;
+    --bilibili-card-subtitle-background-color: rgba(0, 0, 0, .4);
+    --bilibili-card-content-color: #999;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+        --bilibili-accent-color: #eb7093;
+        --bilibili-card-border-color: #2a2a2a;
+        --bilibili-card-background-color: #141414;
+        --bilibili-card-cover-color: #464646;
+        --bilibili-card-cover-background-color: #1f1f1f;
+        --bilibili-card-title-color: #b5b5b5;
+        --bilibili-card-content-color: #727272;
+    }
+  }
+
+  .video-holder a {
+    border-bottom: none;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.js" data-pjax async></script>
+<!--more-->
 
 ![Screenshot_20210204-201739_5c8300b655012b1930f2e0a7b81bf6a9](https://github.com/user-attachments/assets/a998772e-c00a-43aa-ba97-b6f1c62e4fb1)
 

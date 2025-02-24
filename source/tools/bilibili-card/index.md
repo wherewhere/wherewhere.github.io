@@ -49,6 +49,12 @@ sitemap: false
   }
 </script>
 
+<style>
+  .video-holder a {
+    border-bottom: none;
+  }
+</style>
+
 {% raw %}
 <div id="vue-app">
   <div class="stack-vertical" style="row-gap: 0.3rem;">
@@ -160,9 +166,9 @@ sitemap: false
           <fluent-option title="浅色">light</fluent-option>
           <fluent-option title="深色">dark</fluent-option>
           <fluent-option
-            title="Fluent UI">https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.fluent.css</fluent-option>
+            title="Fluent UI">https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.fluent.css</fluent-option>
           <fluent-option
-            title="Windoes">https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.windose.css</fluent-option>
+            title="Windoes">https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.windose.css</fluent-option>
         </fluent-combobox>
       </value-change-host>
     </settings-card>
@@ -272,7 +278,7 @@ sitemap: false
   import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
   import { encodeHTML } from "https://cdn.jsdelivr.net/npm/entities/+esm";
   import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
-  import message from "https://wherewhere.github.io/hexo-tag-bilibili-card/components/bilibili-card-message/bilibili-card-message.esm.js";
+  import message from "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card-message/bilibili-card-message.esm.js";
   import builder from "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card-builder/bilibili-card-builder.esm.js";
   createApp({
     data() {
@@ -448,7 +454,10 @@ sitemap: false
           case "system":
           case "default":
             return `${baseUrl}.css`;
+          case "fd":
+          case "fd2":
           case "fluent":
+          case "fluentui":
             return `${baseUrl}.fluent.css`;
           case "-1":
           case "none":
@@ -651,14 +660,14 @@ sitemap: false
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
-		color-scheme: light;
-	}
+    color-scheme: light;
+  }
 
-	@media (prefers-color-scheme: dark) {
-		#vue-app {
-			color-scheme: dark;
-		}
-	}
+  @media (prefers-color-scheme: dark) {
+    #vue-app {
+      color-scheme: dark;
+    }
+  }
 
   #vue-app .stack-vertical {
     display: flex;

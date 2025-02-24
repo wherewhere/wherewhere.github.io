@@ -52,6 +52,14 @@ Office 部署工具 (ODT) 是一个命令行工具，可用于下载并将其部
      }
    </style>
    <!--more-->
+   <style>
+     img.emoji {
+       height: 20px;
+       width: 20px;
+       margin-bottom: -4px !important;
+       display: inline;
+     }
+   </style>
 
    ![文件夹选择](https://github.com/user-attachments/assets/00bca0a4-c9b2-4cf0-b72e-c2a7bdb5175c)
    <figcaption class="figure">浏览文件夹</figcaption>
@@ -357,12 +365,3 @@ Office 部署工具 (ODT) 是一个命令行工具，可用于下载并将其部
    <figcaption class="figure">Office Tool Plus</figcaption>
 
 > [Office 365 ProPlus部署教程](https://www.coolapk.com/feed/6904874?shareKey=ODQxNzgzNGM1OWNkNjY1ZTBkMjA) 作者 [@wherewhere](https://www.coolapk.com/u/wherewhere) 2018年6月14日 发表于 [酷安](https://www.coolapk.com "Coolapk")，转载请注明出处
-
-<style>
-  img.emoji {
-    height: 20px;
-    width: 20px;
-    margin-bottom: -4px !important;
-    display: inline;
-  }
-</style>
