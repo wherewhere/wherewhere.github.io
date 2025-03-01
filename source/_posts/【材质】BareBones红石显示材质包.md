@@ -7,7 +7,7 @@ categories: 材质包
 ---
 ## 材质简介
 
-<bilibili-card vid="BV19v411W7eo" type="video" title="【MCBE】预告-Bare Bones塑料材质红石辅助显示预览" author="where-where" cover="http://i2.hdslb.com/bfs/archive/367afe4dc94f54f71b0073dff5d8338d2bd36ac1.jpg" duration="01:24" views="1129" comments="6" favorites="5" coins="11" likes="27"></bilibili-card>
+<bilibili-card vid="BV19v411W7eo" type="video" title="【MCBE】预告-Bare Bones塑料材质红石辅助显示预览" author="where-where" cover="http://i2.hdslb.com/bfs/archive/367afe4dc94f54f71b0073dff5d8338d2bd36ac1.jpg" duration="01:24" views="1151" danmakus="0" comments="6" favorites="5" coins="11" likes="27"></bilibili-card>
 
 由于基岩版没有红石百搭包，于是就自己做了一套红石显示，基于BareBones材质包，借鉴了XeKr红石显示。
 
@@ -66,7 +66,7 @@ BareBones材质简介：Bare Bones Texture Pack 官方都在用的朴素真理�
 ### 2021-01-24
 #### v0.0.1更新日志
 
-<bilibili-card vid="BV1Df4y1k7mz" type="video" title="【MCBE】BareBones红石显示v0.0.1发布了！" author="where-where" cover="http://i2.hdslb.com/bfs/archive/11ca3dcf44e46a423dcbc3e78baa55c006db5fab.jpg" duration="05:34" views="4006" danmakus="1" comments="25" favorites="46" coins="22" likes="88"></bilibili-card>
+<bilibili-card vid="BV1Df4y1k7mz" type="video" title="【MCBE】BareBones红石显示v0.0.1发布了！" author="where-where" cover="http://i2.hdslb.com/bfs/archive/11ca3dcf44e46a423dcbc3e78baa55c006db5fab.jpg" duration="05:34" views="4240" danmakus="1" comments="25" favorites="46" coins="22" likes="89"></bilibili-card>
 
 1. 第一个版本发布
 2. 基于BareBones 1.1.1 适用于Minecraft BE 1.16
@@ -74,7 +74,7 @@ BareBones材质简介：Bare Bones Texture Pack 官方都在用的朴素真理�
 ### 2021-01-30
 #### v0.0.2更新日志
 
-<bilibili-card vid="BV1ft4y1q7RF" type="video" title="【MCBE】BareBones红石显示v0.0.2发布了！" author="where-where" cover="http://i1.hdslb.com/bfs/archive/13ba453dbe449cae39dff8878afea0d0026912b1.jpg" duration="04:51" views="5293" danmakus="5" comments="29" favorites="59" coins="46" likes="109"></bilibili-card>
+<bilibili-card vid="BV1ft4y1q7RF" type="video" title="【MCBE】BareBones红石显示v0.0.2发布了！" author="where-where" cover="http://i1.hdslb.com/bfs/archive/13ba453dbe449cae39dff8878afea0d0026912b1.jpg" duration="04:51" views="5336" danmakus="5" comments="29" favorites="58" coins="46" likes="109"></bilibili-card>
 
 1. 更新版本号至v0.0.2
 2. 炉子侧面现在可以动态显示状态了
