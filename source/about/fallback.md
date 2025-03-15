@@ -7,7 +7,6 @@ sitemap: false
     href="./fallback.html">刷新</a>页面，或者前往这个[页面](https://wherewhere.github.io/wherewhere)查看</span>
 
 <script src="https://cdn.jsdelivr.net/npm/js-base64@2" data-pjax></script>
-<script src="https://cdn.jsdelivr.net/gh/douglascrockford/JSON-js@master/json2.js" data-pjax></script>
 <script src="https://cdn.jsdelivr.net/gh/xiapeng01/xiapeng01.GitHub.io@4975fc1/marked.js" data-pjax></script>
 
 <script data-pjax>
@@ -30,21 +29,21 @@ sitemap: false
       try {
         request.open("GET", "https://api.github.com/repos/wherewhere/wherewhere/readme", true);
       }
-      catch (e) {
+      catch (_) {
         onError();
         return;
       }
-      request.onload = function (e) {
+      request.onload = function () {
         try {
           message.innerHTML = "拉取成功，正在解析<br>";
-          var data = JSON.parse(request.responseText);
+          var data = typeof JSON === "undefined" ? eval('(' + request.responseText + ')') : JSON.parse(request.responseText);
           var content = data.content;
-          if (typeof content == "string" && content.length > 0) {
+          if (typeof content == "string" && content.length) {
             message.innerHTML = "解析成功，正在渲染<br>";
             readme.innerHTML = marked.parse(Base64.decode(content));
           }
         }
-        catch (e) {
+        catch (_) {
           onError();
           return;
         }

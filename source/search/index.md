@@ -1,5 +1,6 @@
 ---
 title: 搜索
+description: 搜索一些内容
 comments: false
 sitemap: false
 ---

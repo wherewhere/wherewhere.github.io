@@ -76,7 +76,7 @@ description: 铺路尚未成功，同志仍需努力！
           message.innerHTML = "拉取成功，正在解析<br>";
           const json = await response.json();
           const content = json.content;
-          if (typeof content == "string" && content.length > 0) {
+          if (typeof content == "string" && content.length) {
             message.innerHTML = "解析成功，正在渲染<br>";
             const marked = await importMarkedAsync();
             readme.innerHTML = marked.parse(await decodeBase64Async(content));

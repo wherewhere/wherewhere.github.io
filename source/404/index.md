@@ -21,7 +21,7 @@ permalink: /404.html
       if (--countTime > 0) {
         timeout.innerText = countTime;
       }
-      else if (countTime === 0) {
+      else if (!countTime) {
         counter.innerText = "即将跳转到首页。";
         if (typeof pjax === "undefined") {
           location.href = '/';

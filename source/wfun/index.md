@@ -3,8 +3,8 @@ title: 智机文章列表
 comments: false
 sitemap: false
 ---
-| Author | Title | Date |
-|--------|-------|------|
+| 作者 | 标题 | 日期 |
+|-|-|-|
 | [wherewhere](https://bbs.wfun.com/u/2850357) | [再见了，Windows Phone (2010.10.21-2020.1.14)](https://bbs.wfun.com/thread-1024123-1-1.html) | 2020-01-14 |
 | [wherewhere](https://bbs.wfun.com/u/2850357) | [铺路尚未成功，同志仍需努力！！！](https://bbs.wfun.com/thread-1023956-1-1.html) | 2019-12-10 |
 | [wherewhere](https://bbs.wfun.com/u/2850357) | [有人知道这个win10上奇怪的Bug吗？](https://bbs.wfun.com/thread-1022764-1-1.html) | 2019-07-17 |
