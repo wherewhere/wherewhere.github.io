@@ -412,4 +412,4 @@ private static void Main()
 
 最后附上示例应用：https://github.com/wherewhere/CoreAppUWP/tree/muxc
 
-> [【UWP】在 UWP 中使用 Windows App SDK](https://www.cnblogs.com/wherewhere/p/18447226) 作者 [@where-where](https://home.cnblogs.com/u/wherewhere) 2024年10月8日 发表于 [博客园](https://home.cnblogs.com "CNBlogs")，转载请注明出处
+> [【UWP】在 UWP 中使用 Windows App SDK](https://www.cnblogs.com/wherewhere/p/18447226) 作者 [@where-where](https://home.cnblogs.com/u/wherewhere) 2024年10月8日 发表于 [博客园](https://www.cnblogs.com "CNBlogs")，转载请注明出处

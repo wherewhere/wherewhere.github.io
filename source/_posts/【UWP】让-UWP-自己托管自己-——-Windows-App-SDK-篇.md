@@ -373,4 +373,4 @@ private static Dictionary<DispatcherQueue, ulong> ActiveDesktopWindows { get; } 
 
 WUXC 篇：[【UWP】让 UWP 自己托管自己 —— Windows SDK 篇](/2025/01/17/【UWP】让-UWP-自己托管自己-——-Windows-SDK-篇)
 
-> [【UWP】让 UWP 自己托管自己 —— Windows App SDK 篇](https://www.cnblogs.com/wherewhere/p/18446822) 作者 [@where-where](https://home.cnblogs.com/u/wherewhere) 2024年11月3日 发表于 [博客园](https://home.cnblogs.com "CNBlogs")，转载请注明出处
+> [【UWP】让 UWP 自己托管自己 —— Windows App SDK 篇](https://www.cnblogs.com/wherewhere/p/18446822) 作者 [@where-where](https://home.cnblogs.com/u/wherewhere) 2024年11月3日 发表于 [博客园](https://www.cnblogs.com "CNBlogs")，转载请注明出处

@@ -122,4 +122,4 @@ namespace FullTrustUWP.Pages
 
 ![无权限](https://github.com/user-attachments/assets/c102c39f-d48f-4115-8d0c-5725e5f38a1f)
 
-> [【UWP】修改清单脱离沙盒运行](https://www.cnblogs.com/wherewhere/p/18171253) 作者 [@where-where](https://home.cnblogs.com/u/wherewhere) 2024年4月17日 发表于 [博客园](https://home.cnblogs.com "CNBlogs")，转载请注明出处
+> [【UWP】修改清单脱离沙盒运行](https://www.cnblogs.com/wherewhere/p/18171253) 作者 [@where-where](https://home.cnblogs.com/u/wherewhere) 2024年4月17日 发表于 [博客园](https://www.cnblogs.com "CNBlogs")，转载请注明出处

@@ -715,4 +715,4 @@ namespace Windows.Win32.System.WinRT.Xaml
 
 MUXC 篇：[【UWP】让 UWP 自己托管自己 —— Windows App SDK 篇](/2024/11/03/【UWP】让-UWP-自己托管自己-——-Windows-App-SDK-篇)
 
-> [【UWP】让 UWP 自己托管自己 —— Windows SDK 篇](https://www.cnblogs.com/wherewhere/p/18446824) 作者 [@where-where](https://home.cnblogs.com/u/wherewhere) 2025年1月17日 发表于 [博客园](https://home.cnblogs.com "CNBlogs")，转载请注明出处
+> [【UWP】让 UWP 自己托管自己 —— Windows SDK 篇](https://www.cnblogs.com/wherewhere/p/18446824) 作者 [@where-where](https://home.cnblogs.com/u/wherewhere) 2025年1月17日 发表于 [博客园](https://www.cnblogs.com "CNBlogs")，转载请注明出处
