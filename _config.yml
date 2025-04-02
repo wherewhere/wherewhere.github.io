@@ -151,6 +151,8 @@ restful_xapi:
     - 'social'
     - 'reward'
     - 'follow_me'
+  posts_props:
+    language: true
   categories:
     category_generator:
       per_page: 0

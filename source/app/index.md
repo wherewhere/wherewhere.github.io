@@ -123,7 +123,7 @@ sitemap: false
 </template>
 
 <template id="pages-view-template">
-  <page-title :title="title"></page-title>
+  <page-title :title="title" :subtitle="subtitle"></page-title>
   <div v-if="$route.params.path">
     <post-detail-card v-if="page" :post="page" ref="content"></post-detail-card>
     <fluent-progress-ring v-else></fluent-progress-ring>
@@ -131,7 +131,8 @@ sitemap: false
   </div>
   <div v-else>
     <div v-if="pages.length" class="stack-vertical" style="row-gap: 8px;">
-      <div class="clickable-card" v-for="page of pages" @click="() => $router.push(getUrl(page.url))">
+      <div class="clickable-card" v-for="page of pages" :lang="page.language"
+        @click="() => $router.push(getUrl(page.url))">
         {{ page.title }}
       </div>
     </div>
@@ -145,14 +146,14 @@ sitemap: false
 </template>
 
 <template id="post-card-template">
-  <div class="post-card clickable-card" @click="() => $router.push(`/posts/${post.url}`)">
+  <div class="post-card clickable-card" :lang="post.language" @click="() => $router.push(`/posts/${post.url}`)">
     <h2 style="margin-top: 20px;">{{ post.title }}</h2>
     <div v-html="post.excerpt"></div>
   </div>
 </template>
 
 <template id="post-detail-card-template">
-  <div class="post-detail-card" v-html="parse(post.getContent())"></div>
+  <div class="post-detail-card" :lang="post.language" v-html="parse(post.getContent())"></div>
 </template>
 {% endraw %}
 
@@ -250,6 +251,7 @@ sitemap: false
           a.innerHTML = `<i class="fa fa-${icon} fa-fw"></i>${content}`;
           a.addEventListener("click", () => $router.push(href));
           item.appendChild(a);
+          if (type === "search") { item.style.display = "block"; }
           menus.push(a);
           return item;
         }
@@ -546,6 +548,9 @@ sitemap: false
         computed: {
           title() {
             return this.page ? this.page.title : "页面";
+          },
+          subtitle() {
+            return this.page ? this.page.description : `目前共计 ${this.pages.length} 个页面`;
           }
         },
         watch: {
