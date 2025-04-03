@@ -134,6 +134,9 @@ sitemap: false
       <div class="clickable-card" v-for="page of pages" :lang="page.language"
         @click="() => $router.push(getUrl(page.url))">
         {{ page.title }}
+        <span v-if="page.description" style="color: var(--neutral-foreground-hint);">
+          <br>{{ page.description }}
+        </span>
       </div>
     </div>
     <fluent-progress-ring v-else></fluent-progress-ring>
@@ -153,7 +156,7 @@ sitemap: false
 </template>
 
 <template id="post-detail-card-template">
-  <div class="post-detail-card" :lang="post.language" v-html="parse(post.getContent())"></div>
+  <div class="post-detail-card" :lang="post.language" ref="content"></div>
 </template>
 {% endraw %}
 
@@ -591,7 +594,7 @@ sitemap: false
                       }
                       else {
                         if (count >= 3 && ++time == 2) {
-                          return raw.substring(index);
+                          return raw.substring(index).replace(/\u007b% \w+ %\u007d/g, '').replaceAll("vue-app", `vue-subapp-${Date.now()}`);
                         }
                         else {
                           inRow = false;
@@ -604,7 +607,7 @@ sitemap: false
                       count++;
                     }
                   }
-                  return raw;
+                  return raw.replace(/\u007b% \w+ %\u007d/g, '').replaceAll("vue-app", `vue-subapp-${Date.now()}`);
                 }
               };
               await this.$nextTick();
@@ -620,6 +623,7 @@ sitemap: false
             }
           },
           getUrl(url) {
+            url = url.replace(/\/index\.html$/, '');
             return url.startsWith('/')
               ? `/pages${url}`
               : `/pages/${url}`;
@@ -784,6 +788,13 @@ sitemap: false
     props: {
       post: Object
     },
+    watch: {
+      async post(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          this.setContent(newValue.getContent());
+        }
+      }
+    },
     data() {
       return {
         marked: new Marked(
@@ -798,9 +809,18 @@ sitemap: false
       }
     },
     methods: {
-      parse(value) {
-        return this.marked.parse(value);
+      setContent(value) {
+        const content = this.$refs.content;
+        if (content instanceof HTMLElement) {
+          content.innerHTML = this.marked.parse(value);
+          if (typeof pjax !== "undefined") {
+            pjax.executeScripts(content.querySelectorAll("script[data-pjax]"));
+          }
+        }
       }
+    },
+    mounted() {
+      this.setContent(this.post.getContent());
     }
   }).component("table-of-contents", {
     props: {
