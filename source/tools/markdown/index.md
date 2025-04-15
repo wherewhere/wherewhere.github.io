@@ -266,7 +266,9 @@ sitemap: false
     outline: none;
   }
 
-  div.split-view #container .cm-editor .cm-scroller {
+  div.split-view #container .cm-editor .cm-scroller,
+  div.split-view #container .cm-editor .cm-diagnostic,
+  div.split-view #container .cm-editor .cm-tooltip-autocomplete>ul {
     font-family: 'Cascadia Code NF', 'Cascadia Code PL', 'Cascadia Code', Consolas, 'Courier New', monospace;
   }
 
