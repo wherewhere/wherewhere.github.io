@@ -144,7 +144,7 @@ sitemap: false
 
   div.split-view #json,
   div.split-view #yaml {
-    display: block;
+    display: flex;
     width: 50%;
     min-height: calc(var(--base-height-multiplier) * 50px);
     max-height: 100vh;
@@ -157,7 +157,7 @@ sitemap: false
 
   div.split-view #json .cm-editor,
   div.split-view #yaml .cm-editor {
-    border-radius: inherit;
+    flex: 1;
     outline: none;
   }
 
@@ -168,11 +168,6 @@ sitemap: false
   div.split-view #json .cm-editor .cm-tooltip-autocomplete>ul,
   div.split-view #yaml .cm-editor .cm-tooltip-autocomplete>ul {
     font-family: 'Cascadia Code NF', 'Cascadia Code PL', 'Cascadia Code', Consolas, 'Courier New', monospace;
-  }
-
-  div.split-view #json .cm-editor .cm-scroller .cm-gutters,
-  div.split-view #yaml .cm-editor .cm-scroller .cm-gutters {
-    border-radius: calc(var(--control-corner-radius) * 1px);
   }
 
   @media (max-width: 767px) {
