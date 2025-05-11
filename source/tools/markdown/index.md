@@ -250,7 +250,7 @@ sitemap: false
   }
 
   div.split-view #container {
-    display: block;
+    display: flex;
     width: 50%;
     min-height: calc(var(--base-height-multiplier) * 50px);
     max-height: 100vh;
@@ -262,7 +262,7 @@ sitemap: false
   }
 
   div.split-view #container .cm-editor {
-    border-radius: inherit;
+    flex: 1;
     outline: none;
   }
 
@@ -272,16 +272,11 @@ sitemap: false
     font-family: 'Cascadia Code NF', 'Cascadia Code PL', 'Cascadia Code', Consolas, 'Courier New', monospace;
   }
 
-  div.split-view #container .cm-editor .cm-scroller .cm-gutters {
-    border-radius: calc(var(--control-corner-radius) * 1px);
-  }
-
   div.split-view .perview-card {
-    flex: 1;
     padding: calc(var(--design-unit) * 4px);
     display: block;
     height: auto;
-    width: var(--card-width, 100%);
+    width: 50%;
     box-sizing: border-box;
     background: var(--vscode-editor-background);
     border-radius: calc(var(--control-corner-radius) * 1px);
@@ -296,6 +291,10 @@ sitemap: false
     div.split-view #container {
       width: 100%;
       height: 50%;
+    }
+
+    div.split-view .perview-card {
+      width: 100%;
     }
   }
 </style>
