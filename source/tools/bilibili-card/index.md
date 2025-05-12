@@ -165,10 +165,8 @@ sitemap: false
           <fluent-option title="跟随系统">system</fluent-option>
           <fluent-option title="浅色">light</fluent-option>
           <fluent-option title="深色">dark</fluent-option>
-          <fluent-option
-            title="Fluent UI">https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.fluent.css</fluent-option>
-          <fluent-option
-            title="Windoes">https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card/bilibili-card.windose.css</fluent-option>
+          <fluent-option title="Fluent UI">fluent</fluent-option>
+          <fluent-option title="Windose">windose</fluent-option>
         </fluent-combobox>
       </value-change-host>
     </settings-card>

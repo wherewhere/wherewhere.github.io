@@ -981,7 +981,7 @@ sitemap: false
           duration: 500,
           easing: "linear",
           scrollTop: offset,
-          complete: complete
+          complete
         });
       }
     },
