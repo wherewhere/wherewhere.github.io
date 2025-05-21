@@ -330,17 +330,20 @@ description: 各种各样的实用小工具
     (element, binding) => {
       if (element instanceof HTMLElement) {
         const solt = binding.value;
-        if (solt !== binding.oldValue) {
-          function setDisplay(value) {
-            if (value) {
-              if (element.style.display === "none") {
-                element.style.display = '';
-              }
-            }
-            else {
-              element.style.display = "none";
+        function setDisplay(value) {
+          if (value) {
+            if (element.style.display === "none") {
+              element.style.display = '';
             }
           }
+          else {
+            element.style.display = "none";
+          }
+        }
+        if (typeof solt === "undefined") {
+          setDisplay(false);
+        }
+        else if (solt !== binding.oldValue) {
           if (typeof solt === "function") {
             let value = solt();
             if (value instanceof Array) {
@@ -508,14 +511,14 @@ description: 各种各样的实用小工具
     line-height: var(--type-ramp-base-line-height);
     font-weight: var(--font-weight);
     color: var(--neutral-foreground-rest);
-		color-scheme: light;
-	}
+    color-scheme: light;
+  }
 
-	@media (prefers-color-scheme: dark) {
-		#vue-app {
-			color-scheme: dark;
-		}
-	}
+  @media (prefers-color-scheme: dark) {
+    #vue-app {
+      color-scheme: dark;
+    }
+  }
 
   #vue-app .stack-vertical {
     display: flex;

@@ -6,13 +6,13 @@ sitemap: false
 <script type="importmap" data-pjax>
   {
     "imports": {
-			"@fluentui/web-components": "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm",
-			"@vue/devtools-api": "https://cdn.jsdelivr.net/npm/@vue/devtools-api/+esm",
-			"marked": "https://cdn.jsdelivr.net/npm/marked/+esm",
-			"marked-highlight": "https://cdn.jsdelivr.net/npm/marked-highlight/+esm",
-			"highlight.js": "https://cdn.jsdelivr.net/npm/highlight.js/+esm",
+      "@fluentui/web-components": "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm",
+      "@vue/devtools-api": "https://cdn.jsdelivr.net/npm/@vue/devtools-api/+esm",
+      "marked": "https://cdn.jsdelivr.net/npm/marked/+esm",
+      "marked-highlight": "https://cdn.jsdelivr.net/npm/marked-highlight/+esm",
+      "highlight.js": "https://cdn.jsdelivr.net/npm/highlight.js/+esm",
       "vue": "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js",
-			"vue-router": "https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.esm-browser.js"
+      "vue-router": "https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.esm-browser.js"
     }
   }
 </script>

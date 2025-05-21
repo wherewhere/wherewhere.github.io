@@ -54,11 +54,11 @@ public static bool IsTypePresent(string AssemblyName, string TypeName)
     {
         Assembly asmb = Assembly.Load(new AssemblyName(AssemblyName));
         Type supType = asmb.GetType($"{AssemblyName}.{TypeName}");
-      	if (supType != null)
+        if (supType != null)
         {
             try { Activator.CreateInstance(supType); }
             catch (MissingMethodException) { }
-       	}
+        }
         return supType != null;
     }
     catch
