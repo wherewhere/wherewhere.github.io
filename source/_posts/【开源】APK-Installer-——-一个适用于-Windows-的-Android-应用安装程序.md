@@ -9,30 +9,30 @@ categories: 资源
 ---
 <img alt="APK Installer LOGO" src="https://github.com/user-attachments/assets/5ebcccb0-c607-41d3-8ffc-8481cfe3dba2" width="200px" style="display: unset;" />
 
-# APK Installer
+## APK Installer
 
 一个适用于 WIndows 的 Android 应用安装程序
 
 <a href="https://crowdin.com/project/APKInstaller"><img class="badge" src="https://badges.crowdin.net/APKInstaller/localized.svg" alt="Crowdin"></a> <a href="https://crowdin.com/project/APK-Installer-Classic"><img class="badge" src="https://badges.crowdin.net/APK-Installer-Classic/localized.svg" alt="Crowdin"></a>
 
-## 注意
+### 注意
 
 - 本应用已上架应用商店，请认准作者为 wherewhere，请不要使用来历不明的版本，如果因为使用不明版本而出现的故障请自行解决。
 - 本应用分为 [WinUI3版](https://github.com/Paving-Base/APK-Installer) 和 [WPF版](https://github.com/Paving-Base/APK-Installer-Classic)，请根据需要选取
 
-## 下载链接
+### 下载链接
 
 <p><a href="https://www.microsoft.com/store/apps/9P2JFQ43FPPG" title="APK 安装程序 - WinUI 3"><img class="badge" src="https://img.shields.io/badge/download-下载-magenta.svg?label=APK 安装程序 - WinUI 3&logo=Microsoft&style=for-the-badge&color=11a2f8" alt="APK 安装程序 - WinUI 3"></a> <a href="https://www.microsoft.com/store/apps/9N3HJLJP8V15" title="APK 安装程序 - WPF"><img class="badge" src="https://img.shields.io/badge/download-下载-magenta.svg?label=APK 安装程序 - WPF&logo=Microsoft&style=for-the-badge&color=11a2f8" alt="APK 安装程序 - WPF"></a></p>
 
-## 如何安装应用
+### 如何安装应用
 
-### 最低需求
+#### 最低需求
 
 - Windows 10 Build 18362及以上
 - 设备需支持ARM64/x86/x64
 - 至少400MB的空余储存空间(用于储存安装包与安装应用)
 
-### 使用应用安装脚本安装应用
+#### 使用应用安装脚本安装应用
 
 <style>
   img.badge {
@@ -48,7 +48,7 @@ categories: 资源
 - 右击`Install.ps1`，选择“使用PowerShell运行”
 - 应用安装脚本将会引导您完成此过程的剩余部分
 
-### 使用应用安装程序安装应用
+#### 使用应用安装程序安装应用
 
 - 下载并解压最新的[安装包`(APKInstaller (Package)_x.x.x.0_Test.rar)`](https://github.com/Paving-Base/APK-Installer/releases/latest "下载安装包")
 - [开启旁加载模式](https://www.windowscentral.com/how-enable-windows-10-sideload-apps-outside-store)
@@ -63,20 +63,20 @@ categories: 资源
 - 双击`*.appxbundle`，单击安装，坐和放宽  
   ![安装](https://github.com/user-attachments/assets/c295ec21-828d-4349-a736-15338e6977df)
 
-### 更新应用
+#### 更新应用
 
 - 下载并解压最新的[安装包`(APKInstaller (Package)_x.x.x.0_x86_x64_arm_arm64.appxbundle)`](https://github.com/Paving-Base/APK-Installer/releases/latest "下载安装包")
 - 双击`*.appxbundle`，单击更新，坐和放宽  
   ![更新](https://github.com/user-attachments/assets/83dd8d6a-5558-4f5f-bb79-384c51bb0b8f)
 
-## 屏幕截图
+### 屏幕截图
 
 - WinUI3版  
   ![安装](https://github.com/user-attachments/assets/48b27291-2907-43c3-93a6-7a8a31e47d56)
 - WPF版  
   ![安装](https://github.com/user-attachments/assets/f16090de-cb5d-4905-9aec-490977373061)
 
-## 使用到的模块
+### 使用到的模块
 
 - [WinUI](https://github.com/microsoft/microsoft-ui-xaml "WinUI")
 - [AAPTForNet](https://github.com/canheo136/QuickLook.Plugin.ApkViewer "AAPTForNet")
