@@ -20,43 +20,9 @@ sitemap: false
         };
       }
       var request = new XMLHttpRequest();
-      request.open("GET", "/search.xml", true);
+      request.open("GET", "/search.json", true);
       function onload() {
-        /** @type {Document} */
-        var dom, getElementValue;
-        if (typeof DOMParser !== "undefined") {
-          dom = new DOMParser().parseFromString(request.responseText, "text/xml");
-          getElementValue = function (element, tag) {
-            return element.querySelector(tag).textContent;
-          };
-        }
-        else if (typeof ActiveXObject !== "undefined") {
-          function createDocument() {
-            var versions = ["MSXML2.DOMDocument.6.0", "MSXML2.DOMDocument.5.0", "MSXML2.DOMDocument.4.0", "MSXML2.DOMDocument.3.0", "MSXML2.DOMDocument"];
-            for (var i = 0; i < versions.length; i++) {
-              try { return new ActiveXObject(versions[i]); }
-              catch (_) { }
-            }
-          }
-          dom = createDocument();
-          dom.loadXML(request.responseText);
-          getElementValue = function (element, tag) {
-            return element.selectSingleNode(tag).text;
-          };
-        }
-        var entries = dom.getElementsByTagName("entry");
-        var datas = [];
-        for (var i = 0; i < entries.length; i++) {
-          var entry = entries[i];
-          var title = getElementValue(entry, "title");
-          var content = getElementValue(entry, "content");
-          var url = getElementValue(entry, "url");
-          datas.push({
-            title: title.trim(),
-            content: content ? content.trim().replace(/<[^>]+>/g, '') : '',
-            url: decodeURIComponent(url).replace(/\/{2,}/g, '/')
-          });
-        }
+        var datas = typeof JSON === "undefined" ? eval('(' + request.responseText + ')') : JSON.parse(request.responseText);
         function oninput() {
           var searchText = search.value.trim().toLowerCase();
           var keywords = searchText.split(/[-\s]+/);
