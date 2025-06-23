@@ -194,6 +194,23 @@ description: 各种各样的实用小工具
       </template>
     </settings-button>
   </settings-group>
+  <settings-group>
+    <template #header>
+      <h2 id="minecraft" class="unset">麦块</h2>
+    </template>
+    <settings-button href="enchants-order">
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/book_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h3 id="minecraft-enchants-order" class="unset">附魔排序</h3>
+      </template>
+      <template #description>
+        使用 <fluent-anchor appearance="hypertext" href="https://github.com/wherewhere/Enchants-Order"
+          target="_blank">Enchants-Order</fluent-anchor> 获取最佳附魔顺序。
+      </template>
+    </settings-button>
+  </settings-group>
 </div>
 
 <template id="empty-slot-template">
@@ -343,26 +360,32 @@ description: 各种各样的实用小工具
         if (typeof solt === "undefined") {
           setDisplay(false);
         }
-        else if (solt !== binding.oldValue) {
-          if (typeof solt === "function") {
-            let value = solt();
-            if (value instanceof Array) {
-              value = value[0];
-              if (typeof value === "object") {
-                if (typeof value.type === "symbol") {
-                  value = value.children;
-                  if (value instanceof Array) {
-                    setDisplay(value.length);
-                    return;
+        else if (typeof solt === "function") {
+          let value = solt();
+          if (value instanceof Array) {
+            const result = value.some(x => {
+              if (typeof x === "object") {
+                if (typeof x.type === "symbol") {
+                  x = x.children;
+                  if (typeof x === "string" || x instanceof Array) {
+                    return !!x.length;
+                  }
+                  else {
+                    return !!x;
                   }
                 }
                 else {
-                  setDisplay(true);
-                  return;
+                  return true;
                 }
               }
-            }
+              else {
+                return false;
+              }
+            });
+            setDisplay(result);
           }
+        }
+        else if (solt !== binding.oldValue) {
           setDisplay(false);
         }
       }
