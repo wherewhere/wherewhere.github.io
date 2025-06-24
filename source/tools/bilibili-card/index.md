@@ -161,7 +161,7 @@ sitemap: false
         选择卡片的主题样式。
       </template>
       <value-change-host v-model="theme" value-name="value" event-name="change" style="display: inherit;">
-        <fluent-combobox placeholder="default" style="min-width: unset;">
+        <fluent-combobox placeholder="default" autocomplete="both" style="min-width: unset;">
           <fluent-option title="跟随系统">system</fluent-option>
           <fluent-option title="浅色">light</fluent-option>
           <fluent-option title="深色">dark</fluent-option>
@@ -487,26 +487,32 @@ sitemap: false
         if (typeof solt === "undefined") {
           setDisplay(false);
         }
-        else if (solt !== binding.oldValue) {
-          if (typeof solt === "function") {
-            let value = solt();
-            if (value instanceof Array) {
-              value = value[0];
-              if (typeof value === "object") {
-                if (typeof value.type === "symbol") {
-                  value = value.children;
-                  if (value instanceof Array) {
-                    setDisplay(value.length);
-                    return;
+        else if (typeof solt === "function") {
+          let value = solt();
+          if (value instanceof Array) {
+            const result = value.some(x => {
+              if (typeof x === "object") {
+                if (typeof x.type === "symbol") {
+                  x = x.children;
+                  if (typeof x === "string" || x instanceof Array) {
+                    return !!x.length;
+                  }
+                  else {
+                    return !!x;
                   }
                 }
                 else {
-                  setDisplay(true);
-                  return;
+                  return true;
                 }
               }
-            }
+              else {
+                return false;
+              }
+            });
+            setDisplay(result);
           }
+        }
+        else if (solt !== binding.oldValue) {
           setDisplay(false);
         }
       }
