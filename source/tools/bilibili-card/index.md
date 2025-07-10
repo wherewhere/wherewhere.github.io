@@ -116,7 +116,7 @@ sitemap: false
       <div class="setting-expander-content-grid">
         <input-label label="输入 JSON">
           <template #action>
-            <div class="stack-horizontal" style="width: unset; column-gap: calc(var(--design-unit) * 1px);">
+            <div class="stack-horizontal" style="width: auto; column-gap: calc(var(--design-unit) * 1px);">
               <fluent-button title="这个按钮并不能正常使用" :disabled="!id" @click="getApiAsync">自动</fluent-button>
               <fluent-anchor :href="getApiUrl()" target="_blank">手动</fluent-anchor>
             </div>
@@ -161,7 +161,7 @@ sitemap: false
         选择卡片的主题样式。
       </template>
       <value-change-host v-model="theme" value-name="value" event-name="change" style="display: inherit;">
-        <fluent-combobox placeholder="default" autocomplete="both" style="min-width: unset;">
+        <fluent-combobox placeholder="default" autocomplete="both" style="min-width: 0;">
           <fluent-option title="跟随系统">system</fluent-option>
           <fluent-option title="浅色">light</fluent-option>
           <fluent-option title="深色">dark</fluent-option>
@@ -174,7 +174,7 @@ sitemap: false
       :style="{ paddingTop: 'calc(var(--design-unit) * 4px)', paddingRight: 'calc(var(--design-unit) * 4px)', paddingBottom: example ? 'calc(var(--design-unit) * 4px)' : 'calc(var(--design-unit) * 3px)', paddingLeft: 'calc(var(--design-unit) * 4px)' }">
       <input-label label="预览" v-fill-color="fillColor">
         <template #action>
-          <div class="stack-horizontal" style="width: unset; column-gap: calc(var(--design-unit) * 1px);">
+          <div class="stack-horizontal" style="width: auto; column-gap: calc(var(--design-unit) * 1px);">
             <fluent-button v-show="example" @click="e => onCopyClicked(e, example)">复制代码</fluent-button>
             <fluent-button
               @click="() => createExample(json, imageProxy, id, type, infoTypes, theme)">生成卡片</fluent-button>
@@ -420,7 +420,7 @@ sitemap: false
       },
       createCard(token, imageProxy, id, type, infoTypes, theme) {
         if (!token) { return ''; }
-        const _message = message.getMessage(type, id, console);
+        const _message = message.getMessage(type, id, token, console);
         return this.createElement(imageProxy, infoTypes, _message, theme);
       },
       createElement(imageProxy, infoTypes, { vid, type, title, author, cover, duration, views, danmakus, comments, favorites, coins, likes }, theme) {
@@ -693,12 +693,12 @@ sitemap: false
   #vue-app h3.unset,
   #vue-app h2.unset,
   #vue-app h1.unset {
-    margin-top: unset;
-    margin-bottom: unset;
-    font-weight: unset;
-    font-family: unset;
-    font-size: unset;
-    line-height: unset;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
   }
 
   #vue-app fluent-select::part(listbox),
@@ -714,7 +714,7 @@ sitemap: false
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: unset;
+    cursor: default;
   }
 
   .input-label .fluent-input-label label {
@@ -762,12 +762,12 @@ sitemap: false
   @media (max-width: 600px) {
     .settings-presenter {
       flex-flow: column;
-      justify-content: unset;
-      align-items: unset;
+      justify-content: normal;
+      align-items: normal;
     }
 
     .settings-presenter div.header-panel {
-      margin: unset;
+      margin: 0;
     }
 
     .settings-presenter div.content-presenter {
