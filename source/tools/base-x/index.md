@@ -565,12 +565,12 @@ sitemap: false
   #vue-app h3.unset,
   #vue-app h2.unset,
   #vue-app h1.unset {
-    margin-top: unset;
-    margin-bottom: unset;
-    font-weight: unset;
-    font-family: unset;
-    font-size: unset;
-    line-height: unset;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
   }
 
   #vue-app fluent-select::part(listbox),
@@ -626,7 +626,7 @@ sitemap: false
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: unset;
+    cursor: default;
   }
 
   .input-label .fluent-input-label label {
@@ -673,18 +673,18 @@ sitemap: false
 
   .settings-presenter a.text-button {
     font-weight: bold;
-    text-decoration: unset;
+    text-decoration: inherit;
   }
 
   @media (max-width: 600px) {
     .settings-presenter {
       flex-flow: column;
-      justify-content: unset;
-      align-items: unset;
+      justify-content: normal;
+      align-items: normal;
     }
 
     .settings-presenter div.header-panel {
-      margin: unset;
+      margin: 0;
     }
 
     .settings-presenter div.content-presenter {
@@ -702,7 +702,7 @@ sitemap: false
     }
 
     .settings-nowarp .settings-presenter div.content-presenter {
-      margin: unset;
+      margin: 0;
     }
   }
 

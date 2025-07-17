@@ -98,7 +98,7 @@ sitemap: false
       <template #description>
         选择加密的类型。
       </template>
-      <fluent-select v-if="option.isEnum" v-model="option.bits" style="min-width: unset;">
+      <fluent-select v-if="option.isEnum" v-model="option.bits" style="min-width: 0;">
         <fluent-option value="224">224</fluent-option>
         <fluent-option value="256">256</fluent-option>
         <fluent-option value="384">384</fluent-option>
@@ -235,7 +235,7 @@ sitemap: false
           <template #action>
             <div v-fill-color="fillColor"
               style="min-height: calc((var(--base-height-multiplier) + var(--density)) * var(--design-unit) * 1px);">
-              <div class="stack-horizontal" v-if="verify.enabled" style="width: unset; column-gap: 4px;">
+              <div class="stack-horizontal" v-if="verify.enabled" style="width: auto; column-gap: 4px;">
                 <svg-host v-if="verify.verified === false" title="不匹配"
                   src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/dismiss_circle_20_filled.svg"
                   style="fill: var(--error);"></svg-host>
@@ -875,12 +875,12 @@ sitemap: false
   #vue-app h3.unset,
   #vue-app h2.unset,
   #vue-app h1.unset {
-    margin-top: unset;
-    margin-bottom: unset;
-    font-weight: unset;
-    font-family: unset;
-    font-size: unset;
-    line-height: unset;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
   }
 
   #vue-app fluent-select::part(listbox),
@@ -936,7 +936,7 @@ sitemap: false
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: unset;
+    cursor: default;
   }
 
   .input-label .fluent-input-label label {
@@ -984,12 +984,12 @@ sitemap: false
   @media (max-width: 600px) {
     .settings-presenter {
       flex-flow: column;
-      justify-content: unset;
-      align-items: unset;
+      justify-content: normal;
+      align-items: normal;
     }
 
     .settings-presenter div.header-panel {
-      margin: unset;
+      margin: 0;
     }
 
     .settings-presenter div.content-presenter {
@@ -1007,7 +1007,7 @@ sitemap: false
     }
 
     .settings-nowarp .settings-presenter div.content-presenter {
-      margin: unset;
+      margin: 0;
     }
   }
 

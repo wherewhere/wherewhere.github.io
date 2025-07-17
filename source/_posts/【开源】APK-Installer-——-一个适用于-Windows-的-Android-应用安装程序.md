@@ -7,11 +7,11 @@ updated_accuracy: minute
 tags: [WAS, WPF, WSA, Win11, APK, 资源]
 categories: 资源
 ---
-<img alt="APK Installer LOGO" src="https://github.com/user-attachments/assets/5ebcccb0-c607-41d3-8ffc-8481cfe3dba2" width="200px" style="display: unset;" />
+<img alt="APK Installer LOGO" src="https://github.com/user-attachments/assets/5ebcccb0-c607-41d3-8ffc-8481cfe3dba2" width="200px" style="display: inline;" />
 
 ## APK Installer
 
-一个适用于 WIndows 的 Android 应用安装程序
+一个适用于 Windows 的 Android 应用安装程序
 
 <a href="https://crowdin.com/project/APKInstaller"><img class="badge" src="https://badges.crowdin.net/APKInstaller/localized.svg" alt="Crowdin"></a> <a href="https://crowdin.com/project/APK-Installer-Classic"><img class="badge" src="https://badges.crowdin.net/APK-Installer-Classic/localized.svg" alt="Crowdin"></a>
 
@@ -36,8 +36,8 @@ categories: 资源
 
 <style>
   img.badge {
-    margin-bottom: unset !important;
-    display: unset;
+    margin-bottom: 0 !important;
+    display: inline;
   }
 </style>
 <!--more-->

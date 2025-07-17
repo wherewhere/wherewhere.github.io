@@ -138,8 +138,8 @@ reward_settings:
   animation: true
 
 reward:
-  #wechatpay: https://github.com/user-attachments/assets/04d07d8d-fecc-469e-a5da-fd427858a829
-  #alipay: https://github.com/user-attachments/assets/a3b76735-469c-4d74-8c6a-f311df65e4b0
+  wechatpay: https://github.com/user-attachments/assets/04d07d8d-fecc-469e-a5da-fd427858a829
+  alipay: https://github.com/user-attachments/assets/a3b76735-469c-4d74-8c6a-f311df65e4b0
   #paypal: /images/paypal.png
   bitcoin: https://github.com/user-attachments/assets/14448ea4-2f41-4f72-b9f0-e85c603cfbcb
 

@@ -72,11 +72,11 @@ description: 基于 <a href="https://github.com/swagger-api/swagger-ui" target="
   }
 
   .load-swagger-ui a.link {
-    border-bottom: unset;
+    border-bottom: 0;
   }
 
   .load-swagger-ui pre.version {
-    background: unset;
+    background: none;
   }
 
   .load-swagger-ui .highlight-code code, 

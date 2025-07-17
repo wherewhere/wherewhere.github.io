@@ -115,7 +115,7 @@ description: 铺路尚未成功，同志仍需努力！
 
 <style>
   #about-content img {
-    margin-bottom: unset !important;
-    display: unset;
+    margin-bottom: 0 !important;
+    display: inline;
   }
 </style>
