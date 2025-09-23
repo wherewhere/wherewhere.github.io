@@ -222,7 +222,7 @@ font:
   # Font settings for <code> and code blocks.
   codes:
     external: true
-    family: 'Cascadia Code NF, Cascadia Code PL, Cascadia Code'
+    family: 'Cascadia Code NF, Cascadia Code PL, Cascadia Code, Cascadia Next SC, Cascadia Next TC, Cascadia Next JP'
 
 
 # ---------------------------------------------------------------

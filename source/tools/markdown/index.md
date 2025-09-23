@@ -264,12 +264,13 @@ sitemap: false
   div.split-view #container .cm-editor {
     flex: 1;
     outline: none;
+    overflow: inherit;
   }
 
   div.split-view #container .cm-editor .cm-scroller,
   div.split-view #container .cm-editor .cm-diagnostic,
   div.split-view #container .cm-editor .cm-tooltip-autocomplete>ul {
-    font-family: 'Cascadia Code NF', 'Cascadia Code PL', 'Cascadia Code', Consolas, 'Courier New', monospace;
+    font-family: 'Cascadia Code NF', 'Cascadia Code PL', 'Cascadia Code', "Cascadia Next SC", "Cascadia Next TC", "Cascadia Next JP", Consolas, 'Courier New', monospace;
   }
 
   div.split-view .perview-card {

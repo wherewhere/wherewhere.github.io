@@ -159,6 +159,7 @@ sitemap: false
   div.split-view #yaml .cm-editor {
     flex: 1;
     outline: none;
+    overflow: inherit;
   }
 
   div.split-view #json .cm-editor .cm-scroller,
@@ -167,7 +168,7 @@ sitemap: false
   div.split-view #yaml .cm-editor .cm-diagnostic,
   div.split-view #json .cm-editor .cm-tooltip-autocomplete>ul,
   div.split-view #yaml .cm-editor .cm-tooltip-autocomplete>ul {
-    font-family: 'Cascadia Code NF', 'Cascadia Code PL', 'Cascadia Code', Consolas, 'Courier New', monospace;
+    font-family: 'Cascadia Code NF', 'Cascadia Code PL', 'Cascadia Code', "Cascadia Next SC", "Cascadia Next TC", "Cascadia Next JP", Consolas, 'Courier New', monospace;
   }
 
   @media (max-width: 767px) {
