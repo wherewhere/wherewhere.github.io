@@ -9,7 +9,7 @@ sitemap: false
     provideFluentDesignSystem,
     fluentButton,
     fluentSlider,
-    fluentTextField,
+    fluentTextArea,
     fillColor,
     accentBaseColor,
     SwatchRGB,
@@ -21,7 +21,7 @@ sitemap: false
     .register(
       fluentButton(),
       fluentSlider(),
-      fluentTextField()
+      fluentTextArea()
     );
   accentBaseColor.withDefault(SwatchRGB.create(0xFC / 0xFF, 0x64 / 0xFF, 0x23 / 0xFF));
   fillColor.withDefault(neutralLayerFloating);
@@ -37,7 +37,7 @@ sitemap: false
 {% raw %}
 <div id="vue-app">
   <div class="stack-vertical" style="row-gap: 0.3rem;">
-    <settings-card>
+    <settings-card class="settings-keepwarp">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/local_language_20_regular.svg"></svg-host>
       </template>
@@ -47,7 +47,7 @@ sitemap: false
       <template #description>
         输入注音文本。
       </template>
-      <fluent-text-field v-model="content"></fluent-text-field>
+      <fluent-text-area v-model="content" v-attribute:rows="1" resize="vertical"></fluent-text-area>
     </settings-card>
     <input-label class="settings-card" label="显示"
       :style="{ paddingTop: 'calc(var(--design-unit) * 4px)', paddingRight: 'calc(var(--design-unit) * 4px)', paddingBottom: content ? 'calc(var(--design-unit) * 4px)' : 'calc(var(--design-unit) * 3px)', paddingLeft: 'calc(var(--design-unit) * 4px)' }">
@@ -58,7 +58,8 @@ sitemap: false
             style="max-width: calc(var(--base-height-multiplier) * 30px); margin: 0 0 -18px 0"></fluent-slider>
         </value-change-host>
       </template>
-      <div v-style:font-size="fontSize + 'px'" style="font-family: TH-Times; text-align: center; line-height: 100%;">
+      <div v-style:font-size="fontSize + 'px'"
+        style="font-family: TH-Times; text-align: center; line-height: 100%; white-space: pre-line;">
         {{ content }}
       </div>
     </input-label>
@@ -127,6 +128,10 @@ sitemap: false
   </div>
 </div>
 
+<template id="empty-template">
+  <slot></slot>
+</template>
+
 <template id="empty-slot-template">
   <div>
     <slot></slot>
@@ -148,7 +153,7 @@ sitemap: false
 </template>
 
 <template id="settings-presenter-template">
-  <div class="settings-presenter">
+  <div class="settings-presenter" v-fill-color="fillColor">
     <div class="header-root">
       <div class="icon-holder" v-check-solt="$slots.icon">
         <slot name="icon"></slot>
@@ -170,7 +175,7 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <div class="content-grid" v-fill-color="fillColor">
+    <provide-value name="fillColor" :value="fillColor">
       <settings-presenter class="presenter">
         <template #icon>
           <slot name="icon"></slot>
@@ -183,13 +188,13 @@ sitemap: false
         </template>
         <slot></slot>
       </settings-presenter>
-    </div>
+    </provide-value>
   </div>
 </template>
 {% endraw %}
 
 <script type="module" data-pjax>
-  import { createApp, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { createApp, computed, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   import { fillColor, neutralFillInputRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
   createApp({
     data() {
@@ -218,6 +223,18 @@ sitemap: false
         const value = binding.value;
         if (value !== binding.oldValue) {
           element.style[binding.arg] = value;
+        }
+      }
+    }
+  ).directive("attribute",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const value = binding.value;
+        if (value !== binding.oldValue) {
+          const name = binding.arg;
+          if (name) {
+            element.setAttribute(name, value);
+          }
         }
       }
     }
@@ -271,9 +288,14 @@ sitemap: false
   ).directive("fill-color",
     (element, binding) => {
       if (element instanceof HTMLElement) {
-        const color = toRaw(binding.value);
-        if (color !== binding.oldValue) {
-          fillColor.setValueFor(element, color.getValueFor(element.parentElement));
+        if (binding.value !== binding.oldValue) {
+          const color = toRaw(binding.value);
+          if (color) {
+            fillColor.setValueFor(element, color.getValueFor(element.parentElement));
+          }
+          else {
+            fillColor.deleteValueFor(element);
+          }
         }
       }
     }
@@ -334,6 +356,17 @@ sitemap: false
         element.resizeObserver.disconnect();
       }
     }
+  }).component("provide-value", {
+    template: "#empty-template",
+    props: {
+      name: String,
+      value: undefined
+    },
+    provide() {
+      return {
+        [this.name]: computed(() => this.value)
+      }
+    }
   }).component("value-change-host", {
     template: "#empty-slot-template",
     props: {
@@ -341,7 +374,7 @@ sitemap: false
       eventName: String,
       modelValue: undefined
     },
-    emits: ['update:modelValue'],
+    emits: ["update:modelValue"],
     watch: {
       eventName(newValue, oldValue) {
         if (newValue !== oldValue) {
@@ -381,7 +414,7 @@ sitemap: false
           if (element instanceof HTMLElement) {
             const modelValue = this.modelValue;
             if (modelValue === undefined) {
-              this.$emit('update:modelValue', element[valueName]);
+              this.$emit("update:modelValue", element[valueName]);
             }
             else {
               element[valueName] = modelValue;
@@ -393,7 +426,7 @@ sitemap: false
       onValueChanged(event) {
         const target = event.target;
         if (target instanceof HTMLElement) {
-          this.$emit('update:modelValue', target[this.valueName]);
+          this.$emit("update:modelValue", target[this.valueName]);
         }
       }
     },
@@ -443,12 +476,13 @@ sitemap: false
       label: String
     }
   }).component("settings-presenter", {
-    template: "#settings-presenter-template"
+    template: "#settings-presenter-template",
+    inject: ["fillColor"]
   }).component("settings-card", {
     template: "#settings-card-template",
-    data() {
-      return {
-        fillColor: neutralFillInputRest
+    inject: {
+      fillColor: {
+        default: neutralFillInputRest
       }
     }
   }).mount("#vue-app");
@@ -607,6 +641,20 @@ sitemap: false
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
     }
+  }
+
+  .settings-keepwarp .settings-presenter {
+    flex-flow: column;
+    justify-content: normal;
+    align-items: normal;
+  }
+
+  .settings-keepwarp .settings-presenter div.header-panel {
+    margin: 0;
+  }
+
+  .settings-keepwarp .settings-presenter div.content-presenter {
+    margin: var(--settings-card-vertical-header-content-spacing);
   }
 
   .settings-card {
