@@ -26,6 +26,10 @@ scheme: Pisces
 # Dark Mode
 darkmode: true
 
+# Light-Dark Mode
+lightdark:
+  enable: true
+
 
 # ---------------------------------------------------------------
 # Site Information Settings

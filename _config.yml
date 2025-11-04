@@ -197,3 +197,6 @@ minify:
   brotli:
     enable: false
     priority: 11
+  zstd:
+    enable: false
+    priority: 11
