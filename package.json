@@ -40,10 +40,10 @@
     "url": "git+https://github.com/wherewhere/wherewhere.github.io.git"
   },
   "hexo": {
-    "version": "7.3.0"
+    "version": "8.1.1"
   },
   "dependencies": {
-    "hexo": "^7.0.0",
+    "hexo": "^8.0.0",
     "hexo-babel": "^1.0.0",
     "hexo-generator-apis": "^1.0.0",
     "hexo-generator-archive": "^2.0.0",
@@ -56,7 +56,7 @@
     "hexo-generator-tag": "^2.0.0",
     "hexo-indexnow": "^1.0.0",
     "hexo-next-fallback": "github:wherewhere/hexo-next-fallback",
-    "hexo-related-posts": "^1.0.0",
+    "hexo-related-posts": "github:wherewhere/hexo-related-posts#hexo-compatible",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-marked": "^7.0.0",
     "hexo-renderer-stylus": "^3.0.0",
