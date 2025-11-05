@@ -186,6 +186,10 @@ sitemap: false
   </div>
 </div>
 
+<template id="empty-template">
+  <slot></slot>
+</template>
+
 <template id="empty-slot-template">
   <div>
     <slot></slot>
@@ -207,7 +211,7 @@ sitemap: false
 </template>
 
 <template id="settings-presenter-template">
-  <div class="settings-presenter">
+  <div class="settings-presenter" v-fill-color="fillColor">
     <div class="header-root">
       <div class="icon-holder" v-check-solt="$slots.icon">
         <slot name="icon"></slot>
@@ -229,7 +233,7 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <div class="content-grid" v-fill-color="fillColor">
+    <provide-value name="fillColor" :value="fillColor">
       <settings-presenter class="presenter">
         <template #icon>
           <slot name="icon"></slot>
@@ -242,7 +246,7 @@ sitemap: false
         </template>
         <slot></slot>
       </settings-presenter>
-    </div>
+    </provide-value>
   </div>
 </template>
 
@@ -250,21 +254,25 @@ sitemap: false
   <fluent-accordion class="settings-expander">
     <fluent-accordion-item class="expander" :expanded="expanded">
       <div slot="heading">
-        <settings-presenter class="presenter">
-          <template #icon>
-            <slot name="icon"></slot>
-          </template>
-          <template #header>
-            <slot name="header"></slot>
-          </template>
-          <template #description>
-            <slot name="description"></slot>
-          </template>
-          <slot name="action-content"></slot>
-        </settings-presenter>
+        <provide-value name="fillColor" :value="neutralFillInputRest">
+          <settings-presenter class="presenter">
+            <template #icon>
+              <slot name="icon"></slot>
+            </template>
+            <template #header>
+              <slot name="header"></slot>
+            </template>
+            <template #description>
+              <slot name="description"></slot>
+            </template>
+            <slot name="action-content"></slot>
+          </settings-presenter>
+        </provide-value>
       </div>
-      <div v-fill-color="fillColor">
-        <slot></slot>
+      <div v-fill-color="neutralFillLayerAltRest">
+        <provide-value name="fillColor" :value="undefined">
+          <slot></slot>
+        </provide-value>
       </div>
     </fluent-accordion-item>
   </fluent-accordion>
@@ -272,7 +280,7 @@ sitemap: false
 {% endraw %}
 
 <script type="module" data-pjax>
-  import { createApp, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { createApp, computed, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
   import { encodeHTML } from "https://cdn.jsdelivr.net/npm/entities/+esm";
   import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
@@ -520,20 +528,36 @@ sitemap: false
   ).directive("fill-color",
     (element, binding) => {
       if (element instanceof HTMLElement) {
-        const color = toRaw(binding.value);
-        if (color !== binding.oldValue) {
-          fillColor.setValueFor(element, color.getValueFor(element.parentElement));
+        if (binding.value !== binding.oldValue) {
+          const color = toRaw(binding.value);
+          if (color) {
+            fillColor.setValueFor(element, color.getValueFor(element.parentElement));
+          }
+          else {
+            fillColor.deleteValueFor(element);
+          }
         }
       }
     }
-  ).component("value-change-host", {
+  ).component("provide-value", {
+    template: "#empty-template",
+    props: {
+      name: String,
+      value: undefined
+    },
+    provide() {
+      return {
+        [this.name]: computed(() => this.value)
+      }
+    }
+  }).component("value-change-host", {
     template: "#empty-slot-template",
     props: {
       valueName: String,
       eventName: String,
       modelValue: undefined
     },
-    emits: ['update:modelValue'],
+    emits: ["update:modelValue"],
     watch: {
       eventName(newValue, oldValue) {
         if (newValue !== oldValue) {
@@ -574,7 +598,7 @@ sitemap: false
           if (element instanceof HTMLElement) {
             const modelValue = this.modelValue;
             if (modelValue === undefined) {
-              this.$emit('update:modelValue', element[valueName]);
+              this.$emit("update:modelValue", element[valueName]);
             }
             else {
               element[valueName] = modelValue;
@@ -586,7 +610,7 @@ sitemap: false
       onValueChanged(event) {
         const target = event.target;
         if (target instanceof HTMLElement) {
-          this.$emit('update:modelValue', target[this.valueName]);
+          this.$emit("update:modelValue", target[this.valueName]);
         }
       }
     },
@@ -636,12 +660,13 @@ sitemap: false
       label: String
     }
   }).component("settings-presenter", {
-    template: "#settings-presenter-template"
+    template: "#settings-presenter-template",
+    inject: ["fillColor"]
   }).component("settings-card", {
     template: "#settings-card-template",
-    data() {
-      return {
-        fillColor: neutralFillInputRest
+    inject: {
+      fillColor: {
+        default: neutralFillInputRest
       }
     }
   }).component("settings-expander", {
@@ -651,7 +676,8 @@ sitemap: false
     },
     data() {
       return {
-        fillColor: neutralFillLayerAltRest
+        neutralFillInputRest,
+        neutralFillLayerAltRest
       }
     }
   }).mount("#vue-app");

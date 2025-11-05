@@ -213,6 +213,10 @@ description: 各种各样的实用小工具
   </settings-group>
 </div>
 
+<template id="empty-template">
+  <slot></slot>
+</template>
+
 <template id="empty-slot-template">
   <div>
     <slot></slot>
@@ -224,13 +228,13 @@ description: 各种各样的实用小工具
 </template>
 
 <template id="settings-presenter-template">
-  <div class="settings-presenter">
+  <div class="settings-presenter" v-fill-color="fillColor">
     <div class="header-root">
       <div class="icon-holder" v-check-solt="$slots.icon">
         <slot name="icon"></slot>
       </div>
       <div class="header-panel">
-        <span v-check-solt="$slots['header']">
+        <span v-check-solt="$slots.header">
           <slot name="header"></slot>
         </span>
         <span class="description" v-check-solt="$slots.description">
@@ -246,33 +250,8 @@ description: 各种各样的实用小工具
 
 <template id="settings-button-template">
   <a class="settings-button" ref="anchor">
-    <div class="content-grid">
-      <settings-presenter class="presenter">
-        <template #icon>
-          <slot name="icon"></slot>
-        </template>
-        <template #header>
-          <slot name="header"></slot>
-        </template>
-        <template #description>
-          <slot name="description"></slot>
-        </template>
-        <slot></slot>
-      </settings-presenter>
-      <div class="action-icon-holder">
-        <slot name="action-icon">
-          <svg-host
-            src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
-        </slot>
-      </div>
-    </div>
-  </a>
-</template>
-
-<template id="settings-expander-template">
-  <fluent-accordion class="settings-expander">
-    <fluent-accordion-item class="expander" :expanded="expanded">
-      <div slot="heading">
+    <provide-value name="fillColor" :value="fillColor">
+      <div class="content-grid">
         <settings-presenter class="presenter">
           <template #icon>
             <slot name="icon"></slot>
@@ -283,11 +262,42 @@ description: 各种各样的实用小工具
           <template #description>
             <slot name="description"></slot>
           </template>
-          <slot name="action-content"></slot>
+          <slot></slot>
         </settings-presenter>
+        <div class="action-icon-holder">
+          <slot name="action-icon">
+            <svg-host
+              src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/chevron_right_12_regular.svg"></svg-host>
+          </slot>
+        </div>
       </div>
-      <div v-fill-color="fillColor">
-        <slot></slot>
+    </provide-value>
+  </a>
+</template>
+
+<template id="settings-expander-template">
+  <fluent-accordion class="settings-expander">
+    <fluent-accordion-item class="expander" :expanded="expanded">
+      <div slot="heading">
+        <provide-value name="fillColor" :value="neutralFillInputRest">
+          <settings-presenter class="presenter">
+            <template #icon>
+              <slot name="icon"></slot>
+            </template>
+            <template #header>
+              <slot name="header"></slot>
+            </template>
+            <template #description>
+              <slot name="description"></slot>
+            </template>
+            <slot name="action-content"></slot>
+          </settings-presenter>
+        </provide-value>
+      </div>
+      <div v-fill-color="neutralFillLayerAltRest">
+        <provide-value name="fillColor" :value="undefined">
+          <slot></slot>
+        </provide-value>
       </div>
     </fluent-accordion-item>
   </fluent-accordion>
@@ -306,8 +316,8 @@ description: 各种各样的实用小工具
 {% endraw %}
 
 <script type="module" data-pjax>
-  import { createApp, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
-  import { fillColor, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  import { createApp, computed, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
   createApp({
     data() {
       return {
@@ -393,20 +403,36 @@ description: 各种各样的实用小工具
   ).directive("fill-color",
     (element, binding) => {
       if (element instanceof HTMLElement) {
-        const color = toRaw(binding.value);
-        if (color !== binding.oldValue) {
-          fillColor.setValueFor(element, color.getValueFor(element.parentElement));
+        if (binding.value !== binding.oldValue) {
+          const color = toRaw(binding.value);
+          if (color) {
+            fillColor.setValueFor(element, color.getValueFor(element.parentElement));
+          }
+          else {
+            fillColor.deleteValueFor(element);
+          }
         }
       }
     }
-  ).component("value-change-host", {
+  ).component("provide-value", {
+    template: "#empty-template",
+    props: {
+      name: String,
+      value: undefined
+    },
+    provide() {
+      return {
+        [this.name]: computed(() => this.value)
+      }
+    }
+  }).component("value-change-host", {
     template: "#empty-slot-template",
     props: {
       valueName: String,
       eventName: String,
       modelValue: undefined
     },
-    emits: ['update:modelValue'],
+    emits: ["update:modelValue"],
     watch: {
       eventName(newValue, oldValue) {
         if (newValue !== oldValue) {
@@ -447,7 +473,7 @@ description: 各种各样的实用小工具
           if (element instanceof HTMLElement) {
             const modelValue = this.modelValue;
             if (modelValue === undefined) {
-              this.$emit('update:modelValue', element[valueName]);
+              this.$emit("update:modelValue", element[valueName]);
             }
             else {
               element[valueName] = modelValue;
@@ -459,7 +485,7 @@ description: 各种各样的实用小工具
       onValueChanged(event) {
         const target = event.target;
         if (target instanceof HTMLElement) {
-          this.$emit('update:modelValue', target[this.valueName]);
+          this.$emit("update:modelValue", target[this.valueName]);
         }
       }
     },
@@ -504,9 +530,15 @@ description: 各种各样的实用小工具
       this.getSVGAsync(this.src).then(svg => this.innerHTML = svg);
     }
   }).component("settings-presenter", {
-    template: "#settings-presenter-template"
+    template: "#settings-presenter-template",
+    inject: ["fillColor"]
   }).component("settings-button", {
     template: "#settings-button-template",
+    inject: {
+      fillColor: {
+        default: neutralFillInputRest
+      }
+    },
     mounted() {
       if (typeof pjax !== "undefined") {
         pjax.attachLink(this.$refs.anchor);
@@ -519,7 +551,8 @@ description: 各种各样的实用小工具
     },
     data() {
       return {
-        fillColor: neutralFillLayerAltRest
+        neutralFillInputRest,
+        neutralFillLayerAltRest
       }
     }
   }).component("settings-group", {

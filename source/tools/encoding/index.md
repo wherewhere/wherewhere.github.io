@@ -74,6 +74,10 @@ sitemap: false
   </div>
 </div>
 
+<template id="empty-template">
+  <slot></slot>
+</template>
+
 <template id="svg-host-template">
   <div class="svg-host" v-html="innerHTML"></div>
 </template>
@@ -89,7 +93,7 @@ sitemap: false
 </template>
 
 <template id="settings-presenter-template">
-  <div class="settings-presenter">
+  <div class="settings-presenter" v-fill-color="fillColor">
     <div class="header-root">
       <div class="icon-holder" v-check-solt="$slots.icon">
         <slot name="icon"></slot>
@@ -111,7 +115,7 @@ sitemap: false
 
 <template id="settings-card-template">
   <div class="settings-card">
-    <div class="content-grid" v-fill-color="fillColor">
+    <provide-value name="fillColor" :value="fillColor">
       <settings-presenter class="presenter">
         <template #icon>
           <slot name="icon"></slot>
@@ -124,13 +128,13 @@ sitemap: false
         </template>
         <slot></slot>
       </settings-presenter>
-    </div>
+    </provide-value>
   </div>
 </template>
 {% endraw %}
 
 <script type="module" data-pjax>
-  import { createApp, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
+  import { createApp, computed, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   import { fillColor, neutralFillInputRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
   import * as entities from "https://cdn.jsdelivr.net/npm/entities/+esm";
   import { Base64 } from "https://cdn.jsdelivr.net/npm/js-base64/+esm";
@@ -239,13 +243,29 @@ sitemap: false
   ).directive("fill-color",
     (element, binding) => {
       if (element instanceof HTMLElement) {
-        const color = toRaw(binding.value);
-        if (color !== binding.oldValue) {
-          fillColor.setValueFor(element, color.getValueFor(element.parentElement));
+        if (binding.value !== binding.oldValue) {
+          const color = toRaw(binding.value);
+          if (color) {
+            fillColor.setValueFor(element, color.getValueFor(element.parentElement));
+          }
+          else {
+            fillColor.deleteValueFor(element);
+          }
         }
       }
     }
-  ).component("svg-host", {
+  ).component("provide-value", {
+    template: "#empty-template",
+    props: {
+      name: String,
+      value: undefined
+    },
+    provide() {
+      return {
+        [this.name]: computed(() => this.value)
+      }
+    }
+  }).component("svg-host", {
     template: "#svg-host-template",
     props: {
       src: String
@@ -285,12 +305,13 @@ sitemap: false
       label: String
     }
   }).component("settings-presenter", {
-    template: "#settings-presenter-template"
+    template: "#settings-presenter-template",
+    inject: ["fillColor"]
   }).component("settings-card", {
     template: "#settings-card-template",
-    data() {
-      return {
-        fillColor: neutralFillInputRest
+    inject: {
+      fillColor: {
+        default: neutralFillInputRest
       }
     }
   }).mount("#vue-app");
