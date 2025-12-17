@@ -323,6 +323,7 @@ sitemap: false
   import { dotnet } from "https://wherewhere.github.io/Enchants-Order/_framework/dotnet.js";
   import { createApp, computed, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
   import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  import LZString from "https://cdn.jsdelivr.net/npm/lz-string/+esm";
   createApp({
     data() {
       return {
@@ -377,11 +378,12 @@ sitemap: false
             }
           }
           return fallbackLanguage;
-        })()
+        })(),
+        hashChanged: false
       }
     },
     watch: {
-      "locale"(newValue, oldValue) {
+      locale(newValue, oldValue) {
         if (newValue !== oldValue) {
           this.initializeEnchantmentsAsync();
         }
@@ -421,17 +423,7 @@ sitemap: false
         try {
           this.loading = true;
           const enchantments = [];
-          const json = await new Promise(async (resolve, reject) => {
-            try {
-              const json = await fetch(`https://wherewhere.github.io/Enchants-Order/content/enchants/Enchants.${this.locale}.json`).then(x => x.json());
-              resolve(json);
-            }
-            catch (ex) {
-              console.warn(ex);
-              const json = await fetch(`https://cdn.jsdelivr.net/gh/wherewhere/Enchants-Order@main/EnchantsOrder/EnchantsOrder.Demo/Assets/Enchants/Enchants.${this.$i18n.locale}.json`).then(x => x.json()).catch(reject);
-              resolve(json);
-            }
-          });
+          const json = await fetch(`https://cdn.jsdelivr.net/gh/wherewhere/Enchants-Order@main/EnchantsOrder/EnchantsOrder.Demo/Assets/Enchants/Enchants.${this.locale}.json`).then(x => x.json());
           for (const name in json) {
             const enchantment = json[name];
             enchantments.push({
@@ -603,6 +595,7 @@ sitemap: false
           this.loading = true;
           const wantedList = this.wantedList;
           if (wantedList.length) {
+            this.setSettings(wantedList);
             this.results = [await this.orderingAsync(wantedList, this.initialPenalty)];
           }
         }
@@ -613,13 +606,55 @@ sitemap: false
       async orderingAsync(wantedList, initialPenalty) {
         await this.initDotNetAsync();
         return this.exports.Ordering(wantedList, +initialPenalty);
-      }
+      },
+      loadSettings() {
+        if (this.hashChanged) {
+          this.hashChanged = false;
+          return;
+        }
+        const hash = location.hash.substring(1);
+        if (hash) {
+          const params = new URLSearchParams(hash);
+          if (params.has("wanted")) {
+            const value = params.get("wanted");
+            if (value) {
+              const wanted = LZString.decompressFromEncodedURIComponent(value);
+              if (wanted) {
+                const list = JSON.parse(wanted)
+                if (Array.isArray(list)) {
+                  this.wantedList = list;
+                }
+              }
+            }
+          }
+        }
+      },
+      setSettings(wantedList) {
+        const settings = {};
+        if (wantedList.length) {
+          settings.wanted = LZString.compressToEncodedURIComponent(
+            JSON.stringify(
+              wantedList.map(x => ({
+                name: x.name,
+                level: x.level,
+                weight: x.weight
+              }))));
+        }
+        location.hash = new URLSearchParams(settings).toString();
+        this.hashChanged = true;
+      },
     },
     mounted() {
-      this.initializeEnchantmentsAsync();
       if (typeof NexT !== "undefined") {
         NexT.utils.registerSidebarTOC();
       }
+      this.initializeEnchantmentsAsync().then(() => {
+        this.loadSettings();
+        addEventListener("hashchange", this.loadSettings);
+      });
+    },
+    unmounted() {
+      removeEventListener("hashchange", this.loadSettings);
     }
   }).directive("check-solt",
     (element, binding) => {
@@ -696,8 +731,8 @@ sitemap: false
   }).component("value-change-host", {
     template: "#empty-slot-template",
     props: {
-      valueName: String,
       eventName: String,
+      valueName: String,
       modelValue: undefined
     },
     emits: ["update:modelValue"],
@@ -734,7 +769,7 @@ sitemap: false
       }
     },
     methods: {
-      registerEvent(valueName) {
+      registerEvent(eventName, valueName) {
         const $el = this.$el;
         if ($el instanceof HTMLElement) {
           const element = $el.children[0];
@@ -746,7 +781,7 @@ sitemap: false
             else {
               element[valueName] = modelValue;
             }
-            element.addEventListener(this.eventName, this.onValueChanged);
+            element.addEventListener(eventName, this.onValueChanged);
           }
         }
       },
@@ -758,9 +793,9 @@ sitemap: false
       }
     },
     mounted() {
-      const valueName = this.valueName;
-      if (valueName && this.eventName) {
-        this.registerEvent(valueName);
+      const { eventName, valueName } = this;
+      if (valueName && eventName) {
+        this.registerEvent(eventName, valueName);
       }
     }
   }).component("svg-host", {
@@ -861,9 +896,7 @@ sitemap: false
   }
 
   #vue-app fluent-select::part(listbox),
-  #vue-app fluent-combobox::part(listbox),
-  #vue-app fluent-select .listbox,
-  #vue-app fluent-combobox .listbox {
+  #vue-app fluent-combobox::part(listbox) {
     max-height: calc(var(--base-height-multiplier) * 30px);
   }
 
@@ -1009,7 +1042,7 @@ sitemap: false
   .settings-expander fluent-accordion-item.expander:active {
     background: var(--neutral-fill-input-active);
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-active);
-    box-shadow: var(--elevation-shadow-card-pressed);
+    box-shadow: var(--elevation-shadow-card-active);
   }
 
   .settings-expander fluent-accordion-item.expander::part(region),

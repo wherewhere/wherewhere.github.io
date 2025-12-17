@@ -50,6 +50,13 @@ creative_commons:
   sidebar: true
   post: true
 
+# Open graph settings
+# See: https://hexo.io/docs/helpers#open-graph
+open_graph:
+  enable: true
+  options:
+    twitter_site: "@wherewhere7"
+
 
 # ---------------------------------------------------------------
 # Menu Settings
@@ -226,7 +233,7 @@ font:
   # Font settings for <code> and code blocks.
   codes:
     external: true
-    family: 'Cascadia Code NF, Cascadia Code PL, Cascadia Code, Cascadia Next SC, Cascadia Next TC, Cascadia Next JP'
+    family: Cascadia Code NF, Cascadia Code PL, Cascadia Code, Cascadia Next SC, Cascadia Next TC, Cascadia Next JP
 
 
 # ---------------------------------------------------------------

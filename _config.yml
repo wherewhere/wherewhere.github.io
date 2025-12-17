@@ -4,12 +4,12 @@
 
 # Site
 title: 魔法薇ㄦ的书馆
-subtitle: 'wherewhere的个人博客'
-description: '铺路尚未成功，同志仍需努力！'
+subtitle: wherewhere的个人博客
+description: 铺路尚未成功，同志仍需努力！
 keywords: [博客, 开发, where, 薇ㄦ, whercate]
 author: wherewhere
 language: zh-CN
-timezone: 'Asia/Shanghai'
+timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -38,7 +38,7 @@ titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
-  exclude: ''
+  exclude: ""
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
@@ -48,13 +48,13 @@ syntax_highligher: highlight.js
 highlight:
   line_number: true
   auto_detect: true
-  tab_replace: ''
+  tab_replace: ""
   wrap: true
   hljs: false
 prismjs:
   preprocess: true
   line_number: true
-  tab_replace: ''
+  tab_replace: ""
 marked:
   prependRoot: true
   postAsset: true
@@ -65,7 +65,7 @@ marked:
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: ''
+  path: ""
   per_page: 10
   order_by: -date
 
@@ -85,7 +85,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'date'
+updated_option: date
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -106,10 +106,10 @@ deploy:
 babel:
   options:
     presets:
-      - - '@babel/preset-env'
+      - - "@babel/preset-env"
     sourceType: unambiguous
     targets:
-      edge: '16'
+      edge: 16
 
 # Feed Atom
 feed:
@@ -124,7 +124,7 @@ feed:
 
 # Robots.txt
 robotstxt:
-  useragent: '*'
+  useragent: "*"
   allow:
     - /
   sitemap: https://wherewhere.github.io/sitemap.xml
@@ -139,18 +139,18 @@ hexo_indexnow:
 # API Generator
 restful_xapi:
   site:
-    - 'title'
-    - 'subtitle'
-    - 'description'
-    - 'author'
-    - 'language'
-    - 'timezone'
-    - 'url'
-    - 'keywords'
-    - 'favicon'
-    - 'social'
-    - 'reward'
-    - 'follow_me'
+    - title
+    - subtitle
+    - description
+    - author
+    - language
+    - timezone
+    - url
+    - keywords
+    - favicon
+    - social
+    - reward
+    - follow_me
   posts_props:
     language: true
   categories:
@@ -169,8 +169,8 @@ restful_xapi:
       contact:
         url: https://github.com/wherewhere
       license:
-        name: 'Apache 2.0'
-      version: '0.0.1'
+        name: Apache 2.0
+      version: 0.0.1
 
 # Minfiy
 minify:
@@ -190,7 +190,7 @@ minify:
   json:
     enable: true
     priority: 11
-    include: ['*.webmanifest', '!*.min.webmanifest']
+    include: ["*.webmanifest", "!*.min.webmanifest"]
   gzip:
     enable: false
     priority: 11

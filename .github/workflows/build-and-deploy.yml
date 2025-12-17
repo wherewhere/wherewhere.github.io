@@ -3,6 +3,8 @@ name: build and deploy
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -20,7 +22,7 @@ jobs:
         with:
           # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
           # Ref: https://github.com/actions/setup-node#supported-version-syntax
-          node-version: 'latest'
+          node-version: latest
 
       - name: Install Dependencies
         run: npm install
@@ -32,11 +34,12 @@ jobs:
         run: npm run deploy
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: public
 
   deploy:
+    if: github.event_name == 'push'
     needs: build
 
     permissions:
