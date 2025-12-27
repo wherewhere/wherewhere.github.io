@@ -51,96 +51,113 @@ sitemap: false
 
 {% raw %}
 <div id="vue-app">
-  <router-view></router-view>
+  <router-view v-slot="{ Component }">
+    <transition name="drill" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </div>
 
 <template id="home-view-template">
-  <page-title title="主页"></page-title>
-  <div class="stack-vertical" style="row-gap: 8px;" v-if="posts.length">
-    <post-card v-for="post of posts" :post="post"></post-card>
-  </div>
-  <fluent-progress-ring v-else></fluent-progress-ring>
-  <table-of-contents hidden="true"></table-of-contents>
-</template>
-
-<template id="posts-view-template">
-  <page-title v-if="post" :title="post.title" :subtitle="subtitle"></page-title>
-  <post-detail-card v-if="post" :post="post" ref="content"></post-detail-card>
-  <fluent-progress-ring v-else></fluent-progress-ring>
-  <table-of-contents ref="toc"></table-of-contents>
-</template>
-
-<template id="cates-view-template">
-  <page-title :title="title" :subtitle="subtitle"></page-title>
-  <div v-if="$route.params.slug">
+  <div>
+    <page-title title="主页"></page-title>
     <div class="stack-vertical" style="row-gap: 8px;" v-if="posts.length">
       <post-card v-for="post of posts" :post="post"></post-card>
-    </div>
-  </div>
-  <div v-else>
-    <div v-if="cates.length" class="stack-vertical" style="row-gap: 8px;">
-      <div class="clickable-card" v-for="cate of cates"
-        @click="() => $router.push(`/${$route.params.type}/${cate.slug}`)">
-        {{ cate.name }}
-      </div>
-    </div>
-    <fluent-progress-ring v-else></fluent-progress-ring>
-  </div>
-  <table-of-contents hidden="true"></table-of-contents>
-</template>
-
-<template id="archives-view-template">
-  <page-title :title="title" :subtitle="subtitle"></page-title>
-  <div v-if="$route.params.year">
-    <div class="stack-vertical" style="row-gap: 8px;" v-if="posts.length">
-      <post-card v-for="post of posts" :post="post"></post-card>
-    </div>
-  </div>
-  <div v-else>
-    <fluent-tree-view v-if="archives.length" ref="tree">
-      <fluent-tree-item v-for="year of archives" :data-year="year.year">
-        {{ year.year }} 年
-        <fluent-tree-item v-for="month of year.data" :data-year="year.year" :data-month="month.month">
-          {{ month.month }} 月
-        </fluent-tree-item>
-      </fluent-tree-item>
-    </fluent-tree-view>
-    <fluent-progress-ring v-else></fluent-progress-ring>
-  </div>
-  <table-of-contents hidden="true"></table-of-contents>
-</template>
-
-<template id="search-view-template">
-  <page-title title="搜索"></page-title>
-  <fluent-text-field v-model="searchText" style="width: 100%;">
-    <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/search_16_regular.svg" slot="end"></svg-host>
-  </fluent-text-field>
-  <div v-if="resultItems.length" class="stack-vertical search-result-container" style="row-gap: 8px;" ref="container">
-    找到 {{ resultItems.length }} 个搜索结果
-    <div class="clickable-card" v-for="result of resultItems" v-html="result.item"></div>
-  </div>
-  <table-of-contents hidden="true"></table-of-contents>
-</template>
-
-<template id="pages-view-template">
-  <page-title :title="title" :subtitle="subtitle"></page-title>
-  <div v-if="$route.params.path">
-    <post-detail-card v-if="page" :post="page" ref="content"></post-detail-card>
-    <fluent-progress-ring v-else></fluent-progress-ring>
-    <table-of-contents ref="toc"></table-of-contents>
-  </div>
-  <div v-else>
-    <div v-if="pages.length" class="stack-vertical" style="row-gap: 8px;">
-      <div class="clickable-card" v-for="page of pages" :lang="page.language"
-        @click="() => $router.push(getUrl(page.url))">
-        {{ page.title }}
-        <span v-if="page.description" style="color: var(--neutral-foreground-hint);">
-          <br>{{ page.description }}
-        </span>
-      </div>
     </div>
     <fluent-progress-ring v-else></fluent-progress-ring>
     <table-of-contents hidden="true"></table-of-contents>
+  </div>
+</template>
+
+<template id="posts-view-template">
+  <div>
+    <page-title v-if="post" :title="post.title" :subtitle="subtitle"></page-title>
+    <post-detail-card v-if="post" :post="post" ref="content"></post-detail-card>
+    <fluent-progress-ring v-else></fluent-progress-ring>
+    <table-of-contents ref="toc"></table-of-contents>
+  </div>
+</template>
+
+<template id="cates-view-template">
+  <div>
+    <page-title :title="title" :subtitle="subtitle"></page-title>
+    <div v-if="$route.params.slug">
+      <div class="stack-vertical" style="row-gap: 8px;" v-if="posts.length">
+        <post-card v-for="post of posts" :post="post"></post-card>
+      </div>
+    </div>
+    <div v-else>
+      <div v-if="cates.length" class="stack-vertical" style="row-gap: 8px;">
+        <div class="clickable-card" v-for="cate of cates"
+          @click="() => $router.push(`/${$route.params.type}/${cate.slug}`)">
+          {{ cate.name }}
+        </div>
+      </div>
+      <fluent-progress-ring v-else></fluent-progress-ring>
+    </div>
+    <table-of-contents hidden="true"></table-of-contents>
+  </div>
+</template>
+
+<template id="archives-view-template">
+  <div>
+    <page-title :title="title" :subtitle="subtitle"></page-title>
+    <div v-if="$route.params.year">
+      <div class="stack-vertical" style="row-gap: 8px;" v-if="posts.length">
+        <post-card v-for="post of posts" :post="post"></post-card>
+      </div>
+    </div>
+    <div v-else>
+      <fluent-tree-view v-if="archives.length" ref="tree">
+        <fluent-tree-item v-for="year of archives" :data-year="year.year">
+          {{ year.year }} 年
+          <fluent-tree-item v-for="month of year.data" :data-year="year.year" :data-month="month.month">
+            {{ month.month }} 月
+          </fluent-tree-item>
+        </fluent-tree-item>
+      </fluent-tree-view>
+      <fluent-progress-ring v-else></fluent-progress-ring>
+    </div>
+    <table-of-contents hidden="true"></table-of-contents>
+  </div>
+</template>
+
+<template id="search-view-template">
+  <div>
+    <page-title title="搜索"></page-title>
+    <fluent-text-field v-model="searchText" style="width: 100%;">
+      <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/search_16_regular.svg"
+        slot="end"></svg-host>
+    </fluent-text-field>
+    <div v-if="resultItems.length" class="stack-vertical search-result-container" style="row-gap: 8px;" ref="container">
+      找到 {{ resultItems.length }} 个搜索结果
+      <div class="clickable-card" v-for="result of resultItems" v-html="result.item"></div>
+    </div>
+    <table-of-contents hidden="true"></table-of-contents>
+  </div>
+</template>
+
+<template id="pages-view-template">
+  <div>
+    <page-title :title="title" :subtitle="subtitle"></page-title>
+    <div v-if="$route.params.path">
+      <post-detail-card v-if="page" :post="page" ref="content"></post-detail-card>
+      <fluent-progress-ring v-else></fluent-progress-ring>
+      <table-of-contents ref="toc"></table-of-contents>
+    </div>
+    <div v-else>
+      <div v-if="pages.length" class="stack-vertical" style="row-gap: 8px;">
+        <div class="clickable-card" v-for="page of pages" :lang="page.language"
+          @click="() => $router.push(getUrl(page.url))">
+          {{ page.title }}
+          <span v-if="page.description" style="color: var(--neutral-foreground-hint);">
+            <br>{{ page.description }}
+          </span>
+        </div>
+      </div>
+      <fluent-progress-ring v-else></fluent-progress-ring>
+      <table-of-contents hidden="true"></table-of-contents>
+    </div>
   </div>
 </template>
 
@@ -989,7 +1006,7 @@ sitemap: false
       if (this.hidden && this.hidden !== "false") {
         this.updateSidebar(false);
       }
-    },
+    }
   }).mount("#vue-app");
 </script>
 
@@ -1054,7 +1071,7 @@ sitemap: false
   .clickable-card:active {
     background: var(--neutral-fill-input-active);
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-active);
-    box-shadow: var(--elevation-shadow-card-pressed);
+    box-shadow: var(--elevation-shadow-card-active);
   }
 
   .post-card img.emoji,
@@ -1071,5 +1088,18 @@ sitemap: false
     line-height: 1;
     margin: auto auto 15px;
     text-align: center;
+  }
+
+  .drill-enter-active {
+    transition: opacity 0.15s cubic-bezier(0.1, 0.9, 0.2, 1);
+  }
+
+  .drill-leave-active {
+    transition: opacity 0.075s cubic-bezier(0.7, 0, 1, 0.5);
+  }
+
+  .drill-enter-from,
+  .drill-leave-to {
+    opacity: 0;
   }
 </style>
