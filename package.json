@@ -54,6 +54,7 @@
     "hexo-generator-searchdb": "^1.0.0",
     "hexo-generator-sitemap": "^3.0.0",
     "hexo-generator-tag": "^2.0.0",
+    "hexo-generator-wayback": "^0.0.3",
     "hexo-indexnow": "^1.0.0",
     "hexo-next-fallback": "github:wherewhere/hexo-next-fallback",
     "hexo-related-posts": "github:wherewhere/hexo-related-posts#hexo-compatible",
