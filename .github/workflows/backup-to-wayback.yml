@@ -16,4 +16,4 @@ jobs:
       - name: Backup Blogs
         run: npx hexo-generator-wayback $wayback
         env:
-          wayback: https://wherewhere.github.io/wayback.csv.
+          wayback: https://wherewhere.github.io/wayback.csv
