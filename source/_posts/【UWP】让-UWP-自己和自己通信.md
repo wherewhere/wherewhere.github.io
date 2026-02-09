@@ -570,7 +570,7 @@ process.BeginErrorReadLine();
 
 具体实现可以查看：[SelfCOMServer/SelfCOMServer/Common/RemoteProcess.cs at main · wherewhere/SelfCOMServer](https://github.com/wherewhere/SelfCOMServer/blob/main/SelfCOMServer/Common/RemoteProcess.cs)
 
-![Snipaste_2025-03-15_15-58-42](https://github.com/user-attachments/assets/e7c49bcf-4535-4b25-abdd-bbfb07d454d1)
+![Snipaste_2025-03-15_15-58-42](https://images.weserv.nl/?url=https://img2024.cnblogs.com/blog/2662465/202503/2662465-20250315155931278-502546883.png)
 
 最后附上示例应用：[https://github.com/wherewhere/SelfCOMServer](https://github.com/wherewhere/SelfCOMServer)
 
