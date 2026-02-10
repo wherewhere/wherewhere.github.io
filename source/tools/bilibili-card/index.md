@@ -465,6 +465,8 @@ sitemap: false
           case "fluent":
           case "fluentui":
             return `${baseUrl}.fluent.css`;
+          case "windose":
+            return `${baseUrl}.windose.css`;
           case "-1":
           case "none":
             return '';
@@ -553,8 +555,8 @@ sitemap: false
   }).component("value-change-host", {
     template: "#empty-slot-template",
     props: {
-      valueName: String,
       eventName: String,
+      valueName: String,
       modelValue: undefined
     },
     emits: ["update:modelValue"],
@@ -591,7 +593,7 @@ sitemap: false
       }
     },
     methods: {
-      registerEvent(valueName) {
+      registerEvent(eventName, valueName) {
         const $el = this.$el;
         if ($el instanceof HTMLElement) {
           const element = $el.children[0];
@@ -603,7 +605,7 @@ sitemap: false
             else {
               element[valueName] = modelValue;
             }
-            element.addEventListener(this.eventName, this.onValueChanged);
+            element.addEventListener(eventName, this.onValueChanged);
           }
         }
       },
@@ -615,9 +617,9 @@ sitemap: false
       }
     },
     mounted() {
-      const valueName = this.valueName;
-      if (valueName && this.eventName) {
-        this.registerEvent(valueName);
+      const { eventName, valueName } = this;
+      if (valueName && eventName) {
+        this.registerEvent(eventName, valueName);
       }
     }
   }).component("svg-host", {
@@ -684,7 +686,13 @@ sitemap: false
 </script>
 
 <style>
-  @import 'https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css';
+  @import "https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css";
+
+  @font-face {
+    font-family: "DinkieBitmap 9px";
+    src: local("DinkieBitmap 9px"), local("丁卯点阵体 9px"),
+      url("https://cdn.jsdelivr.net/gh/haldai/org-slides@master/style/fonts/DinkieBitmap-9px.woff2") format("woff2");
+  }
 
   #vue-app {
     --settings-card-padding: calc(var(--design-unit) * 4px);
@@ -727,8 +735,7 @@ sitemap: false
     line-height: inherit;
   }
 
-  #vue-app fluent-select::part(listbox),
-  #vue-app fluent-select .listbox {
+  #vue-app fluent-select::part(listbox) {
     max-height: calc(var(--base-height-multiplier) * 30px);
   }
 
@@ -835,11 +842,10 @@ sitemap: false
   .settings-expander fluent-accordion-item.expander:active {
     background: var(--neutral-fill-input-active);
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-active);
-    box-shadow: var(--elevation-shadow-card-pressed);
+    box-shadow: var(--elevation-shadow-card-active);
   }
 
-  .settings-expander fluent-accordion-item.expander::part(region),
-  .settings-expander fluent-accordion-item.expander .region {
+  .settings-expander fluent-accordion-item.expander::part(region) {
     border-bottom-left-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
     border-bottom-right-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
   }

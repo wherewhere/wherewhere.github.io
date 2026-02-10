@@ -370,14 +370,15 @@ sitemap: false
   }).component("value-change-host", {
     template: "#empty-slot-template",
     props: {
-      valueName: String,
       eventName: String,
+      valueName: String,
       modelValue: undefined
     },
     emits: ["update:modelValue"],
     watch: {
       eventName(newValue, oldValue) {
         if (newValue !== oldValue) {
+          const $el = this.$el;
           if ($el instanceof HTMLElement) {
             const element = $el.children[0];
             if (element instanceof HTMLElement) {
@@ -407,7 +408,7 @@ sitemap: false
       }
     },
     methods: {
-      registerEvent(valueName) {
+      registerEvent(eventName, valueName) {
         const $el = this.$el;
         if ($el instanceof HTMLElement) {
           const element = $el.children[0];
@@ -419,7 +420,7 @@ sitemap: false
             else {
               element[valueName] = modelValue;
             }
-            element.addEventListener(this.eventName, this.onValueChanged);
+            element.addEventListener(eventName, this.onValueChanged);
           }
         }
       },
@@ -431,9 +432,9 @@ sitemap: false
       }
     },
     mounted() {
-      const valueName = this.valueName;
-      if (valueName && this.eventName) {
-        this.registerEvent(valueName);
+      const { eventName, valueName } = this;
+      if (valueName && eventName) {
+        this.registerEvent(eventName, valueName);
       }
     }
   }).component("svg-host", {
@@ -489,11 +490,11 @@ sitemap: false
 </script>
 
 <style>
-  @import 'https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css';
+  @import "https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css";
 
   @font-face {
     font-family: TH-Times;
-    src: local('TH-Times'), url('https://fmnijk.github.io/font/TH-Times.ttf') format('truetype');
+    src: local("TH-Times"), url("https://fmnijk.github.io/font/TH-Times.ttf") format("truetype");
   }
 
   #vue-app {
