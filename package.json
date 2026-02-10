@@ -48,7 +48,7 @@
     "hexo-generator-apis": "^1.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
-    "hexo-generator-feed": "^3.0.0",
+    "hexo-generator-feed": "^4.0.0",
     "hexo-generator-index": "^4.0.0",
     "hexo-generator-robotstxt": "^0.2.0",
     "hexo-generator-searchdb": "^1.0.0",
