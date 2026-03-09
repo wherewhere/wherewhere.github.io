@@ -52,7 +52,7 @@ Window::Window()
 </details>
 <!--more-->
 <details open>
-<summary><a href="https://github.com/microsoft/microsoft-ui-xaml/blob/main/src/dxaml/xcp/dxaml/lib/Window_Partial.cpp#L80-L114" target="_blank" rel="noopener nofollow">Window_Partial.cpp#L80-L114</a></summary>
+<summary><a href="https://github.com/microsoft/microsoft-ui-xaml/blob/main/src/dxaml/xcp/components/runtimeEnabledFeatures/RuntimeFeatureData.cpp#L67" target="_blank" rel="noopener nofollow">RuntimeFeatureData.cpp#L67</a></summary>
 
 ```cpp
 { L"EnableUWPWindow", RuntimeEnabledFeature::EnableUWPWindow, false, 0, 0 }
