@@ -216,6 +216,7 @@ sitemap: false
         </template>
         <template #description>
           惩罚等级: {{ result.Penalty }} | 最高所需等级: {{ result.MaxExperience }}
+          <span v-if="result.IsTooExpensive" style="color: var(--accent-foreground-rest)">过于昂贵！</span>
         </template>
         <div class="setting-expander-content-grid" style="font-family: var(--font-monospace);">
           <pre class="unset">{{ readSteps(result.Steps) }}</pre>
@@ -367,7 +368,7 @@ sitemap: false
           const supportLanguageCodes =
             [
               ["en", "en-au", "en-ca", "en-gb", "en-ie", "en-in", "en-nz", "en-sg", "en-us", "en-za", "en-bz", "en-hk", "en-id", "en-jm", "en-kz", "en-mt", "en-my", "en-ph", "en-pk", "en-tt", "en-vn", "en-zw", "en-053", "en-021", "en-029", "en-011", "en-018", "en-014"],
-              ["zh-Hans", "zh-cn", "zh-hans-cn", "zh-sg", "zh-hans-sg"]
+              ["zh-hans", "zh-cn", "zh-hans-cn", "zh-sg", "zh-hans-sg"]
             ];
           const fallbackLanguage = "en-US";
           const languages = navigator.languages || [navigator.language || fallbackLanguage];
