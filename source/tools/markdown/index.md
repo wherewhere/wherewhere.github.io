@@ -131,6 +131,7 @@ sitemap: false
       "@codemirror/search": "https://cdn.jsdelivr.net/npm/@codemirror/search/dist/index.js",
       "@codemirror/state": "https://cdn.jsdelivr.net/npm/@codemirror/state/+esm",
       "@codemirror/view": "https://cdn.jsdelivr.net/npm/@codemirror/view/dist/index.js",
+      "codemirror-lang-msil": "https://cdn.jsdelivr.net/npm/codemirror-lang-msil/dist/index.js",
       "@fluentui/web-components": "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm",
       "@lezer/common": "https://cdn.jsdelivr.net/npm/@lezer/common/+esm",
       "@lezer/cpp": "https://cdn.jsdelivr.net/npm/@lezer/cpp/dist/index.js",
@@ -155,6 +156,7 @@ sitemap: false
       "codemirror": "https://cdn.jsdelivr.net/npm/codemirror/dist/index.js",
       "crelt": "https://cdn.jsdelivr.net/npm/crelt/+esm",
       "highlight.js": "https://cdn.jsdelivr.net/npm/highlight.js/+esm",
+      "highlight-msil": "https://wherewhere.github.io/wherlog/js/highlight-msil.js",
       "marked": "https://cdn.jsdelivr.net/npm/marked/+esm",
       "marked-highlight": "https://cdn.jsdelivr.net/npm/marked-highlight/+esm",
       "style-mod": "https://cdn.jsdelivr.net/npm/style-mod/+esm",
@@ -171,22 +173,42 @@ sitemap: false
 </div>
 
 <script type="module" data-pjax>
-  import { Marked } from "marked";
+  import { use, Renderer } from "marked";
   import { markedHighlight } from "marked-highlight";
   import { HighlightJS as hljs } from "highlight.js";
-  const marked = new Marked(
-    markedHighlight({
-      langPrefix: "hljs language-",
-      highlight(code, lang, info) {
-        const language = hljs.getLanguage(lang) ? lang : "plaintext";
-        return hljs.highlight(code, { language }).value;
+  import msil from "highlight-msil";
+  hljs.registerLanguage("msil", msil);
+  const marked = use(markedHighlight({
+    langPrefix: "hljs language-",
+    highlight(code, lang, info) {
+      const language = hljs.getLanguage(lang) ? lang : "plaintext";
+      return hljs.highlight(code, { language }).value;
+    }
+  }), {
+    renderer: {
+      link(token) {
+        const link = Renderer.prototype.link.call(this, token);
+        if (/^(?:[a-z][a-z\d+\-.]*:)?\/\//i.test(token.href)) {
+          const span = document.createElement("span");
+          span.innerHTML = link;
+          const anchor = span.firstElementChild;
+          anchor.setAttribute("target", "_blank");
+          anchor.setAttribute("rel", "noopener noreferrer");
+          return span.innerHTML;
+        }
+        return link;
+      },
+      image(token) {
+        const image = Renderer.prototype.image.call(this, token);
+        return `<a href="${token.href}">${image}</a>`;
       }
-    })
-  );
+    }
+  });
   import { basicSetup, EditorView } from "codemirror";
   import { Compartment } from "@codemirror/state";
   import { markdown } from "@codemirror/lang-markdown";
   import { languages } from "@codemirror/language-data";
+  import { LanguageDescription } from "@codemirror/language";
   import { vscodeDark } from "@uiw/codemirror-theme-vscode/dark";
   import { vscodeLight } from "@uiw/codemirror-theme-vscode/light";
   const themeSet = new Compartment();
@@ -198,7 +220,22 @@ sitemap: false
     extensions: [
       basicSetup,
       theme,
-      markdown({ codeLanguages: languages }),
+      markdown({
+        codeLanguages: languages.concat(LanguageDescription.of({
+          name: "IL",
+          alias: ["msil", "cil"],
+          extensions: ["il"],
+          load() {
+            return import("codemirror-lang-msil").then(m => m.msil({
+              tooltip: {
+                options: {
+                  hideOnChange: true
+                }
+              }
+            }));
+          }
+        }))
+      }),
       EditorView.updateListener.of(e => {
         if (e.docChanged) {
           perviewMarkdown();
@@ -227,7 +264,7 @@ sitemap: false
 </script>
 
 <style>
-  @import 'https://cdn.jsdelivr.net/npm/github-markdown-css';
+  @import "https://cdn.jsdelivr.net/npm/github-markdown-css";
 
   div.split-view {
     --base-height-multiplier: 8;
@@ -267,10 +304,17 @@ sitemap: false
     overflow: inherit;
   }
 
+  div.split-view #container .cm-editor .cm-line::selection,
+  div.split-view #container .cm-editor .cm-line ::selection,
+  div.split-view #container .cm-editor .cm-content::selection,
+  div.split-view #container .cm-editor .cm-content ::selection {
+    color: HighlightText;
+  }
+
   div.split-view #container .cm-editor .cm-scroller,
   div.split-view #container .cm-editor .cm-diagnostic,
   div.split-view #container .cm-editor .cm-tooltip-autocomplete>ul {
-    font-family: 'Cascadia Code NF', 'Cascadia Code PL', 'Cascadia Code', "Cascadia Next SC", "Cascadia Next TC", "Cascadia Next JP", Consolas, 'Courier New', monospace;
+    font-family: "Cascadia Code NF", "Cascadia Code PL", "Cascadia Code", "Cascadia Next SC", "Cascadia Next TC", "Cascadia Next JP", Consolas, "Courier New", "Liberation Mono", SFMono-Regular, Menlo, Monaco, monospace;
   }
 
   div.split-view .perview-card {
