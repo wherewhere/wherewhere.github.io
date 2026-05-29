@@ -662,11 +662,11 @@ sitemap: false
 </script>
 
 <style>
-  @import 'https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css';
+  @import "https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css";
 
   #vue-app {
-    --success: #0E700E;
-    --error: #BC2F32;
+    --success: #0F7B0F;
+    --error: #C42B1C;
     --settings-card-padding: calc(var(--design-unit) * 4px);
     font-family: var(--body-font);
     font-size: var(--type-ramp-base-font-size);
@@ -678,6 +678,8 @@ sitemap: false
 
   @media (prefers-color-scheme: dark) {
     #vue-app {
+      --success: #6CCB5F;
+      --error: #FF99A4;
       color-scheme: dark;
     }
   }
@@ -707,8 +709,7 @@ sitemap: false
     line-height: inherit;
   }
 
-  #vue-app fluent-select::part(listbox),
-  #vue-app fluent-select .listbox {
+  #vue-app fluent-select::part(listbox) {
     max-height: calc(var(--base-height-multiplier) * 30px);
   }
 
@@ -814,11 +815,10 @@ sitemap: false
   .settings-expander fluent-accordion-item.expander:active {
     background: var(--neutral-fill-input-active);
     border: calc(var(--stroke-width) * 1px) solid var(--neutral-stroke-layer-active);
-    box-shadow: var(--elevation-shadow-card-pressed);
+    box-shadow: var(--elevation-shadow-card-active);
   }
 
-  .settings-expander fluent-accordion-item.expander::part(region),
-  .settings-expander fluent-accordion-item.expander .region {
+  .settings-expander fluent-accordion-item.expander::part(region) {
     border-bottom-left-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
     border-bottom-right-radius: calc((var(--control-corner-radius) - var(--stroke-width)) * 1px);
   }

@@ -867,8 +867,8 @@ sitemap: false
   @import "https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css";
 
   #vue-app {
-    --success: #0E700E;
-    --error: #BC2F32;
+    --success: #0F7B0F;
+    --error: #C42B1C;
     --settings-card-padding: calc(var(--design-unit) * 4px);
     font-family: var(--body-font);
     font-size: var(--type-ramp-base-font-size);
@@ -880,6 +880,8 @@ sitemap: false
 
   @media (prefers-color-scheme: dark) {
     #vue-app {
+      --success: #6CCB5F;
+      --error: #FF99A4;
       color-scheme: dark;
     }
   }
