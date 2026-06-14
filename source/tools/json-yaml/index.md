@@ -121,7 +121,7 @@ sitemap: false
 </script>
 
 <style>
-  @import 'https://cdn.jsdelivr.net/npm/github-markdown-css';
+  @import "https://cdn.jsdelivr.net/npm/github-markdown-css";
 
   div.split-view {
     --base-height-multiplier: 8;
@@ -155,20 +155,23 @@ sitemap: false
     overflow: auto;
   }
 
-  div.split-view #json .cm-editor,
-  div.split-view #yaml .cm-editor {
+  div.split-view .cm-editor {
     flex: 1;
     outline: none;
     overflow: inherit;
   }
 
-  div.split-view #json .cm-editor .cm-scroller,
-  div.split-view #yaml .cm-editor .cm-scroller,
-  div.split-view #json .cm-editor .cm-diagnostic,
-  div.split-view #yaml .cm-editor .cm-diagnostic,
-  div.split-view #json .cm-editor .cm-tooltip-autocomplete>ul,
-  div.split-view #yaml .cm-editor .cm-tooltip-autocomplete>ul {
-    font-family: 'Cascadia Code NF', 'Cascadia Code PL', 'Cascadia Code', "Cascadia Next SC", "Cascadia Next TC", "Cascadia Next JP", Consolas, 'Courier New', monospace;
+  div.split-view .cm-editor .cm-line::selection,
+  div.split-view .cm-editor .cm-line ::selection,
+  div.split-view .cm-editor .cm-content::selection,
+  div.split-view .cm-editor .cm-content ::selection {
+    color: HighlightText;
+  }
+
+  div.split-view .cm-editor .cm-scroller,
+  div.split-view .cm-editor .cm-diagnostic,
+  div.split-view .cm-editor .cm-tooltip-autocomplete>ul {
+    font-family: "Cascadia Code NF", "Cascadia Code PL", "Cascadia Code", "Cascadia Next SC", "Cascadia Next TC", "Cascadia Next JP", Consolas, "Courier New", "Liberation Mono", SFMono-Regular, Menlo, Monaco, monospace;
   }
 
   @media (max-width: 767px) {
