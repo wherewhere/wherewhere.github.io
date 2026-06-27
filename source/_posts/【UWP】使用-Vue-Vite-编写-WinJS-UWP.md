@@ -175,7 +175,7 @@ const results = await powershell("Add-AppxPackage -Path appx/msix_layout/AppxMan
 console.log(results);
 ```
 
- 最后在 `package.json` 中添加打包和部署指令：
+最后在 `package.json` 中添加打包和部署指令：
 
 ```json
 {
