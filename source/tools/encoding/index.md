@@ -318,7 +318,7 @@ sitemap: false
 </script>
 
 <style>
-  @import 'https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css';
+  @import "https://cdn.jsdelivr.net/gh/microsoft/fluentui-blazor@dev/src/Core/Components/Label/FluentInputLabel.razor.css";
 
   #vue-app {
     --settings-card-padding: calc(var(--design-unit) * 4px);
@@ -355,8 +355,7 @@ sitemap: false
     line-height: inherit;
   }
 
-  #vue-app fluent-select::part(listbox),
-  #vue-app fluent-select .listbox {
+  #vue-app fluent-select::part(listbox) {
     max-height: calc(var(--base-height-multiplier) * 30px);
   }
 

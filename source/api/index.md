@@ -65,7 +65,7 @@ description: 基于 <a href="https://github.com/swagger-api/swagger-ui" target="
 <load-swagger-ui class="load-swagger-ui"></load-swagger-ui>
 
 <style>
-  @import 'https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui.css';
+  @import "https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui.css";
 
   .post-description a {
     color: #555;
