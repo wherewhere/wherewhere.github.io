@@ -368,21 +368,18 @@ description: 各种各样的实用小工具
           }
         }
         if (typeof solt === "undefined") {
-          setDisplay(false);
+          return setDisplay(false);
         }
         else if (typeof solt === "function") {
-          let value = solt();
+          const value = solt();
           if (value instanceof Array) {
             const result = value.some(x => {
               if (typeof x === "object") {
                 if (typeof x.type === "symbol") {
-                  x = x.children;
-                  if (typeof x === "string" || x instanceof Array) {
-                    return !!x.length;
-                  }
-                  else {
-                    return !!x;
-                  }
+                  const children = x.children;
+                  return children === "v-if" ? false
+                    : typeof children === "string" || children instanceof Array ? !!children.length
+                      : !!children;
                 }
                 else {
                   return true;
@@ -392,12 +389,10 @@ description: 各种各样的实用小工具
                 return false;
               }
             });
-            setDisplay(result);
+            return setDisplay(result);
           }
         }
-        else if (solt !== binding.oldValue) {
-          setDisplay(false);
-        }
+        setDisplay(false);
       }
     }
   ).directive("fill-color",
