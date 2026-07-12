@@ -21,7 +21,7 @@ sitemap: false
     neutralLayerFloating,
     baseLayerLuminance,
     StandardLuminance
-  } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components@v2/+esm";
   provideFluentDesignSystem()
     .register(
       fluentAccordion(),
@@ -231,7 +231,7 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp, computed, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
-  import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components@v2/+esm";
   import { BaseEx } from "https://cdn.jsdelivr.net/npm/base-ex/+esm";
   createApp({
     data() {

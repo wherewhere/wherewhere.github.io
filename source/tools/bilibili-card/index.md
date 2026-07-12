@@ -25,7 +25,7 @@ sitemap: false
     neutralLayerFloating,
     baseLayerLuminance,
     StandardLuminance
-  } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components@v2/+esm";
   provideFluentDesignSystem()
     .register(
       fluentAccordion(),
@@ -281,7 +281,7 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp, computed, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
-  import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  import { fillColor, neutralFillInputRest, neutralFillLayerAltRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components@v2/+esm";
   import { encodeHTML } from "https://cdn.jsdelivr.net/npm/entities/+esm";
   import { HighlightJS as hljs } from "https://cdn.jsdelivr.net/npm/highlight.js/+esm";
   import message from "https://cdn.jsdelivr.net/npm/hexo-tag-bilibili-card/components/bilibili-card-message/bilibili-card-message.esm.js";

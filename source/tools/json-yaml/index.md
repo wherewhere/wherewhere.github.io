@@ -19,7 +19,7 @@ sitemap: false
       "@codemirror/search": "https://cdn.jsdelivr.net/npm/@codemirror/search/dist/index.js",
       "@codemirror/state": "https://cdn.jsdelivr.net/npm/@codemirror/state/+esm",
       "@codemirror/view": "https://cdn.jsdelivr.net/npm/@codemirror/view/dist/index.js",
-      "@fluentui/web-components": "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm",
+      "@fluentui/web-components": "https://cdn.jsdelivr.net/npm/@fluentui/web-components@v2/+esm",
       "@lezer/common": "https://cdn.jsdelivr.net/npm/@lezer/common/+esm",
       "@lezer/highlight": "https://cdn.jsdelivr.net/npm/@lezer/highlight/dist/index.js",
       "@lezer/json": "https://cdn.jsdelivr.net/npm/@lezer/json/dist/index.js",

@@ -132,7 +132,7 @@ sitemap: false
       "@codemirror/state": "https://cdn.jsdelivr.net/npm/@codemirror/state/+esm",
       "@codemirror/view": "https://cdn.jsdelivr.net/npm/@codemirror/view/dist/index.js",
       "codemirror-lang-msil": "https://cdn.jsdelivr.net/npm/codemirror-lang-msil/dist/index.js",
-      "@fluentui/web-components": "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm",
+      "@fluentui/web-components": "https://cdn.jsdelivr.net/npm/@fluentui/web-components@v2/+esm",
       "@lezer/common": "https://cdn.jsdelivr.net/npm/@lezer/common/+esm",
       "@lezer/cpp": "https://cdn.jsdelivr.net/npm/@lezer/cpp/dist/index.js",
       "@lezer/css": "https://cdn.jsdelivr.net/npm/@lezer/css/dist/index.js",

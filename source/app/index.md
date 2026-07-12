@@ -6,7 +6,7 @@ sitemap: false
 <script type="importmap" data-pjax>
   {
     "imports": {
-      "@fluentui/web-components": "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm",
+      "@fluentui/web-components": "https://cdn.jsdelivr.net/npm/@fluentui/web-components@v2/+esm",
       "@vue/devtools-api": "https://cdn.jsdelivr.net/npm/@vue/devtools-api/+esm",
       "marked": "https://cdn.jsdelivr.net/npm/marked/+esm",
       "marked-highlight": "https://cdn.jsdelivr.net/npm/marked-highlight/+esm",

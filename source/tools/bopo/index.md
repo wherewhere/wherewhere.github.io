@@ -16,7 +16,7 @@ sitemap: false
     neutralLayerFloating,
     baseLayerLuminance,
     StandardLuminance
-  } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components@v2/+esm";
   provideFluentDesignSystem()
     .register(
       fluentButton(),
@@ -195,7 +195,7 @@ sitemap: false
 
 <script type="module" data-pjax>
   import { createApp, computed, toRaw } from "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js";
-  import { fillColor, neutralFillInputRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components/+esm";
+  import { fillColor, neutralFillInputRest } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components@v2/+esm";
   createApp({
     data() {
       return {
