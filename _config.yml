@@ -59,6 +59,7 @@ marked:
   prependRoot: true
   postAsset: true
   smartypants: false
+  lazyload: true
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
