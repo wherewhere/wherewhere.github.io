@@ -82,6 +82,17 @@ description: 各种各样的实用小工具
           target="_blank">Marked.JS</fluent-anchor> 解析并预览 Markdown 文本。
       </template>
     </settings-button>
+    <settings-button href="clipboard">
+      <template #icon>
+        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/clipboard_20_regular.svg"></svg-host>
+      </template>
+      <template #header>
+        <h3 id="render-clipboard" class="unset">剪贴板</h3>
+      </template>
+      <template #description>
+        获取并渲染剪贴板中的内容。
+      </template>
+    </settings-button>
   </settings-group>
   <settings-group>
     <template #header>
@@ -643,7 +654,23 @@ description: 各种各样的实用小工具
     text-decoration: inherit;
   }
 
-  @media (max-width: 600px) {
+  @container (max-width: 476px) {
+    .settings-presenter {
+      flex-flow: column;
+      justify-content: normal;
+      align-items: normal;
+    }
+
+    .settings-presenter div.header-panel {
+      margin: 0;
+    }
+
+    .settings-presenter div.content-presenter {
+      margin: var(--settings-card-vertical-header-content-spacing);
+    }
+  }
+
+  @media (max-width: 476px) {
     .settings-presenter {
       flex-flow: column;
       justify-content: normal;
@@ -756,5 +783,6 @@ description: 各种各样的实用小工具
     display: flex;
     flex-direction: column;
     row-gap: 0.3rem;
+    container-type: inline-size;
   }
 </style>

@@ -1,6 +1,6 @@
 ---
 title: 剪贴板
-description: 获取剪贴板中的内容
+description: 获取并渲染剪贴板中的内容
 sitemap: false
 ---
 <script type="module" data-pjax>
@@ -39,7 +39,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/clipboard_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h3 id="encode-type" class="unset">获取剪贴板</h3>
+        <h3 id="clipboard-paste" class="unset">获取剪贴板</h3>
       </template>
       <template #description>
         点击粘贴按钮或使用快捷键 <kbd>ctrl</kbd> + <kbd>v</kbd> 粘贴。
@@ -51,7 +51,7 @@ sitemap: false
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/info_20_regular.svg"></svg-host>
       </template>
       <template #header>
-        <h3 id="encode-type" class="unset">{{ info.title }}</h3>
+        <h3 id="clipboard-info" class="unset">{{ info.title }}</h3>
       </template>
       <template #description>
         <span v-if="info.error">{{ info.error }}</span>
