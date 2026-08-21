@@ -6,6 +6,7 @@ sitemap: false
 <script type="module" data-pjax>
   import {
     provideFluentDesignSystem,
+    fluentAnchor,
     fluentButton,
     fluentTextArea,
     fillColor,
@@ -17,6 +18,7 @@ sitemap: false
   } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components@v2/+esm";
   provideFluentDesignSystem()
     .register(
+      fluentAnchor(),
       fluentButton(),
       fluentTextArea()
     );
@@ -42,7 +44,9 @@ sitemap: false
         <h3 id="clipboard-paste" class="unset">获取剪贴板</h3>
       </template>
       <template #description>
-        点击粘贴按钮或使用快捷键 <kbd>ctrl</kbd> + <kbd>v</kbd> 粘贴。
+        点击<fluent-anchor href="javascript:void(0)" @click="pasteAsync"
+          appearance="hypertext">粘贴</fluent-anchor>按钮或使用快捷键
+        <kbd>ctrl</kbd> + <kbd>v</kbd> 粘贴。
       </template>
       <fluent-button @click="pasteAsync">粘贴</fluent-button>
     </settings-card>
@@ -63,6 +67,9 @@ sitemap: false
           </span>
         </span>
       </template>
+      <fluent-anchor v-if="info.file" :href="getUrl(info.file)" target="_blank"
+        :download="info.file.name">下载</fluent-anchor>
+      <fluent-button v-if="canShare(info.file)" @click="share(info.file)">分享</fluent-button>
     </settings-card>
     <div class="split-view">
       <div class="split-content">
@@ -150,6 +157,21 @@ sitemap: false
       }
     },
     methods: {
+      canShare(file) {
+        return navigator.canShare && file instanceof File && navigator.canShare({ files: [file] });
+      },
+      share(file) {
+        navigator.share({
+          title: "剪贴板分享",
+          text: file.name,
+          files: [file]
+        });
+      },
+      getUrl(file) {
+        if (file instanceof Blob) {
+          return URL.createObjectURL(file);
+        }
+      },
       async pasteAsync() {
         try {
           const result = await navigator.permissions.query({ name: "clipboard-read" });
@@ -169,19 +191,31 @@ sitemap: false
             };
             let type = types.find(x => x.startsWith("image/"));
             if (type) {
-              const blob = await item.getType(type);
+              const blob = this.info.file = await item.getType(type);
               const text = await blob.text();
               this.original = text;
               this.rendered = `<img src="${URL.createObjectURL(blob)}" loading="lazy" />`;
             }
+            else if (type = types.find(x => x.startsWith("audio/"))) {
+              const blob = this.info.file = await item.getType(type);
+              const text = await blob.text();
+              this.original = text;
+              this.rendered = `<audio src="${URL.createObjectURL(blob)}" loading="lazy" controls></audio>`;
+            }
+            else if (type = types.find(x => x.startsWith("video/"))) {
+              const blob = this.info.file = await item.getType(type);
+              const text = await blob.text();
+              this.original = text;
+              this.rendered = `<video src="${URL.createObjectURL(blob)}" loading="lazy" controls></video>`;
+            }
             else if (types.includes("text/html")) {
-              const blob = await item.getType("text/html");
+              const blob = this.info.file = await item.getType("text/html");
               const text = await blob.text();
               this.original = text;
               this.rendered = text;
             }
             else if (types.includes("text/plain")) {
-              const blob = await item.getType("text/plain");
+              const blob = this.info.file = await item.getType("text/plain");
               const text = await blob.text();
               this.original = text;
               const pre = document.createElement("pre");
@@ -213,7 +247,7 @@ sitemap: false
               this.info = {
                 title: "粘贴信息",
                 kind: item.kind,
-                types: [item.type]
+                types: item.type ? [item.type] : []
               };
               switch (item.kind) {
                 case "string":
@@ -225,9 +259,9 @@ sitemap: false
                   });
                   break;
                 case "file":
-                  const file = item.getAsFile();
+                  const file = this.info.file = item.getAsFile();
                   if (file) {
-                    this.original = file.name;
+                    const name = this.original = file.name;
                     if (file.type.startsWith("image/")) {
                       this.rendered = `<img src="${URL.createObjectURL(file)}" loading="lazy" />`;
                     }
@@ -241,13 +275,46 @@ sitemap: false
                       if (file.type === "text/html") {
                         this.rendered = `<iframe src="${URL.createObjectURL(file)}" loading="lazy"></iframe>`;
                       }
+                      else if (file.type === "text/markdown") {
+                        const text = await file.text();
+                        const { use } = await import("https://cdn.jsdelivr.net/npm/marked/+esm");
+                        const { markedHighlight } = await import("https://cdn.jsdelivr.net/npm/marked-highlight/+esm");
+                        const { HighlightJS: hljs } = await import("https://cdn.jsdelivr.net/npm/highlight.js/+esm");
+                        const marked = use(markedHighlight({
+                          langPrefix: "hljs language-",
+                          highlight(code, lang, info) {
+                            const language = hljs.getLanguage(lang) ? lang : "plaintext";
+                            return hljs.highlight(code, { language }).value;
+                          }
+                        }), {
+                          renderer: {
+                            link(token) {
+                              const link = Object.getPrototypeOf(this).link.call(this, token);
+                              if (/^(?:[a-z][a-z\d+\-.]*:)?\/\//i.test(token.href)) {
+                                const span = document.createElement("span");
+                                span.innerHTML = link;
+                                const anchor = span.firstElementChild;
+                                anchor.setAttribute("target", "_blank");
+                                anchor.setAttribute("rel", "noopener noreferrer");
+                                return span.innerHTML;
+                              }
+                              return link;
+                            },
+                            image(token) {
+                              const image = Object.getPrototypeOf(this).image.call(this, token);
+                              return `${image.slice(0, image.length - 1)} loading="lazy">`;
+                            }
+                          }
+                        });
+                        this.rendered = `<div class="markdown-body">${marked.parse(text)}</div>`;
+                      }
                       else {
                         const type = file.type;
                         const lang = type.split('/').pop();
                         if (lang) {
                           const text = await file.text();
-                          const { HighlightJS } = await import("https://cdn.jsdelivr.net/npm/highlight.js/+esm");
-                          const highlighted = HighlightJS.highlight(text, { language: lang }).value;
+                          const { HighlightJS: hljs } = await import("https://cdn.jsdelivr.net/npm/highlight.js/+esm");
+                          const highlighted = hljs.highlight(text, { language: lang }).value;
                           this.rendered = `<pre class="highlight ${lang} language-${lang}"><code class="hljs language-${lang}">` + highlighted + "</code></pre>";
                         }
                         else {
@@ -259,7 +326,7 @@ sitemap: false
                       }
                     }
                     else {
-                      this.rendered = `<a href="${URL.createObjectURL(file)}" download="${file.name}">${file.name}</a>`;
+                      this.rendered = `<a href="${URL.createObjectURL(file)}" download="${name}">${name}</a>`;
                     }
                   }
                   break;
@@ -495,6 +562,14 @@ sitemap: false
     margin-bottom: 0;
   }
 
+  #vue-app .markdown-body embed,
+  #vue-app .markdown-body iframe,
+  #vue-app .markdown-body img,
+  #vue-app .markdown-body video {
+    display: inline;
+    margin-bottom: 0;
+  }
+
   @media (max-width: 767px) {
     #vue-app div.split-view {
       flex-direction: column;
@@ -562,6 +637,8 @@ sitemap: false
 
   .settings-presenter div.content-presenter {
     display: grid;
+    grid-auto-flow: column;
+    gap: calc(var(--design-unit) * 1px);
   }
 
   @container (max-width: 476px) {
@@ -577,6 +654,7 @@ sitemap: false
 
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
     }
   }
 
@@ -593,6 +671,7 @@ sitemap: false
 
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
     }
   }
 
