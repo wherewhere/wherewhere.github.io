@@ -44,8 +44,7 @@ sitemap: false
         <h3 id="clipboard-paste" class="unset">获取剪贴板</h3>
       </template>
       <template #description>
-        点击<fluent-anchor href="javascript:void(0)" @click="pasteAsync"
-          appearance="hypertext">粘贴</fluent-anchor>按钮或使用快捷键
+        点击<fluent-anchor href="javascript:void(0)" @click="pasteAsync" appearance="hypertext">粘贴</fluent-anchor>按钮或使用快捷键
         <kbd>ctrl</kbd> + <kbd>v</kbd> 粘贴。
       </template>
       <fluent-button @click="pasteAsync">粘贴</fluent-button>
@@ -60,26 +59,41 @@ sitemap: false
       <template #description>
         <span v-if="info.error">{{ info.error }}</span>
         <span v-else>
-          <span v-if="info.kind">类别: <code>{{ info.kind }}</code>&nbsp;</span>
+          <span v-if="info.kind">
+            <span v-if="info.kind === 'file'">文件名: <code>{{ file.name }}</code></span>
+            <span v-else>类型: <code>{{ info.kind }}</code></span>&nbsp;
+          </span>
           <span v-if="info.types?.length">
             MIME 类型:
             <span v-for="type in info.types" :key="type"><code>{{ type }}</code>&nbsp;</span>
           </span>
         </span>
       </template>
-      <fluent-anchor v-if="info.file" :href="getUrl(info.file)" target="_blank"
-        :download="info.file.name">下载</fluent-anchor>
-      <fluent-button v-if="canShare(info.file)" @click="share(info.file)">分享</fluent-button>
+      <fluent-anchor v-if="file" :href="file.url" target="_blank" :download="file.name">下载</fluent-anchor>
+      <fluent-button v-if="canShare" @click="share">分享</fluent-button>
     </settings-card>
     <div class="split-view">
       <div class="split-content">
         <input-label v-fill-color="fillColor" label="原文" style="flex: 1;">
-          <fluent-text-area v-model="original" resize="vertical" style="flex: 1;" readonly></fluent-text-area>
+          <fluent-text-area v-model="original" resize="vertical" v-attribute:wrap="'off'" style="flex: 1;"
+            readonly></fluent-text-area>
         </input-label>
       </div>
       <div class="split-content" style="overflow-x: auto;">
         <input-label v-fill-color="fillColor" label="渲染" style="flex: 1; overflow-x: inherit;">
-          <div class="rendered" v-html="rendered"></div>
+          <div class="rendered">
+            <pre v-if="rendered.text">{{ rendered.text }}</pre>
+            <component v-else-if="rendered.component" :is="rendered.component" :src="file.url" loading="lazy" controls>
+            </component>
+            <div v-else-if="rendered.marked" class="markdown-body" v-html="rendered.marked"></div>
+            <pre v-else-if="rendered.lang" :class="['highlight', rendered.lang, `language-${rendered.lang}`]">
+              <code :class="['hljs', `language-${rendered.lang}`]" v-html="rendered.highlighted"></code>
+            </pre>
+            <fluent-anchor v-else-if="file" appearance="hypertext" :href="file.url" target="_blank"
+              appearance="hypertext" :download="file.name">
+              {{ file.name }}
+            </fluent-anchor>
+          </div>
         </input-label>
       </div>
     </div>
@@ -153,24 +167,122 @@ sitemap: false
         original: '',
         rendered: '',
         info: null,
+        _file: null,
         fillColor: neutralFillInputRest
       }
     },
-    methods: {
-      canShare(file) {
-        return navigator.canShare && file instanceof File && navigator.canShare({ files: [file] });
+    computed: {
+      file: {
+        get() {
+          return this._file;
+        },
+        async set(file) {
+          if (!file) {
+            this._file = null;
+            this.original = '';
+            this.rendered = {};
+          }
+          else if (typeof file === "string") {
+            this._file = null;
+            this.original = file;
+            this.rendered = { text: file };
+          }
+          else if (file instanceof Blob) {
+            const url = file.url = URL.createObjectURL(file);
+            const name = file.name;
+            this._file = file;
+            this.original = name || url;
+            if (file.type.startsWith("image/")) {
+              this.rendered = { component: "img" };
+            }
+            else if (file.type.startsWith("audio/")) {
+              this.rendered = { component: "audio" };
+            }
+            else if (file.type.startsWith("video/")) {
+              this.rendered = { component: "video" };
+            }
+            else if (file.type.startsWith("text/") || file.type === "application/json" || file.type === "application/xml") {
+              const text = this.original = await file.text();
+              if (file.type === "text/html") {
+                this.rendered = { component: "iframe" };
+              }
+              else if (file.type === "text/markdown") {
+                this.rendered = { marked: await this.marked(text) };
+              }
+              else {
+                const type = file.type;
+                const lang = type.split('/').pop();
+                if (lang && lang !== "plain") {
+                  this.rendered = { lang, highlighted: await this.highlight(text, lang) };
+                }
+                else {
+                  this.rendered = { text };
+                }
+              }
+            }
+            else {
+              this.rendered = {};
+            }
+          }
+        }
       },
-      share(file) {
+      canShare() {
+        const file = this.file;
+        return navigator.canShare && file instanceof File && navigator.canShare({ files: [file] });
+      }
+    },
+    watch: {
+      _file(_, oldValue) {
+        if (oldValue instanceof Blob) {
+          URL.revokeObjectURL(oldValue.url);
+        }
+      }
+    },
+    methods: {
+      share() {
+        const file = this.file;
         navigator.share({
           title: "剪贴板分享",
           text: file.name,
           files: [file]
         });
       },
-      getUrl(file) {
-        if (file instanceof Blob) {
-          return URL.createObjectURL(file);
-        }
+      async marked(src) {
+        const { use } = await import("https://cdn.jsdelivr.net/npm/marked/+esm");
+        const { markedHighlight } = await import("https://cdn.jsdelivr.net/npm/marked-highlight/+esm");
+        const marked = use(markedHighlight({
+          async: true,
+          langPrefix: "hljs language-",
+          highlight: (code, lang, info) => {
+            return this.highlight(code, lang);
+          }
+        }), {
+          renderer: {
+            link(token) {
+              const link = Object.getPrototypeOf(this).link.call(this, token);
+              if (/^(?:[a-z][a-z\d+\-.]*:)?\/\//i.test(token.href)) {
+                const span = document.createElement("span");
+                span.innerHTML = link;
+                const anchor = span.firstElementChild;
+                anchor.setAttribute("target", "_blank");
+                anchor.setAttribute("rel", "noopener noreferrer");
+                return span.innerHTML;
+              }
+              return link;
+            },
+            image(token) {
+              const image = Object.getPrototypeOf(this).image.call(this, token);
+              return `${image.slice(0, image.length - 1)} loading = "lazy" >`;
+            }
+          }
+        });
+        return marked.parse(src, { async: true });
+      },
+      async highlight(code, lang) {
+        const { HighlightJS: hljs } = await import("https://cdn.jsdelivr.net/npm/highlight.js/+esm");
+        const language = hljs.getLanguage(lang) ? lang : "plaintext";
+        const highlighted = hljs.highlight(code, { language }).value;
+        return highlighted;
       },
       async pasteAsync() {
         try {
@@ -189,39 +301,10 @@ sitemap: false
               title: "剪贴板信息",
               types: types
             };
-            let type = types.find(x => x.startsWith("image/"));
-            if (type) {
-              const blob = this.info.file = await item.getType(type);
-              const text = await blob.text();
-              this.original = text;
-              this.rendered = `<img src="${URL.createObjectURL(blob)}" loading="lazy" />`;
-            }
-            else if (type = types.find(x => x.startsWith("audio/"))) {
-              const blob = this.info.file = await item.getType(type);
-              const text = await blob.text();
-              this.original = text;
-              this.rendered = `<audio src="${URL.createObjectURL(blob)}" loading="lazy" controls></audio>`;
-            }
-            else if (type = types.find(x => x.startsWith("video/"))) {
-              const blob = this.info.file = await item.getType(type);
-              const text = await blob.text();
-              this.original = text;
-              this.rendered = `<video src="${URL.createObjectURL(blob)}" loading="lazy" controls></video>`;
-            }
-            else if (types.includes("text/html")) {
-              const blob = this.info.file = await item.getType("text/html");
-              const text = await blob.text();
-              this.original = text;
-              this.rendered = text;
-            }
-            else if (types.includes("text/plain")) {
-              const blob = this.info.file = await item.getType("text/plain");
-              const text = await blob.text();
-              this.original = text;
-              const pre = document.createElement("pre");
-              pre.innerText = text;
-              this.rendered = pre.outerHTML;
-            }
+            let type = types.find(x => x !== "text/plain");
+            this.file = type ? await item.getType(type) :
+              types.includes("text/plain") ? await item.getType("text/plain")
+                : await navigator.clipboard.readText();
           }
           else {
             this.info = {
@@ -251,84 +334,10 @@ sitemap: false
               };
               switch (item.kind) {
                 case "string":
-                  item.getAsString(text => {
-                    this.original = text;
-                    const pre = document.createElement("pre");
-                    pre.innerText = text;
-                    this.rendered = pre.outerHTML;
-                  });
+                  item.getAsString(text => this.file = text);
                   break;
                 case "file":
-                  const file = this.info.file = item.getAsFile();
-                  if (file) {
-                    const name = this.original = file.name;
-                    if (file.type.startsWith("image/")) {
-                      this.rendered = `<img src="${URL.createObjectURL(file)}" loading="lazy" />`;
-                    }
-                    else if (file.type.startsWith("audio/")) {
-                      this.rendered = `<audio src="${URL.createObjectURL(file)}" loading="lazy" controls></audio>`;
-                    }
-                    else if (file.type.startsWith("video/")) {
-                      this.rendered = `<video src="${URL.createObjectURL(file)}" loading="lazy" controls></video>`;
-                    }
-                    else if (file.type.startsWith("text/") || file.type === "application/json" || file.type === "application/xml") {
-                      if (file.type === "text/html") {
-                        this.rendered = `<iframe src="${URL.createObjectURL(file)}" loading="lazy"></iframe>`;
-                      }
-                      else if (file.type === "text/markdown") {
-                        const text = await file.text();
-                        const { use } = await import("https://cdn.jsdelivr.net/npm/marked/+esm");
-                        const { markedHighlight } = await import("https://cdn.jsdelivr.net/npm/marked-highlight/+esm");
-                        const { HighlightJS: hljs } = await import("https://cdn.jsdelivr.net/npm/highlight.js/+esm");
-                        const marked = use(markedHighlight({
-                          langPrefix: "hljs language-",
-                          highlight(code, lang, info) {
-                            const language = hljs.getLanguage(lang) ? lang : "plaintext";
-                            return hljs.highlight(code, { language }).value;
-                          }
-                        }), {
-                          renderer: {
-                            link(token) {
-                              const link = Object.getPrototypeOf(this).link.call(this, token);
-                              if (/^(?:[a-z][a-z\d+\-.]*:)?\/\//i.test(token.href)) {
-                                const span = document.createElement("span");
-                                span.innerHTML = link;
-                                const anchor = span.firstElementChild;
-                                anchor.setAttribute("target", "_blank");
-                                anchor.setAttribute("rel", "noopener noreferrer");
-                                return span.innerHTML;
-                              }
-                              return link;
-                            },
-                            image(token) {
-                              const image = Object.getPrototypeOf(this).image.call(this, token);
-                              return `${image.slice(0, image.length - 1)} loading="lazy">`;
-                            }
-                          }
-                        });
-                        this.rendered = `<div class="markdown-body">${marked.parse(text)}</div>`;
-                      }
-                      else {
-                        const type = file.type;
-                        const lang = type.split('/').pop();
-                        if (lang) {
-                          const text = await file.text();
-                          const { HighlightJS: hljs } = await import("https://cdn.jsdelivr.net/npm/highlight.js/+esm");
-                          const highlighted = hljs.highlight(text, { language: lang }).value;
-                          this.rendered = `<pre class="highlight ${lang} language-${lang}"><code class="hljs language-${lang}">` + highlighted + "</code></pre>";
-                        }
-                        else {
-                          const text = await file.text();
-                          const pre = document.createElement("pre");
-                          pre.innerText = text;
-                          this.rendered = pre.outerHTML;
-                        }
-                      }
-                    }
-                    else {
-                      this.rendered = `<a href="${URL.createObjectURL(file)}" download="${name}">${name}</a>`;
-                    }
-                  }
+                  this.file = item.getAsFile();
                   break;
               }
             }
@@ -356,7 +365,19 @@ sitemap: false
     unmounted() {
       document.removeEventListener("paste", this.onpaste);
     }
-  }).directive("check-solt",
+  }).directive("attribute",
+    (element, binding) => {
+      if (element instanceof HTMLElement) {
+        const value = binding.value;
+        if (value !== binding.oldValue) {
+          const name = binding.arg;
+          if (name) {
+            element.setAttribute(name, value);
+          }
+        }
+      }
+    }
+  ).directive("check-solt",
     (element, binding) => {
       if (element instanceof HTMLElement) {
         const solt = binding.value;
@@ -519,6 +540,12 @@ sitemap: false
 
   #vue-app fluent-text-area[readonly]::part(control) {
     cursor: auto;
+  }
+
+  fluent-text-area[wrap="off"]::part(control) {
+    white-space-collapse: preserve;
+    text-wrap-mode: nowrap;
+    overflow-wrap: normal;
   }
 
   #vue-app pre {
