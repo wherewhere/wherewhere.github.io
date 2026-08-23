@@ -7,6 +7,7 @@ sitemap: false
 <script type="module" data-pjax>
   import {
     provideFluentDesignSystem,
+    fluentAnchor,
     fluentButton,
     fluentSlider,
     fluentTextArea,
@@ -19,6 +20,7 @@ sitemap: false
   } from "https://cdn.jsdelivr.net/npm/@fluentui/web-components@v2/+esm";
   provideFluentDesignSystem()
     .register(
+      fluentAnchor(),
       fluentButton(),
       fluentSlider(),
       fluentTextArea()
@@ -36,7 +38,7 @@ sitemap: false
 
 {% raw %}
 <div id="vue-app">
-  <div class="stack-vertical" style="row-gap: 0.3rem;">
+  <div class="stack-vertical" style="row-gap: 0.3rem; container-type: inline-size;">
     <settings-card class="settings-keepwarp">
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/local_language_20_regular.svg"></svg-host>
@@ -58,8 +60,8 @@ sitemap: false
             style="max-width: calc(var(--base-height-multiplier) * 30px); margin: 0 0 -18px 0"></fluent-slider>
         </value-change-host>
       </template>
-      <div v-style:font-size="fontSize + 'px'"
-        style="font-family: TH-Times; text-align: center; line-height: 100%; white-space: pre-line;">
+      <div
+        :style="{ fontSize: `${fontSize}px`, fontFamily: 'TH-Times', textAlign: 'center', lineHeight: '100%', whiteSpace: 'pre-line' }">
         {{ content }}
       </div>
     </input-label>
@@ -217,16 +219,7 @@ sitemap: false
         NexT.utils.registerSidebarTOC();
       }
     }
-  }).directive("style",
-    (element, binding) => {
-      if (element instanceof HTMLElement) {
-        const value = binding.value;
-        if (value !== binding.oldValue) {
-          element.style[binding.arg] = value;
-        }
-      }
-    }
-  ).directive("attribute",
+  }).directive("attribute",
     (element, binding) => {
       if (element instanceof HTMLElement) {
         const value = binding.value;
@@ -621,9 +614,11 @@ sitemap: false
 
   .settings-presenter div.content-presenter {
     display: grid;
+    grid-auto-flow: column;
+    gap: calc(var(--design-unit) * 1px);
   }
 
-  @media (max-width: 600px) {
+  @container (max-width: 476px) {
     .settings-presenter {
       flex-flow: column;
       justify-content: normal;
@@ -636,6 +631,24 @@ sitemap: false
 
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
+    }
+  }
+
+  @media (max-width: 476px) {
+    .settings-presenter {
+      flex-flow: column;
+      justify-content: normal;
+      align-items: normal;
+    }
+
+    .settings-presenter div.header-panel {
+      margin: 0;
+    }
+
+    .settings-presenter div.content-presenter {
+      margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
     }
   }
 
@@ -651,6 +664,7 @@ sitemap: false
 
   .settings-keepwarp .settings-presenter div.content-presenter {
     margin: var(--settings-card-vertical-header-content-spacing);
+    grid-auto-flow: row;
   }
 
   .settings-card {
