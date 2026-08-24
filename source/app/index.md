@@ -10,6 +10,7 @@ sitemap: false
       "@vue/devtools-api": "https://cdn.jsdelivr.net/npm/@vue/devtools-api/+esm",
       "marked": "https://cdn.jsdelivr.net/npm/marked/+esm",
       "marked-highlight": "https://cdn.jsdelivr.net/npm/marked-highlight/+esm",
+      "nostics": "https://cdn.jsdelivr.net/npm/nostics/+esm",
       "highlight.js": "https://cdn.jsdelivr.net/npm/highlight.js/+esm",
       "vue": "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js",
       "vue-router": "https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.esm-browser.js"
@@ -53,7 +54,7 @@ sitemap: false
 <div id="vue-app">
   <router-view v-slot="{ Component }">
     <transition name="drill" mode="out-in">
-      <component :is="Component" />
+      <component :is="Component"></component>
     </transition>
   </router-view>
 </div>
@@ -62,7 +63,7 @@ sitemap: false
   <div>
     <page-title title="主页"></page-title>
     <div class="stack-vertical" style="row-gap: 8px;" v-if="posts.length">
-      <post-card v-for="post of posts" :post="post"></post-card>
+      <post-card v-for="post of posts" :key="post.url" :post="post"></post-card>
     </div>
     <fluent-progress-ring v-else></fluent-progress-ring>
     <table-of-contents hidden="true"></table-of-contents>
@@ -83,12 +84,12 @@ sitemap: false
     <page-title :title="title" :subtitle="subtitle"></page-title>
     <div v-if="$route.params.slug">
       <div class="stack-vertical" style="row-gap: 8px;" v-if="posts.length">
-        <post-card v-for="post of posts" :post="post"></post-card>
+        <post-card v-for="post of posts" :key="post.url" :post="post"></post-card>
       </div>
     </div>
     <div v-else>
       <div v-if="cates.length" class="stack-vertical" style="row-gap: 8px;">
-        <div class="clickable-card" v-for="cate of cates"
+        <div class="clickable-card" v-for="cate of cates" :key="cate.slug"
           @click="() => $router.push(`/${$route.params.type}/${cate.slug}`)">
           {{ cate.name }}
         </div>
@@ -104,7 +105,7 @@ sitemap: false
     <page-title :title="title" :subtitle="subtitle"></page-title>
     <div v-if="$route.params.year">
       <div class="stack-vertical" style="row-gap: 8px;" v-if="posts.length">
-        <post-card v-for="post of posts" :post="post"></post-card>
+        <post-card v-for="post of posts" :key="post.url" :post="post"></post-card>
       </div>
     </div>
     <div v-else>
@@ -147,7 +148,7 @@ sitemap: false
     </div>
     <div v-else>
       <div v-if="pages.length" class="stack-vertical" style="row-gap: 8px;">
-        <div class="clickable-card" v-for="page of pages" :lang="page.language"
+        <div class="clickable-card" v-for="page of pages" :key="page.url" :lang="page.language"
           @click="() => $router.push(getUrl(page.url))">
           {{ page.title }}
           <span v-if="page.description" style="color: var(--neutral-foreground-hint);">
