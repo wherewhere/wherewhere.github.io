@@ -9,6 +9,7 @@ sitemap: false
     provideFluentDesignSystem,
     fluentAccordion,
     fluentAccordionItem,
+    fluentAnchor,
     fluentButton,
     fluentNumberField,
     fluentOption,
@@ -27,6 +28,7 @@ sitemap: false
     .register(
       fluentAccordion(),
       fluentAccordionItem(),
+      fluentAnchor(),
       fluentButton(),
       fluentNumberField(),
       fluentOption(),
@@ -48,7 +50,7 @@ sitemap: false
 
 {% raw %}
 <div id="vue-app">
-  <div class="stack-vertical" style="row-gap: 0.3rem;">
+  <div class="stack-vertical" style="row-gap: 0.3rem; container-type: inline-size;">
     <settings-card>
       <template #icon>
         <svg-host
@@ -176,8 +178,9 @@ sitemap: false
       </template>
       <div class="setting-expander-content-grid stack-vertical"
         style="gap: calc(var(--base-horizontal-spacing-multiplier) * 1px); align-items: stretch;">
-        <fluent-number-field v-for="(_, key) in option.others" v-model="option.others[key]">{{ key
-          }}</fluent-number-field>
+        <fluent-number-field v-for="(_, key) in option.others" :key="key" v-model="option.others[key]">
+          {{ key }}
+        </fluent-number-field>
       </div>
     </settings-expander>
     <settings-card class="settings-nowarp" v-show="verify.enabled">
@@ -1001,9 +1004,11 @@ sitemap: false
 
   .settings-presenter div.content-presenter {
     display: grid;
+    grid-auto-flow: column;
+    gap: calc(var(--design-unit) * 1px);
   }
 
-  @media (max-width: 600px) {
+  @container (max-width: 476px) {
     .settings-presenter {
       flex-flow: column;
       justify-content: normal;
@@ -1016,6 +1021,7 @@ sitemap: false
 
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
     }
 
     .settings-nowarp .settings-presenter {
@@ -1030,6 +1036,39 @@ sitemap: false
 
     .settings-nowarp .settings-presenter div.content-presenter {
       margin: 0;
+      grid-auto-flow: column;
+    }
+  }
+
+  @media (max-width: 476px) {
+    .settings-presenter {
+      flex-flow: column;
+      justify-content: normal;
+      align-items: normal;
+    }
+
+    .settings-presenter div.header-panel {
+      margin: 0;
+    }
+
+    .settings-presenter div.content-presenter {
+      margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
+    }
+
+    .settings-nowarp .settings-presenter {
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .settings-nowarp .settings-presenter div.header-panel {
+      margin: 0 calc(var(--design-unit) * 6px) 0 0;
+    }
+
+    .settings-nowarp .settings-presenter div.content-presenter {
+      margin: 0;
+      grid-auto-flow: column;
     }
   }
 

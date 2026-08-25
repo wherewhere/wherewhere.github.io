@@ -9,6 +9,7 @@ sitemap: false
     provideFluentDesignSystem,
     fluentAccordion,
     fluentAccordionItem,
+    fluentAnchor,
     fluentButton,
     fluentCombobox,
     fluentNumberField,
@@ -27,6 +28,7 @@ sitemap: false
     .register(
       fluentAccordion(),
       fluentAccordionItem(),
+      fluentAnchor(),
       fluentButton(),
       fluentCombobox(),
       fluentNumberField(),
@@ -967,11 +969,45 @@ sitemap: false
 
   .settings-presenter div.content-presenter {
     display: grid;
+    grid-auto-flow: column;
+    gap: calc(var(--design-unit) * 1px);
   }
 
   .settings-presenter a.text-button {
     font-weight: bold;
     text-decoration: default;
+  }
+
+  @container (max-width: 476px) {
+    .settings-presenter {
+      flex-flow: column;
+      justify-content: normal;
+      align-items: normal;
+    }
+
+    .settings-presenter div.header-panel {
+      margin: 0;
+    }
+
+    .settings-presenter div.content-presenter {
+      margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
+    }
+
+    .settings-nowarp .settings-presenter {
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .settings-nowarp .settings-presenter div.header-panel {
+      margin: 0 calc(var(--design-unit) * 6px) 0 0;
+    }
+
+    .settings-nowarp .settings-presenter div.content-presenter {
+      margin: 0;
+      grid-auto-flow: column;
+    }
   }
 
   @media (max-width: 640px) {
@@ -987,6 +1023,7 @@ sitemap: false
 
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
     }
 
     .settings-nowarp .settings-presenter {
@@ -1001,6 +1038,7 @@ sitemap: false
 
     .settings-nowarp .settings-presenter div.content-presenter {
       margin: 0;
+      grid-auto-flow: column;
     }
   }
 

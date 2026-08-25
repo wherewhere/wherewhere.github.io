@@ -9,6 +9,7 @@ sitemap: false
     provideFluentDesignSystem,
     fluentAccordion,
     fluentAccordionItem,
+    fluentAnchor,
     fluentButton,
     fluentOption,
     fluentSelect,
@@ -26,6 +27,7 @@ sitemap: false
     .register(
       fluentAccordion(),
       fluentAccordionItem(),
+      fluentAnchor(),
       fluentButton(),
       fluentOption(),
       fluentSelect(),
@@ -46,7 +48,7 @@ sitemap: false
 
 {% raw %}
 <div id="vue-app">
-  <div class="stack-vertical" style="row-gap: 0.3rem;">
+  <div class="stack-vertical" style="row-gap: 0.3rem; container-type: inline-size;">
     <settings-card>
       <template #icon>
         <svg-host
@@ -689,6 +691,8 @@ sitemap: false
 
   .settings-presenter div.content-presenter {
     display: grid;
+    grid-auto-flow: column;
+    gap: calc(var(--design-unit) * 1px);
   }
 
   .settings-presenter a.text-button {
@@ -696,7 +700,7 @@ sitemap: false
     text-decoration: inherit;
   }
 
-  @media (max-width: 600px) {
+  @container (max-width: 476px) {
     .settings-presenter {
       flex-flow: column;
       justify-content: normal;
@@ -709,6 +713,7 @@ sitemap: false
 
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
     }
 
     .settings-nowarp .settings-presenter {
@@ -723,6 +728,39 @@ sitemap: false
 
     .settings-nowarp .settings-presenter div.content-presenter {
       margin: 0;
+      grid-auto-flow: column;
+    }
+  }
+
+  @media (max-width: 476px) {
+    .settings-presenter {
+      flex-flow: column;
+      justify-content: normal;
+      align-items: normal;
+    }
+
+    .settings-presenter div.header-panel {
+      margin: 0;
+    }
+
+    .settings-presenter div.content-presenter {
+      margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
+    }
+
+    .settings-nowarp .settings-presenter {
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .settings-nowarp .settings-presenter div.header-panel {
+      margin: 0 calc(var(--design-unit) * 6px) 0 0;
+    }
+
+    .settings-nowarp .settings-presenter div.content-presenter {
+      margin: 0;
+      grid-auto-flow: column;
     }
   }
 
