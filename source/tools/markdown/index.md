@@ -1,7 +1,7 @@
 ---
 title: Markdown 预览
-description: 使用 <fluent-anchor appearance="hypertext" href="https://github.com/markedjs/marked"
-  target="_blank">Marked.JS</fluent-anchor> 解析并预览 Markdown 文本
+description: 使用 <a appearance="hypertext" href="https://github.com/markedjs/marked"
+  target="_blank">Marked.JS</a> 解析并预览 Markdown 文本
 sitemap: false
 ---
 <script type="importmap" data-pjax>
@@ -173,7 +173,7 @@ sitemap: false
 </div>
 
 <script type="module" data-pjax>
-  import { use, Renderer } from "marked";
+  import { use } from "marked";
   import { markedHighlight } from "marked-highlight";
   import { HighlightJS as hljs } from "highlight.js";
   import msil from "highlight-msil";
@@ -187,7 +187,7 @@ sitemap: false
   }), {
     renderer: {
       link(token) {
-        const link = Renderer.prototype.link.call(this, token);
+        const link = Object.getPrototypeOf(this).link.call(this, token);
         if (/^(?:[a-z][a-z\d+\-.]*:)?\/\//i.test(token.href)) {
           const span = document.createElement("span");
           span.innerHTML = link;
@@ -199,8 +199,8 @@ sitemap: false
         return link;
       },
       image(token) {
-        const image = Renderer.prototype.image.call(this, token);
-        return `<a href="${token.href}">${image}</a>`;
+        const image = Object.getPrototypeOf(this).image.call(this, token);
+        return `<a href="${token.href}">${image.slice(0, image.length - 1)} loading="lazy"></a>`;
       }
     }
   });
@@ -209,8 +209,32 @@ sitemap: false
   import { markdown } from "@codemirror/lang-markdown";
   import { languages } from "@codemirror/language-data";
   import { LanguageDescription } from "@codemirror/language";
-  import { vscodeDark } from "@uiw/codemirror-theme-vscode/dark";
-  import { vscodeLight } from "@uiw/codemirror-theme-vscode/light";
+  import { vscodeDarkInit } from "@uiw/codemirror-theme-vscode/dark";
+  import { vscodeLightInit } from "@uiw/codemirror-theme-vscode/light";
+  const fontFamily = "Cascadia Code NF, Cascadia Code PL, Cascadia Code, Cascadia Next SC, Cascadia Next TC, Cascadia Next JP, Consolas, Courier New, Liberation Mono, SFMono-Regular, Menlo, Monaco, monospace";
+  const vscodeDark = vscodeDarkInit({
+    settings: {
+      background: "#1E1E1E",
+      foreground: "#CCCCCC",
+      caret: "#AEAFAD",
+      selection: "#264F78",
+      selectionMatch: "#ADD6FF26",
+      gutterForeground: "#6E7681",
+      gutterActiveForeground: "#CCCCCC",
+      gutterBorder: "#404040",
+      fontFamily
+    }
+  });
+  const vscodeLight = vscodeLightInit({
+    settings: {
+      foreground: "#3B3B3B",
+      selectionMatch: "#ADD6FF80",
+      gutterForeground: "#6E7681",
+      gutterActiveForeground: "#171184",
+      gutterBorder: "#D3D3D3",
+      fontFamily
+    }
+  });
   const themeSet = new Compartment();
   const theme = themeSet.of(vscodeLight);
   const scheme = matchMedia("(prefers-color-scheme: dark)");
@@ -315,6 +339,25 @@ sitemap: false
   div.split-view #container .cm-editor .cm-diagnostic,
   div.split-view #container .cm-editor .cm-tooltip-autocomplete>ul {
     font-family: "Cascadia Code NF", "Cascadia Code PL", "Cascadia Code", "Cascadia Next SC", "Cascadia Next TC", "Cascadia Next JP", Consolas, "Courier New", "Liberation Mono", SFMono-Regular, Menlo, Monaco, monospace;
+  }
+
+  div.split-view .cm-editor .cm-gutters {
+    border-right-width: 1px;
+    border-right-style: solid;
+  }
+
+  div.split-view .cm-editor .cm-searchMatch {
+    background-color: rgba(234, 92, 0, 0.33);
+  }
+
+  div.split-view .cm-editor .cm-searchMatch-selected {
+    background-color: rgba(234, 92, 0, 0.22);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    div.split-view .cm-editor .cm-searchMatch-selected {
+      background-color: #9E6A03;
+    }
   }
 
   div.split-view .perview-card {

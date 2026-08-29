@@ -1,8 +1,8 @@
 ---
 title: JSON 与 YAML 转换
-description: 使用 <fluent-anchor appearance="hypertext" href="https://github.com/sidorares/json-bigint"
-  target="_blank">json-bigint</fluent-anchor> 和 <fluent-anchor appearance="hypertext"
-  href="https://github.com/nodeca/js-yaml/" target="_blank">js-yaml</fluent-anchor> 转化 JSON 与 YAML 数据
+description: 使用 <a appearance="hypertext" href="https://github.com/sidorares/json-bigint"
+  target="_blank">json-bigint</a> 和 <a appearance="hypertext"
+  href="https://github.com/nodeca/js-yaml/" target="_blank">js-yaml</a> 转化 JSON 与 YAML 数据
 sitemap: false
 ---
 <script type="importmap" data-pjax>
@@ -48,8 +48,32 @@ sitemap: false
   import { Compartment } from "@codemirror/state";
   import { json } from "@codemirror/lang-json";
   import { yaml } from "@codemirror/lang-yaml";
-  import { vscodeDark } from "@uiw/codemirror-theme-vscode/dark";
-  import { vscodeLight } from "@uiw/codemirror-theme-vscode/light";
+  import { vscodeDarkInit } from "@uiw/codemirror-theme-vscode/dark";
+  import { vscodeLightInit } from "@uiw/codemirror-theme-vscode/light";
+  const fontFamily = "Cascadia Code NF, Cascadia Code PL, Cascadia Code, Cascadia Next SC, Cascadia Next TC, Cascadia Next JP, Consolas, Courier New, Liberation Mono, SFMono-Regular, Menlo, Monaco, monospace";
+  const vscodeDark = vscodeDarkInit({
+    settings: {
+      background: "#1E1E1E",
+      foreground: "#CCCCCC",
+      caret: "#AEAFAD",
+      selection: "#264F78",
+      selectionMatch: "#ADD6FF26",
+      gutterForeground: "#6E7681",
+      gutterActiveForeground: "#CCCCCC",
+      gutterBorder: "#404040",
+      fontFamily
+    }
+  });
+  const vscodeLight = vscodeLightInit({
+    settings: {
+      foreground: "#3B3B3B",
+      selectionMatch: "#ADD6FF80",
+      gutterForeground: "#6E7681",
+      gutterActiveForeground: "#171184",
+      gutterBorder: "#D3D3D3",
+      fontFamily
+    }
+  });
   function createEditor(id, value, onchange) {
     const themeSet = new Compartment();
     const theme = themeSet.of(vscodeLight);
@@ -168,10 +192,28 @@ sitemap: false
     color: HighlightText;
   }
 
-  div.split-view .cm-editor .cm-scroller,
   div.split-view .cm-editor .cm-diagnostic,
   div.split-view .cm-editor .cm-tooltip-autocomplete>ul {
     font-family: "Cascadia Code NF", "Cascadia Code PL", "Cascadia Code", "Cascadia Next SC", "Cascadia Next TC", "Cascadia Next JP", Consolas, "Courier New", "Liberation Mono", SFMono-Regular, Menlo, Monaco, monospace;
+  }
+
+  div.split-view .cm-editor .cm-gutters {
+    border-right-width: 1px;
+    border-right-style: solid;
+  }
+
+  div.split-view .cm-editor .cm-searchMatch {
+    background-color: rgba(234, 92, 0, 0.33);
+  }
+
+  div.split-view .cm-editor .cm-searchMatch-selected {
+    background-color: rgba(234, 92, 0, 0.22);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    div.split-view .cm-editor .cm-searchMatch-selected {
+      background-color: #9E6A03;
+    }
   }
 
   @media (max-width: 767px) {
