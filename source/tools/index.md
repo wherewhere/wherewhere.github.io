@@ -647,6 +647,8 @@ description: 各种各样的实用小工具
 
   .settings-presenter div.content-presenter {
     display: grid;
+    grid-auto-flow: column;
+    gap: calc(var(--design-unit) * 1px);
   }
 
   .settings-presenter a.text-button {
@@ -667,6 +669,7 @@ description: 各种各样的实用小工具
 
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
     }
   }
 
@@ -683,6 +686,7 @@ description: 各种各样的实用小工具
 
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
     }
   }
 

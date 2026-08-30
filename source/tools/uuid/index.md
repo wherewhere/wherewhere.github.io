@@ -59,7 +59,7 @@ sitemap: false
       <h2 id="uuid-generate" class="unset">生成</h2>
     </fluent-tab>
     <fluent-tab-panel id="generatePanel">
-      <div class="stack-vertical" style="row-gap: 0.3rem;">
+      <div class="stack-vertical" style="row-gap: 0.3rem; container-type: inline-size;">
         <settings-card>
           <template #icon>
             <svg-host
@@ -98,8 +98,8 @@ sitemap: false
               </template>
               <template #description>
                 输入命名空间的 UUID，有 <fluent-anchor :title="getNamespace('DNS')" appearance="hypertext"
-                  href="javascript:void(0);" @click="() => option.namespace = getNamespace('DNS')">DNS</fluent-anchor> 和
-                <fluent-anchor :title="getNamespace('URL')" appearance="hypertext" href="javascript:void(0);"
+                  href="javascript:void(0)" @click="() => option.namespace = getNamespace('DNS')">DNS</fluent-anchor> 和
+                <fluent-anchor :title="getNamespace('URL')" appearance="hypertext" href="javascript:void(0)"
                   @click="() => option.namespace = getNamespace('URL')">URL</fluent-anchor>。
               </template>
               <fluent-text-field v-model="option.namespace"></fluent-text-field>
@@ -759,9 +759,11 @@ sitemap: false
 
   .settings-presenter div.content-presenter {
     display: grid;
+    grid-auto-flow: column;
+    gap: calc(var(--design-unit) * 1px);
   }
 
-  @media (max-width: 600px) {
+  @container (max-width: 476px) {
     .settings-presenter {
       flex-flow: column;
       justify-content: normal;
@@ -774,6 +776,24 @@ sitemap: false
 
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
+    }
+  }
+
+  @media (max-width: 476px) {
+    .settings-presenter {
+      flex-flow: column;
+      justify-content: normal;
+      align-items: normal;
+    }
+
+    .settings-presenter div.header-panel {
+      margin: 0;
+    }
+
+    .settings-presenter div.content-presenter {
+      margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
     }
   }
 

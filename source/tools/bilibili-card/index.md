@@ -57,7 +57,7 @@ sitemap: false
 
 {% raw %}
 <div id="vue-app">
-  <div class="stack-vertical" style="row-gap: 0.3rem;">
+  <div class="stack-vertical" style="row-gap: 0.3rem; container-type: inline-size;">
     <settings-card>
       <template #icon>
         <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/design_ideas_20_regular.svg"></svg-host>
@@ -416,7 +416,7 @@ sitemap: false
             const pre = document.createElement("pre");
             pre.className = "highlight html language-html";
             pre.style.marginTop = "calc(var(--design-unit) * 1px)";
-            pre.style.marginBottom = "unset";
+            pre.style.marginBottom = 0;
             pre.style.borderRadius = "6px";
             const code = document.createElement("code");
             code.innerHTML = encodeHTML(element);
@@ -730,6 +730,10 @@ sitemap: false
     line-height: inherit;
   }
 
+  #vue-app pre code.hljs {
+    padding: 0;
+  }
+
   #vue-app fluent-select::part(listbox) {
     max-height: calc(var(--base-height-multiplier) * 30px);
   }
@@ -785,9 +789,11 @@ sitemap: false
 
   .settings-presenter div.content-presenter {
     display: grid;
+    grid-auto-flow: column;
+    gap: calc(var(--design-unit) * 1px);
   }
 
-  @media (max-width: 600px) {
+  @container (max-width: 476px) {
     .settings-presenter {
       flex-flow: column;
       justify-content: normal;
@@ -800,6 +806,24 @@ sitemap: false
 
     .settings-presenter div.content-presenter {
       margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
+    }
+  }
+
+  @media (max-width: 476px) {
+    .settings-presenter {
+      flex-flow: column;
+      justify-content: normal;
+      align-items: normal;
+    }
+
+    .settings-presenter div.header-panel {
+      margin: 0;
+    }
+
+    .settings-presenter div.content-presenter {
+      margin: var(--settings-card-vertical-header-content-spacing);
+      grid-auto-flow: row;
     }
   }
 
