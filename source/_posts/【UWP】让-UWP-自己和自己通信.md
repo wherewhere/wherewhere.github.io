@@ -1,7 +1,7 @@
 ---
 title: 【UWP】让 UWP 自己和自己通信
 date: 2025-04-01 14:04:00
-updated: 2025-04-01 14:22:00
+updated: 2026-08-30 16:13:00
 tags: [UWP, .NET, C#, WinRT, 开发, 教程]
 categories: 开发
 ---
@@ -417,7 +417,7 @@ public static partial class Factory
         {
             Marshal.ThrowExceptionForHR(hresult);
         }
-        return Marshaler<T>.FromAbi(result);
+        return MarshalInterface<T>.FromAbi(result);
     }
 
     internal static T CreateInstance<T>(Guid rclsid, CLSCTX dwClsContext, TimeSpan period) where T : ISetMonitor
