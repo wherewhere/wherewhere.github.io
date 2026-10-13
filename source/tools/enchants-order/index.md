@@ -55,7 +55,7 @@ sitemap: false
       <settings-card>
         <template #icon>
           <svg-host
-            src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/local_language_20_regular.svg"></svg-host>
+            src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/zh/local_language_20_regular.svg"></svg-host>
         </template>
         <template #header>
           <h2 id="global-lang" class="unset">语言</h2>

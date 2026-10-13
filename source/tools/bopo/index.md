@@ -41,7 +41,8 @@ sitemap: false
   <div class="stack-vertical" style="row-gap: 0.3rem; container-type: inline-size;">
     <settings-card class="settings-keepwarp">
       <template #icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/local_language_20_regular.svg"></svg-host>
+        <svg-host
+          src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/zh/local_language_20_regular.svg"></svg-host>
       </template>
       <template #header>
         <h3 id="bopomofo-content" class="unset">输入</h3>

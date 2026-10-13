@@ -60,7 +60,8 @@ description: 各种各样的实用小工具
     </settings-button>
     <settings-button href="bopo">
       <template #icon>
-        <svg-host src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/local_language_20_regular.svg"></svg-host>
+        <svg-host
+          src="https://cdn.jsdelivr.net/npm/@fluentui/svg-icons/icons/zh/local_language_20_regular.svg"></svg-host>
       </template>
       <template #header>
         <h3 id="render-bopomofo" class="unset">注音组字</h3>
