@@ -57,7 +57,7 @@
     "hexo-generator-wayback": "^0.0.3",
     "hexo-indexnow": "^1.0.0",
     "hexo-next-fallback": "github:wherewhere/hexo-next-fallback",
-    "hexo-related-posts": "github:wherewhere/hexo-related-posts#hexo-compatible",
+    "hexo-related-posts2": "^1.0.0",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-marked": "^7.0.0",
     "hexo-renderer-stylus": "^3.0.0",
