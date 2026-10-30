@@ -25,7 +25,7 @@ jobs:
           node-version: latest
 
       - name: Install Dependencies
-        run: npm install
+        run: npm install --allow-git=all
 
       - name: Build
         run: npm run build
